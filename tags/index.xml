@@ -1,22 +1,67 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on My blog</title>
-    <link>https://palaashagrawal.github.io/practicals/tags/</link>
-    <description>Recent content in Tags on My blog</description>
+    <title>Tags on Palaash Agrawal</title>
+    <link>https://palaashagrawal.github.io/website0/tags/</link>
+    <description>Recent content in Tags on Palaash Agrawal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 12 Apr 2017 11:14:48 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 02 Apr 2014 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://palaashagrawal.github.io/practicals/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://palaashagrawal.github.io/website0/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>scene</title>
-      <link>https://palaashagrawal.github.io/practicals/tags/scene/</link>
-      <pubDate>Wed, 12 Apr 2017 11:14:48 -0400</pubDate>
+      <title>development</title>
+      <link>https://palaashagrawal.github.io/website0/tags/development/</link>
+      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://palaashagrawal.github.io/practicals/tags/scene/</guid>
+      <guid>https://palaashagrawal.github.io/website0/tags/development/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>go</title>
+      <link>https://palaashagrawal.github.io/website0/tags/go/</link>
+      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://palaashagrawal.github.io/website0/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>golang</title>
+      <link>https://palaashagrawal.github.io/website0/tags/golang/</link>
+      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://palaashagrawal.github.io/website0/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hugo</title>
+      <link>https://palaashagrawal.github.io/website0/tags/hugo/</link>
+      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://palaashagrawal.github.io/website0/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>templates</title>
+      <link>https://palaashagrawal.github.io/website0/tags/templates/</link>
+      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://palaashagrawal.github.io/website0/tags/templates/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>themes</title>
+      <link>https://palaashagrawal.github.io/website0/tags/themes/</link>
+      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://palaashagrawal.github.io/website0/tags/themes/</guid>
       <description></description>
     </item>
     
