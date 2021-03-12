@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta name="generator" content="Hugo 0.68.3" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="06 Support Vector Machines Welcome to the 6th Practical Session on Machine Learning. In this lab, we&rsquo;ll be learning about Support Vector Machines. This lab session is a fairly short session, so it may be more enjoyable to study. Support Vector Machines, or SVMs for short, were considered a very strong system for classication, and even regression in the 1990s. At that time, People did not believe in the systems that we use today, like the Neural Networks or Random Forests, so SVMs were pretty much State of the Art.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://palaashagrawal.github.io/practicals/docs/06-support-vector-machines/" />
+
+<title>06 Support Vector Machines | Palaash Agrawal</title>
+<link rel="manifest" href="https://palaashagrawal.github.io/practicals/manifest.json">
+<link rel="icon" href="https://palaashagrawal.github.io/practicals/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="https://palaashagrawal.github.io/practicals/book.min.2dc4d2afa8da6ac78d76671c21e140952e7a84846fed47ed02a1a2d68166d992.css" integrity="sha256-LcTSr6jaaseNdmccIeFAlS56hIRv7UftAqGi1oFm2ZI=">
+<script defer src="https://palaashagrawal.github.io/practicals/en.search.min.ca40c67ae3c71e5afca9d771d7e6ea511d0c4ba4f69a678a0b07e8c8557d56c0.js" integrity="sha256-ykDGeuPHHlr8qddx1&#43;bqUR0MS6T2mmeKCwfoyFV9VsA="></script>
+<link rel="alternate" type="application/rss+xml" href="https://palaashagrawal.github.io/practicals/docs/06-support-vector-machines/index.xml" title="Palaash Agrawal" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="https://palaashagrawal.github.io/practicals/"><span>Palaash Agrawal</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/00-introduction-to-machine-learning-and-python/" class="">00 Introduction to Machine Learning and Python</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/01-linear-regression/" class="">01 Linear Regression</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/02-logistic-regression/" class="">02 Logistic Regression</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/03-singular-value-decomposition-and-principal-component-analysis/" class="">03 Singular Value Decomposition and Principal Component Analysis</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/04-bayesian-learning/" class="">04 Bayesian Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/05-clustering-algorithms-in-machine-learning/" class="">05 Clustering Algorithms in Machine Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/06-support-vector-machines/" class=" active">06 Support Vector Machines</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/07-decision-trees-and-random-forests/" class="">07 Decision Trees and Random Forests</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="https://palaashagrawal.github.io/practicals/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>06 Support Vector Machines</strong>
+
+  <label for="toc-control">
+    
+    <img src="https://palaashagrawal.github.io/practicals/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+
+    
+  </label>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  
+    window.addEventListener('load', (event) => {
+        document.querySelectorAll("mjx-container").forEach(function(x){
+          x.parentElement.classList += 'has-jax'})
+      });
+  
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-are-support-vector-machines">What are Support Vector Machines</a></li>
+    <li><a href="#building-an-svm-model">Building an SVM Model</a></li>
+    <li><a href="#review-and-questionnaire">Review and Questionnaire</a>
+      <ul>
+        <li><a href="#questionnaire">Questionnaire:</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#exercise">Exercise</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="06-support-vector-machines">06 Support Vector Machines</h1>
+<p>Welcome to the 6th Practical Session on Machine Learning. In this lab, we&rsquo;ll be learning about <strong>Support Vector Machines</strong>. This lab session is a fairly short session, so it may be more enjoyable to study. Support Vector Machines, or SVMs for short, were considered a very strong system for classication, and even regression in the 1990s. At that time, People did not believe in the systems that we use today, like the Neural Networks or Random Forests, so SVMs were pretty much State of the Art. In the early 1990s, there was almost no practical evidence that Neural Networks could perform better than SVMs. But that was obviously when Neural Networks were really shallow (there was no <em>Deep</em> Learning), and now we know for sure that Neural Networks are far more sophisticated, complex are well performing, than SVMs. But, SVMs are still an integral part of Machine Learning - SVMs can literally be approximated as other techniques such as Linear Regression or Logistic Regression.</p>
+<p>Ideally, Support Vector Machines has a lot of complicated Math and Theory. According to many, the math behind just the working of the Support Vector Machines is even more complex than Neural Networks. So, in the spirit of the practicality that we always try to pursue in these Lab Sessions, instead of the math and theory, we will not go deep into theory, but learn how to run SVM models in practice. You only need a basic understanding cum overview of the working of SVMs to be able to run SMVs. To be honest, you will mostly never need the theory (unless you decide to research upon it). And we&rsquo;ll leave the theory of it to your Lecture Classes.</p>
+<p><strong>So what are SVMs in the first place?</strong></p>
+<h2 id="what-are-support-vector-machines">What are Support Vector Machines</h2>
+<p>Lets start with a simple binary classification example. Our job is to create a model that separates the two. In Logistic regression, we modelled a line, that gave a value either greater than 0 or less than 0 (and hence an output of less than 0.5 or more than 0.5 when passed through a sigmoid function), based on which category the datapoint lies in. Something like the figure below:</p>
+<p><img src="https://drive.google.com/uc?id=1QIdMc91Vj9aBRiDqqxv595bD296c0WBT" alt="" /></p>
+<p>This is all that we did in Logistic Regression - model a line</p>
+<p>(<em>or a plane to be more precise - A line is basically a 1-dimensional version of a 2D plane, and separates 2-D data. A 2D plane separates 3-D data, and similarly there can be N-dimensional planes as well, to separate N+1 dimensional data</em>)</p>
+<p>that best separates the two categories of data. Basic Geometry tells us that if you model a line(or plane) $f(x) = 0$, and then give it an input x that does <em>not</em> lie on the line, you will get a non-zero value ($f(x) \neq 0$). If you input a value that lies on one side of the line, you will get a positive value, and if you input a value that is on the other side, you will get a negative value. So it makes sense to build a line that lies in the middle of the two clusters of data. Ofcourse its not always possible to always get 100% accuracy, because of the distribution of data. But our focus is to get the best possible results.</p>
+<p>SVMs simply do the same, except that SVMs take it to the next level. SVMs not only try to get the best results, but also the best fitting line, even if the accuracy might not increase per se. What do we mean by the <em>best fitting line</em>?</p>
+<p><img src="https://drive.google.com/uc?id=1_oi7kIlVu25f9UNf5RWYNxEC_XwtvNyj" alt="" /></p>
+<p>In the figure given above, all the three lines ($L1$,$L2$ and $L3$) would ideally give 100% accuracy in this binary classification problem, since they clearly separate the two classes. But Imagine what would happen if you get new datapoints around the existing clusters. Lines $L1$ and $L3$ are so closely cutting one of the categories, that there&rsquo;s a much higher chance of misclassification when new data would be introduced. Line $L2$ seems much more robust in that view.</p>
+<p>Mathematically, whats going on, is that Line $L2$ has the best <em>Margin of Separation</em>. Meaning, its the most far away from any datapoint . This creates room for variance in data. Even if you introduce new data that is slightly out of the already-existing clusters, the line with the most margin (Line L2) is still more likely to correctly separate the categories. This is what the <em>Margin of Separation</em> looks like:</p>
+<p><img src="https://drive.google.com/uc?id=1FssE45toMSUcZPgMXGIhK7xUmhrhyZeR" alt="" /></p>
+<p>The space in between the two dotted lines is the margin of separation. There <em>ideally</em> should be no data in between these two lines. The actual separating (classifying) line is in the between the two dotted lines.</p>
+<p>A logistic regression model would not know the difference between the lines $L1$,$L2$ and $L3$. SVM does! SVM not only tries to minimize the error in prediction, but also tries to <em>maximize the margin between the two categories</em>.</p>
+<p>So our data in N Dimensional, there is <em>SOME</em> N-dimensional plane that <em>Best</em> separates the data, with the widest margin of separation. The remaining idea is the same - build a model, build a cost function that you wish to minimize in order to get the best results, and build an optimization method that changes the position of the line/plane such that the cost function is minimized.</p>
+<p>Basically,</p>
+<ol>
+<li>
+<p>Step1:</p>
+<p>Model a line that can separate the data. Say $y=w_1 x_1 + w_2x_2 + &hellip;. $</p>
+</li>
+<li>
+<p>Step2:</p>
+<p>Create a loss function. This loss function not only accounts for error in prediction (which we&rsquo;ve already done in the Logistic Regression Lab , which isn&rsquo;t important to remember letter-by-letter as of now!) as well as the margin. And we need to minimize the loss function. But if you remember, we wanted to <em>maximize</em> the separation. That&rsquo;s no problem, simply take the inverse of the term. Maximizing a term is the same as minimizing its mathematical inverse!</p>
+<p>$Minimize: Loss = BinaryLossOfPrediction + \frac{1}{Margin of Separation}$</p>
+</li>
+<li>
+<p>Step3:</p>
+<p>Optimize the line/plane by minimizing the Loss function. How do we minimize the loss function? You can use the technique that we already know - Gradient Descent. Or you can even use a direct formula based approach as we saw earlier.</p>
+</li>
+</ol>
+<p>That is all of SVM in theory - atleast the theory that we need to understand the basic intuition behind SVM. The above approach applies to classification, but regression is possible too! The approach is the same. Build a model, build a loss function, and build an optimizer! Ofcourse there&rsquo;s no Margin of Separation concept in regression, so we simply have to build a Linear Model.</p>
+<p>We won&rsquo;t implement all these details by ourselves. Fortunately, there are libraries that do this for us. We&rsquo;ll be using SciKitLearn&rsquo;s SVM implementation to carry out the task. This is a wonderful point to talk about SKLearn (SciKitLearn)(also called SKL, for short).</p>
+<p>SKLearn is a wonderful Machine Learning Library, containing tools to build almost all fundamental Models - including Linear Regression, Logistic Regression, PCA, even Neural Networks. The only issue is, that there is only so much flexibility that it provides. So, either ways, its a great library to build basic implementations of models. If you however, wish to build more complex functionalities, this is where more sophisticated libraries come into picture.</p>
+<p>The limitations in the functionalities of SKLearn are mostly because of obsolete code structures. If you go into the source code of SKLearn, at some point, it assumes the inputs to functions to be of a very specific type, representing only specific types of information.</p>
+<h2 id="building-an-svm-model">Building an SVM Model</h2>
+<p>Let us build an Classification model using SVMs. We&rsquo;ve looked at many Image Classification models, but haven&rsquo;t built NLP (Language) Models. So Let us explore a language model, just for fun!</p>
+<p>In this lab, we&rsquo;ll be learning to build a Movie Review Classification System. We have some reviews from actual people over actual movies from IMDB&rsquo;s website, and our model will classify which review are positive reviews, and which are negative reviews!</p>
+<p>To help you appreciate the problem - a model that can identify whether the sentiment behind a piece of text is positive or negative, needs to <em>understand</em> meanings of words. Consider a positive statement, such as &ldquo;<em>I Loved this movie!</em>&quot;. As humans, we look for keywords, like <em>Love</em> or <em>Hate</em> or <em>liked</em> or <em>(did) Not (like)</em>, to identify the sentiment. Our model would need to identify how to separate such words. First of all, it would need to find a method to represent words in space. Then it would need to find a model (like a linear model), that separates the two concepts (positive and negative).</p>
+<blockquote>
+<p>Side Note: One of the objectives of these Lab Sessions is not just to learn to learn how models work, but also to explore different problems. Many a times, you will have to deal with data that are of different types - the data can be images, videos, texts, audios, graphs, etc. As Data practitioners, its our job to learn how to handle all these different types of data, and convert them into data that the computer can understand (into numbers, that is ). For example, Computers cannot understand Images, but it can understand tensors, or matrices. We will now look at methods to represent text in terms of numbers that our model may understand.</p>
+</blockquote>
+<p>The IMDB dataset is available <a href="https://www.kaggle.com/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews">here</a>. Since it is a kaggle dataset, we would need to upload a <em>kaggle.json</em> file. Run the Cell below to do that!</p>
+<pre><code>#run only once per session
+%cd 
+from google.colab import files
+uploaded = files.upload()
+!mkdir -p ~/.kaggle/ &amp;&amp; mv kaggle.json ~/.kaggle/ &amp;&amp; chmod 600 ~/.kaggle/kaggle.json
+!kaggle datasets download -d lakshmi25npathi/imdb-dataset-of-50k-movie-reviews
+!mkdir imdb 
+!unzip imdb-dataset-of-50k-movie-reviews.zip -d imdb
+% cd imdb
+!ls
+</code></pre><p>As you can see, we have a csv file, so we will import the pandas library to read it as a dataframe. According to the dataset&rsquo;s webpage, there are 50000 reviews along with the sentiments of whether they are positive or negative reviews.</p>
+<pre><code>import pandas as pd
+imdb_dataset=pd.read_csv('IMDB Dataset.csv')
+</code></pre><pre><code>imdb_dataset.head()
+</code></pre><p>The <code>imdb_dataset</code> dataframe contains two columns - <code>review</code>, which contains the review themselves, and the <code>sentiment</code>, which contain labels. Lets look at one of the reviews.</p>
+<pre><code>sentence=imdb_dataset.iloc[0]
+print(sentence.sentiment) #tells us which type of review it is (positive of negative)
+sentence.review
+</code></pre><p>Let us also find out how many positive and negative reviews are there in the dataset. Ideally, we would want our dataset to be well balanced - meaning, the number of positives should be more or less equal to the negatives. Otherwise, there is a chance of the model being biased towards the more dominating category. Also the accuracy metric does not perform as well on unbalanced categories.</p>
+<pre><code>imdb_dataset['sentiment'].value_counts()
+</code></pre><p>Thankfully, this dataset contains equal numbers of positives and negatives.</p>
+<p>The next job is to split our dataset into the training and validation dataset. If we have no validation dataset, there is no way to know how well the model performs at the end. We&rsquo;ve defined a function to do so. It randomly picks <code>frac</code> fraction of data into the training dataset, and the remaining go to the validation dataset.</p>
+<p>Note: Here, we will only use a total of 1000 data points in total. This is because, if you go to the <a href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html">documentation</a> of SVM Classifier by SKLearn, it says that the time required to optimize the model is dependent on the number of datapoints, by a quadratic factor. So as the number of datapoints increase, the model fitting time increases. Beyond a point, it becomes practically infeasible.</p>
+<pre><code>def split_dataset(df,frac=0.8):
+    train=df.sample(frac=frac) #random state is a seed value
+    test=df.drop(train.index)
+    return train,test
+
+train,test=split_dataset(imdb_dataset.iloc[:1000])
+len(train),len(test)
+</code></pre><p>Hopefully in our small subset, the number of positives and negatives are nearly balanced. (A little off than perfectly balanced is okay!)</p>
+<pre><code>train['sentiment'].value_counts()
+</code></pre><p>Now that we are done setting up our data, we need to find a way to represent words from our data in a way that our model can understand. The simplest way, is to create <em>vectors</em>, one dimensional arrays(or tensors), each element represents a word. If in a sentence, the word occurs, put a 1 in that place, and if that word doesn&rsquo;t occur in the sentence, put a 0 in that place. This is called a <em>hot encoding vector</em>. In SkLearn, this is called a <code>CountVector</code>.</p>
+<pre><code>from sklearn.feature_extraction.text import CountVectorizer
+vectorizer=CountVectorizer()
+train_vectors = vectorizer.fit_transform(train['review']) # transform the text to countVectors using the information in the training dataset
+test_vectors = vectorizer.transform(test['review']) #just like the training dataset, we also need to convert the text in the testing set into vectors. 
+</code></pre><p>Note, <code>vectorizer</code> is simply a python class, with methods such as <code>fit_transform</code>, which takes in the training dataset, and based on the words present in it, creates a vocabulary of words, and a sample vector, where each element represents a word.</p>
+<p>Then once the vocabulary has been built, we create vectors for the testing dataset as well.</p>
+<p>You can see below, that there are a total of about 16000 unique words in the training dataset.</p>
+<p>Next, build the model! You can go to the documentation to see an example of how the model works. We will follow the same method.</p>
+<pre><code>len(vectorizer.vocabulary_.keys()),vectorizer.vocabulary_.keys()
+</code></pre><p>Here&rsquo;s what a single vector looks like</p>
+<pre><code>train_vectors.toarray()[0], sum(train_vectors.toarray()[0])
+#sum shows us how many words are 1's - meaning the corresponding document had a total of those many words 
+</code></pre><pre><code>from sklearn import svm
+from sklearn.metrics import classification_report
+# Perform classification with SVM, kernel=linear
+classifier_linear = svm.SVC(kernel='linear') # a python class that optimizes the model using a Linear line(plane)
+%time classifier_linear.fit(train_vectors, train['sentiment'])
+</code></pre><p>The above peice of code may be confusing. Let us break this down.</p>
+<p>Sklearn provides a module called <code>svm</code>, which contains a classifier called as <code>SVC</code> (Support Vector Classification) (Remember, there is Support Vector Regression as well).</p>
+<p><code>svm.SVC</code> takes a parameter called kernel. It basically means, what is the nature of our model. We use a linear model as of now (as we did in Logistic Regression as well). The possible values, according to the documentaion are: <code>kernel{‘linear’, ‘poly’, ‘rbf’, ‘sigmoid’, ‘precomputed’}, default=’rbf’</code></p>
+<p>Poly - fits a polynomial function instead of a linear function to the data. (Like we did in the Linear Regression Lab - We tried to fit a cubic function to the data)</p>
+<p>Sigmoid tries to fit a sigmoid function to the data.</p>
+<p>Radial Basis function fits circles rather than straight lines. Basically, find some n-dimensional radius, which creates an n-dimensional sphere, which separates the two classes.</p>
+<p><img src="https://drive.google.com/uc?id=1ocGq80WdPRQ-oaG4f1F5e-2bpqdHbonK" alt="" /></p>
+<p>However, the circle/sphere is N-Dimensional and not 2/3 dimensional.</p>
+<p>The last one is Precomputed, meaning, we use a custom function, and give it precomputed outputs, so it doesnt have to do manual computing. We don&rsquo;t use this in our lab!</p>
+<p>Apparantly, research shows that this radial function outperforms all types of kernels.</p>
+<p>For now, we will use the Linear Model.</p>
+<p>Next, we will obtain predictions on the testing dataset, so we can see how many our model gets correctly. So the <code>predict</code> method of the classifier gives us predictions.</p>
+<p>SKlearn also provides a function called <code>classification_report</code> which takes in the predictions along with the ground truth (<code>test['sentiment']</code> in this case) and gives us a report of the predictions telling us about the performance.</p>
+<pre><code>prediction_linear = classifier_linear.predict(test_vectors)
+report = classification_report(test['sentiment'], prediction_linear, output_dict=True)
+report
+</code></pre><p>So, <code>report</code> contains many metrics, such as <code>accuracy</code>, <code>precision</code>, <code>recall</code> etc. Precision and Recall are useful metrics when the dataset is imbalanced in terms of categories. But since we verified that our data is well balanced, accuracy will suffice</p>
+<pre><code>report['accuracy']
+</code></pre><p>So we have successfully built a Movie Review Classifier. Congratulations.</p>
+<p>Next, just for the sake of completion, we will try to improve our model. This has nothing to do with SVMs, but rather with the NLP part of the model, meaning, we will try to better represent the data. You can keep this in mind for whenever you build language models - its a wonderful trick to improve information representation of the data.</p>
+<p>Instead of the CountVectors, we use a representation technique called as <em>Term Frequency - Inverse Frequency Document Frequency</em>. If you wish to read the theory behind it, you can find some <a href="https://radiant-brushlands-42789.herokuapp.com/towardsdatascience.com/natural-language-processing-feature-engineering-using-tf-idf-e8b9d00e7e76">here</a>.</p>
+<p>The essence is that, instead of putting 1&rsquo;s in place of words that occur in a document, TF-IDF puts a fraction, which represents how heavily/frequently a word is present in a document. But at the same time, if a word is found in both categories frequently (like, extremely common words like &ldquo;is&rdquo;, &ldquo;the&rdquo;, &ldquo;a&rdquo;), those words do not help us differentiate between the two documents. So TF-IDF makes sure that less weightage is given to words that are very common. But more weightage to words that occur only in one category. So obviously this will help us in easily differentiating between the two categories.</p>
+<pre><code>from sklearn.feature_extraction.text import TfidfVectorizer
+vectorizer = TfidfVectorizer(min_df = 5,max_df = 0.8, sublinear_tf = True, use_idf = True)
+</code></pre><p>The syntax of this TFIDF vectorizer is simply picked up from the documentations. At this point, we only want to see it work, so its not important to understand the parameters of the function above.</p>
+<p>So this vectorizer class has the same structure as the vectorizer above, and so the next steps remain the same.</p>
+<pre><code>#convert training and testing data into TF-IDF vectors
+train_vectors = vectorizer.fit_transform(train['review'])
+test_vectors = vectorizer.transform(test['review'])
+</code></pre><pre><code>classifier_linear = svm.SVC(kernel='linear')
+classifier_linear.fit(train_vectors, train['sentiment'])
+</code></pre><pre><code>prediction_linear = classifier_linear.predict(test_vectors)
+</code></pre><pre><code>report = classification_report(test['sentiment'], prediction_linear, output_dict=True)
+report['accuracy']
+</code></pre><p>You can see that the model has increased in accuracy!</p>
+<p>So thats it! You have your own Movie Review Classifier. Let us actually see it working for ourselves. Below, we&rsquo;ve written two sentences, which we wish to see whether the model thinks of it as a positive or a negative review!</p>
+<pre><code>review = f'Absolutely loved the movie!'
+review_vector = vectorizer.transform([review]) # vectorizing
+print(classifier_linear.predict(review_vector))
+</code></pre><pre><code>review = f'What a waste of money! I wish I could get a refund'
+review_vector = vectorizer.transform([review]) # vectorizing
+print(classifier_linear.predict(review_vector))
+</code></pre><p>Try it out for yourself! Enter a sentence and find out what the model thinks of it!</p>
+<h2 id="review-and-questionnaire">Review and Questionnaire</h2>
+<p>In this lab, we learnt of classification/regression system, that takes the traditional linear/logistic regression models to the next level, by not only finding the best results, but also the best fit model. We build an NLP model using this system, and also learnt about some techniques in NLP to represent textual information in the needed format.</p>
+<p>In the end, any classification or regression problem can be solved by any suitable model, like the SVM, if the information is correctly represented. This comes from experience, so whats more important right now is to simply keep these concepts in mind. As and when you start coming across these topics more, you will learn the depths too.</p>
+<h3 id="questionnaire">Questionnaire:</h3>
+<p>These are non-evaluative, but highly recommended to go through. Make sure you clearly know the answer to each of these concepts.</p>
+<ol>
+<li>What are Kernels in SVM? What are the different types of kernels in SVM?</li>
+<li>Describe the two representation techniques we studied about text.</li>
+<li>SVMs uses a layered class approach - meaning there are multiple steps involved in a model, each of which has a state, contained in the form of a python class. In this example, what was the structuring of our code? What was the heirarchy of classes used?</li>
+</ol>
+<h1 id="whats-next-in-these-sessions">Whats Next in these Sessions?</h1>
+<p>Upto Now, we&rsquo;ve covered all the basics and fundamentals of Machine Learning. Now its time for us to move to the modern era of Machine Learning. So for the remaining sessions, we&rsquo;ll look at progressively modern and progressively important concepts in Machine Learning. We&rsquo;ll be transitioning towards Deep Learning slowly, which is THE field that dominates the present state of Machine Learning. We&rsquo;ll also be learning Decision Trees and Random Forests, and even Reinforcement Learnings, which have their own interesting applications. So you&rsquo;ll definitely enjoy it.</p>
+<p>A gentle suggestion from our end. Please do attempt these sessions, even if you feel intimidated to attempt the exercises. As you might have realized, most of these sessions are fun exercises. Many exercises are simply meant for you to enjoy and explore. There&rsquo;s no wrong answers, and you are almost never evaluated based on how well your model performs.</p>
+<p>You also don&rsquo;t need to know a lot of theory to attempt these sessions. So if you feel you&rsquo;re not good at Machine Learning theory, you can still attempt the sessions, since we never focus on theory, but only practical techniques in these sessions. So, if you wish to be an effective Data practitioner, these sessions are guaranteed to help you.</p>
+<p>If you feel you don&rsquo;t know enough coding to attempt these sessions, we always encourage Google Searches. This is not an exam, and these sessions are meant to reflect what you will come across in the real world. You will almost always have internet, so why not learn coding that way? So, feel free to search your queries up. As we mentioned before in one of the sessions, the ability to know what and how to search for how to code is far more important than knowing coding itself.</p>
+<p>You don&rsquo;t even need to build advanced code structures. We mostly provide you with code structures and directions. So through this, you not only feel less burdened, but also learn how to approach problems through code.</p>
+<p>If not anything, there is no harm in running a notebook once. Who knows, you may come across a very interesting problem, that you had always wished to know about, and now you would finally be able to build it yourself. We&rsquo;re gonna do a lot of wonderful applications in the future. (Far more interesting than the ones we&rsquo;ve already done). &ndash;&gt;</p>
+<h2 id="exercise">Exercise</h2>
+<p>In this exercise, we&rsquo;ll try to apply SVM Classification to a different data type - something that we are already aware with - Visual Data. To be more precise, we&rsquo;ll be working with Images, and we&rsquo;ll be trying to perform binary classification.</p>
+<p>We&rsquo;ll be trying to identify the emotions of people by looking at their pictures. Humans are pretty efficient in doing so. We now build a machine model that can do so!</p>
+<p>Lets us download the dataset</p>
+<pre><code>%cd
+!kaggle datasets download -d msambare/fer2013
+!mkdir facial_expressions
+!unzip fer2013.zip -d facial_expressions
+% cd facial_expressions
+!ls
+</code></pre><p>In our current folder, there are two folders - train and test, each containing jpg images of 48x48 pixels. We&rsquo;ll be accessing each image through their paths, for which we&rsquo;ll use the <code>Path</code> module of the <code>pathlib</code> library, which is an extremely efficient library to handle paths. And since we&rsquo;ll be using the Pillow Library, which we have used in previous labs as well. It contains the <code>Image</code> module, which can handle standard Image formats, including jpg images.</p>
+<pre><code>from pathlib import Path
+from PIL import Image
+</code></pre><p>Let us visualize one of the images for you to understand what the data looks like. This Image is from a surprised person!</p>
+<pre><code>Image.open(Path('train/surprise/Training_99984132.jpg'))
+</code></pre><p>Your job is to build a classifier that differentiates between happy and sad people. You need to choose 1000 pictures of happy people and 1000 pictures of sad people for the training set, and 400 pictures each for the testing dataset. We&rsquo;ve provided a function that provides the Paths of these images. This is an important steps, because you will need to access each image separately, and convert it into a format that is understandable by computers - in this cases, 2D arrays (aka matrices).</p>
+<p>To walk through the entire folder, we will use the os folder, which lets us go through each directory and find what we&rsquo;re looking for.</p>
+<pre><code>import os
+</code></pre><pre><code>def return_paths(path=Path('.'),categories=['happy','sad'],items=1000):
+    f&quot;&quot;&quot;
+    This function returns the paths of images in `categories` that lie under the `path` directory, along with their labels. 
+    Return `items` number of items per category (or as many are available). Paths returned are pathlib Path objects.
+    &quot;&quot;&quot;
+    img_paths=[]
+    img_labels=[]
+    for r,_,_ in os.walk(path):
+        r=Path(r)
+        if (r.stem) in categories:
+            items_ = items if len(os.listdir(r))&gt;items else len(os.listdir(r))
+            for img in os.listdir(r)[:items_]:
+                img_paths.append(r/img)
+                img_labels.append(r.stem)
+    return img_paths,img_labels
+
+</code></pre><pre><code>train_paths,train_labels=return_paths(Path('train'),items=1000)
+valid_paths,valid_labels=return_paths(Path('test'),items=400)
+</code></pre><pre><code>train_paths
+</code></pre><p>You need to go through all these paths, and first access them using the Image library, then convert them into Numpy arrays.</p>
+<p>For each image, you will get a Numpy 2-D Array of shape 48x48. You can simply convert it to a 1-D array of 48 times 48 = 2304 elements, by simply.</p>
+<p>So each image will be represented as a 2304 element array. There are the a total of 2000 Images in the training set, so the Input to the SVM model will be a numpy 2-D array of shape 2000x2304. The target variables will be a Numpy 1-D array of shape 2000.</p>
+<p>You need to iterate through all paths, and open them using Image.open and convert them into numpy arrays. Then the Numpy Array (48x48 pixels in shape) needs to be converted to a 1-D array by using the array.flatten() method.</p>
+<p>Then you&rsquo;ll have a list of 2000 1-D numpy arrays. You need to Google Search to find how to convert a list of 1-D arrays to a single 2-D array.</p>
+<p>You also need to convert the list of labels to a single 1-D array, by googling how to convert a list of elements into a numpy arrays. Do this for the testing dataset as well.</p>
+<p>At this point you will have the data ready - the training set 2-D Numpy array of shape 2000x2304 will be similar to <code>train_vectors</code> in the text model example above, and similarly you will have <code>test_vectors</code> as well.</p>
+<p>Instead of <code>train['sentiment']</code> and <code>test['sentiment']</code> in the language model above, you can directly use the Numpy arrays containing labels.</p>
+<p>Build the SVM Model and find the accuracy over the testing dataset. Use the Radial Basis function kernel (&lsquo;rbf&rsquo;).</p>
+<pre><code>import numpy as np
+</code></pre><pre><code>
+</code></pre></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-are-support-vector-machines">What are Support Vector Machines</a></li>
+    <li><a href="#building-an-svm-model">Building an SVM Model</a></li>
+    <li><a href="#review-and-questionnaire">Review and Questionnaire</a>
+      <ul>
+        <li><a href="#questionnaire">Questionnaire:</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#exercise">Exercise</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

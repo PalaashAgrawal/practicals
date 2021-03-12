@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta name="generator" content="Hugo 0.68.3" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Bayesian Learning Welcome to the 4th session on Machine Learning practicals. In this session, we&rsquo;ll learn about a classic Machine Learning method - the Bayesian Learning method. The Bayesian approach towards problem solving is completely based on probabilities. This aligns with the idea behind Machine Learning, since in the latter too, every prediction is visualised as a probability.
+For example, in logistic regression, the final output (the output from the sigmoid function) lies between 0 and 1.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://palaashagrawal.github.io/practicals/docs/04-bayesian-learning/" />
+
+<title>04 Bayesian Learning | Palaash Agrawal</title>
+<link rel="manifest" href="https://palaashagrawal.github.io/practicals/manifest.json">
+<link rel="icon" href="https://palaashagrawal.github.io/practicals/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="https://palaashagrawal.github.io/practicals/book.min.2dc4d2afa8da6ac78d76671c21e140952e7a84846fed47ed02a1a2d68166d992.css" integrity="sha256-LcTSr6jaaseNdmccIeFAlS56hIRv7UftAqGi1oFm2ZI=">
+<script defer src="https://palaashagrawal.github.io/practicals/en.search.min.ca40c67ae3c71e5afca9d771d7e6ea511d0c4ba4f69a678a0b07e8c8557d56c0.js" integrity="sha256-ykDGeuPHHlr8qddx1&#43;bqUR0MS6T2mmeKCwfoyFV9VsA="></script>
+<link rel="alternate" type="application/rss+xml" href="https://palaashagrawal.github.io/practicals/docs/04-bayesian-learning/index.xml" title="Palaash Agrawal" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="https://palaashagrawal.github.io/practicals/"><span>Palaash Agrawal</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/00-introduction-to-machine-learning-and-python/" class="">00 Introduction to Machine Learning and Python</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/01-linear-regression/" class="">01 Linear Regression</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/02-logistic-regression/" class="">02 Logistic Regression</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/03-singular-value-decomposition-and-principal-component-analysis/" class="">03 Singular Value Decomposition and Principal Component Analysis</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/04-bayesian-learning/" class=" active">04 Bayesian Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/05-clustering-algorithms-in-machine-learning/" class="">05 Clustering Algorithms in Machine Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/06-support-vector-machines/" class="">06 Support Vector Machines</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/07-decision-trees-and-random-forests/" class="">07 Decision Trees and Random Forests</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="https://palaashagrawal.github.io/practicals/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>04 Bayesian Learning</strong>
+
+  <label for="toc-control">
+    
+    <img src="https://palaashagrawal.github.io/practicals/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+
+    
+  </label>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  
+    window.addEventListener('load', (event) => {
+        document.querySelectorAll("mjx-container").forEach(function(x){
+          x.parentElement.classList += 'has-jax'})
+      });
+  
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-naive-bayes-classifier">The Naive Bayes Classifier</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#markov-chains">Markov Chains</a>
+      <ul>
+        <li><a href="#case-study-auto-text-generator">Case Study: Auto Text Generator</a></li>
+      </ul>
+    </li>
+    <li><a href="#review">Review</a></li>
+    <li><a href="#review-questions">Review Questions:</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#problem-1-extended-naive-bayes-classifier">Problem 1: Extended Naive Bayes Classifier</a></li>
+    <li><a href="#problem-2-markov-shakespeare-what-is-in-the-name">Problem 2: Markov? Shakespeare? What is in the name!</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="bayesian-learning">Bayesian Learning</h1>
+<p>Welcome to the 4th session on Machine Learning practicals. In this session, we&rsquo;ll learn about a classic Machine Learning method - the Bayesian Learning method. The Bayesian approach towards problem solving is completely based on probabilities. This aligns with the idea behind Machine Learning, since in the latter too, every prediction is visualised as a probability.</p>
+<p>For example, in logistic regression, the final output (the output from the sigmoid function) lies between 0 and 1. We visualize the output as the <em>probability that the prediction is 1</em>, and <code>1-output</code> as the <em>probability that the prediction is 0</em>. And we create a threshold, meaning any prediction less than 0.5 is not acceptable as a prediction of 1. (Or in other words, you should be atleast 50% sure that the prediction is a 1). Let us take an example - suppose a logistic regression model returns 0.8 as the output for a particular input, the model is 80% sure that the prediction is equal to a 1, and 20% sure that the prediction is equal to a 1. We do qualify this prediction as a 1. However, the aim of training a model is to adjust the parameters in such a way that this probability is maximized for all inputs.</p>
+<p>So Bayesian Learning is an important stepping stone towards Machine Learning. However, its a very crude form of Learning - or in other words, a very superficial form of learning - it learns the pattern of <em>distribution</em> of data directly, and nothing else. No intrinsic features are learned, all learned features are independent and remain uncorrelated, etc. But still, Many researchers still find Bayesian Learning a useful tool to use in ensemble with modern Machine Learning techniques. This is because despite its straight forward approach, it is the purest form of data representation - it gathers * all * the information that the distribution of the data provides - no more and no less. We will look into these details in the following sections.</p>
+<p>In this session, we will learn about 2 important Bayesian Learning approaaches - the <strong>Naive Bayes Classifier</strong> and <strong>Markov Model</strong>. So let us begin!</p>
+<h2 id="the-naive-bayes-classifier">The Naive Bayes Classifier</h2>
+<p>The Naive Bayes Classifier simply provides us with the information - given a dataset, what is the probability that a particular model gives correct classification on the data.</p>
+<p>You must have come across the Bayes Equation:</p>
+<p>$$ P(E|D) = \frac{P(E) P(D|E)}{P(D)}$$</p>
+<p>The D refers to our data. We would always have some data that we wish to build a model upon. The $E$ refers to the <em>evidence</em>, or simply the prediction of the model. So in simpler terms -</p>
+<p>$$ P(pred|data) = \frac{P(pred) P(data|pred)}{P(data)}$$</p>
+<p>For each of different choices of predictions, the Bayes Theorem holds:</p>
+<p>$$ P(pred=1|data) = \frac{P(pred=1) P(data|pred=1)}{P(data)}$$</p>
+<p>$$ P(pred=0|data) = \frac{P(pred=0) P(data|pred=0)}{P(data)}$$</p>
+<p>&hellip; and so on.</p>
+<p>But these math equations don&rsquo;t make a lot of sense. Let us try to get an intuitive understanding of their meanings.</p>
+<ol>
+<li>P(data) simply means - what is the probability that a particular data results in the correct prediction. Obviously, one datapoint may have many features. This can be represented as <code>P(data) = P(feature1 AND feature2 AND .... AND featureN)</code>, meaning, what is the probability of getting a correct prediction when value of feature1 is such, the value of feature2 is such, and so on. In Probability, when you want to find the probability of <em>a combination</em> of different occurences, you can simply multiply the individual probabilities.</li>
+</ol>
+<p>$$P(data = (f1,f2,f3,&hellip;.fN)) = P(f1)P(f2)&hellip;P(fN)$$</p>
+<p>P(f1) simply means - what is the probability of f1 attaining a particular value. This can be found out from the dataset itself, using a <em>frequentist approach</em>, meaning, out of all the data, how many of feature f1&rsquo;s have <em>one</em> particular value.</p>
+<ol start="2">
+<li>
+<p>So, $ P(data|pred)$ means that if whenever the prediction has a value, what would be the probability that if that particular data is passed in the model, this output is achieved. We will look at how to calculate this in the following subsection. T</p>
+</li>
+<li>
+<p>$P(pred)$ is simply the probability of occurence of a particular prediction. Basically, the fraction of data which has a particular <em>pred</em> value as the output.</p>
+</li>
+<li>
+<p>$P(pred|data)$ means, given a data point, having a particular set of features, what is the probability of obtaining a prediction, which is what we want to find out. Infact, this is what all Machine Learning wishes to find out. Even in logistic regression, we build a model that can predict an output with high probability, given some inputs.</p>
+</li>
+</ol>
+<p>The proof of the Bayes theorem is actually quite simple, and can be found on the internet!</p>
+<p>But let us see how to build a Naive Bayes Classifier. So first of all we would need some data. Let us try to pick an interesting classification problem.</p>
+<p>Let us pick the <a href="https://www.kaggle.com/teejmahal20/airline-passenger-satisfaction">Airplane Passenger Satisfaction</a>, which contains data about how satisfied passengers have been by the service of their respective flights. They have provided information about the flights and the passengers themselves, such as the class in which they traveled, their experience of food, in-flight entertainment, etc. This is a binary classification problem, meaning the experience reported is either satisfactory, or dissatisfactory. This dataset can be found on kaggle.com, and so, like always, we would need to upload the <em>kaggle.json</em> file. You must have it downloaded on your system from the last sessions. If not, you can download a fresh  Run the cell below to upload the kaggle.json file.</p>
+<pre><code>%cd 
+from google.colab import files
+uploaded = files.upload()
+for fn in uploaded.keys():
+  print('User uploaded file &quot;{name}&quot; with length {length} bytes'.format(
+      name=fn, length=len(uploaded[fn])))
+!mkdir -p ~/.kaggle/ &amp;&amp; mv kaggle.json ~/.kaggle/ &amp;&amp; chmod 600 ~/.kaggle/kaggle.json 
+
+!kaggle datasets download -d teejmahal20/airline-passenger-satisfaction
+!unzip airline-passenger-satisfaction.zip 
+!mkdir airlines &amp;&amp; mv test.csv airlines &amp;&amp; mv train.csv airlines
+%cd airlines
+!ls
+</code></pre><p>So if you see, this dataset contains two csv files, namely the training dataset and the testing dataset. Let us import the pandas library to read these files, and visualize the dataset.</p>
+<p>For the sake of simplicity, we&rsquo;ve removed all continuous variables, and only retained categorical variables (i.e. the variables that only take values among finite number of categories), otherwise the concept of probability of occurence of an event doesn not make sense. Ideally, a continuous variable can take infinite values, so how do you find the chances of occurence of a particular value?!</p>
+<p>These variables are - &lsquo;Departure Delay in Minutes&rsquo;,&lsquo;Arrival Delay in Minutes&rsquo;,and &lsquo;Flight Distance&rsquo;, &lsquo;Age&rsquo;</p>
+<pre><code>import pandas as pd
+</code></pre><pre><code>train=pd.read_csv('train.csv',index_col=0).drop(['id','Departure Delay in Minutes','Arrival Delay in Minutes','Flight Distance','Age'],axis=1) 
+test=pd.read_csv('test.csv',index_col=0).drop(['id','Departure Delay in Minutes','Arrival Delay in Minutes','Flight Distance','Age'],axis=1)
+len(train),len(test)
+</code></pre><pre><code>train.head()
+</code></pre><p>As you can see, each of the features (all columns except the target variable - &lsquo;satisfaction&rsquo;) have either one of finite number of values. For example, &lsquo;Gender&rsquo; only takes one of two values - Male or Female.</p>
+<p>But, notice, many of these features have strings as their categories. We know, that computers cannot understand strings. So we need to convert them into numbers. We define a function that converts all values into numerical categories, ranging from 0 to num_categories-1 (num_categories categories in total). Lets call this funtion <em>categorify</em>!</p>
+<pre><code>def categorify(df):
+    df.dictionary={}
+    for col in df: 
+        numerical_categories = {k:i for i,k in enumerate(sorted(df[col].unique()))}
+        df[col]=[numerical_categories[i] for i in df[col]]
+        df.dictionary[col]=numerical_categories
+
+categorify(train)
+categorify(test)
+</code></pre><pre><code>/usr/local/lib/python3.6/dist-packages/ipykernel_launcher.py:2: UserWarning: Pandas doesn't allow columns to be created via a new attribute name - see https://pandas.pydata.org/pandas-docs/stable/indexing.html#attribute-access
+</code></pre>
+<p>So now, if you take a look at your dataframes, you&rsquo;ll see that all categories are now 0,1,2,&hellip;and so on. Even the target (satisfaction) column!</p>
+<pre><code>train.head()
+</code></pre><p>For convenience, we&rsquo;ve also added a method in the dataframe, called <em>dictionary</em>, which will help us identify which category refers to which original category!</p>
+<pre><code>train.dictionary
+</code></pre><p>This is a dictionary, a python object which indexes all values in the form of <code>{key: value}</code>. If you type in <code>dictionary[key]</code>, you will get the value. So its a great method to store and retreive information. Its just like a real word dictionary. You look up information through a key, which is the word itself. So you want to know the meaning of a word, you don&rsquo;t search for the meaning itself, but the word. And besides the word, we find the definition too!</p>
+<p>So now that we are set up with our data, let us build the probabilities. We need to find 3 different probabilities - $P(pred)$,$ P(data)$ and $P(data|pred).$ Using these, we will find $P(pred|data)$. If you&rsquo;re unclear with the meanings of these terms, <em>Please</em> go back up and read it through again.</p>
+<p>Let us start with building $P(pred)$. Meaning, what is the probability of getting a particular prediction (0 or 1, which correspond to the satisfaction of the passenger) (Go take a look at the &lsquo;satisfaction&rsquo; key in the dataframe&rsquo;s dictionary, which we printed just above this cell).</p>
+<p>This probability can be simply found by counting the fraction of the number of times in the whole dataset, that the prediction was 1 or 0.</p>
+<pre><code>def get_ppred(df,tgt='satisfaction'):
+    f&quot;get P(pred) as a dictionary, where tgt is the target variable and does not count as a feature.&quot; #this is a comment for the user
+    p_pred=df[tgt].value_counts().to_dict()
+    for p in p_pred: p_pred[p]/=len(df) # convert the frequencies into a ratio of occurence
+    return p_pred
+</code></pre><pre><code>p_pred = get_ppred(train,'satisfaction')
+p_pred
+</code></pre><p>We see, that <code>p_pred</code> (which stands for $P(pred)$), is a dictionary, which tells us the probabilities of occurences of all possible predictions (that is, 0 or 1).</p>
+<p>Next, let us calculate $P(data)$. This is a tricky one. Our data is made up of multiple features, like Gender, Class, Seat Comfort, etc. As we mentioned above, we simply need to calculate the probability of occurence of all these features separately. In the end, we multiply the probabilities of all features. So for now, let us calculate the individual probabilities of all features (except ofcourse, the target class Satisfaction)</p>
+<pre><code>def get_pdata(df,tgt='satisfaction'): return {k:get_ppred(df,tgt=k) for k in df.keys().drop(tgt)}
+</code></pre><pre><code>p_data=get_pdata(train)
+p_data
+</code></pre><p>This is again a dictionary, with individual features as the keys in the dictionary. The value of each key is again a probability, which contains the probability of occurence of each value that the feature can take. For example, the &lsquo;Customer Type&rsquo; feature takes 2 values (0 and 1) and so we have calculated the probability of occurence of each of these values. How? by simply calculating the fraction of times these two features occur in the whole training dataset</p>
+<pre><code>p_data['Customer Type']
+</code></pre><p>In fact, you can ensure that the sum of all these probabilities for any feature is always 1.</p>
+<pre><code>sum(p_data['Customer Type'].values())
+</code></pre><p>Let us run a small snippet of code to ensure the sum of probabilities of all features is equal to 1. In the code snippet below, we ensure that the difference between 1 and the sum of all probabilities is almost negligible (it might not be 0, because the individual probabilities may have lower precision. For example, a 0.33333333333333333 + 0.66666666666666666 is in all practical sense, equal to 1. But according to the computer, not equal to 1, but a 0.99999999999999999 .</p>
+<pre><code>for key in p_data: 
+    assert abs(sum(p_data[key].values())-1)&lt;1e-6, f&quot;probabilities of the key: {key} does not sum up to 1&quot;
+</code></pre><p>Now let us define P(data|pred). This is final component of our model. This can be thought of sub-cases of P(data) itself. Basically, it means - what is the probability of the occurence of a data, given pred assumes a certain value?! So, if you look at P(data), it is the collection of the probabilities of occurence of different features for all the datapoints.</p>
+<p>Now if we calculate the occurences of a feature only for a particular target(pred) value, we get P(data|pred)</p>
+<p>Obviously, if you add up the P(data|pred) for all possible prediction values, it will result in the corresponding P(data) itself. We define <code>get_pdata_given_pred</code>, which calculates this for us.</p>
+<pre><code>def get_pdata_given_pred(df,tgt='satisfaction'): return {k:calc_pdata_given_pred(df,tgt,key=k) for k in df[tgt].unique()}
+
+def calc_pdata_given_pred(df,tgt,key):
+    ret={f:None for f in df if f!=tgt}
+    l=len(df)
+    df=df[df[tgt]==key]
+    for f in ret:
+        conditional_probs=df[f].value_counts().to_dict()
+        for o in conditional_probs: conditional_probs[o]/=l
+        ret[f]=conditional_probs
+    return ret
+</code></pre><pre><code>p_data_given_pred = get_pdata_given_pred(train)
+p_data_given_pred
+</code></pre><p><code>p_data_given_pred</code> is simply a dictionary with keys as the different possible predictions (0 and 1), each of whose values are a dictionary containing the corresponding P(data) dictionaries (dictionary containing information about the probability of occurence of each individual feature value)</p>
+<p>Let us also verify that the for each feature, the sum of $P(data|pred)$ for each individual prediction is equal to the overall $P(data)$</p>
+<pre><code>for feature in train.keys().drop('satisfaction'): 
+    assert p_data_given_pred[1][feature].get(0,0) + p_data_given_pred[0][feature].get(0,0) == p_data[feature].get(0)
+</code></pre><h4 id="lessons-in-python-the-get-method">Lessons in Python: The <code>get</code> method.</h4>
+<p>We&rsquo;ve seen how we can access a particular item of a list of a dictionary, using square brackets. Internally, this is possible by defining a <code>def __get__</code> (pronounced dunder get) method in the respective class definition (of the list, dictionary, etc.). In addition to <code>__get__</code>, dictionaries also have a <code>def get</code> method defined, which can take a key, and returns the associated value. Additionally, if a particular key is not found, then you can decide what default value is returned. By default, it is <code>None</code>. So the syntax is as follows:</p>
+<p><code>dict.get(key,default=None)</code></p>
+<p>Here, we&rsquo;ve write the code to get the value of the <code>0</code> key, and if the 0 key does not exist (which is the case when the associated probability is 0), we choose to return a default value of 0 itself.</p>
+<p>Finally, let us now define a function that can caluculate the final predictions.</p>
+<pre><code>def get_prediction_accuracy(df,tgt,p_data,p_pred,p_data_given_pred):
+    probability_of_being_1=[]
+    probability_of_being_0=[]
+    features=df.keys().drop(tgt)
+    for _,row in df.iterrows(): 
+        probability_of_being_1.append(calculate_prob(row,features,p_data,p_pred,p_data_given_pred,tgt=1))
+        probability_of_being_0.append(calculate_prob(row,features,p_data,p_pred,p_data_given_pred,tgt=0))
+    
+    pred=[p_one&gt;=p_zero for p_one,p_zero in zip(probability_of_being_1,probability_of_being_0)]
+    return (pred==df[tgt]).mean()
+
+def calculate_prob(row: pd.Series,features,p_data,p_pred,p_data_given_pred,tgt=1):
+    p_pred_tgt = p_pred[tgt] #p_pred for target=1
+    p_data_1=1. #initializing value
+    p_data_given_pred_1 =1. #initialize
+
+    for f in features:
+        p_data_1*=p_data[f][row[f]]
+        p_data_given_pred_1*=p_data_given_pred[tgt][f].get(row[f],0)
+
+    return p_pred_tgt*p_data_given_pred_1/p_data_1
+</code></pre><p>Let us check the prediction accuracy on the training and testing dataset</p>
+<pre><code>get_prediction_accuracy(train,'satisfaction',p_data,p_pred,p_data_given_pred)
+</code></pre><pre><code>get_prediction_accuracy(test,'satisfaction',p_data,p_pred,p_data_given_pred)
+#note that p_data,p_pred and p_data_given_pred are probabilities corresponding to the training dataset, not the testing dataset. 
+#THis is because we build our model using the training dataset only. Testing dataset is not used for finding parameters.
+</code></pre><p>So there you have it. You have built a Naive Bayes Classifier from scratch. Obviously, we don&rsquo;t use this classifier independently in real word applications anymore, because there exist much more sophisticated models, but it is an important concept, that somehow made way for more advanced techniques. And even today, you can find a lot of research combining modern AI techniques with traditional probabilistic techniques.</p>
+<p>This is a good time to understand why this classifier does not perform exceptionally well. Or, to put it in better words, why modern techniques can easily outperform such a probabilistic model.</p>
+<p>Modern models can understand relations between different features, which can be helpful to understand which features are more meaningful and important than others. Understanding relations can also help derive much complex information from the data, the lack of which causes the Bayesian model to be very superficial, since every feature is considered independently, and no analysis is done over the feature. The frequency of occurence is the sole factor that drives the predictions.</p>
+<h2 id="markov-chains">Markov Chains</h2>
+<p><img src="https://drive.google.com/uc?id=12QN6EHTg_-fFxX2fYAhdu66-elyO1GNU" alt="" /></p>
+<p>Now let us look at another interesting Bayesian Model, called <em>Markov Model</em>. Its a fairly simple probabilistic approach. Markov Models, also known as Markov Chains, are used to predict continuously from a set of possible predictions, and this completely depends on probabilities. To put the whole idea in one sentence, A Markov Model tries to give the next prediction given a current prediction. So given a prediction, we try to find out what is the probability of the next prediction. So based on these probabilities, the next prediction is made. Predictions with more probability are more likely to be made.</p>
+<p>Let us understand this with an example. Suppose you know that today is a Cloudy Day, what is the probability of a Sunny Day tomorrow, or a windy day, or a Raining day. How is this calculated? By analysing <em>data</em>. Suppose you gather data on the weather conditions of each day. The probability of the occurence of a particular weather condition is simply calculated by a probabilistic model - how many times, of all days in the data that the weather was like today, was the weather of the next day Sunny? or windy?. More occurences of Sunny after a day in the past, on which there was weather condition was similar to today,  higher the  probability of the occurence of a sunny weather tomorrow too. Hope the idea is clear. This is pretty straighforward, and makes practical sense too.</p>
+<p><img src="https://drive.google.com/uc?id=1dAjzO1-DLj-BYGYC8v1qmjjqViGI0s1h" alt="" /></p>
+<p>This modeling technique can be used in many scenarios. Obviously it can be used to predict a sequence of occurences, like the weather conditions. But there are some more advanced and interesting applications. For example, You can create an <strong>Auto text generator</strong> using this. Let us see how this works:</p>
+<h3 id="case-study-auto-text-generator">Case Study: Auto Text Generator</h3>
+<p>The idea is the same, suppose I start with a single word. We will build a Markiv Chain Model, that predicts the next word by analysing data. The data can be a huge corpus of text. Suppose the first word is &ldquo;The&rdquo;. We find out the occurence of different words after &ldquo;The&rdquo; in the data. The word that occurs the highest number of times has a higher chance of being the next word. Lets say, that 60% of the times, the word that follows &ldquo;The&rdquo; is &ldquo;Apple&rdquo;, 20% of the times is &ldquo;Banana&rdquo;, 10% of times &ldquo;Orange&rdquo; and 10% of the times &ldquo;Horse&rdquo;. So out of 100 times the word &ldquo;The&rdquo; appears in our predicted text, the Markov model would predict the next word to be &ldquo;Apple&rdquo; approximately 60 times, and so on.</p>
+<p>Let us pick a random text as our data. We use the most boring text there could be (<a href="https://www.brade.zone/2008/09/13/boring/">for real, apparantly!</a>).</p>
+<pre><code>input=f&quot;&quot;&quot;I am writing something. Yes, I plan to make it the most boring thing ever written. I go to the store. A car is parked. Many cars are parked or moving. Some are blue. Some are tan. They have windows. In the store, there are items for sale. These include such things as soap, detergent, magazines, and lettuce. You can enhance your life with these products. Soap can be used for bathing, be it in a bathtub or in a shower. Apply the soap to your body and rinse. Detergent is used to wash clothes. Place your dirty clothes into a washing machine and add some detergent as directed on the box. Select the appropriate settings on your washing machine and you should be ready to begin. Magazines are stapled reading material made with glossy paper, and they cover a wide variety of topics, ranging from news and politics to business and stock market information. Some magazines are concerned with more recreational topics, like sports card collecting or different kinds of hairstyles. Lettuce is a vegetable. It is usually green and leafy, and is the main ingredient of salads. You may have an appliance at home that can quickly shred lettuce for use in salads. Lettuce is also used as an optional item for hamburgers and deli sandwiches. Some people even eat lettuce by itself. I have not done this. So you can purchase many types of things at stores.
+
+If I drive around, I sometimes notice the houses and buildings all around. There are also pieces of farm land that are very large. Houses can be built from different kinds of materials. The most common types are brick, wood, and vinyl or synthetic siding. Houses have lawns that need to be tended. Lawns need to be mowed regularly. Most people use riding lawnmowers to do this. You can also use a push mower. These come in two varieties: gas-powered and manual. You don’t see manual push-mowers very much anymore, but they are a good option if you do not want to pollute the air with smoke from a gas-powered lawnmower. I notice that many families designate the lawnmowing responsibility to a teenager in the household. Many of these teenagers are provided with an allowance for mowing the yard, as well as performing other chores, like taking out the trash, washing the dishes, making their bed, and keeping the house organized. Allowances are small amounts of money given by parents to their children, usually on a weekly basis. These usually range from 5 dollars to 15 dollars, sometimes even 20 dollars. Many parents feel that teenagers can learn financial responsibility with this system.
+
+Now I will talk about farm land. Farm land can be identified by some common features. They almost always consist of a very large patch of dirt with small green plants lined up in very long rows. You may sometimes see farm equipment riding over these rows, like tractors or combines. These machines help farmers grow more crops in less time. They are a very helpful invention. Some different types of crops are soybeans, cotton, corn, tomatoes, tobacco, and lettuce (which I mentioned earlier). Most crops are used as food, and can be defined as either fruits or vegetables. Some are commonly eaten raw, after being rinsed in water to remove any dirt. Some are often cooked, which helps give them a more pleasant taste and makes them easier to chew. A very versatile vegetable is the potato. It can be eaten raw, or it can be cooked in a variety of ways. They can be baked, and many people like to add butter to them. They can be mashed, and a lot of times brown gravy or milk gravy is poured on top of them. They can be cut into thin strips and fried. Typically a large amount of grease is required to prepare potatoes in this style, but they are easy to make and easy to eat. You can order them at several fast-food restaurants. Potatoes can also be boiled, stewed, and scalloped. There is a wide variety of options available to you when cooking potatoes.
+
+Some other types of crops grown on farm land are used for other purposes. Cotton is used to make clothing (which I also mentioned earlier). It is a very versatile and inexpensive material for clothes. Such items as shirts, pants, socks, and underwear can be made from cotton. The process of converting cotton from a cotton plant to clothing is fairly complicated. Today, cotton is harvested more efficiently through the use of the cotton gin, invented by Eli Whitney many years ago.
+
+Tobacco is another type of crop. It is used in making cigarettes. A lot of people smoke cigarettes, even though many medical sources have identified them as harmful to people’s health. Warnings are printed on cigarette packages reminding people of possible dangers resulting from smoking. Cigarettes are available in several brands, including Marlboro, Salem, and Virginia Slims. There is a brand called Kool, but I don’t know whether they are still available at most outlets. Tobacco farming is a large industry, and currently there is debate about it. Recently the government decided on some regulations that cost tobacco companies a large amount of money.
+
+If you notice, some farm lands have animals living on them. Most of these are cows, and there are also pigs, sheep, and goats living on farms. Some are raised for the milk they provide. This milk goes through several processes to ensure that it is not contaminated before it is made available to consumers at stores (which I mentioned earlier). Another use for farm animals is meat. Three popular types of meat are beef, pork, and chicken. Beef comes from cows. Pork comes from pigs. Chicken comes from chickens, but you probably knew that. These animals are raised to become plump and healthy, then they are killed, sometimes at slaughter houses. The meat is then removed from their bodies, cleaned, and made available at a variety of stores and restaurants. Sometimes this process can seem gross, but it is part of an advanced ecological food chain on earth. Just like birds eat worms and tigers eat deer, human beings eat cows and pigs. The main difference is that we don’t eat animals raw. We cook the meat to remove blood, fat, and germs from it. We also season our meat with salt or different kinds of sauces. The end result is food that is very tasty and is healthy for us.
+
+Farmers do not like trespassers. If a farmer sees one, he will sometimes shoot at them with a shotgun that he owns. Trespassing is against the law. Laws are created by government to prevent people from living in fear. They are meant to provide safety for citizens. Our government in America consists of a legislative branch, an executive branch, and a judicial branch. The legislative branch makes laws based on the concerns of citizens they represent. The executive branch consists of the President. This person enforces the law, and he has certain other duties like declaring war and approving bills prepared by members of the legislative branch. The President is also considered the leader of our country. The judicial branch interprets the laws. This branch consists of the courts and the trials held in them. Here a judge and jury determine from evidence presented by lawyers whether someone is guilty of breaking a law. Initial law enforcement takes place among police officers. They are the first people to encounter situations where a law is being broken. If a criminal (law-breaker) becomes too violent or hostile, they will use guns or mace or nightsticks to administer immediate punishment. Their goal is to bring the criminal under control, so that he can receive a punishment determined by members of the judicial branch of government. Punishments mostly include time in jail, but they can also include fines and, in extreme cases, the death penalty. There is controversy surrounding the death penalty.
+
+Children play with toys. This is common to almost all kids. Toys come in a very wide variety. Boys tend to like cars, action figures, and toy weapons. Girls tend to like dolls, toy kitchens, and make-up. Both of them like building or assembling things, be it with Legos, blocks, Play-Doh, or something similar. Toys can be found at most stores, and these days entire stores are dedicated to selling only toys. The most popular of these is Toys ‘R’ Us (with a backwards “R”). Their mascot is Geoffrey the Giraffe. Children love to go to Toys ‘R’ Us and look at the wide variety of toys available. Most children receive the greatest quanitity of toys on their birthdays, or during the holiday season in December. For the majority of children, this holiday is Christmas. For Jewish children, the holiday is Channakuh. Either way, the kid gets presents during this time, and most of these presents are toys.
+
+Christmas is a holiday which has gradually become centered around the character “Santa Claus” and his elves and reindeer. Children are told that Santa’s elves build their toys, and Santa delivers them personally to each house in the world by riding in an airborne sleigh hauled by nine reindeer, including Rudolph the red-nosed reindeer, who leads the way. Another popular Christmas character is Frosty the Snowman. Frosty is basically any snowman that comes to life. So during Christmas, many children build snowmen, and some of them hope that theirs might come to life. But all of these characters are myths. The true origin of Christmas is a celebration of the birth of Jesus, who founded the religion of Christianity a couple of thousand years ago. Many popular Christmas carols deal with his story, such as “Joy to the World” and “Silent Night.”
+
+Other holidays include Thanksgiving, Halloween, and Independence Day. Thanksgiving has become a tradition of preparing large quantities of food for a large gathering of people, mainly family and friends. This meal usually features turkey or ham as the main course. Turkey and ham are both kinds of meat (which I mentioned earlier). The meal usually also consists of dressing and a wide assortment of vegetables (which I also mentioned earlier). The origin of Thanksgiving is usually traced to the days of the pilgrims, who were the first settlers in America. They made peace with the native people, the Indians, and together enjoyed a large feast, thanking God for providing them with such an abundance. (Their concepts of God were probably very different.)
+
+Halloween is the holiday when people dress in costumes to look like other characters. Most of these are children, who go from door to door in different neighborhoods to request candy from the people living there. They usually say “trick or treat” then receive a treat. Very rarely does the person in the house respond with a trick. Halloween has some sort of demonic origin that I am not quite sure about, but the name derives from “All Hallow’s Eve.” I will not say much about Independence Day, but it is the day Americans celebrate the anniversary of our independence from Britain. Most families purchase fireworks during this holiday and set them off in their lawns (which I mentioned earlier).
+
+America gained independence from Britain in the late 1700’s after the Revolutionary War. Britain was hoping to extend its empire across the Atlantic Ocean, but the colonists who settled the territory did not want to be under Britain’s control, with their various taxes and regulations. Both sides were very passionate about their position on the issue, so a war occurred. This war featured a few heroes, including George Washington and Paul Revere. George Washington became America’s first president when we gained independence. I am not sure what happened to Paul Revere. The Declaration of Independence was written before the war by Thomas Jefferson in 1776 and made clear the position of the colonists. It was signed by many important people, including Ben Franklin and John Hancock. Ben Franklin is well-known for many things. One of these is inventing electrical conductors in the form of lightning rods. A famous tale is that he flew a kite with a small piece of metal somewhere on the string during a lightning storm. This was an effective way to test his theory. Another thing Ben Franklin is known for is publishing Poor Richards Almanac. This was like a magazine and contained some of his famous writings and quotations. One famous quote was “Tell me, I forget. Teach me, I remember. Involve me, I learn.” Maybe this had something to do with why he flew that kite.
+
+Trees are one of our most important natural resources. They are made of wood, and wood can be made into a variety of products. Some of the more obvious kinds are furniture, houses, and toothpicks. However, wood can also be made into paper. When I first heard this, I was skeptical, but it is true. Paper is a very important product in our society. Writers and artists have greatly benefited from the invention of paper. With only some paper and a pen or pencil, a writer can produce stories and poems that can captivate readers. They can also write down historical facts about their society. Actually, these writings don’t become historical until years later. At the time, the writings could probably be considered news. Artists use paper for their drawings and paintings. They can also use canvas. Drawings and paintings can be very beautiful. They can depict a wide variety of subjects, including flowers, animals, landscapes, and people. They can be realistic or impressionistic. Some paintings also attempt to convey emotions merely by the way the colors are combined and the brushstrokes are applied. This is a modern or contemporary approach to art. Many people think this approach does not require as much talent as the realistic styles.
+
+I will end my writing here. I have tried to make it very boring, and I hope I have succeeded. There are plenty of boring documents available for you to read. Check your public library for more information. You can also find boring materials at a bookstore or on websites. Sometimes this information can be found in magazines (which I mentioned earlier).&quot;&quot;&quot;
+</code></pre><p>For the sake of simplicity, we remove all special characters (except a blank space) and even convert all text into lowercase text. To remove all special characters, we use a special type of language in python, called <em>Regex</em>, which stands for <em>Regular Expressions</em>. Its like telling python to do tasks which are otherwise hard to execute by code. For example, &ldquo;take all alphabetical letters, except the letter &lsquo;a&rsquo;,&lsquo;b&rsquo; and &lsquo;z&rsquo;, but only uptil you encounter an underscore, after which, you only omit the letter &lsquo;z&rsquo; &ldquo;, and so on. You get the idea!
+Its extremely useful to know regex in Python, and there are great tutorials online. But many times, you can find prewritten regex for your particular task on forums, and so not knowing regex is not necessarily a barrier!</p>
+<p>So regex can be used after importing the <code>re</code> library.</p>
+<pre><code>import re
+</code></pre><p>We define a function that can remove all special characters from a text, and convert everything to lowercase. It then returns a list containing the words in the text in the exact same sequence as they occur in the text.</p>
+<pre><code>def simplify(text: str): return re.sub(r&quot;\W+|_&quot;, &quot; &quot;, text).lower().split() #returns a list of words
+</code></pre><pre><code>text =simplify(input)
+text[:10],len(text)
+</code></pre><p>So now, in order to create a model, we will create a data structure, which contains the next occurences of all words, because that&rsquo;s what we&rsquo;re concerned with. So we use a python dictionary, with keys as words, and their corresponding values as a list of all the successive occurences in all of the data (the text above).</p>
+<p>The idea behind this is as follows. We will start with a word. Then we look up the successive occurences to the word from this dictionary, and choose a random word. Now this word is our present prediction. Now we will predict the next word through the successive occurences of this present prediction, and this cycle goes on. You can visualize this using the representation below. Each prediction acts as an input for the next prediction!</p>
+<p><img src="https://drive.google.com/uc?id=1SNp15ppS1BVfoFSU48ox90xtHlG2EzvJ" alt="" /></p>
+<p>(Credits: Joshua Payne for <a href="https://joshua-payne.medium.com/an-introduction-to-recurrent-neural-networks-8151823daeb7">this</a> article)</p>
+<p>Each word&rsquo;s corresponding occurence list can have one word appear more than once. So we will simply make a list of all the successive occurences in the text - and a word can occur in this list as many times as the combination of the present word and a particular successor occur together. This will infact help us. Since we will choose a random word as our prediction, more the occurences of a particular word, more likely it is to be chosen, right?! So that aligns with our concepts very well.</p>
+<pre><code>def get_occurences(text: list):
+    &quot;&quot;&quot;
+    This function takes in a sequence of text as a list, and creates a dictionary of all words in the text, with their values being a list of all words that
+    have been seen to occur after the word, in the text.
+    Sometimes, a word may not have a successor at all (like the ending word of the text). We don't want our predictions to stop. So we simply add all the words 
+    from the text to the value of that word key, so that the model will randomly choose any word from the entire corpus, and start predicting all over again.
+
+    &quot;&quot;&quot;
+    dictionary={k:[] for k in set(text)}
+    for k,i in enumerate(text[:-1]):
+        dictionary.get(i).append(text[k+1])
+    for key in dictionary: 
+        if not dictionary.get(key): dictionary.get(key).extend(list(set(text)))
+    
+    return dictionary
+</code></pre><pre><code>text_dict=get_occurences(text)
+print(text_dict)
+</code></pre><p>We can now finally build our Markov Model. We will randomly choose a word, and continuously predict the following words. To choose random items, we will use a library called <code>random</code>.</p>
+<pre><code>import random
+</code></pre><pre><code>word=random.choice(text) #initialize with a random word
+word
+</code></pre><pre><code>for _ in range(1000): 
+    print(word,end=' ')
+    word=random.choice(text_dict[word])
+</code></pre><p>And, with that, you have successfully built your text generation system.</p>
+<p>You would notice that this generated text does not make a lot of sense (Though it does make sense somewhere, atleast in short phrases!). Thats because the model does not understand contexts. It only predicts words based on the current word, and does not consider the past words at all! This is called a <em>memoryless model</em>, meaning it does not have memory of past words, and only works based on the current input.</p>
+<p>It also makes random predictions based on probabilities. This randomness often creates meaningless predictions. Nowadays, we use much more sophisticated models, such as Recurrent Neural Networks, that can understand very complex contexts and even hidden meanings in the text.</p>
+<h2 id="review">Review</h2>
+<p>In this session, we learnt about two very interesting Bayesian models, or probabilistic models - the Naive Bayes Classifier and the Markov Chain Model. These both work in different ways and have great applications in their own domains. We built a classifier using no iterative learning, and only through analyzing the frequencies of occurence of a particular value.</p>
+<p>Simple probabilistic models are very crude, because of the fact that there exists unguided randomness in these models. But yet, there does exist logical sense in these models.</p>
+<h2 id="review-questions">Review Questions:</h2>
+<p>These are non-evaluative, but highly recommended to go through. Make sure you clearly know the answer to each of these concepts. The answers to all these questions are somewhere in this notebook, so if you find yourself unclear with a concept, go back up and find the answer!</p>
+<ol>
+<li>What is the significance of <em>probability</em> in Machine Learning?</li>
+<li>Explain what $P(pred)$,$ P(data)$ and $P(data|pred)$ mean in essence?, and how are they related to our classification model?</li>
+<li>How have we represented each of $P(pred)$,$ P(data)$ and $P(data|pred)$ in code? Meaning, what data structures have been used, and how are they organised?</li>
+<li>Go to the section where we define <code>get_prediction_accuracy</code> function. Understand the working of this code, and in 4-5 lines of plain English, explain the working in pseudo terms.</li>
+<li>Can you give 5 different everyday examples, where the Markov Chain can be used?</li>
+<li>What is Regex?</li>
+<li>When would a Markov Chain result in an infinite looping situation?</li>
+</ol>
+<h1 id="exercise-evaluative">Exercise (Evaluative):</h1>
+<h2 id="problem-1-extended-naive-bayes-classifier">Problem 1: Extended Naive Bayes Classifier</h2>
+<p>In the above problem, we simply dropped all continuous variables (Why?). But there are ways to convert continuous variables into categorical variables. One such method is <em>binning</em>, which means, we divide the data into separate categories, or bins, based on their value. For example, values from 0 to 5 lie in one bin, 5 to 10 in another and so on. So let us try to include continuous variables as well into our data, and see if we can get a better Bayesian accuracy.</p>
+<p>So first do it for the variable Age. According to the dataset Age lies between 0 and 85. So you can create bins of 10 years (ie, 0 to 10, 10 to 20 and so on).</p>
+<p>Hint: You can do it easily using list comprehensions:</p>
+<pre><code>train['Age'] = [some_function(i) for i in train['Age'] #Do it for the testing dataset too
+</code></pre><pre><code>train=pd.read_csv('train.csv',index_col=0).drop(['id','Departure Delay in Minutes','Arrival Delay in Minutes','Flight Distance'],axis=1) 
+test=pd.read_csv('test.csv',index_col=0).drop(['id','Departure Delay in Minutes','Arrival Delay in Minutes','Flight Distance'],axis=1)
+</code></pre><pre><code>#continue your code from here
+</code></pre><p>Build a Naive Bayes classifier with the new dataframes now. Is there a significant improvement/deterioration in the accuracy? (There need not necessarily be, thats okay!)</p>
+<p>Next, build a classifier with various combinations of continuous variables, in addition to all categorical variables. Bin the continuous variables using an appropriate bin size. Keep the following things in mind - the number of bins should not be too large, or there is no difference between this and a continuous variable (both take large number of values, hence the corresponding probabilities of occurence would be very low), or too small either (otherwise there is loss of information). A moderate number of bins is sufficient. Try to push the accuracy as far as possible, and report which combination of features gives the best informatoin about customer satisfaction.</p>
+<p>As a final step, try to think of which <em>categorical</em> variables do not affect customer satisfaction (through your own personal understanding), and remove upto 3 such variables, and see how far the accuracy can be achieved. This answer is subjective, so accuracies may vary for everyone.</p>
+<p>For your reference, the following are all the features of the Airplane Passenger Satisfaction Dataset.</p>
+<pre><code>['id', 'Gender', 'Customer Type', 'Age', 'Type of Travel', 'Class',
+'Flight Distance', 'Inflight wifi service',
+'Departure/Arrival time convenient', 'Ease of Online booking',
+'Gate location', 'Food and drink', 'Online boarding', 'Seat comfort',
+'Inflight entertainment', 'On-board service', 'Leg room service',
+'Baggage handling', 'Checkin service', 'Inflight service',
+'Cleanliness', 'Departure Delay in Minutes', 'Arrival Delay in Minutes',
+'satisfaction']
+</code></pre><p><code>id</code> will be always dropped (removed) from the dataframe</p>
+<pre><code>
+</code></pre><h2 id="problem-2-markov-shakespeare-what-is-in-the-name">Problem 2: Markov? Shakespeare? What is in the name!</h2>
+<p>We learnt that the next prediction of a Markov Model only depends on the present prediction/value, i.e. the model is a <em>memoryless</em> model.</p>
+<p>Let us build a memory model, ie a model, which also takes into account the predecessor of the current prediction, along with the current prediction itself. Meaning, what would be the next word, given the last <em>2</em> predictions?!</p>
+<p>But this most probably won&rsquo;t work on the text we wrote above (the boring text), because it contains only 2400 words. So there is a very low probability that the successor of two consecutive words will have more than one possible options. We will end up getting the exact same text as the text we wrote, or almost on the same lines.</p>
+<p>Let us download a bigger text file - how about a whole Shakespeare play. And we will try to build a model that can predict text in the style of Shakespeare!</p>
+<p>Let us download this dataset and put it in a string.</p>
+<pre><code>!kaggle datasets download -d adarshpathak/shakespeare-text
+!unzip shakespeare-text
+</code></pre><pre><code>from pathlib import Path
+txt = Path('text.txt').read_text()
+txt[:1000] #print the first 1000 words
+</code></pre><p>Now we need to define our functions. We&rsquo;ve written the code to incorporate two consecutive words at once.</p>
+<pre><code>def simplify(text: str):
+    words = re.sub(r&quot;\W+|_&quot;, &quot; &quot;, text).lower().split()
+    return [' '.join((words[i],words[i+1])) for i,_ in enumerate(words[:-1])], words 
+</code></pre><pre><code>def get_occurences(text: list,original_wordlist):
+
+    dictionary={k:[] for k in set(text)}
+    for k,i in enumerate(text[:-1]):
+        dictionary.get(i).append(text[k+1])
+    for key in dictionary: 
+        if not dictionary.get(key): dictionary.get(key).extend(text)
+    
+    return dictionary
+</code></pre><p>Continue the code from here, and write the loop function to generate the Markov Chain Model&rsquo;s predictions.</p>
+<p>Randomly choose a word, and predict the next 100 words.</p>
+<pre><code>
+</code></pre></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-naive-bayes-classifier">The Naive Bayes Classifier</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#markov-chains">Markov Chains</a>
+      <ul>
+        <li><a href="#case-study-auto-text-generator">Case Study: Auto Text Generator</a></li>
+      </ul>
+    </li>
+    <li><a href="#review">Review</a></li>
+    <li><a href="#review-questions">Review Questions:</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#problem-1-extended-naive-bayes-classifier">Problem 1: Extended Naive Bayes Classifier</a></li>
+    <li><a href="#problem-2-markov-shakespeare-what-is-in-the-name">Problem 2: Markov? Shakespeare? What is in the name!</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

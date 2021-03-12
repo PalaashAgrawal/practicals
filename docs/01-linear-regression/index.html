@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta name="generator" content="Hugo 0.68.3" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Lab 1: Linear Regression Welcome to the second lab session of the Machine Learning Course. In this session, let&rsquo;s look at a fundamental topic in Machine Learning - Linear Regression
+Before we start, let us see what &lsquo;Regression&rsquo; means.
+Regression Regression is a statistical concept, which refers to finding relationships between different quantities. This lies at the core of Data Sciences. Finding how different types of data are related are used to find meaningful conclusions and decisions.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://palaashagrawal.github.io/practicals/docs/01-linear-regression/" />
+
+<title>01 Linear Regression | Palaash Agrawal</title>
+<link rel="manifest" href="https://palaashagrawal.github.io/practicals/manifest.json">
+<link rel="icon" href="https://palaashagrawal.github.io/practicals/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="https://palaashagrawal.github.io/practicals/book.min.2dc4d2afa8da6ac78d76671c21e140952e7a84846fed47ed02a1a2d68166d992.css" integrity="sha256-LcTSr6jaaseNdmccIeFAlS56hIRv7UftAqGi1oFm2ZI=">
+<script defer src="https://palaashagrawal.github.io/practicals/en.search.min.ca40c67ae3c71e5afca9d771d7e6ea511d0c4ba4f69a678a0b07e8c8557d56c0.js" integrity="sha256-ykDGeuPHHlr8qddx1&#43;bqUR0MS6T2mmeKCwfoyFV9VsA="></script>
+<link rel="alternate" type="application/rss+xml" href="https://palaashagrawal.github.io/practicals/docs/01-linear-regression/index.xml" title="Palaash Agrawal" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="https://palaashagrawal.github.io/practicals/"><span>Palaash Agrawal</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/00-introduction-to-machine-learning-and-python/" class="">00 Introduction to Machine Learning and Python</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/01-linear-regression/" class=" active">01 Linear Regression</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/02-logistic-regression/" class="">02 Logistic Regression</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/03-singular-value-decomposition-and-principal-component-analysis/" class="">03 Singular Value Decomposition and Principal Component Analysis</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/04-bayesian-learning/" class="">04 Bayesian Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/05-clustering-algorithms-in-machine-learning/" class="">05 Clustering Algorithms in Machine Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/06-support-vector-machines/" class="">06 Support Vector Machines</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/07-decision-trees-and-random-forests/" class="">07 Decision Trees and Random Forests</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="https://palaashagrawal.github.io/practicals/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>01 Linear Regression</strong>
+
+  <label for="toc-control">
+    
+    <img src="https://palaashagrawal.github.io/practicals/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+
+    
+  </label>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  
+    window.addEventListener('load', (event) => {
+        document.querySelectorAll("mjx-container").forEach(function(x){
+          x.parentElement.classList += 'has-jax'})
+      });
+  
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#regression">Regression</a>
+      <ul>
+        <li></li>
+        <li><a href="#case-study-the-new-york-stock-exchange">Case Study: The New York Stock Exchange</a></li>
+      </ul>
+    </li>
+    <li><a href="#the-linear-regression-model">The Linear Regression Model</a>
+      <ul>
+        <li><a href="#method-1-direct-formula">Method 1: Direct Formula:</a></li>
+        <li><a href="#method-2-gradient-descent">Method 2: Gradient Descent</a></li>
+        <li><a href="#implementing-gradient-descent"><strong>Implementing Gradient Descent</strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#review">Review</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#exercise">Exercise</a>
+      <ul>
+        <li><a href="#problem-1-building-your-own-linear-regression-stock-prediction-model">Problem 1: Building your own Linear Regression Stock Prediction Model.</a></li>
+        <li><a href="#problem-2-non-linear-regression">Problem 2: Non Linear Regression</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="lab-1-linear-regression">Lab 1: Linear Regression</h1>
+<p>Welcome to the second lab session of the Machine Learning Course. In this session, let&rsquo;s look at a fundamental topic in Machine Learning - Linear Regression</p>
+<p>Before we start, let us see what &lsquo;Regression&rsquo; means.</p>
+<h2 id="regression">Regression</h2>
+<p>Regression is a statistical concept, which refers to finding relationships between different quantities. This lies at the core of Data Sciences. Finding how different types of data are related are used to find meaningful conclusions and decisions.</p>
+<p>In the context of Machine Learning, Regression refers to the prediction of a <em>continuous</em> mathematical real-numbered variable as the output, when the model is given some inputs, in the form of variables. This output value is predicted by observing patterns in the data you provide to it.</p>
+<p>For example: look at this image below and observe any pattern that you can interpret visually.</p>
+<p><img src="https://drive.google.com/uc?id=1v3vc-cqwrMekvjtT4XLY2XSNzbH51Rwf" alt="image" /></p>
+<p>This <a href="https://www.worldometers.info/coronavirus/country/us/">chart</a> shows the daily Covid-19 Cases in the United States. Do you see some trends? You would observe that the number of daily cases rise and fall and rise again, almost like a wave.</p>
+<p>Hospitals need to prepare resources, such as hospital beds, ventilators, oxygen supply, and even testing kits well in advance. Thus, an estimate of the expected number is surely helpful.</p>
+<p>Observe the part towards the end of the curve on the right. The chart tells us, that everyday since 29 December 2019, the number of cases have crossed 200,000. Moreover, since December 1, till Jan 15, the number of cases have crossed 200,000 on all days except some 7 odd days. But to compensate this, the number of new cases cases have even risen beyond 300,000 on one day, and more than 250,000 on many days.</p>
+<p>If you were to predict the  number of cases on the following day, it would be very reasonable to the number of Covid-19 positive patients to be above 200,000, because thats the trend. Ofcourse, you never know, the number may be lower or even extremely high - It may even cross 400,000. But <em>chances</em> are the number will be in this ballpark. This is what regression means - to observe the patterns in the data and <em>predict</em> a value with high confidence. Here, given the input, such as the number of new cases in the past month, the number of tests carried out, and the history of the events of the past few days (for example, public events that may have acted as super-spreader events), we predict how many cases there will be in the future. Infact, this is what statisticians do - they predict how worse the pandemic can get, and when the curve is expected to flatten, using these techniques.</p>
+<p>One important concept to understand is - that we can only <strong>predict</strong> our results, with a probability (or, in other words, with high confidence), and so, there is always a chance that our prediction is wrong, or off by a large margin. Our job is to give the best possible results, based on the data that we have been provided with. And a larger probability (ie, higher confidence) is desirable, because we can be more sure that our results will be accurate (or close to the actual value).</p>
+<p>Let us begin with our discussion on Linear Regression!</p>
+<h4 id="linear-regression">Linear Regression</h4>
+<p>Given some data <code>x</code>, the results of which we know, and represent as <code>y</code> (which may be refered to as the target value, or the ground truth value) (keep in mind, the target values are not predictions - they are actual values which were factually observed in the real world), our simplest approach can be to map a function <code>y=f(x)</code> that maps the relation between the inputs (<code>x</code>) and the output (<code>y</code>).</p>
+<p>The simplest function that can be made to &ldquo;learn&rdquo; these relations and patterns is a linear function. Given an input <code>x</code>, the output will be given as:</p>
+<pre><code> f(x) = w.x + b  #this is our model. '.' represents multiplication
+ pred = f(x)  #pred is the prediction of the output, given some input x
+</code></pre><p>The coefficient of <code>x</code>, ie, <strong><code>w</code></strong>, and the intercept term <strong><code>b</code></strong> are the <em>parameters</em> of our linear function. If the linear function is designed properly, meaning, if <code>w</code> and <code>b</code> are given proper values, then <code>pred</code> can be closer to the actual output y. Note that our parameters are real valued numbers.</p>
+<p>This is essentially learning the patterns of the data. So now, when you want to predict the output, of which you <strong>do not</strong> know the ground truth output (for example, future prediction), the model will predict the output based on the data we had provided to it. This is because, we assume, that all data shows a common pattern. Since, we have learned that pattern by adjusting our parameters, our predictions are expected to give good results.</p>
+<p>Above is shown the linear regression technique for ONE independent variable (x) which is to be mapped to ONE dependent variable (y). You may have multiple dependent variables (x1, x2, x3 and so on), which is to be mapped to the dependent variable (y) , and in that case, the model looks like:</p>
+<pre><code>f(x1,x2,x3 ...) = w1.x1 + w2.x2 + w3.x3 + .... + b
+pred = f(x1,x2,x3 ...)
+</code></pre><p><img src="https://drive.google.com/uc?id=10-K2YfkYT8O24I5eS9xWIHL6H6Xf3pbj" alt="image" /></p>
+<p>In this picture, we fit a linear regression model to the data. Now for an unseen data, the model would predict a value that lies on this line. This is a fairly accurate representation of the data, since we observe that all the data more or less lies alone a straight line.</p>
+<p>As an example, let us take a look at the price of the Google stock in the New York Stock Exchange, over the course of many years.</p>
+<h3 id="case-study-the-new-york-stock-exchange">Case Study: The New York Stock Exchange</h3>
+<h4 id="setting-up-our-data"><em>Setting up our Data</em>*</h4>
+<p>Let us begin by downloading the <a href="https://www.kaggle.com/dgawlik/nyse">NYSE Dataset</a>, which contains details of the  . If you click on the hyperlink, you will be redirected to a website called <em>kaggle.com</em>. This website is one of the most famous websites for Data Science Practitioners. It provides access to many datasets, both small-scale and large-scale, and a platform for practitioners to discuss their solutions, share ideas, and even compete. Many competetions are even paid, meaning the winner of the competition wins a price money of thousands of US dollars, sometimes even in millions! Infact, many game-changing Machine Learning research papers have resulted from kaggle competitions. And many top <em>kagglers</em> (as they are called), called as <em>kaggle grandmasters</em>  are known to have been offered high-paid positions as Data Scientists at top tech-companies and research institutes.</p>
+<p>To download datasets from Kaggle, we need an account. <strong>So head over to the website and make an account</strong>! You can simply signup using your google account, without having to go through the entire procedure!</p>
+<p>Kaggle provides us with an API (a function that saves us from a lot of technicalities) to pull datasets from the website. For that, we need to download a file which contains the mechanism to download datasets over the cloud. This file is goes by the name <code>kaggle.json</code>, and is unique to each kaggle account (This is done so that Kaggle knows who is downloading the dataset, because when a lot of data belongs to companies, which have their own legal requirements. So this is a method to hold accountability against any user who misuses the data. We don&rsquo;t need to worry about it!)</p>
+<p>So&hellip;</p>
+<ul>
+<li>Head over to <a href="http://www.kaggle.com">www.kaggle.com</a></li>
+<li>On the top right corner, click on your profile photo. Then go to <em>My Profile</em></li>
+<li>Click on <em>Account</em> on the top menu bar.</li>
+<li>Click on <em>Create new API Token</em>. A file named <code>kaggle.json</code> will be downloaded!</li>
+</ul>
+<p>Ideally, the API expects the file to be located in your computer at the location <code>~/.kaggle/kaggle.json</code>.</p>
+<p>(So if you&rsquo;re using your PC rather than this notebook, you can simply create a folder named <code>.kaggle</code> in your root directory, and put the <code>kaggle.json</code> file in that directory)</p>
+<p>For those who are using this notebook, this poses a problem! We are not running this notebook using our own PC&rsquo;s CPU/GPU, but rather running this notebook on a PC on a remote Google server, and we don&rsquo;t have the interface to the PC on which this notebook is running. We only have access to this notebook. But, below we have provided you with a peice of code, that lets you upload the <code>kaggle.json</code> file from your computer, and send it to the remote PC on which we&rsquo;re working. The source of the code can be found <a href="https://colab.research.google.com/github/corrieann/kaggle/blob/master/kaggle_api_in_colab.ipynb#scrollTo=0HtGf0HEXEa5">here</a>.</p>
+<p>Upload the <code>kaggle.json</code> file using the <code>Choose Files</code> button after running the cell below. Make sure the name of the file is nothing else other than <code>kaggle.json</code>.</p>
+<pre><code>#Code to upload kaggle.json from local PC to the remote server
+from google.colab import files
+
+uploaded = files.upload()
+
+for fn in uploaded.keys():
+  print('User uploaded file &quot;{name}&quot; with length {length} bytes'.format(
+      name=fn, length=len(uploaded[fn])))
+  
+# Then move kaggle.json into the folder where the API expects to find it.
+!mkdir -p ~/.kaggle/ &amp;&amp; mv kaggle.json ~/.kaggle/ &amp;&amp; chmod 600 ~/.kaggle/kaggle.json
+</code></pre><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Then, to download the dataset, we go to the <a href="https://www.kaggle.com/dgawlik/nyse">dataset page</a>, click on the three vertical dots on the right, and click on <em>Copy API command</em>.</p>
+<p>Now paste this command in the cell below. But to run this code, we need to add a <code>!</code> at the beginning of the command. This is because this code is not a python code, but a terminal code. The <code>!</code> tells that Jupyter Notebook that the code written following this, is a terminal code, and not in python. We&rsquo;ve already written this for you&hellip;</p>
+<pre><code>!kaggle datasets download -d dgawlik/nyse
+</code></pre><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Next, unzip the dataset file (which is downloaded in the form of a zip file). We also move the contents of the file to a new folder, which we name &ldquo;nyse_dataset&rdquo;.</p>
+<p>Once we unzip the dataset, we take a look at the dataset folder using the <code>ls</code> terminal command</p>
+<pre><code>!mkdir nyse_dataset
+#mkdir is the terminal command to make a new folder with a specific name (which here, is &quot;nyse_dataset&quot;)
+!unzip nyse.zip -d nyse_dataset #unzip the nyse.zip file and move the contents to the folder named &quot;nyse_dataset&quot;
+</code></pre><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<pre><code>%cd /content/nyse_dataset 
+!ls
+#These are the files inside the downloaded dataset
+</code></pre><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>That&rsquo;s it regarding the setup of our dataset! The process may seem slightly overwhelming at first, but its really not. Its just 3 steps -</p>
+<ol>
+<li>Make sure your API key (the json file) is present. If you&rsquo;re using your local PC to run this code, you dont even have to do this again and again.</li>
+<li>Download the dataset using the command that Kaggle provides you with</li>
+<li>Uzip it and visualize it!</li>
+</ol>
+<p>It becomes almost effortless over time. So do not worry if you cannot wrap your head around everything at once. The important idea is to understand the workflow.</p>
+<p>Now lets actually start processing our data!</p>
+<h6 id="working-with-our-data"><strong>Working with our data</strong></h6>
+<p>We will be carrying out our analysis on the <code>prices-split-adjusted.csv</code> file. Notice that our file is a <code>.csv</code> file, which stands for &ldquo;comma separated values&rdquo;. Its similar to an Excel file containing data. If you open a csv file using any text editor, you would find data in a row separated with commas, and each line acting as a whole row.</p>
+<p><code>pandas</code> is one of the most widely used libraries in python to handle csv files. We will create a &ldquo;dataframe&rdquo; using this library, which is nothing but the data represented in the form of a table. This can be used to extract certain values in the data.</p>
+<pre><code>import pandas as pd # we call the pandas library and give it an alias (pd), which we will use as a shortcut to call pandas
+dataframe = pd.read_csv( 'prices-split-adjusted.csv', parse_dates=['date']) #store the dataset in the prices-split-adjusted.csv in the variable called dataframe
+dataframe.head() #.head() is a method to print the first 5 rows of the dataframe
+</code></pre><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Let us understand this dataset. The first column of the dataframe is the date on which the stock prices are recorded. According to the dataset description on the kaggle page, the stocks are recorded from 2010 to 2016.
+The second column is the Stock Exchange symbol of the company. To find all the companies in the dataset, we use the <code>unique()</code> method, which finds all unique values in a column.</p>
+<pre><code>dataframe['symbol'].unique()
+</code></pre><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>We&rsquo;ll work with the dataset of only one company - Google (Now called the Alphabet Inc Company) (the symbol of which is &lsquo;GOOG&rsquo;.)</p>
+<pre><code>google_df = dataframe[dataframe['symbol']=='GOOG'].set_index('date')
+google_df.head() #notice, the dates act as the indices of the dataframe, ie the key that we can use to refer to a particular row
+</code></pre><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<pre><code>len(google_df) #let us check how many rows of data do we have
+</code></pre><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<pre><code>#additional information: 
+#to extract one row of data, say of the date 2010-01-04, we use the loc method:
+google_df.loc['2010-01-04']
+</code></pre><p>The remaining of the columns are details of the stock price and company, such as the opening price on any day, the closing price, the highest and lowest stock price on any day, and the volumes of trades done on a day. We are concerned with the closing price of the google stock on each of these days. We are given the stock prices between 2010 and 2016. <strong>Let us try to find what the stock price may be in the future. We will find the stock price at the end of each year from 2017 through 2020, and also try to predict what the stock price may be at the end of 2025, if the stock were to increase in value at the same rate.</strong></p>
+<p>Let us start by visualizing the data. We use the matplotlib library to plot our data. It is The most widely used python library to plot and visulaize data. Again, we&rsquo;ll be using an alias (plt) to avoid writing the entire phrase again and again.</p>
+<pre><code>import matplotlib.pyplot as plt
+plt.figure(figsize=(15, 7))
+plt.plot(google_df.close) #the x axis is the date, the y axis is the closing price of the stock on any given day
+</code></pre><p>Can you guess which variable is the dependent variable and which is independent?</p>
+<p>The time is the independent variable, and the stock price is the dependent variable. Let us put them in the variables <code>x</code> (for independent variable), and <code>y</code> (for dependent variable). But how do we use the date as an input? Remember, all values need to real numbers.</p>
+<p>One approach is to use the number of days since the first day that is recorded in the dataset. Let us use this as the independent variable. We will make two different lists for <code>x</code> and <code>y</code> respectively.</p>
+<pre><code>first_day = google_df.index.min() #remember, dates are indices to the dataframe
+first_day #this is the day relative to which we'll calculate the number of days passed.
+</code></pre><p>This refers to a specific time - 4 January 2010, at 00:00:00 hrs</p>
+<p>Let us define a function that takes in a date from the dataframe, and calculates the number of days since this date</p>
+<pre><code>def calculate_days_since(date,reference=first_day): return (date-reference).days 
+
+#'date minus reference' would return the difference in terms of the exact time elapsed, till the exact milliseconds.
+#the .days method ignores everything except the number of days, which is what we require!
+</code></pre><p>You might be wondering? how can we subtract two dates (date and reference)?
+Actually, go back above, and notice the statement where we read the csv file.
+there&rsquo;s an argument that says parse_dates: which tells pandas to not consider the column &lsquo;dates&rsquo; as a string, but as meaningful objects.
+By writing this argument, pandas now knows that these strings are dates, and provides us with methods to handle them. One such is that, we
+can subtract two dates to get the difference.</p>
+<p>Internally, all dates are converted into objects of another python library, called the datetime.
+So if we are to pass a date to this function, we need to first convert it to a datetime object. So let us import that library.</p>
+<pre><code>from datetime import datetime
+</code></pre><p>Let us look at if the function we defined above works. Lets see, how many days have passed between the reference date (4 Jan 2010) and 1 Jan 2021.</p>
+<pre><code>calculate_days_since(datetime(2021,1,1)) #The syntax of datetime is datetime(year, month, day)
+</code></pre><p>Yes, that works perfectly. If it doesn&rsquo;t, look if the syntax is correct (including, if brackets are opened and closed properly, and if the inputs are correct.</p>
+<p>Let us, finally, build our dataset (meaning, our <code>x</code> and <code>y</code>)</p>
+<pre><code>
+</code></pre><pre><code>x=list(map(calculate_days_since,google_df.index))
+x[:10] #seeing the first 10 items of our x
+</code></pre><pre><code>y=list(google_df.close)
+y[:10]
+</code></pre><pre><code>assert len(x)==len(y)
+</code></pre><p>There&rsquo;s some python jargon here. Let us look at these. Everytime we come across a new, important concept in Python, we&rsquo;ll write a small note with the heading <strong>&ldquo;LESSONS IN PYTHON&rdquo;</strong></p>
+<hr>
+<hr>
+<p>Lessons in Python</p>
+<ol>
+<li></li>
+</ol>
+<pre><code>x=list(map(calculate_days_since,google_df.index))
+</code></pre><p>map is a function that can be used to apply a function over every value in a collection of values. Here, we wish to apply the <code>calculate_days_since</code> function over every value in the collection of dates, which is given by <code>google_df.index</code> (remember, the dates are the indices of the dataframe, and the .index method returns a collection of all indices).</p>
+<p>So, this function takes values from <code>google_df.index</code>, and pass it through the <code>calculate_days_since</code> function, and returns a collection of the values as <code>map</code> object. Obviously, this <code>map</code> object is of no use to us, we want the result to be in the form of a list. So we pass the result of the map function to the function <code>list()</code>, which returns a list of the values.</p>
+<pre><code>assert len(x)==len(y)
+</code></pre><p>assert is a sleek method in python to check a condition. If the condition is satisfied, it does * nothing *. If the condition is not satisfied, an error is raised. This immediately aborts all functionality, and can be used as an effective debugging tool, to find out where exactly in the code an error exists. And if no error exists, this method does not interfere with the functionality of the code.
+Here, we are making sure that the number of items in our dependent variable y is the same as the number of items in our independent variable x. So if no output is given, or no action takes place, it means that indeed, the condition is satisfied, and we&rsquo;re good to go!</p>
+<hr>
+<hr>
+<pre><code>
+</code></pre><p>Let us visualize the data using the <code>plt.plot(x_axis,y_axis)</code>.</p>
+<pre><code>plt.plot(x,y)
+plt.ylabel('Stock price (closing)');
+plt.xlabel('Days since 4 Jan 2010');
+</code></pre><h2 id="the-linear-regression-model">The Linear Regression Model</h2>
+<p>We will look at two methods to build a Linear Regression Method:</p>
+<ol>
+<li>By using a direct formula.</li>
+<li>The Gradient Descent.</li>
+</ol>
+<p>The idea of Linear Regression is to make sure that our predictions are as close to the target value as possible. To ensure this, we use the method of Least squares. In other words, our objective is: Minimize the difference between the predictions and the ground truth. Since we do not care about the sign of the difference, we square the difference, in order to ensure we always get a positive value.</p>
+<p>Hence our goal can be written as:</p>
+<p>$$Minimize \frac{1}{n} \sum_1^n(pred - y)^2$$.</p>
+<p>We call this the loss function. Smaller the value of the loss function, the better the model is considered. It is nothing but the <em>average sum of squared errors</em>.</p>
+<h3 id="method-1-direct-formula">Method 1: Direct Formula:</h3>
+<p>Given some input x and output y, you can directly calculating the line of best fit using the formula described below. :
+(Disclaimer: You Don&rsquo;t need to  memorize these formulae!)</p>
+<p>$$ y= w_{1}x_1 + w_2x_2 + &hellip;. + w_k x_k + b$$</p>
+<p>$$w_i =  \frac{\sum_1^n(x_i - \bar{x_i})(y - \bar{y})}{\sum_1^n(x_i - \bar{x_i})}$$</p>
+<p>$$b= \frac{1}{n} \left {\sum_{1}^{n} y - \sum_{i=1}^{k} w_i (\sum_{1}^{n}x_i)  \right }$$</p>
+<p>Where n is the number of training points, k is the number of independent variables, and all other notations have standard mathematical meanings. These calculations come from solving a differential equation in order to minimize the square of the difference.</p>
+<p>This seems quite confusing. Fortunately, there are many python libraries out there that do this calculation for us. One such library is the <code>scikitlearn</code> library. Let us import that library.</p>
+<pre><code>from sklearn.linear_model import LinearRegression
+</code></pre><p><a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html">Here</a> is the documentation of the function. The <code>fit()</code> method is used to find the parameters of the model (w and b). However, according to the documentation, the model expects each data point to be a separate list, and all these lists to be contained in one massive list.<br>
+<code>[[i] for i in x]</code> does that for us. This method of making a list is called list comprehensions. Basically, for every value in x, which we denote as <code>i</code>, put a list containing i (<code>[i]</code>) inside the list.</p>
+<pre><code>modified_x = [[i] for i in x]
+print(modified_x[:10])
+</code></pre><pre><code>reg=LinearRegression().fit(modified_x,y) 
+</code></pre><p>The weights <code>w</code> are stored in the <code>coef_</code> method of the <code>reg</code> object, and the intercept term <code>b</code> is stored in the <code>intercept_</code> method.</p>
+<pre><code>w,b = reg.coef_ , reg.intercept_
+w,b
+</code></pre><h4 id="let-us-see-how-good-this-performs">Let us see how good this performs:</h4>
+<pre><code>#we define a function that predicts the values according to this model
+def lin_model(x): return x*w + b
+</code></pre><pre><code>plt.plot(x,y)
+plt.plot(x,[lin_model(o) for o in x])
+plt.ylabel('Stock price (closing)');
+plt.xlabel('Days since 4 Jan 2010');
+</code></pre><p>Looks pretty accurate! Visually too, you can see that the line fits pretty well within the data.</p>
+<pre><code>day=datetime(2017,12,31)
+days_elapsed= calculate_days_since(day)
+days_elapsed
+</code></pre><pre><code>lin_model(days_elapsed)
+</code></pre><h3 id="method-2-gradient-descent">Method 2: Gradient Descent</h3>
+<p>Gradient Descent is an algorithm which iteratively updates the values of the parameters until a goal is met, using derivatives. In our case, the goal is to minimize the loss function as we mentioned above.</p>
+<p>The way Gradient Descent works is by minimization of the loss function through the concept of gradients. Below is a dummy example:</p>
+<p>Consider a function that needs to be reduced. Let this be a quadratic function for the sake of simplicity. Our job is to find the value of x (on the x axis), that makes y (the independent variable), minimum!</p>
+<p><img src="https://drive.google.com/uc?id=1aT-hkr91lj6Gj8exxIzOZ0X7_QHOyhVP" alt="image" /></p>
+<p>Suppose you start from a random point on this graph, say (x,y) = (4,16). How do we, from here, proceed towards the <em>minima</em> of this graph?</p>
+<p><img src="https://drive.google.com/uc?id=1Rd3i0k69mG8x4ChHIyX0Qi5_9KwZBF6T" alt="image" /></p>
+<p>Gradients provide the answer! Gradients, if you don&rsquo;t know, is the slope of the curve. You must have studied about the method to calculate the gradient - <em>rise over run</em>. If you do not know what gradients are, head over to Khan Academy. <a href="https://www.youtube.com/watch?v=tIpKfDc295M">Here</a> and <a href="https://www.youtube.com/watch?v=_-02ze7tf08">here</a> are some videos to get you started!</p>
+<p>If you now have some idea about gradients, let us proceed with our discussion on gradients. Gradients are real valued numbers, which represent how the values of the graph are changing.</p>
+<p>Let us start by assigning a totally random value to our parameter x. Now, at the point (4,16) (the red point), can you guess whether the gradient of y with respect to x, is positive or negative?</p>
+<p>It is positive! Infact, if you know how to calculate the gradient of a quadratic function $$f(x)=x^2$$, it is simply $$f&rsquo;(x) = 2x$$. So at x=4, the gradient is simply +8.</p>
+<p><strong>Gradient Descent continuously updates the parameter (x) by a value opposite to the sign of the gradient of the dependent variable(y) with respect to the parameter(x).</strong></p>
+<p>If the gradient of y with respect to x is positive, update x with a negative number. (Meaning, <strong>Reduce</strong> the value of x by a certain number.)</p>
+<p>If the gradient with respect to the parameter(x) is negative, increase the parameter(x). If you continuously update the parameters using this method, you will reach to the minima of the function.</p>
+<p><img src="https://drive.google.com/uc?id=1LjqBwdupEE7RoT1ogvYKVvoaVT6FVKzr" alt="image" /></p>
+<p><em>Our parameter is continuously updated in steps that move towards the mimima. x goes from 4 to 3 to 2.2 to 1.5 and so on, until it reaches 0</em></p>
+<p>How do we represent this practically?</p>
+<pre><code>#Step 1: calculate gradients
+gradient(x) = 2*x      #(gradient of the quadratic function x**2 is 2*x)
+
+#Step 2: update the parameters
+x -= step_size*gradient(x)      #x-=number is the same as x=x-number.
+</code></pre><p>Let us understand the weight update step.
+You would understand why we are subtracting from x. This is because we are taking a step of the opposite sign of the gradient. If the gradient is positive, x increases by <code>step_size*gradient(x)</code>, and if negative, x decreases by the magnitide <code>step_size*gradient(x)</code>.</p>
+<p>What is step_size?
+Step_size is a small positive number, which lets us control <strong>how big a parameter update takes place</strong>. When we study Neural Networks, you will see why we need to control the size of the step. But you can get a basic intuition about the idea - if the step_size is too small, it&rsquo;ll take forever to reach the minima. If the step_size is too large, you may overshoot the minima. Meaning, for example, if you&rsquo;re currently at x=0.1, you need to update the parameter by 0.1 to reach x=0. But because of the high learning rate, you can only take a step bigger than this, and thus never reach the minima. The step_size is also known as the <strong>learning rate</strong> in Machine Learning. So keep this term in mind when we further study Gradient Descent, predominantly during Neural Networks!</p>
+<p>What happens when we finally reach x=0. We know that x=0 is the minima of this curve. But also notice, that the <em>gradient with respect to x is also 0</em>. So the weight update step does not update the parameter, and the value remains stagnant. At this point, we have fulfilled our goal! Notice how we started from a random value and still reached the minima using this algorithm!</p>
+<hr>
+<p>So how would Gradient Descent look like for our problem? What would be our model function (y)? and what would be the independent function (x)?</p>
+<p>y is the function which needs to be minimized, so this would be our Loss Function (the average sum of squared error between the target and model predictions). x would be our parameters which need to updated such that y (the dependent variable) is minimum. So we&rsquo;ll be running the gradient descent separately for each of the parameters (w1,w2,w3&hellip;.,wk,b)</p>
+<h3 id="implementing-gradient-descent"><strong>Implementing Gradient Descent</strong></h3>
+<p>To implement this library, we&rsquo;ll be using PyTorch, a framework built on top of Python, which is known for efficiently handling Deep Learning (ie, the Machine Learning concerned with Neural Networks). The reason we are using PyTorch, is because PyTorch can calculate the gradients for us, without us having to tell the mathematical formula for the gradient. You can calculate the gradients for <strong>ANY</strong> function, however complex, and we don&rsquo;t even have to know how to calculate the gradient. It may seem bizarre at first - you may ask, how would pytorch know what our model, or loss function is! And so, how would it know how to calculate the gradients? Does it know the gradients of all functions in this universe?
+We will see how this works. This mechanism is called <em>autograd</em>.</p>
+<pre><code>#let us start by importing the PyTorch library, which is denoted by torch
+import torch
+</code></pre><p>We have 2 parameters, <code>w</code> and <code>b</code>, that we need to find values of, such that predictions are such that the loss function is minimum. (This sentence summarizes the entire concept of Linear Regression, so make sure you go through it again and understand it well). As we mentioned before, we will first start with random values for <code>w</code> and <code>b</code>.</p>
+<pre><code>params=torch.randn(2).requires_grad_() #initialize w and b with a random value of size 1. This is the dimension sizes.
+w,b=params
+w,b
+</code></pre><p>Notice that these parameters are in the form of <strong>tensors</strong>. What are tensors? Tensors are PyTorch specific data structures that can efficiently handle data. They are basically n-dimensonal matrix-like structure. For example, a one dimensional data structure is simply a list. A 2 dimensional structure is a 2-D matrix. A 3D structure is a 3-D Matrix (having height, width and depth), and so on. So you can have very complex data types within tensors. Tensors make operations very efficient!</p>
+<p>We also added a <code>.requires_grad_()</code> in front of the random initialization of these parameters. This function is available only for tensors, so you cant randomly  append this function to any other datatype. <em>This is the pytorch function which tells PyTorch that these parameters need to be updated.</em></p>
+<p>So, naturally, it needs gradients, in order to be updated (refer back to the parameter update formula). And once we tell PyTorch that these variables need gradients, it will <em>keep track of all operations you do on those variables. So it knows how to calculate the gradient for this. For example, if your model is a quadratic function, PyTorch will keep track of this, and hence know internally, how to calculate the gradient of the quadratic function. We&rsquo;ll be discussing this in more depth later</em>.</p>
+<p>Let us now define our model:</p>
+<pre><code>def model(x,params=params): 
+    w, b= params
+    return w*x +b 
+</code></pre><p>Here comes another aspect of PyTorch. It expects all operations to be done between tensors only. So let us convert our data to tensors!</p>
+<pre><code>x_tensor,y_tensor = torch.tensor(x).float() , torch.tensor(y).float() #PyTorch expects everything to be floats. You dont have to know this fact at this point
+x_tensor.shape, y_tensor.shape
+</code></pre><pre><code>#Let us see if the model works on our data tensors...
+preds=model(x_tensor)
+preds.shape
+</code></pre><p>Let us run this model on our inputs:</p>
+<p>And let us finally calculate the loss function. Let us define this function. We use a predefined Mean Square Error Loss function, which is defined in PyTorch. If you ever want to find out how to import a functionality from a library - a quick Google search always helps. For example, you can type &ldquo;PyTorch MSE loss&rdquo;, and you would surely get some results. Even if a functionality doesn&rsquo;t exist in the library, you may find discussions on some forum related to your query.</p>
+<p>By searching, we find that MSE is defined at a <a href="https://pytorch.org/docs/stable/generated/torch.nn.MSELoss.html">specific submodule</a> of the torch library - called the &ldquo;nn&rdquo;.</p>
+<pre><code>loss_fn=torch.nn.MSELoss() #Pytorch already implements the Mean Square Error Loss function for us. 
+#It is equivalent to mean((pred-target)**2)
+
+def loss_LinearRegression(pred,target):
+    assert len(pred)==len(target) #we need to make sure that there are as many predictions as targets. If not, then there is some error in our code
+    return loss_fn(pred,target)
+</code></pre><pre><code>#let us test this function on our predictions and target values
+loss=loss_LinearRegression(preds,y_tensor)
+loss
+</code></pre><p>Now, the next step is to calculate the gradient of our parameters with respect to the loss function. Remember, moving in the direction opoosite to the sign of the gradient would minimize the function of which the gradients are calculated (in this case, the loss function). <strong>Calculating Gradients is as simple as typing the <code>.backward()</code> function</strong></p>
+<pre><code>loss.backward()
+#gradients have now been calculated. Let us check these gradients
+</code></pre><pre><code>params.grad #the .grad method of tensors tell us the gradients of the loss function with respect to these parameters. 
+#if you calculate the gradients by hand, you would get this value only!
+</code></pre><p>Finally, let us update our parameters.</p>
+<pre><code>lr=1e-4
+params.data-=lr*params.grad
+params #go back up and verify that the value of params have indeed changed!
+</code></pre><p>Let us also define a function that does one complete cycle.</p>
+<pre><code>params = torch.zeros(2).requires_grad_() #re-initializing our parameters
+
+def train_one_iteration(params,lr=1e-4): #In python 1e-4 is the same as saying 10^-4. Similarly, 2e5 would mean 2x(10^+5). And so on...
+  preds = model(x_tensor, params)
+  loss = loss_LinearRegression(preds, y_tensor)
+  loss.backward()
+  params.data -= lr * params.grad.data
+  params.grad = None #The details of this peice of code will be discussed in the Neural Networks section. But note: it is an essential step
+</code></pre><p>Now let us finally run the Gradient Descent Algorithm. Remember, this is an iterative algorithm, and needs to be run multiple times. In each run, or iteration, the loss will reduce, and the predictions will hence improve! Let us first see how the model predicts initially, before training.</p>
+<pre><code>#since we plan to visulaize the model in terms of a plot again and again, it is useful to write a function. 
+#Remember, functions are an efficient way to avoid writing the same peices of code again and again
+def plot_linreg_model(params):
+    plt.plot(x_tensor,y_tensor)
+    pred=model(x_tensor,params).detach()
+    plt.plot(x_tensor,pred)
+    print('MSE Loss:',loss_LinearRegression(pred,y_tensor).item())
+
+plot_linreg_model(params)
+</code></pre><pre><code>for _ in range(50): train_one_iteration(params,lr=2e-7) #run this algorithm 50 times
+</code></pre><pre><code>plot_linreg_model(params)
+</code></pre><p>The model has definitely improved! You can even see, the loss has improved. But if you go back to the section where we calculated the best fit line through the direct formula, you&rsquo;d see that this fit is still off. So let us run it for some more iterations.</p>
+<pre><code>for _ in range(1000): train_one_iteration(params,lr=2e-7)
+plot_linreg_model(params)
+</code></pre><p>At this point, you&rsquo;d see that the improvement is almost very small. This is because we are close to the minima already. When we&rsquo;re close to the minima, the gradient becomes very small (you can visualize this by taking the example of the quadratic function example we introduced earlier). So the parameter update too is very small. So now that we know the model is not improving anymore, let us leave it at that.</p>
+<h4 id="inference">Inference</h4>
+<p>Now, let us see what this model predicts the stock price to be at the end of 2018, and compare it with the actual closing price of the Google stock at the end of 2018. Remember, our input <code>x</code> is the number of days passed since the reference date. So we use a function which we already defined, to find out the number of days between 31 Dec 2018, and the reference date.</p>
+<pre><code>day=datetime(2018,12,31)
+days_elapsed= calculate_days_since(day)
+days_elapsed
+</code></pre><pre><code>model(days_elapsed,params).item()
+</code></pre><p>Let us look at the actual price at the end of 2018.</p>
+<p><img src="https://drive.google.com/uc?id=1Kkbbqvk33TeqYHxmXoeWJW1mh5rgnFAM" alt="image" /></p>
+<p>You can see, that at the end of 2018, the stock price was about USD 1037. This is not very far from the prediction our own model!</p>
+<p>Congratulations, you have successfully built your Linear Regression Model!</p>
+<h2 id="review">Review</h2>
+<p>Below we&rsquo;ve given an exercise for you to try out. But before that, there are a few tips and review points, that you should go through, think over, and make sure you understand each of them. These points are the most important points of this entire session - and not surprisingly, these are the concepts and ideas that will actually help you be a good Machine Learning practitioner.</p>
+<h4 id="some-tips"><strong>Some Tips:</strong></h4>
+<ol>
+<li>
+<p>Machine Learning is rapidly evolving to be more about efficiency, rather than depth of knowledge. Just having the skill to implement a model is far more valuable than the vast theory of someone who spent years reading books. Knowing your concepts is more important than the unnecessary details. For example, we didn&rsquo;t have to know how to calculate gradients in order to do gradient descent. If you ask someone who has learnt Machine Learning the hard way, they would, almost anyday, say that it is not possible to do Gradient Descent without knowing enough calculus to calculate gradients. But clearly, that is not true anymore. This is the magic of the wonderful frameworks that have been developed by the AI community to facilitate learning. But, that does not mean you should skip the concepts comepletely. Not having to do something, and not knowing something at all are two completely different things. You cannot escape learning what gradients are, and how they are calculated. Just that, you don&rsquo;t Need to calculate them. Its like, having a calculator to do your math is a luxury, but a person who does not know how to add numbers at all cannot thrive.</p>
+</li>
+<li>
+<p>Having said that, this is the approach you should follow. You should think smart - all functionalities need not be written from scratch. Often, a pre-existing code might be the way to go, and maybe even more efficient. Ofcourse, this does not apply in every context (for example, you cannot simply use someone&rsquo;s copy-righted code for commercial purposes, because of legal implecations), but wherever it applies, think in that direction.</p>
+</li>
+<li>
+<p>Finally, the ability to search for your queries is The MOST valuable skill you will learn as a developer. Knowing what and how to Google search your queries is a skill, which comes over time, but is a wonderful skill to acquire. You need not memorize syntaxes of commands, or even know the complete functionality a function may have. You can always do a quick search over documentations and forums. But again, Do Not think of this as an excuse to not learn at all. Just till it doesnt not come to you naturally, you may use these tools as an aid.</p>
+</li>
+</ol>
+<h4 id="review-questions"><strong>Review Questions</strong></h4>
+<p>These are non-evaluative, but highly recommended to go through. Make sure you clearly know the answer to each of these concepts. The answers to all these questions are somewhere in this notebook, so if you find yourself unclear with a concept, go back up and find the answer!</p>
+<ol>
+<li>
+<p>What is a Machine Learning model in terms of code? Can you write the syntax of a model in a simple pseudo-code form?</p>
+</li>
+<li>
+<p>We imported many important libraries in this notebook. Whenever a library was imported, the reason and the goal was mentioned. Can you enlist all the libraries used in this notebook, and why they were used?</p>
+</li>
+<li>
+<p>Can you describe in 3-5 one-line statements, the steps to carry out Linear Regression?</p>
+</li>
+<li>
+<p>what is a tensor?</p>
+</li>
+<li>
+<p>Why are dataframes so popular with handling tabular data?</p>
+</li>
+<li>
+<p>What is a loss function? Which loss function did we use for Linear Regression?</p>
+</li>
+</ol>
+<h2 id="exercise">Exercise</h2>
+<h3 id="problem-1-building-your-own-linear-regression-stock-prediction-model">Problem 1: Building your own Linear Regression Stock Prediction Model.</h3>
+<p>Can you carry out Linear Regression using Gradient Descent for 2 other stocks. Amazon (AMZN), and NASDAQ (NDAQ). You need to redefine all functions, and may use the functionalities that we have already defined. In addition to the number of the days passed since the reference date, also use the volume of trade as an input feature. (Hence, you now have 3 parameters, w1,w2 and b).
+Report the parameters and loss in terms of a dataframe. Also plot the linear regression model with the datapoints (as shown above) for both these stocks (stock price vs number of days passed). All the major steps will remain the same. You may need to do some minor tweaks to consider the extra input feature.</p>
+<pre><code>
+</code></pre><h3 id="problem-2-non-linear-regression">Problem 2: Non Linear Regression</h3>
+<p>We saw Linear Regression, which aimed at fitting a straight line into the dataset. But what if we wish to fit a non-linear curve into the data. This can be done by replacing a linear function with a polynomial function.</p>
+<p>Instead of:</p>
+<pre><code>y= w.x + b
+</code></pre><p>We could use a non-linear function:</p>
+<pre><code>y=w1.(x**3) + w2.(x**2) + w3.(x) + b
+</code></pre><p>So now, we have a cubic function, instead of a linear function. This can be used to fit a non-linear curve. Generally speaking this is more flexible than a linear curve. It can act as a cubic function, a quadratic function (if you set w1 as 0), a linear function (if w1 and w2 both are 0), or something in between these curves. The method of regression remains the same. Can you implement Non Linear Regression using the cubic function as the model?</p>
+<p>Additional tips:
+Cubing a value exponentially increases it in magnitude. Computer CPUs cannot handle very large values. This is known as Model Explosion. So we first divide each input by 100, and then apply this model.</p>
+<p>Within your model function:
+Do the following transformation on the input <code>x</code></p>
+<p><code>input=torch.div(x.detach(),100)</code></p>
+<p>Then use the input variable as the model input.</p>
+<p><code>w1*(input**3) + w2*(input**2) + w3*(input) +b</code> .</p>
+<hr>
+<p>Use 20 iterations, and a learning rate of 2e-8.</p>
+<p>Does this model perform better than the previous linear regression model?</p>
+<p>Additionally, try different Learning Rates to see if you can improve the results.
+Show 5 different reasonable learning rates, and show the plots.</p>
+<pre><code>
+</code></pre></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#regression">Regression</a>
+      <ul>
+        <li></li>
+        <li><a href="#case-study-the-new-york-stock-exchange">Case Study: The New York Stock Exchange</a></li>
+      </ul>
+    </li>
+    <li><a href="#the-linear-regression-model">The Linear Regression Model</a>
+      <ul>
+        <li><a href="#method-1-direct-formula">Method 1: Direct Formula:</a></li>
+        <li><a href="#method-2-gradient-descent">Method 2: Gradient Descent</a></li>
+        <li><a href="#implementing-gradient-descent"><strong>Implementing Gradient Descent</strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#review">Review</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#exercise">Exercise</a>
+      <ul>
+        <li><a href="#problem-1-building-your-own-linear-regression-stock-prediction-model">Problem 1: Building your own Linear Regression Stock Prediction Model.</a></li>
+        <li><a href="#problem-2-non-linear-regression">Problem 2: Non Linear Regression</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

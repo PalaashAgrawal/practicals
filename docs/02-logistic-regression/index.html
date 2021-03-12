@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta name="generator" content="Hugo 0.68.3" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="#Session 2: Logistic Regression
+We studied about Linear Regression in the last session. Let us learn about another fundamental concept in Machine Learning: The Logistic Regression.
+So let us first start by dissecting the terms and try to get an intuition of what logistic regression means.
+Logistic Regression: an Intuition You may recognize the term &ldquo;Regression&rdquo;. Do you recall what Regression means in Machine Learning?
+Regression is prediction of a value, given some inputs.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://palaashagrawal.github.io/practicals/docs/02-logistic-regression/" />
+
+<title>02 Logistic Regression | Palaash Agrawal</title>
+<link rel="manifest" href="https://palaashagrawal.github.io/practicals/manifest.json">
+<link rel="icon" href="https://palaashagrawal.github.io/practicals/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="https://palaashagrawal.github.io/practicals/book.min.2dc4d2afa8da6ac78d76671c21e140952e7a84846fed47ed02a1a2d68166d992.css" integrity="sha256-LcTSr6jaaseNdmccIeFAlS56hIRv7UftAqGi1oFm2ZI=">
+<script defer src="https://palaashagrawal.github.io/practicals/en.search.min.ca40c67ae3c71e5afca9d771d7e6ea511d0c4ba4f69a678a0b07e8c8557d56c0.js" integrity="sha256-ykDGeuPHHlr8qddx1&#43;bqUR0MS6T2mmeKCwfoyFV9VsA="></script>
+<link rel="alternate" type="application/rss+xml" href="https://palaashagrawal.github.io/practicals/docs/02-logistic-regression/index.xml" title="Palaash Agrawal" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="https://palaashagrawal.github.io/practicals/"><span>Palaash Agrawal</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/00-introduction-to-machine-learning-and-python/" class="">00 Introduction to Machine Learning and Python</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/01-linear-regression/" class="">01 Linear Regression</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/02-logistic-regression/" class=" active">02 Logistic Regression</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/03-singular-value-decomposition-and-principal-component-analysis/" class="">03 Singular Value Decomposition and Principal Component Analysis</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/04-bayesian-learning/" class="">04 Bayesian Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/05-clustering-algorithms-in-machine-learning/" class="">05 Clustering Algorithms in Machine Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/06-support-vector-machines/" class="">06 Support Vector Machines</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/07-decision-trees-and-random-forests/" class="">07 Decision Trees and Random Forests</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="https://palaashagrawal.github.io/practicals/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>02 Logistic Regression</strong>
+
+  <label for="toc-control">
+    
+    <img src="https://palaashagrawal.github.io/practicals/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+
+    
+  </label>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  
+    window.addEventListener('load', (event) => {
+        document.querySelectorAll("mjx-container").forEach(function(x){
+          x.parentElement.classList += 'has-jax'})
+      });
+  
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#logistic-regression-an-intuition">Logistic Regression: an Intuition</a></li>
+      </ul>
+    </li>
+    <li><a href="#logistic-regression">Logistic Regression</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#splitting-datasets-into-training-and-testing-sets">Splitting Datasets into training and testing sets</a></li>
+        <li><a href="#so-how-do-we-make-sure-that-the-model-fits-well-through-the-data">So how do we make sure that the model fits well through the data?</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#some-tips">Some Tips:</a></li>
+        <li><a href="#review-questions">Review Questions:</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#1-who-survived-the-titanic">1. Who survived the Titanic?</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><p>#Session 2: Logistic Regression</p>
+<p>We studied about Linear Regression in the last session. Let us learn about another fundamental concept in Machine Learning: The Logistic Regression.</p>
+<p>So let us first start by dissecting the terms and try to get an intuition of what logistic regression means.</p>
+<h3 id="logistic-regression-an-intuition">Logistic Regression: an Intuition</h3>
+<p>You may recognize the term &ldquo;Regression&rdquo;. Do you recall what Regression means in Machine Learning?</p>
+<p>Regression is prediction of a value, given some inputs. This value is calculated by feeding the input to a function. This function is adjusted in a way, that it gives us the best predictions over the data that we provide to it.</p>
+<p>Then we studied about Linear Regression, which is a regression technique that uses a linear function as the model. We also studied about non-linear regression as an extension of linear regression.</p>
+<p>Let us now study about Logistic Regression.</p>
+<p>However, there&rsquo;s a small catch here. Logistic Regression is not really Regression, but a classification technique. What is classification?</p>
+<p>Classification means to classify items into categories, or classes. For example, among a collection of pictures of dogs and cats, we would like our model to tell which one is which.</p>
+<p>We&rsquo;ll be looking at a lot of classification techniques over this course. Logistic Regression will be the first of these.</p>
+<p>So let us first understand how logistic regression works, and then we&rsquo;ll surely answer the question - <em>Why is Logistic Regression called Regression, if its a classification technique?</em></p>
+<h2 id="logistic-regression">Logistic Regression</h2>
+<p>If you were to break down what Linear Regression is - you would realize, it simply means - <strong>Regression</strong> using a <strong>Linear</strong> Model. By the same logic, Logistic Regression would relate to a Logistic Model (function).</p>
+<p>What is a Logistic function?</p>
+<h4 id="logistic-function">Logistic Function</h4>
+<p>The logistic function or the sigmoid function is defined as below:</p>
+<p>$$sigmoid(x) = \frac{1}{1+e^{-x}}$$</p>
+<p>It looks something like this:
+<img src="https://drive.google.com/uc?id=1_En_37XZ1MLhYrsX0kxQhLml7kisHW1V" alt="" /></p>
+<p>So, if this is a Logistic function, what would logistic regression mean? Naturally it would mean modeling the data using a logistic function. Ideally it would be helpful in a case where the data is distributed more or less over a sigmoid function.</p>
+<p>But we don&rsquo;t usually see data distributed in this fashion - there are almost no practical scenarios where data is distributed in this fashion. Actually, this function is not used for prediction of a value at all. As we said, it is used for classification. But how can we use a function for classification?</p>
+<p>Before we start explaining that, let us point out a unique property of this function. Notice how the function strictly lies between 0 and 1. It approaches 1 as the input approaches $+\infty$, and 0 as the input approaches $-\infty$.</p>
+<p>Before moving forward, let us make sure, we implement the function in python. Infact, we&rsquo;ll try to implement whatever concept we introduce. And we&rsquo;ll also tell you tricks, like when you don&rsquo;t need to implement a function, and can simply use a pre-implemented version of the code.</p>
+<p>We begin by importing the library PyTorch. As you know, our data would be in the form of Tensors, so PyTorch gives us great tools to handle Tensors. PyTorch is also a great numerical processing library (meaning, it can efficiently handle complex calculation on a large set of numbers simultaneously).</p>
+<pre><code>import torch
+</code></pre><pre><code>def sigmoid(x): return 1/(1+torch.exp(-x))
+</code></pre><p>torch.exp(x) is the same as $e^x$.</p>
+<p>Minor Technical Detail: It does not take any values for input (x). PyTorch expects all inputs to be Tensors, so <code>x</code> needs to be a Tensor</p>
+<p>Now let&rsquo;s test it on some values.</p>
+<pre><code>sigmoid(torch.tensor((100.)))   #sigmoid(100) is so close to 1, that the computer rounds it off to 1 itself. 
+                                #But theoretically, yes, it would be very close to 1, but not exactly 1. The round-off does not matter practically!
+</code></pre><pre><code>sigmoid(torch.tensor((-100.)))
+</code></pre><pre><code>sigmoid(torch.tensor(0.))
+</code></pre><p>Moving ahead, as you would know, Computers can only understand numbers. (Even in the last session, you would remember, we had to convert dates into numbers, because computers do not understand dates).</p>
+<p>So it doesn&rsquo;t understand that our classes are &lsquo;dogs&rsquo; or &lsquo;cats&rsquo;. To make the computer understand which one is which - we assign a <em>label</em> to each of these classes. By convention, let us name them 0 (for dogs) and 1 (for cats). (You can interchange the labels - there&rsquo;s nothing wrong in that).</p>
+<p>So now we come to the core idea of Logistic Regression - The sigmoid function will always produce an output between the values 0 and 1. If the output is closer to 1 than it is to 0 (ie, more than 0.5), we will say, that the model predicts the output to be 1, and if it is closer to 0 than it is to 1 (i.e., less than 0.5), then we would say that the model predicts the output to be 1. Does it make sense logically to you?</p>
+<p>Don&rsquo;t worry if the underlying idea is not yet clear. We would explore all the details in the following sections.</p>
+<p>So this is how Logistic Regression is used for Classification.</p>
+<p>Now coming to the question - <em>Then why is it called Regression anyways?</em></p>
+<p>The answer would be clearer as we look into the details. What you should know now, is that, we would ultimately create a Regression Model - a model that predicts a value, which lies between 0 and 1. And then we would create a condition, that would classify the prediction as 0 or 1, based on whether the value of the prediction is less or more than the threshold of 0.5. So we&rsquo;re trying to do classification through a regression model. Fascinating!</p>
+<h4 id="so-how-do-we-model-a-logistic-regression-model">So how do we model a Logistic Regression Model?</h4>
+<p>By this, what we actually mean is - given some data points, which have multiple features (<code>x1</code>,<code>x2</code> and so on) and a target value (label , or categories , or classes), how do we form a logistic regression model?</p>
+<p>Let us take a look at the logistic function again, because we know have an idea that in the end, our output is going to be the result of the logistic function.</p>
+<p>$$sigmoid(a) = \frac{1}{1+e^{-a}}$$</p>
+<p>We only have one parameter in this equation - <code>a</code>, where <code>a</code> is a real number. But our model has multiple features (<code>x1</code>, <code>x2</code>, <code>x3</code> and so on). How do we model a logistic function in terms of all these multiple features, if we have only one variable as the input?</p>
+<p>We already learnt of a technique to combine multiple variables into one single value - the <em>Linear Regression</em> Model.</p>
+<pre><code>y = w1*x1 + w2*x2 + w3*x3 + ... + b
+</code></pre><p><code>y</code> is the variable that contains the characteristics of all input features.</p>
+<p>So, now you can guess how the logistic regression model will be formulated.</p>
+<p>$$model(x_1,x_2,x_3&hellip;.) = sigmoid(w_1.x_1 + w_2.x_2 + w_3.x_3 + &hellip;.. + b) $$</p>
+<p>or in other words,</p>
+<p>$$model(x_1,x_2,x_3&hellip;.) = \frac{1}{1+e^{-(w_1x_1 + w_2x_2 + w_3x_3 + &hellip; + b)}} $$</p>
+<p>Thats it! That is the logistic regression model.</p>
+<h4 id="so-how-does-it-work">So how does it work?</h4>
+<p>What are the parameters of the model? Remember, that parameters are the variables that we change in order to make our model work. We do not have control over the exponential $e$, nor do we have control over the data (x1,x2&hellip;). We only have control over w1,w2&hellip;.,b. These are our parameters.</p>
+<p>We would like to adjust our parameters in a way, that for each data point (having features x1,x2&hellip;), the linear function <code>w1*x1 + w2*x2 + .... + b</code> predicts a value greater than 0 if the target class is a 1 (hence giving the output of the logistic function greater than 0.5, which means, we would say that the model predicts the model to be a 1).</p>
+<p>And if the actual target class is 0, we would want the linear function to return a value less than 0, so that the sigmoid (logistic) function returns a value less than 0.5, and thus we would say, that the model predicts the class to be a 0.</p>
+<p>Phew! That&rsquo;s a lot to take in at once. Go back and read this again, and make sure you understand the logic. If needed, go back and study the logistic function, the linear regression model, and how they work, and how they all come together to form a classification model.</p>
+<p>We would adjust the parameters w1,w2&hellip;.,b using an algorithm we already learned about - the <em>Gradient Descent!</em></p>
+<pre><code>
+</code></pre><h1 id="case-study-identifying-handwritten-digits">Case Study: Identifying Handwritten Digits</h1>
+<p>Given an image of a handwritten digit, can we build a classifier that can identify what digit it is? Digits refers to integers from 0 to 9, both inclusive.</p>
+<p><img src="https://drive.google.com/uc?id=1SLXc1HNY9uiO3jGVJ8sTYm0WE-ZpcJNc" alt="" /></p>
+<p>In the image above, notice, all the different styles in which any digit can be written. The model needs to &ldquo;learn&rdquo; the characteristics of digits. What differentiates a 1 from a 2, or a 5 from a 9? To be fair, it is difficult for even humans to express the idea of distinction in words. But we still Can give a vague answer to this question - each number has its own way of writing - for example, a 1 is not likely to have a curved line, but a 2 is likely to have a curve. Its quite amazing that a model can learn these ideas - and remember, all this is learnt in the form of parameters, which are nothing but numbers in themselves!</p>
+<p>This dataset is called the MNIST dataset, which contains 28x28 pixel greyscale images for all digits. We however will look at only 2 digits (remember, logistic regression is meant for binary classification). (We will however, look at how to classify among multiple classes too, later on!)</p>
+<p>So let us donwload this dataset. Last time, we used the Kaggle API to download the dataset. We can use it this time too! But let us look at another alternative! Its good to know of all possible options to carry out a task - good practitioners should know of their options, because each option, more often than not, has it&rsquo;s pros and cons, and every method is not the best choice for a given task. But still, if you wish to use the Kaggle API, <a href="https://www.kaggle.com/c/digit-recognizer/data">here</a> is the link to the dataset. Follow the exact procedure as last session. Below is a commented out peice of code from last session to download the dataset. Remember, you need to upload the kaggle.json file, and then enter the Kaggle API command.</p>
+<p>In this session, we&rsquo;ll use the API provided by PyTorch. PyTorch provides us tools related to Computer Vision in a separate child library, called <code>torchvision</code>, which also includes some famous public datasets, MNIST being one of them. <a href="https://pytorch.org/docs/stable/torchvision/datasets.html">Here</a> is the documentation for the datasets.</p>
+<pre><code>import torchvision
+</code></pre><pre><code>mnist_train_ds = torchvision.datasets.MNIST(root='',download=True)
+mnist_test_ds  = torchvision.datasets.MNIST(root='',train = False, download=True)
+len(mnist_train_ds), len(mnist_test_ds)
+</code></pre><p>We have 2 variables - <code>mnist_train_ds</code> and <code>mnist_test_ds</code>. These refer to the Training set and the Test set, which is basically the result of splitting the entire datasets into two subsets. What do they mean?</p>
+<h3 id="splitting-datasets-into-training-and-testing-sets">Splitting Datasets into training and testing sets</h3>
+<p>Imagine you have 1000 datapoints to train your model on. You successfully train your model. But now, the question is - <em>How do you know that your model actually works well?</em></p>
+<p>You would say - the model predicts $p%$ of the images in the dataset correctly, which is a good accuracy.</p>
+<p>But here&rsquo;s the problem - its very much possible, that the model might work well on data you&rsquo;ve trained it on (The training dataset), but terrible on data that it hasn&rsquo;t. This is called <em>Improper Fitting of the model over the data</em>.  It basically means, that your model has not &ldquo;learnt&rdquo; the right things.</p>
+<p>This means that the parameters are set in a manner, that do not represent the general idea of the category, but only the specific characteristics of the images in the training dataset. Naturally, the model performs worse on images it never trained on, because it would come across new settings, that it hasn&rsquo;t learnt to identify.</p>
+<p>For example, if your model predicts which image is that of a cat or a dog - you would expect your model to learn the general characterisitics of dogs and cats, and not features such as - a picture of a dog is likely to have a green background (grass), while a cat is not (because dogs like to go out of the house, cats don&rsquo;t!). What if all your training images have dogs with a green background, and all cat images with an indoor background? Your model is likely to learn that too!</p>
+<p>Now, suppose you have a pet dog at home, and click a picture, and feed it to your model. This picture has an indoor setting, so the model is likely to predict it as a cat. That is how improper fitting works.</p>
+<hr>
+<h3 id="so-how-do-we-make-sure-that-the-model-fits-well-through-the-data">So how do we make sure that the model fits well through the data?</h3>
+<p>Keep aside a small portion (say, 20%) of the dataset aside. Only train your model on the remaining data. And at the end, see how the model performs on the data that we kept aside (the data that the model has never seen). This would be an indicator of how well the model has learnt the general features of the data. Because if the model works well on data that it never came across, it <em>has</em> to be because the model has learnt the right characterisitics.</p>
+<p>This dataset, that we keep aside is called the <strong>Validation Set</strong>, or the <strong>Test Dataset</strong>. These two essentially mean the same thing - a sub-dataset that is used to validate or test the correctness of the model. The model never trains on this dataset, and is used only to test the accuracy of the model.</p>
+<p>If the model does not perform well on the validation dataset, we make changes in the model and training mechanism. More specifically, we change the <em>hyperparameters</em> of the model, which are values other than the parameters (w1,w2&hellip;.), which cannot be learned by the model, but need to be manually set by us. Learning Rate in the Gradient Descent Algorithm is one such example. So you may adjust the learning rate until the validation set accuracy is good enough for our application.</p>
+<hr>
+<p>Note:</p>
+<ol>
+<li>
+<p>In many courses, validation set and test set are two different concepts. A validation set refers to a set which is specifically used to set hyperparameters. In doing this, there is a chance we have &ldquo;memorized&rdquo; the validation set too, because we manually set the hyperparameters (eg, the learning rate) as a value that works well only for the particular (validation) set. So, we use a test set, which is  a set that we never use for either training or adjustment. It is <em>completely</em> unknown to the model. This is a stricter version of the idea we are trying to pursue (to keep aside a dataset that is not to be seen by the model during training).</p>
+<p>However, for small scale projects, you need not necessarily separate the validation and the test datasets. They can be combined into one dataset, and can be called either the validation set, or the test set. In these sessions, we will interchangeably use the terms validation set and the test set, unless we explicitly mention otherwise.</p>
+</li>
+<li>
+<p>Improper fitting of the dataset can be of two types - Underfitting and Overfitting. You will learn more of this during the lectures. But if you are curious to know more about these concepts - <a href="https://www.youtube.com/watch?v=edxhGBnT-Ps">here</a> is great intuitive explanation of the difference between the two!</p>
+</li>
+<li>
+<p>Why did we not use a validation set in the Linear Regression problem? In many courses, you will find a separate validation set being used for the Linear Regression Problem. This is technically right, but practically, we don&rsquo;t need a validation set for Linear Regression problems. This is because you cannot underfit or overfit linear data. The only extra data you may need in a linear regression model, is to carry out inference (checking the performance of the final model) (testing of the model).</p>
+</li>
+</ol>
+<p>Let us look at how this dataset looks like. According to the documentation, you can index these dataset variables to get a tuple with the image, and the label</p>
+<pre><code>mnist_train_ds[0]
+</code></pre><pre><code>mnist_train_ds[0][0]
+</code></pre><h4 id="case-study-binary-classification-in-the-mnist-dataset">Case Study: Binary Classification in the MNIST dataset</h4>
+<p>The MNIST dataset contains 10 labels (0 through 9), but if you remember, logisitic regression is meant to do binary classification. So let us take out two labels, say - 3&rsquo;s and 5&rsquo;s and try to differentiate between them.</p>
+<pre><code>threes_ds = [i for i in mnist_train_ds if i[1]==3]
+fives_ds  = [i for i in mnist_train_ds if i[1]==5]
+len(threes_ds), len(fives_ds)
+</code></pre><pre><code>##Similarly, let us extract the test dataset also
+threes_test_ds = [i for i in mnist_test_ds if i[1]==3]
+fives_test_ds  = [i for i in mnist_test_ds if i[1]==5]
+len(threes_test_ds), len(fives_test_ds)
+</code></pre><p>And finally, we convert these to PyTorch tensors, and we&rsquo;ll build our model therefrom. The images in our dataset are objects of an Image Processing Library in Python, called PIL. So, to convert them to tensors, we use the <code>transforms</code> method of the torchvision library.</p>
+<pre><code>def convert_PIL_to_tensors(images):
+    images=list(images) #to make sure we can index the collection of images properly. Because of this, the input to this function need
+                        #not necessarily be a list, but can a set, tuple, generator or even a dictionary
+    return torch.stack(list(map(torchvision.transforms.ToTensor(),images))).float()
+</code></pre><pre><code>x_threes=convert_PIL_to_tensors([i[0] for i in threes_ds]).view(-1,28*28)
+x_fives =convert_PIL_to_tensors([i[0] for i in fives_ds]).view(-1,28*28)
+
+x_dataset = torch.cat((x_threes,x_fives))
+y_dataset = torch.stack([torch.tensor(1.)]*len(x_threes) + [torch.tensor(0.)]*len(x_fives))
+
+x_dataset.shape, y_dataset.shape
+</code></pre><p>Similarly for the test dataset</p>
+<pre><code>x_threes_test=convert_PIL_to_tensors([i[0] for i in threes_test_ds]).view(-1,28*28)
+x_fives_test =convert_PIL_to_tensors([i[0] for i in fives_test_ds]).view(-1,28*28)
+
+x_test_dataset = torch.cat((x_threes_test,x_fives_test))
+y_test_dataset = torch.stack([torch.tensor(1.)]*len(x_threes_test) + [torch.tensor(0.)]*len(x_fives_test))
+
+x_test_dataset.shape, y_test_dataset.shape
+</code></pre><p>A few details.</p>
+<ol>
+<li>
+<p><code>convert_PIL_to_tensors</code> takes in a list of images, and returns a tensor containing numerical values (pixel values) of tensors. By the way, the pixel values of the MNIST dataset lie between 0 and 9. 0 is a completely black pixel, and 9 represents a white pixel. This scale is called the grayscale. Black and White Images are basically grayscale images. But torch.transform converts all values between 0 and 1.</p>
+</li>
+<li>
+<p><code>.view()</code> is a pytorch tensor method used to reshape tensors. So we&rsquo;re essentially converting a tensor of shape (28,28) (The height and width of the image in pixels) to a single flattened tensor of length 28*28 = 784. What about the <code>-1</code> as the first argument? It means, &ldquo;whatever value is needed to account for all the values&rdquo;. So if there are 100 images of shape (28,28), meaning there are 100x28x28 values in total, the <code>-1</code> would internally be replaced by <code>100</code>, in order to be account for all values. You can even add as many &ldquo;dimensions&rdquo; to the tensor as possible, as long as the total number of values in the tensors remains the same.</p>
+</li>
+<li>
+<p>What are dimensions of a tensor? A tensor is a multidimensional array. So think of a tensor with 2 dimensions as an &ldquo;array of arrays&rdquo;, and with 3 dimensions as &ldquo;an array of arrays of arrays&rdquo;, etc. <code>shape</code> is nothing but the values of all dimensions. So if a tensor is of shape (100,784), it means that it is an array containing 100 arrays, each of which contains 784 values.</p>
+</li>
+<li>
+<p>By convention, in Machine Learning, the first dimension represents the number of items, and the following values represent the shape of the data items. For example, a tensor of shape (100, 784) is a collection of 100 items, each having 784 features.</p>
+</li>
+</ol>
+<p>A tensor of shape (100, 3, 50, 50) is a collection of 100 items, each of which has the dimensions (3,50,50) (this is usually the case with images, which have 3 channels (RGB), and 50x50 is the height x width of the image). For grayscale images in the MNIST dataset, the tensor would be of the shape ($x$, 1, 28, 28), meaning a collection of $x$ items, each having an image shape of (1,28,28), meaning 1 single channel of shape 28x28 pixels. Don&rsquo;t worry if it doesn&rsquo;t make a lot of sense right now. You would get a hold of it through practice.</p>
+<ol start="5">
+<li>
+<p>For the sake of convenience, we convert all data tensors of shape (1,28,28), to a single array of 784 items. So now, these 784 items act as the features of the data. So correspondingly, our parameters, would be <code>w1, w2, w3, ....., w784, b</code>.</p>
+</li>
+<li>
+<p>Note: We have assigned a label of 0 to our 3&rsquo;s and 1 to our 5&rsquo;s.</p>
+</li>
+</ol>
+<p>Let us see how the dataset is formatted. If you pick any image tensor (a tensor of length 784), and reshape it into the original size 28x28, you would get the original image back. To plot the pixels, we use the <code>matplotlib</code> library.</p>
+<pre><code>import matplotlib.pyplot as plt
+plt.imshow(x_dataset[0].view(28,28), cmap='gray')
+</code></pre><p>We also combine both the <code>x</code> and the <code>y</code> into one single variable, and simply call it the <code>dataset</code>. This dataset can be indexed to get both the x and y together, without having to handle two variable (x and y).</p>
+<pre><code>train_dset=list(zip(x_dataset,y_dataset))
+valid_dset=list(zip(x_test_dataset,y_test_dataset))
+</code></pre><pre><code>x,y=train_dset[0]
+x.shape,y
+</code></pre><p>So now, we need 784 weights and 1 bias to create our model. Let us create a function to initiate parameters.</p>
+<pre><code>def init_params(size, requires_grad=True): return (torch.randn(size)).requires_grad_()
+</code></pre><pre><code>weights=init_params((28*28,1))
+bias=init_params(1)
+</code></pre><p>Let us now create our model</p>
+<pre><code>def logistic_regression_model(x): 
+    return torch.sigmoid(x@weights + bias)
+</code></pre><p>Lessons in Python!</p>
+<p><strong>The <code>@</code> operator</strong></p>
+<p>As we know, Python is THE most famous language for data sciences. Matrix multiplications are such an integral part of data sciences, that in 2014, python introduced an operator that is dedicated only for matrix multiplication. Remember, if you want to matrix multiply two matrices (A and B) of shapes (m x n) and (p x q) respectively, p should be equal to n, and the resultant matrix would be of the shape (m x q). If you are unclear about the concept of matrices and matrix multiplication, <a href="http://matrixmultiplication.xyz/">here</a> is a great source to help you visualize.</p>
+<p>Lets test this model out!</p>
+<pre><code>preds = logistic_regression_model(x_dataset)
+preds.shape
+</code></pre><h4 id="the-loss-function">The LOSS FUNCTION</h4>
+<p>So far we&rsquo;ve looked at the Mean Square Error Loss Function. It represents the idea, that the larger the distance between two values, the larger the loss. This worked well for the regression case, where we wanted the predictions of the model to be as close as the target values. But that is not applicable for the classification case. We cannot define the difference between two classes, like the dog and class. What we need is a right/wrong approach. Is the prediction right? or is it wrong?</p>
+<p>Let us analyse what we would want our model to do.</p>
+<p>We would want our model to predict the value for 3&rsquo;s to be as close to 1., and predict 7&rsquo;s to be as close to 0. Because as we mentioned, if the prediction is closer to a 1 than to a 0, we would classify the result to be a 1. And if the prediction is closer to a 0 than to a 1, we would classify the result to be a 0.If you cannot wrap your hand around this concept, please go back a step and read the concepts again. Because if you understand the concepts well, you can implement the concepts easily too.</p>
+<pre><code>def binary_classification_loss(preds,targets):
+    assert len(preds)==len(targets)
+    return torch.where(targets==1,1-preds,preds).mean()
+</code></pre><p>torch.where(targets==1,1-preds,preds) is the same as <code>[1-preds if i==1 else preds for i in targets ]</code>. However, it is a much more efficient method to handle tensors, both in terms of speed and memory.</p>
+<p>It basically means, for each data point whose target is 1, the loss is 1-prediction. So if the model prediction is more closer to 0 than to 1 in this case, a higher penalty is assigned. And wherever the target is not 1 (ie , it is 0), the loss is preds. So if the prediction is closer to 1 than 0 in this case, a higher penalty is assigned.</p>
+<p>Finally, we take the mean of all these losses to give the average loss. Let&rsquo;s test if this loss function works!</p>
+<pre><code>binary_classification_loss(preds,y_dataset)
+</code></pre><p>Note: In a lot of course, you would have seen the binary loss function written something as:</p>
+<p>$$Loss(pred, target) = mean([-y_i log(pred_i) – (1 – y_i) log(1-pred_i)])$$</p>
+<p>If you are familiar with this loss function, and are confused with why we have not used this form of expression - the answer is - we have implemented a similar idea. This loss function too penalizes the model based on similar principles. But we haven&rsquo;t used the <code>log</code> in our loss function. Actually, the <code>log</code> arises during the mathematics behind theory of prediction. When you study the concept of <em>Maximum Likelihood</em>, you will learn the exact details. But theory aside, in practice, the loss function we have implemented is correct too! In Practice, Loss function should be thought of as a function that penalizes wrong predictions, and rewards correct predicitions. And it should have some nice mathematical qualites wherever required, such as smoothness and continuity (so that it can be properly differentiated during Gradient Descent, for example).</p>
+<p>Our task is to minimize this loss function. We do this through the Gradient Descent Algorithm. But before that, we will learn of an important variant of Gradient Descent - <em>The Batch Gradient Descent</em>.</p>
+<h4 id="batch-gradient-descent">Batch Gradient Descent</h4>
+<p>If you go back to the last lab session (Linear Regression), you would notice, that we passed the entire set of data into the model at once. This worked alright for our case, becaues the number of data points was not very huge. We were dealing with less than 2000 points. But in many cases, the number of datapoints is of the order of tens of thousands to anywhere close to millions of datapoints, and computers cannot handle so many datapoints at once. It leads to a lot of problems - sums tend to approach very large values which computers cannot process. It is also slow and thus, the model rarely works. This problem increases multifold when the number of features increases.</p>
+<p>The solution? We divide the data into smaller chunks, called <em>Batches</em>. And we only train the model on one batch at a time. The number of items in a batch, is called the <em>batch size</em>. You would usually see batch_sizes as powers of 2 - 2,4,8,16,32,64,128 and so on. The larger each datapoint is in size, the smaller batch size is recommended. Eg - pictures have a lot of features (pixels), and thus, a smaller batch size, like 8 or 16 is recommended.</p>
+<p>In PyTorch, this is done using the <code>DataLoader</code>, which is nothing but a class, that can divide the data into batches, and has some other useful properties, which you will learn as you use it more and more. PyTorch Dataloaders are found in the module <code>torch.utils.data</code></p>
+<pre><code>from torch.utils.data import DataLoader
+</code></pre><pre><code>dl=DataLoader(train_dset,batch_size=16)
+valid_dl=DataLoader(valid_dset,batch_size=32)
+</code></pre><p>A dataloader acts as an iterator (meaning something over which you can iterate. List too is an iterator. Remember how we do <code>for i in list</code>. We are basically iterating through it).</p>
+<p>So, when we do <code>for x_batch,y_batch in dl</code>, we will get batches of x and y together. Each batch is a tensor of shape <code>(batch_size, size_of_datapoint)</code>. Eg.</p>
+<pre><code>x_batch,y_batch=next(iter(dl))
+x_batch.shape, y_batch.shape
+</code></pre><p>Next, we define the structure of our Gradient Descent Algorithm. This is the same code we developed for the last session, with only minor changes.</p>
+<pre><code>def calc_grad(x_batch,y_batch,model): 
+    preds=model(x_batch)
+    loss=binary_classification_loss(preds,y_batch)
+    loss.backward()
+
+def train_epoch(model,lr,params):
+    for x_batch,y_batch in dl: 
+        calc_grad(x_batch,y_batch,model)
+        for p in params:
+            p.data -= lr*p.grad 
+            p.grad.zero_()
+
+def batch_accuracy(preds,y_batch):
+    return ((preds&gt;=0.5)==y_batch).float().mean()
+
+def validate_epoch(model):
+    accs=[batch_accuracy(model(x_batch),y_batch) for x_batch,y_batch in valid_dl]
+    return torch.stack(accs).mean().item()
+</code></pre><pre><code>#reinitializing the parameters. Do this everytime you want to rerun the model
+weights=init_params((28*28,1))
+bias=init_params(1)
+params=weights,bias
+</code></pre><pre><code>for _ in range(50): #run this model for 50 iterations
+    train_epoch(logistic_regression_model,0.2,params)
+    print(validate_epoch(logistic_regression_model),end=' ')
+</code></pre><h4 id="the-model-is-about-88-accurate-that-means-about-88-of-the-times-the-model-is-able-to-tell-which-image-is-a-three-and-which-is-a-five-that-is-incredible">The model is about 88% accurate. That means, about 88% of the times, the model is able to tell which image is a three and which is a five. That is incredible!</h4>
+<p>Note: the number of iterations in Gradient Descent are also called as <strong>Epochs</strong>. So for the above case, we train this model for 50 epochs.</p>
+<p>Task: (Non-Evaluative) - Try adjusting the learning rate and epochs by hit and trial and try to get as much accuracy as possible. Atleast try getting an accuracy of more than 90%.</p>
+<p>So there you have it! You have trained your first classification model! Congratulations!</p>
+<h1 id="review">Review:</h1>
+<p>Below we&rsquo;ve given some review questions for you to try out. But before that, there are a few tips and review points, that you should go through, think over, and make sure you understand each of them. These points are the most important points of this entire session - and not surprisingly, these are the concepts and ideas that will actually help you be a good Machine Learning practitioner.</p>
+<h3 id="some-tips">Some Tips:</h3>
+<ul>
+<li><strong>Stay up-to-date with the tools of Machine Learning</strong>: As we&rsquo;ve mentioned earlier, Machine Learning is an extremely fast moving domain. Every few weeks, new ideas and tools emerge, and within the next few weeks, these will become obsolete too. There are very few concepts and tools that last very long. That shouldn&rsquo;t discourage you. But encourage you to learn the skill of <em>unlearning</em> and <em>learning</em> fast. For example, a lot of you may have heard of the library NumPy, which is a numerical processing library. A * lot * of practitioners use this library to carry out the calculations (that we have done in this session, such as calculation of the sigmoid function, or matrix multiplications, etc). But notice how we carried out all numerical processing using PyTorch itself. Its not true that we could not have done the processing using NumPy, but it just wasnt the right choice. PyTorch offers the majority of processing tools offered by numpy, with the only difference - it is optimized for Tensors. It clearly was better suitable in this case. However, in another problem, numpy would be a better choice. Its also not true that PyTorch&rsquo;s numerical processing is superior than NumPy, its simply a case of suitability to the environment. We will use NumPy at some point too in these labs.</li>
+</ul>
+<p>This intuition comes through practice. The important takeaway is, be open to new ideas and learn to adapt fast.</p>
+<ul>
+<li>
+<p><strong>Proper Structuring of Code</strong>: If you notice the code that we wrote above, you would notice, that we define a lot of function on the way. We didn&rsquo;t have to, we could have simply written the functionality directly, and calculated results. But it is not a good practice to do so. Code Refactoring(Structuring) is important to allow flexibility. Many times, your code simply wont work with some minor changes, if you dont structure your code properly. You also have to write the same piece of code again and again.</p>
+<p>With proper structuring, you can make sure, you can tweak the functionality of the code with very minimal effort. This is especially important for highly complex codes, which have layers upon layers of code. If the code isn&rsquo;t properly structured, finding even simple bugs will turn into a nightmare.</p>
+</li>
+<li>
+<p>As you develop codes, it is important to test whether the peice of code is working correctly. You would have noticed - at each step, we find out the shape of output tensors, and what all does a function return.</p>
+</li>
+</ul>
+<h3 id="review-questions">Review Questions:</h3>
+<p>These are non-evaluative, but highly recommended to go through. Make sure you clearly know the answer to each of these concepts. The answers to all these questions are somewhere in this notebook, so if you find yourself unclear with a concept, go back up and find the answer!</p>
+<ol>
+<li>
+<p>We imported many important libraries in this notebook. Whenever a library was imported, the reason and the goal was mentioned. Can you enlist all the libraries used in this notebook, and why they were used?</p>
+</li>
+<li>
+<p>What is a dataloader? What purpose does it serve? What is a batch of data?</p>
+</li>
+<li>
+<p>We have structured the data at many levels - from lists of our <code>x</code>'s and <code>y</code>'s, all the way to a dataloader. Can you draw a tree explaining the heirarchy of the data? At the top would be the dataloader, and the bottom would be the lists of inputs and targets.</p>
+</li>
+<li>
+<p>What is the sigmoid function? Can you relate the sigmoid function to the concept of probability?</p>
+</li>
+<li>
+<p>Write the formulas in Pseudo Math and in pseudo Code, of both the Mean Square Error Loss, and the logistic Regression Loss.</p>
+</li>
+<li>
+<p>What is the difference between hyperparameters and parameters?</p>
+</li>
+<li>
+<p>Explain the difference between the training set, the validation set and the test set.</p>
+</li>
+</ol>
+<h1 id="exercise-evaluative">Exercise (Evaluative):</h1>
+<h2 id="1-who-survived-the-titanic">1. Who survived the Titanic?</h2>
+<p><a href="https://www.kaggle.com/c/titanic/overview">This problem</a> is one of the most famous problems on Kaggle. It has (real) information of all passengers on the Titanic, such as the age, sex, ticket class, fare price (which may be indicators of their social status), etc. Can you build a logistic regression model to identify who survived the Titanic, and who did not?</p>
+<p>The dataset is available from Kaggle itself, so we need to download the data using the API. Run the code below to upload the kaggle.json file, and download the data.</p>
+<p>Consider the following features: (See the details on the Kaggle page)</p>
+<ul>
+<li><code>Sex</code> (in terms of 0&rsquo;s and 1&rsquo;s)</li>
+<li><code>Age</code></li>
+<li><code>SibSp</code></li>
+<li><code>Parch</code></li>
+<li><code>Fare</code></li>
+</ul>
+<p>Target Class: <code>Survived</code></p>
+<p>You need to <em>Normalize</em> the continuous variables (Fare and Age). See the bottom notes to see what Normalization is!</p>
+<p>You also need to use the pandas library to read csv files. Then you need to convert the data into tensors of suitable dimensions. Many values are not available in the dataframe, so for the sake of simplicity, we simply replace all inavailable values with 0&rsquo;s.</p>
+<p>Finally, we need to manually split the training set into a training dataset and the validation subset, because the test set provided does not have labels. So there is no way to evaluate the performance of the model through this dataset. We will do a 80-20 split. We&rsquo;ve written a basic structure for you. Continue from that point, building your model step by step.</p>
+<pre><code>%cd 
+from google.colab import files
+uploaded = files.upload()
+for fn in uploaded.keys():
+  print('User uploaded file &quot;{name}&quot; with length {length} bytes'.format(
+      name=fn, length=len(uploaded[fn])))
+!mkdir -p ~/.kaggle/ &amp;&amp; mv kaggle.json ~/.kaggle/ &amp;&amp; chmod 600 ~/.kaggle/kaggle.json 
+
+!kaggle competitions download -c titanic
+!mkdir titanic
+!mv train.csv titanic
+%cd titanic
+</code></pre><pre><code>!ls
+</code></pre><pre><code>import pandas as pd
+train_df =pd.read_csv('train.csv')
+test_df = train_df.iloc[int(len(train_df)*0.8):]
+train_df = train_df.iloc[:int(len(train_df)*0.8)]
+</code></pre><pre><code>print(len(train_df),len(test_df))
+train_df.head()
+</code></pre><p>First we use the define the training data.</p>
+<p>Steps you need to follow:</p>
+<ol>
+<li>convert the &lsquo;Sex&rsquo; attribute as a binary (0/1) feature.</li>
+<li>Clean the data. Replace any non-defined values with a 0, using <code>df=df.fillna(0)</code></li>
+<li>normalize the required features. This can be done by <code>x=(x-x.mean)/x.std()</code></li>
+<li>Extract the required features from the dataframe to the tensor. The tensors would be of the shape (x,5) (because of 5 features). You are expected to write this functionality on your own. If however you feel totally stuck, and cannot come up with anything, we provide you with a function structure. It is not totally intuitive, so you still would need to figure out how to work with this function structure.</li>
+</ol>
+<pre><code>def get_xtensors_from_dataframe(df,features:list,target: str,normalize:list=[]): 
+    x=None
+    for feature in features: 
+        feature_list = list(df[feature])
+        if feature in normalize: feature_list = normalize_feature(feature_list)
+        if x is None: 
+            x= [torch.tensor(feature_list)]
+            continue
+        x.append(torch.tensor(feature_list))
+    return torch.stack(x).permute(1,0)
+</code></pre><ol start="5">
+<li>Once you have your tensors, build your dataset, then train your model using gradient descent.</li>
+</ol>
+<pre><code>#continue your code from here
+
+</code></pre><pre><code>
+</code></pre><pre><code>
+</code></pre><pre><code>
+</code></pre><p>Normalization</p>
+<p>Many times, we come accross, data that are of different scales. For example, if you have two features - age and annual salary, age is of the order of $O(10^2)$, while annual salary may be of the order $O(10^5)$. This creates a problem when we build the model, especially during training. The gradients of each parameter is affected by the values of all features, and so it is desirable that all these features have equal and reasonable contribution.</p>
+<p>We&rsquo;ve already seen an example of normalization in the last session. We divided some values by a number, to make all features comparable. Normalization especially needs to be done for values of very large magnitude, because they often lead to <em>gradient explosion</em> (the gradient tends to become infinite (Nan)).</p>
+<p>A standard method to normalize values of a feature is to normalize them to a mean of 0 and standard deviation of 1. The way this is carried out is:</p>
+<p>$$x \sim N(0,1) = \frac{x-mean(x)}{std(x)}$$</p>
+<p>In general you can adjust the mean and standard deviation of the resultant feature.</p>
+<p>$$x \sim N(a,b) = b (\frac{x-mean(x)}{std(x)} + a)$$</p>
+<p>This not only helps training better, but leads to a stable model as well.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#logistic-regression-an-intuition">Logistic Regression: an Intuition</a></li>
+      </ul>
+    </li>
+    <li><a href="#logistic-regression">Logistic Regression</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#splitting-datasets-into-training-and-testing-sets">Splitting Datasets into training and testing sets</a></li>
+        <li><a href="#so-how-do-we-make-sure-that-the-model-fits-well-through-the-data">So how do we make sure that the model fits well through the data?</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#some-tips">Some Tips:</a></li>
+        <li><a href="#review-questions">Review Questions:</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#1-who-survived-the-titanic">1. Who survived the Titanic?</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

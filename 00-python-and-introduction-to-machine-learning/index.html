@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta name="generator" content="Hugo 0.68.3" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Basics of Python and Introduction to Machine Learning Welcome to the first hands-on session on BITS F464 Machine Learning. In this session we&rsquo;ll learn some basics of Python and Introduce ourselves to Machine Learning with Python. Python is THE go-to language for Machine Learning, and Data Sciences. This is because of the highly dynamic nature of python, which makes it very efficient to handle data. The language is also very intuitive, so one does not have to learn a lot of unnecessary syntax (such as brackets and semicolons).">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="" />
+<meta property="og:description" content="Basics of Python and Introduction to Machine Learning Welcome to the first hands-on session on BITS F464 Machine Learning. In this session we&rsquo;ll learn some basics of Python and Introduce ourselves to Machine Learning with Python. Python is THE go-to language for Machine Learning, and Data Sciences. This is because of the highly dynamic nature of python, which makes it very efficient to handle data. The language is also very intuitive, so one does not have to learn a lot of unnecessary syntax (such as brackets and semicolons)." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://palaashagrawal.github.io/practicals/00-python-and-introduction-to-machine-learning/" />
+
+<title>00 Python and Introduction to Machine Learning | Palaash Agrawal</title>
+<link rel="manifest" href="https://palaashagrawal.github.io/practicals/manifest.json">
+<link rel="icon" href="https://palaashagrawal.github.io/practicals/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="https://palaashagrawal.github.io/practicals/book.min.6c7c6446dfdee7c8c933e9bbc6e80ee3ed6c913b2a59519f2092c3c6a9d63e55.css" integrity="sha256-bHxkRt/e58jJM&#43;m7xugO4&#43;1skTsqWVGfIJLDxqnWPlU=">
+<script defer src="https://palaashagrawal.github.io/practicals/en.search.min.4d61f9dee8fbe4d8336ca13f2dc887a6b6a65a830f43bdc5ee45a2d64f6554c1.js" integrity="sha256-TWH53uj75NgzbKE/LciHpramWoMPQ73F7kWi1k9lVME="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="https://palaashagrawal.github.io/practicals/"><span>Palaash Agrawal</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/example/" class="">Practical Machine Learning</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/example/introduction-to-machine-learning-and-python/" class="">Introduction to Machine Learning and Python</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/example/introduction-to-machine-learning-and-python/with-toc/" class="">Session 1 -  Introduction to Python and Machine Learning</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/example/introduction-to-machine-learning-and-python/without-toc/" class="">Without ToC</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4e46b01272d410b3a99461d79326ddf4" class="toggle"  />
+    <label for="section-4e46b01272d410b3a99461d79326ddf4" class="flex justify-between">
+      <a  class="">Collapsed</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/example/collapsed/3rd-level/" class="">3rd Level</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/example/collapsed/3rd-level/4th-level/" class="">4th Level</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="https://palaashagrawal.github.io/practicals/posts/" >
+        Blog
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="https://palaashagrawal.github.io/practicals/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>00 Python and Introduction to Machine Learning</strong>
+
+  <label for="toc-control">
+    
+    <img src="https://palaashagrawal.github.io/practicals/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#welcome-to-the-first-hands-on-session-on-bits-f464-machine-learning-in-this-session-well-learn-some-basics-of-python-and-introduce-ourselves-to-machine-learning-with-python">Welcome to the first hands-on session on BITS F464 Machine Learning. In this session we&rsquo;ll learn some basics of Python and Introduce ourselves to Machine Learning with Python.</a></li>
+        <li><a href="#introduction-to-jupyter-notebooks">Introduction to Jupyter Notebooks</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#the-practical-meaning-of-machine-learning">The Practical Meaning of Machine Learning</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#but-how-do-you-make-machines-learn">But How do you make Machines Learn?</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#developing-our-own-machine-learning-models">Developing our own Machine Learning models.</a>
+      <ul>
+        <li><a href="#your-first-machine-learning-model">Your first Machine Learning Model</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="basics-of-python-and-introduction-to-machine-learning">Basics of Python and Introduction to Machine Learning</h1>
+<h3 id="welcome-to-the-first-hands-on-session-on-bits-f464-machine-learning-in-this-session-well-learn-some-basics-of-python-and-introduce-ourselves-to-machine-learning-with-python">Welcome to the first hands-on session on BITS F464 Machine Learning. In this session we&rsquo;ll learn some basics of Python and Introduce ourselves to Machine Learning with Python.</h3>
+<p>Python is THE go-to language for Machine Learning, and Data Sciences. This is because of the highly dynamic nature of python, which makes it very efficient to handle data. The language is also very intuitive, so one does not have to learn a lot of unnecessary syntax (such as brackets and semicolons). Another factor that has led to the popularity of Python is the large community. A large community means that platforms and libraries constantly grow, and bugs are solved very fast. A large community also offers support to beginners and professionals alike, which attracts them towards itself. Infact, Python has reached a point, where it is the only self-sufficient language to exist today, wiping all its competition in the past few years (such as R, Caffe, Java, etc).</p>
+<p>To give you a deeper insight, a lot of frameworks have been developed on top of Python (meaning, a lot of libraries have been developed using Python, with the aim to make programmers&rsquo; lives easier, so that they dont have to write the code from scratch). As you will see yourself, you can create a State-of-the-Art AI model that can differentiate between people (such as in a facial recognition system) or an object detection system (such as in a self-driving-car) in as few as 5 lines of Python code.</p>
+<p>#The Environment: Jupyter Notebooks</p>
+<p>The platform on which this tutorial has been developed is called a Jupyter Notebook. Here, you can write python code very efficiently. However, you are not required to use Jupyter Notebooks, although it is recommended. If you are comfortable using text editors such as VSCode, vim or PyCharm, that works too. You can find a lot of online tutorials to work with text editors. Any text editor will work!</p>
+<p>There are a few perks to using Jupyter Notebooks.</p>
+<ul>
+<li>It is highly interactive. You can see, how we can even write notes and text inside the same document as your code.</li>
+<li>If you come across a bug in the code, you don&rsquo;t need to rerun the entire code. You can simply fix the bug and continue writing code. Whereas in a text editor, you need to compile and run the code everytime you make a change and wish to run it. You will learn more about it as you go through the code.</li>
+</ul>
+<h3 id="introduction-to-jupyter-notebooks">Introduction to Jupyter Notebooks</h3>
+<p>We write Python code in <em>cells</em>, as you can see below.</p>
+<p>We&rsquo;ve written a simple line of code that can print &lsquo;Hello World&rsquo;. Simply click on the code and run it. You can run it by either clicking the triangle on the left of the code, or pressing <em>Shift + Enter</em></p>
+<pre><code>print('Hello World! This is a cell')
+</code></pre><h1 id="basics-of-python">Basics of Python</h1>
+<h4 id="note-1-this-is-for-those-who-are-unfamiliar-with-python-andor-programming-if-you-are-familiar-with-python-you-can-skip-this-section-you-can-simply-click-on-the-small-arrow-besides-the-subheading-to-minimize-or-expand-the-entire-subsection-so-if-you-dont-want-to-view-this-subsection-for-example-you-can-simply-minimize-it-and-it-will-become-easier-for-you-to-read">Note 1: This is for those who are unfamiliar with Python and/or programming. If you are familiar with Python, you can skip this section. You can simply click on the small arrow besides the subheading to minimize or expand the entire subsection. So if you don&rsquo;t want to view this subsection, for example, you can simply minimize it, and it will become easier for you to read.</h4>
+<h4 id="note-2-the-best-way-to-learn-any-programming-language-is-to-learn-over-time-you-should-not-try-to-learn-the-entire-language-before-using-it-the-best-way-to-learn-is-to-learn-through-trial-and-error-so-dont-be-afraid-to-make-errors-the-more-you-make-errors-the-more-you-will-learn-having-said-that-we-wont-teach-you-everything-in-this-notebook---infact-well-only-give-you-the-basic-tools-to-get-started-and-over-time-we-will-introduce-you-to-concepts-as-and-when-required-and-you-will-learn-a-lot-of-stuff-on-your-own-as-well">Note 2: The best way to learn any programming language is to learn over time. You should not try to learn the entire language before using it. The best way to learn is to learn through trial and error. So don&rsquo;t be afraid to make errors. The more you make errors, the more you will learn. Having said that, we won&rsquo;t teach you everything in this notebook - infact, we&rsquo;ll only give you the basic tools to get started. And over time, we will introduce you to concepts as and when required. And you will learn a lot of stuff on your own as well!</h4>
+<h5 id="variables-and-variable-types"><strong>Variables and Variable Types</strong></h5>
+<p>Let us introduce you to a variable in Python. A variable is a container which can contain any value, like a number, a string, a list of strings, or even other variables. 
+There are no restrictions to what type of value a variable may contain in python, unlike some other programming languages, where you can only put certain types of values in a particular variable. For example, in the language C, a variable that is designed to contain numbers, cannot contain a string of characters.</p>
+<p>You can name your variable anything. The only things to keep in mind are -</p>
+<ul>
+<li>the variables are case sensitive. For example, &lsquo;A&rsquo; and &lsquo;a&rsquo; are two different variable names in Python.</li>
+<li>The name of the variable cannot start with a number. You can have both letters and numbers. You can also have the <em>underscore</em> &quot; _ &quot; in your variable name anywhere.</li>
+<li>There are certain words that Python uses internally. You cannot name your variable as one of those words. A list of these words can be found <a href="https://www.w3schools.com/python/python_ref_keywords.asp">here</a>.</li>
+</ul>
+<p>Let us define a variable. You can edit the code and write anything instead of the string &lsquo;Python&rsquo;. Try writing your name in place of &lsquo;Python&rsquo; (make sure your value is contained within quotes. In python, single quotes and double quotes mean the same thing).</p>
+<p>You also see a hash sign in the code below, followed by a statement.
+This is a comment, and python ignores everything that is written in a line after a hash sign. It is for you, the user, to write your comments and understand the code better. We&rsquo;ll be adding comments throughout the code for you to understand the code better.</p>
+<pre><code>my_variable = 'Python' 
+print(my_variable)
+</code></pre><p>Now go back to the above cell (by using the <em>up</em> arrow key, and instead of your name, type a number (anything - a whole number, a decimal number, etc) and rerun the cell (using <em>shift+enter</em> ), and now the code prints that number. So you can see, the same variable can take any value, and any type of value - no restrictions.</p>
+<p>This is a good time to introduce you to the types of values in Python. Infact, this is common to most of the programming languages, so it is a good piece of information to know. As for now, let us introduce ourselves to three types of values -</p>
+<ul>
+<li>
+<p><em>Numbers</em>: These are the values on which you can do arithemetic operations on. Like, addition, subtraction, multiplication, division, exponential, negation, etc. Numbers can be either</p>
+<ul>
+<li>Integers (represented by <code>int</code>) (like, -1,0,1,2&hellip;and so on)</li>
+<li>Floating point numbers (represented by <code>float</code>) (like -1.0, 0.0, 1.00002, etc)</li>
+</ul>
+<p>These are all the numbers that you would need most of the times. But you can also have complex numbers (represented by <code>complex</code>. For example <code>1 + 3j</code> is a valid number in python.</p>
+</li>
+<li>
+<p><em>String</em>: These are the values on which you cannot perform arithemetic operations on. They usually represent names of things. Like your name, the letters of the alphabet, and so on.</p>
+</li>
+<li>
+<p><em>booleans</em>: <code>True</code> and <code>False</code> are called boolean values. Its a method to check a condition. For example: is 2 greater than 1? The answer is True.</p>
+</li>
+</ul>
+<p>Any value that does not fit in these categories is called <em>None</em> type. It represents an empty variable. In better words, the memory block in your computer is empty, if I assign it the value <code>None</code>.</p>
+<p>Let us explore these data types</p>
+<pre><code>#writing multiple print statements would write all the values on different lines
+print(1)
+print(1.000)
+print(1 + 5)
+print(1.0 + 5.0)
+print(type(1), type(1.0)) # you can write multiple things inside a print command, and it will print both the objects side by side.
+                          # type(...) returns the type of the item inside it. So, it tells that 1 is an int, and 1.0 is a float! 
+
+#Excercise: Try printing the sum of the first non-zero digits (Starting from 1). Write your code below this line
+
+
+</code></pre><pre><code>#let us try it with variables
+variable_1 = 5
+variable_2 = 6
+print(variable_1 + variable_2)
+print(variable_1*variable_2)
+print(-variable_1)
+
+#Exercise for you! Declare variable variable_3 with another value. Now show 2 different ways in which 
+#shifting brackets gives different results (because of BODMAS). Write your code below.
+
+</code></pre><pre><code>#strings
+variable_1='Lorem ipsum dolor sit amet'
+variable_2='Duis aute irure dolor in reprehenderit'
+print(type(variable_1))
+
+#you cant add two variables. For example 'a' + 'b' makes no absolute sense. But in Python, you can operate two strings with a '+' sign.
+#It doesnt add the two strings, but instead joins them (or in other words, concatenates them)
+print(variable_1 + ' ' + variable_2)
+</code></pre><h5 id="lists"><strong>Lists</strong></h5>
+<p>Lists are one of the most frequently used concepts in python. Lists are basically a collection of values, that is given a seperate name. Lists are represented by [ ]. For example:</p>
+<pre><code>my_list = [10,20,30,40,50] # the list of numbers 1 through 5
+print(my_list)
+print(type(my_list))
+</code></pre><p>Remember not to name your list as &lsquo;list&rsquo;, because &lsquo;list&rsquo; is a python keyword, that is reserved by the language.</p>
+<p>In the context of Data Sciences, lists can be use to store all the data in one variable.</p>
+<p>You can then isolate a particular element of the list. We do so by <em>indexing</em>, which is done by writing <code>my_list[0]</code> , for example. The zero is the index, which refers to the first element of the list, the value of which is 10, in this case.</p>
+<p>The index can range from 0 to the number of elements in the list <em>minus</em> 1. This may be confusing at first - you may ask, why isnt the index simply from 1 to the number of elements in the list?! But that&rsquo;s just how it is. Infact, this is used in many programming languages. An exception may be MATLAB.</p>
+<pre><code>print(my_list[0],my_list[1])
+
+#in addition to the range of the indices mentioned above, you can even write -1,-2 and so on. -1 simply means 'the last element of the list'
+#-2 would mean , the second last element and so on. 
+print(my_list[-1])
+</code></pre><p>Slicing the lists:</p>
+<p>You can <em>slice</em> lists, which means, you can choose a subsection of the list, and store it in another variable. This is done using [ : index ], where <em>index</em> is the index till which you want your elements to be sampled, the element at that index excluded.</p>
+<pre><code>sub_list=my_list[:3] #sub_list will contain values till index number 2 (thats the third element, because, remember? indexing starts from 0)
+                     #index number 3, and all subsequent values are excluded
+print(sub_list)
+</code></pre><p>So in this method, you slice a list from the beginning. But you can also do from the end. So if we slice using [index_1:], we get a subsection, that contains values from index <em>index_1</em> (included in this case), till the end</p>
+<pre><code>sub_list_1 = my_list[3:] #  we get values from index=3 till the end
+print(sub_list_1)
+</code></pre><p>What if we want a subsection that is in the middle of the list (ie, does not contain either the end, or the beginning).
+We do so by  [ <em>index_1</em> : <em>index_2</em> ]  . As you may have guessed, we will get values from <em>index_1</em> to <em>index_2</em>. <em>index_1</em> WILL be included, but <em>index_2</em> will not be included.</p>
+<p>One way to memorize this is - imagine [ <em>index_1</em> : <em>index_2</em> ] as</p>
+<blockquote>
+<p><em>index_1</em> :    +     : <em>index_2</em></p>
+</blockquote>
+<p>So, if you recall, <code>index_1 :</code> includes the index, while <code>: index_2</code> excluded the index.</p>
+<pre><code>sub_list_2=my_list[1:4]
+print(sub_list_2) #the indices included are - 1,2,3
+</code></pre><p>Lists can also contain strings, other variables, other lists and any other type of data. Infact, in a single list, all of these types of values can coexist</p>
+<pre><code>my_list_1 = [1,None,True,'hello',1.55]
+print(my_list_1) # a list with different types of values
+</code></pre><h5 id="functions"><strong>Functions</strong></h5>
+<p>You would know what a function is, from high school, or even first year calculus.</p>
+<p><code> y = f(x)</code></p>
+<p>A function <em>f</em> takes an input <em>x</em> and returns an output <em>y</em>.</p>
+<p>we can define a function in python using the keyword <code>def</code>.</p>
+<pre><code>def f(x): 
+    return x**2
+</code></pre><p>What does this function do? First of all, notice the syntax of the function - it takes a value (say x). It returns x**2 (which means x to the power of 2, or x squared, in other words). The word <code>return</code> is the word which gives back the calculated value.</p>
+<pre><code>y=f(5)
+y #Jupyter notebooks allow you to print the value of a variable without having to write print explicitly. 
+  #The only condition is, that you should write the name of the variable as the last piece of code in the cell. This is a comment,
+  #so it doesnt count. But if you write any other code after the 'y', the y will not be printed unless you explicitly write print(y)
+</code></pre><p>Besides calculations, a function can do anything which may or may not needed to be returned. For example -</p>
+<pre><code>def f(x):
+    print('Hi, this function calculates the square of a number') #this is totally unrelated to the function, 
+                                                                 #but the function still carries it out
+    return x**2 
+
+print(f(5)) #yes, you can put functions inside print. Infact, print itself is a function! 
+            #So the input to the print function is the output of the f function.
+</code></pre><p>How about a function with more than one inputs?</p>
+<pre><code>def add_two_variables(x1,x2):
+    return x1+x2+1
+
+sum_of_two_variable = add_two_variables(3,4)  #sum_of_two_variables is a variable, to which we assign the value of the output of the function
+sum_of_two_variable
+</code></pre><p>Everything we do, we will do in terms of functions. Right now, we&rsquo;ve only written very short peices of code. But your functions can be very long too. So, functions are an efficient way to repeat a task multiple times, without having to write down the code again and again. It also helps you to understand the code better. Its a concise way to express code.</p>
+<pre><code># Exercise for you: write a function f that takes 2 numbers, and returns two outputs: the sum of the two numbers, and the quotient. 
+#the function should also print a statement that prints the difference of the two numbers. The order of the numbers in the operations does not matter
+#eg: def f(x1,x2). 
+#y1,y2=f(number1,number2). In python, division is done using the '/' sign. (eg, num1/num2) 
+
+
+
+
+</code></pre><h5 id="if-else-conditions"><strong>If else conditions</strong></h5>
+<p>What if you want to check a condition. Like, if you want to check if your variables value is greater than a number? This is how we check conditions.</p>
+<pre><code>variable_1=5 #try different values of the variable. But make sure the variable is a number. Because you cant compare a string with a number.
+
+if variable_1&gt;3: 
+    print('yes, the value is greater than 3')
+else: 
+    print('no, the value is Less than 3')
+</code></pre><p>Also, try making the value of the variable - a string. You will get an error! Thats okay. As we mentioned - errors are the things that teach you, and make you a better programmer! Change the value again, and run it again!</p>
+<p>FYI, the else statement is optional. if you only write <code>if &lt;condition&gt;: &lt;action&gt;</code>, it is still correct. Else basically means, if the above condition is not met, do something. So obviously, if you dont write the else part: if the above condition is not met, do nothing!</p>
+<hr>
+<hr>
+<p>At this point, let us introduce you to comparison operators.
+In the above code, we did an <em>inequality</em> comparison (Greater than/less than). Some other operators are:</p>
+<ul>
+<li>x==y To check if x and y are equal</li>
+<li>x!=y to check if x and y are NOT equal</li>
+<li>x &gt; y to check if x is greater than y</li>
+<li>x &lt; y to check if x is less than y</li>
+<li>x &gt;= y to check if x is greater than or equal to y</li>
+<li>x &lt;= y to check if x is lesser than or equal to y</li>
+</ul>
+<pre><code># Exercise for you!
+# Write a FUNCTION, that takes in two strings! within the function, 
+# assign a variable the value True if the two strings are the same, 
+# and false otherwise. Return the value of this variable
+
+
+
+</code></pre><h5 id="for-loops"><strong>for loops</strong></h5>
+<p>A loop literally means to do something again and again. So for example, we want to compute the square of numbers from 1 to 20, we can write a loop function, which runs again and again, taking different inputs everytime.</p>
+<p>The syntax is as follows</p>
+<pre><code>inputs=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+
+for i in inputs: 
+    print(i**2)
+</code></pre><p><code>i</code> is a dummy variable - meaning a temporary variable which takes the values of the elements in the <code>inputs</code> list. Its actually just like plain english. You can simply guess what <code>for i in inputs</code> means. For a number (which, lets call it <code>i</code> for the sake of simplicity) in the list called inputs, do something! Isnt that simple to understand?</p>
+<p>Actually, if you simply want all the numbers within a range - there is this function in python, called <code>range</code>.</p>
+<p><code>range(20)</code> returns all the numbers from 0 to 19. If you want your numbers between a particular range, say 1 and 20, we would write <code>range(1,21)</code>. You would have guessed! just like before, the first index is included, but the last index is not!</p>
+<p>So instead of <code>for i in inputs</code>, you can write <code>for i in range(1,21)</code>, and you will get the same results.</p>
+<pre><code>#Excercise for you! Instead of directly writing what to do inside the for loop, write a function (outside of the for loop), and use the function inside the loop
+#Your task? write a function which only prints the value if the value is even. Hence, your function will have no return value. So you can skip that line.
+# so, for all the values in the given range (say 1 to 20): if a value is even: print the value, otherwise - do nothing.
+
+
+
+</code></pre><p>That is all the basics you need for Python. As we said, we would introduce you to important concepts in python as we proceed. We encourage you to explore the language on your own - and learn. You can never learn enough!
+And don&rsquo;t be afraid to make mistakes. There&rsquo;s no mistake that cannot be corrected!</p>
+<p>One another important piece of advice is - to not spend too much time remembering syntaxes. More often than not, you will have access to the internet, and you can simply go online and search for the syntax. Infact, you can also find the code others may have written - so it just makes life easier for you. Ofcourse, treat this as a learning opportunity, and not as an excuse to not learn at all. Because if you don&rsquo;t know your language and concepts well - you would never be able to fully utilize your knowledge.</p>
+<p>And finally, the language itself is not knowledge. It is only a tool to gain knowledge and experience. You will use python to build Machine Learning models, and so, its only fair to think of it as a stepping ladder towards your goal!</p>
+<h1 id="machine-learning">Machine Learning</h1>
+<h2 id="the-practical-meaning-of-machine-learning">The Practical Meaning of Machine Learning</h2>
+<p>You&rsquo;ve seen in class how to define Machine Learning in theory.
+But what does Machine Learning mean in practice?</p>
+<p>Machine Learning is a fast evolving branch of study, which relates to, as the name suggests, make machines (computers) - &ldquo;<strong>learn</strong>&quot;, or &ldquo;<strong>think</strong>&rdquo; about information. If we can teach machines to &ldquo;think&rdquo;, it would certainly make our lives easier, since we don&rsquo;t have to do the thinking.</p>
+<p>We are surrounded by Machine Learning even in today&rsquo;s world. You must have heard about glorified stories of self driving cars and self-aware robots, but we often overlook the ways in which Machine Learning already impacts our lives, in the most subtle ways possible. For example&hellip;</p>
+<ul>
+<li>You don&rsquo;t have to <strong>memorize</strong> directions anymore, because the Maps Application on your phone does that for you.</li>
+<li>Your GMail automatically sends spam email to the Spam section, and doesn&rsquo;t let it appear in our inbox, so we don&rsquo;t have to take the <strong>effort</strong> to do so.</li>
+<li>You don&rsquo;t have to <strong>know</strong> the spelling of words to be able to type in today&rsquo;s world. Your keyboard autocorrects any obvious mistakes, with what it thinks would best fit in the context. There are even companies based on this, like Grammarly. So, if you never thought about it, even though autocorrects may be annoying sometimes, its amazing how these systems are aware of the context of what you&rsquo;re typing, and give you suggestions based on that.</li>
+</ul>
+<p>Most modern phone keyboards also <strong>suggest</strong> next words based on context. They also learn your behaviours. For example, if you&rsquo;re a person who uses a lot of emojis, the keyboard will learn when to suggest that you type emojis.</p>
+<ul>
+<li>
+<p>You don&rsquo;t have to <strong>learn</strong> the local language of a place to be able to visit it. Google can translate between your language and the local language very efficiently, both ways. And its getting better day by day.</p>
+</li>
+<li>
+<p>We dont need to take the <strong>effort</strong> to type anymore, we can simply say &ldquo;Hey Google&rdquo; or &ldquo;Hey Siri&rdquo; or &ldquo;Hey Alexa&rdquo; (depending on the device you have) and ask it to do something for you. And not just petty tasks, you can even ask it to do important tasks, like paying your bills, place orders, book appointments, etc. It even does not matter if you speak in a different accent, or even if you stutter, fumble or there&rsquo;s noise in the background.</p>
+</li>
+</ul>
+<h4 id="do-you-observe-a-pattern-in-all-the-highlighted-words">Do you observe a pattern in all the highlighted words?</h4>
+<p>You would observe that all these reflect the idea of gathering knowledge about different things. We have somehow been able to teach Machines to think and do tasks for us, so that we don&rsquo;t have to do them. The ultimate goal of Machine Learning is to be able to teach machines to do tasks that we do everyday, so that humans can focus on more intellectual tasks.</p>
+<p>This is why AI and automation are called the 4th Industrial Revolution (The first three being The Steam Engine (1768&rsquo;s), Oil and Electricity (and hence the Industrialization that followed)(1850&rsquo;s),and Computerization (1970&rsquo;s))</p>
+<p>If you think about it, there&rsquo;s a reason that each of these is called an Industrial <em>Revolution</em>. The Revolution refers to a change in the goals of development of the entire humanity.</p>
+<p>For example, Before the steam engine, Trade was only limited to local communities, because travel was simply impossible over long routes. We developed as a species when travel became fast with the steam engine. Travel times were cut massively, which implied faster development.</p>
+<p>With The second Industrial Revolution, production of goods became fast and cheap. Humans did not have to hand-produce essential goods. We developed as a race, because humans could now focus on more important and intellectual things, like development of Technology, Economy, Politics, etc.</p>
+<p>With the third Industrial Revolution, We discovered how to make computers do the tasks that we did everyday. Computers could now handle Computation, Information Processing, and information storage. Communication Systems also improved. And the Internet emerged too! Just 20 years ago, there were no cell phones widely available. Today, we have highly evolved platforms to communicate - over Calls, Social Media, the &ldquo;traditional&rdquo; media, like theTelevision, etc. 
+This has not only helped us connect better, but allowed us to work on even more intellectual tasks, such as Research, both Scientific and Social, Large Scale Global Trade, Space Exploration, Global Economy, etc.</p>
+<p>What AI and autonimity will allow us to do, is to focus on even more intellectual tasks, by doing the everyday cognitive tasks for us. If we can save the time and energy to do these everyday tasks, we can, as a collective human race, focus on more important tasks.</p>
+<p><img src="https://drive.google.com/uc?id=1HHCdmcjLghh-hiOmTRu6uC8nOFAEH1v1" alt="picture" /></p>
+<pre><code>
+</code></pre><h2 id="but-how-do-you-make-machines-learn">But How do you make Machines Learn?</h2>
+<p>Machines are not hard-coded to gather knowledge. Infact, that is simply not possible. No human can write a computer program that can differentiate between two different faces. We ourselves do not know how to represent such a task using an algorithm. Its just something we &lsquo;know&rsquo; how to do.</p>
+<p>The way machines learn to do such tasks is through identifying patterns in the <strong>Data</strong> we provide to it. That is the gist of all of Machine Learning. And all of the theory of Machine Learning is to simply develop algorithms that can learn information about the data. In the image below, you can see, how we feed data into the system. The system combines all this information to get meaningful results.</p>
+<p><img src="https://drive.google.com/uc?id=1FHIxW9Sn3CHt-cKhUgsXgYjYjBSqwgEg" alt="picture" /></p>
+<p>For example, if our model was to differentiate between two different people, we would &ldquo;train&rdquo; our Machine Learning <em>model</em> over a collection of pictures of these two people (the data), to learn features that diffentiate the two people. For example, the model may learn that one person is of different skin tone than the other, or one has a particular hairstyle, which is different from the other person&rsquo;s hairstyle.</p>
+<h4 id="what-is-a-machine-learning-model">What is a Machine Learning Model?</h4>
+<p>A Machine Learning Model is the entity which gives us meaningful results. It is, at core, a mathematical function, which takes in data as the input and gives us results as the ouput. 
+For example, the images of two people are the inputs, and the classification of whether the picture is of person A or B, is the result.</p>
+<h2 id="developing-our-own-machine-learning-models">Developing our own Machine Learning models.</h2>
+<p>Let us build our own Machine Learning Models. Even if you don&rsquo;t know anything about Machine Learning, thats okay - We provide you with all the necessary tools. The idea behind this is to motivate you towards Machine Learning, and to help you understand the extent of applications of Machine Learning. This is also to tell you that, Machine Learning is not black magic! And it does not require one to have a PhD degree or years of experience to dive into Machine Learning. You might not be able to understand how it works in total depth, but it certainly does not need a lot of knowledge to run your models.</p>
+<p>This approach is called the top-down approach of learning, and this is how all of coding should be learnt. We learn how to use applications first, and then learn the details gradually, rather than the other way round. We&rsquo;ve seen a lot of Machine Learning beginners simply lose interest in Machine Learning when they&rsquo;re overloaded with a lot of theory, without getting the opportunity to utilize the knowledge. We all like to assure ourselves that all the effort of learning is worth it. So, while you will learn a lot of theory in lectures, these labs will give you the tools to apply your knowledge in the real world. And we assure you, you won&rsquo;t build dummy models, but actual state-of-the-art models.</p>
+<h3 id="your-first-machine-learning-model">Your first Machine Learning Model</h3>
+<p>Let us begin by creating a model that will tell you which breed a cat or a dog belongs to, just by looking at an image of a cat or a dog. Before that, let us install the necessary library. For this particular problem, we&rsquo;ll be using a library called fastai, which is a widely used library for <em>deep learning</em>, and makes it possible to train models efficiently without having to go in a lot of details of the code.</p>
+<p>What is Deep Learning? Deep Learning is a subset of Machine Learning, and is probably the most famous type of Machine Learning. If you decide to pursue Machine Learning in greater depth outside this course, you will find yourself almost predominantly exploring <em>Deep Learning</em>. It uses something known as <em>Neural Networks</em> as models (remember, a model is nothing but a mathematical function which maps the input to the output). The reason it is so famous, is because of the great flexibility that Neural Networks provide. They can solve any complexity of problems easily. We&rsquo;ll learn more about Deep Learning as the course proceeds. The idea, at this point, is to simply let you know about what Machine Learning is about in the practical world.</p>
+<p>By the way, this is what a Neural Network looks like. You may or may not have seen this image before.</p>
+<p><img src="https://drive.google.com/uc?id=1zU_Ub-oiq9ErU0aa2GrOtIRK6-lfX0VC" alt="image" /></p>
+<p>Let us begin by installing the <em>fastai</em> library. Before that, you need to enable your GPU. If you&rsquo;re using Colab, all you need to do is click on <em>Runtime</em> on the top, then <em>Change Runtime Type</em>, and change the Hardware Accelerator from <em>None</em> to <em>GPU</em>.</p>
+<p>If you&rsquo;re using a PC instead of Colab, check if your PC has a GPU, that is CUDA enabled.</p>
+<p>If it seems a little intimidating at first, don&rsquo;t worry. Remember, you don&rsquo;t need to learn all these technicalities at this stage. We will learn of all these technicalities as we proceed in the course. Right now, we are only introducing you to what Machine Learning looks like.</p>
+<p>Disclaimer: Before We start, Please keep in mind. Don&rsquo;t try to memorize/and or understand the code per se. Ofcourse, if you can figure it out - great!. If you cannot, that&rsquo;s okay. We only ask you to appreciate the beauty of Machine Learning.</p>
+<pre><code>!pip install fastai --upgrade &gt;.tmp
+from fastai.vision.all import *
+</code></pre><p>We will now download the dataset called <a href="https://www.robots.ox.ac.uk/~vgg/data/pets/">Oxford-IIIT Pets</a>, which contains 37 different categories of breeds of cats and dogs.</p>
+<pre><code>path = untar_data(URLs.PETS) # this peice of code downloads the data from the internet, 
+                             #unzips all the files, and also tells us that our data is 
+                             #stored at a location which we store in the variable named path
+path
+</code></pre><p>The data is stored in the location that is written just above this line, the name of which we temporarily store in the variable named <em>path</em>. Let us now visualize this dataset.</p>
+<pre><code>dls = ImageDataLoaders.from_name_re(path, get_image_files(path/'images'), pat=r'^(.*)_\d+.jpg', item_tfms=Resize(224))
+dls.show_batch()
+</code></pre><p>You can see different breeds of cats or dogs, with their breed written on top of the corresponding image. So Now that our dataset is ready, lets jump into training our model! It will take about 5 minutes to train our state-of-the-art Pet breed classifier.</p>
+<pre><code>learn = cnn_learner(dls, resnet34, metrics=accuracy)
+learn.fine_tune(4,3e-3)
+</code></pre><p>There&rsquo;s a lot of jargon here, like <em>epoch</em> and <em>train_loss</em>. Let us skip all these details for now. Basically, a Neural Network is trained in stages, and it keeps getting better and better each stage. Focus on the column that says accuracy - which tells us how good the model is performing at each of these stages.</p>
+<p>The final value of the column tells us the accuracy of your model - basically, out of all the pictures, how many times does the model identify the breed of the cat or dog correctly. Your model gets the breed right for than 90% of the time. How amazing is that?!</p>
+<p>What&rsquo;s even more amazing is to imagine what the model must have learned. To identify one breed from another, it must have to identify the colour, fur texture, fluffiness, proportions, facial features, size, and a lot of other things, which our human brains can identify effortlessly, and which we take for granted. Our brain truly is amazing.</p>
+<p>Now for the most exciting part! Let&rsquo;s try this out on our own very picture. If you have a photo of a dog or a cat on your PC, upload it using the button that appears after you run the code in the cell below. Again, the code won&rsquo;t make sense to you. We don&rsquo;t expect you to understand right now either!</p>
+<pre><code>from fastai.vision.widgets import *
+btn_upload=widgets.FileUpload()
+btn_upload
+</code></pre><pre><code>#this is your image!
+img = PILImage.create(btn_upload.data[-1])
+img
+</code></pre><p>Note: If you&rsquo;re running your code on a text editor on your local PC: you don&rsquo;t have to use this upload widget. You can simply enter the absolute path of the image by writing the code:</p>
+<pre><code>path=Path('&lt;write absolute path of the image here&gt;')
+img=PILImage.open(path)
+</code></pre><p>And let&rsquo;s see what the model think this is!</p>
+<pre><code>pred=learn.predict(img)[0]
+is_cat=' cat' if pred[0].isupper() else ' dog'
+pred + is_cat
+</code></pre><p>A lot of you must have uploaded a picture of something which is neither a cat nor a dog. And found out, that the model still predicts it to be one of the breeds of a cat or dog. Turns out the model is not as smart as our human brain! But we&rsquo;ll discuss the reason in depth when we cover Neural Networks.</p>
+<p>Having said that, if you haven&rsquo;t tried uploading a picture of something which is neither a cat or dog, do so! Why not?</p>
+<p>Infact, here&rsquo;s a fun experiment. You must know that not every dog or cat is suitable for everyone. A person fits best with a pet that has the same traits as the person, and same &lsquo;spirit&rsquo; as the person. And a lot of times, the owners and pets even LOOK alike.</p>
+<p><img src="https://drive.google.com/uc?id=17-1dFG3aDz3QEp1nedc1lq77ghJSAs42" alt="picture" /></p>
+<p>So let&rsquo;s find yours! Go back to the upload button above, click a selfie and upload your photo. And run the code below it. You will get a prediction of a cat or a dog breed! That&rsquo;s your spirit animal.</p>
+<p>Ofcourse, it may not be true. But its worth looking into. Who knows you start liking that breed more now!</p>
+<h1 id="summary">Summary</h1>
+<p>We introduced ourselves to python, and Machine Learning as a broad area of study. We studied the basics of Python and learned some important concepts that are essential for Machine Learning, and Data Sciences in general. We learned what Machine Learning means in the practical world, and how it has evolved to impact our lives for good. And we even built our first Machine Learning model, and experimented with it.</p>
+<p>In the next lab, we&rsquo;ll look into Linear and Logisitic Regression!</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#welcome-to-the-first-hands-on-session-on-bits-f464-machine-learning-in-this-session-well-learn-some-basics-of-python-and-introduce-ourselves-to-machine-learning-with-python">Welcome to the first hands-on session on BITS F464 Machine Learning. In this session we&rsquo;ll learn some basics of Python and Introduce ourselves to Machine Learning with Python.</a></li>
+        <li><a href="#introduction-to-jupyter-notebooks">Introduction to Jupyter Notebooks</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#the-practical-meaning-of-machine-learning">The Practical Meaning of Machine Learning</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#but-how-do-you-make-machines-learn">But How do you make Machines Learn?</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#developing-our-own-machine-learning-models">Developing our own Machine Learning models.</a>
+      <ul>
+        <li><a href="#your-first-machine-learning-model">Your first Machine Learning Model</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

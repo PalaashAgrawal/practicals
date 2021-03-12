@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta name="generator" content="Hugo 0.68.3" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="#05 Clustering Algorithms in Machine Learning
+K Means and K Nearest Neighbors Algorithms Welcome to the fifth session of the Practical Machine Learning sessions. In this session, we will move slightly towards a relatively overlooked domain of Machine Learning - Unsupervised Learning. Till Now, and for the most of the part in the future, we will be looking at Supervised Learning problems. So, first of all, what is the difference between supervised learning and unsupervised learning?">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://palaashagrawal.github.io/practicals/docs/05-clustering-algorithms-in-machine-learning/" />
+
+<title>05 Clustering Algorithms in Machine Learning | Palaash Agrawal</title>
+<link rel="manifest" href="https://palaashagrawal.github.io/practicals/manifest.json">
+<link rel="icon" href="https://palaashagrawal.github.io/practicals/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="https://palaashagrawal.github.io/practicals/book.min.2dc4d2afa8da6ac78d76671c21e140952e7a84846fed47ed02a1a2d68166d992.css" integrity="sha256-LcTSr6jaaseNdmccIeFAlS56hIRv7UftAqGi1oFm2ZI=">
+<script defer src="https://palaashagrawal.github.io/practicals/en.search.min.ca40c67ae3c71e5afca9d771d7e6ea511d0c4ba4f69a678a0b07e8c8557d56c0.js" integrity="sha256-ykDGeuPHHlr8qddx1&#43;bqUR0MS6T2mmeKCwfoyFV9VsA="></script>
+<link rel="alternate" type="application/rss+xml" href="https://palaashagrawal.github.io/practicals/docs/05-clustering-algorithms-in-machine-learning/index.xml" title="Palaash Agrawal" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="https://palaashagrawal.github.io/practicals/"><span>Palaash Agrawal</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/00-introduction-to-machine-learning-and-python/" class="">00 Introduction to Machine Learning and Python</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/01-linear-regression/" class="">01 Linear Regression</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/02-logistic-regression/" class="">02 Logistic Regression</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/03-singular-value-decomposition-and-principal-component-analysis/" class="">03 Singular Value Decomposition and Principal Component Analysis</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/04-bayesian-learning/" class="">04 Bayesian Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/05-clustering-algorithms-in-machine-learning/" class=" active">05 Clustering Algorithms in Machine Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/06-support-vector-machines/" class="">06 Support Vector Machines</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/07-decision-trees-and-random-forests/" class="">07 Decision Trees and Random Forests</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="https://palaashagrawal.github.io/practicals/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>05 Clustering Algorithms in Machine Learning</strong>
+
+  <label for="toc-control">
+    
+    <img src="https://palaashagrawal.github.io/practicals/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+
+    
+  </label>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  
+    window.addEventListener('load', (event) => {
+        document.querySelectorAll("mjx-container").forEach(function(x){
+          x.parentElement.classList += 'has-jax'})
+      });
+  
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#k-means-and-k-nearest-neighbors-algorithms">K Means and K Nearest Neighbors Algorithms</a></li>
+        <li><a href="#k-means-algorithm">K Means Algorithm</a></li>
+        <li><a href="#k-nearest-neighbors">K Nearest Neighbors</a></li>
+      </ul>
+    </li>
+    <li><a href="#review-and-tips">Review and Tips</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#1-a-robust-k-means-algorithmic-system">1. A Robust K Means Algorithmic system</a></li>
+    <li><a href="#2-regression-using-k-nearest-neighbors">2. Regression using K Nearest Neighbors</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><p>#05 Clustering Algorithms in Machine Learning</p>
+<h3 id="k-means-and-k-nearest-neighbors-algorithms">K Means and K Nearest Neighbors Algorithms</h3>
+<p>Welcome to the fifth session of the Practical Machine Learning sessions. In this session, we will move slightly towards a relatively overlooked domain of Machine Learning - <em>Unsupervised Learning</em>. Till Now, and for the most of the part in the future, we will be looking at <em>Supervised Learning</em> problems. So, first of all, what is the difference between supervised learning and unsupervised learning?</p>
+<p>If I were to tell you the textbook definition of the difference between the two,I would simply tell you, that unsupervised learning requires labels, and supervised learning does require labels. Yes, that is a difference, but in introspection, it is really not a good way to tell the difference between the two. We simply answered the question, &ldquo;What do these learning methods <em>require</em> in order to learn&rdquo;, but not the most important question - <em>What on earth IS unsupervised learning, or supervised learning, and what is the difference in terms of the approach?</em></p>
+<p>So, lets spend some time to understand that first.
+All of the supervised training algorithms we saw till now had a very common theme. We had some data. We build a model which takes in inputs, and gives and output (the input and output may not necessarily be different things. For example, in the text generator example, the input itself was the target).</p>
+<p>And we try to <em>optimize</em> the model such that the prediction outputs and target variables are as close to each other as possible. By this, we intend to build a model that knows how to map those inputs to the real world targets. For example, if you were to build a model that can generate music for you, you provide your model with lots of examples of music peices, and expect the model to learn how to make music, <em>without explicitly teaching it music theory, or the idea of melody, etc</em>, and only through example. The idea is - we try to optimize the model with a specific goal in mind that we wish the model performs.</p>
+<p>This is not the case for unsupervised learning. We dont build models with a specific goal in mind. The objective is to simply identify whatever patterns are observable in the data. Like, What is the mathematical distribution? How dense is the data? What is the range of the values in the data? How many clusters are observable? Is there a certain visible relation between different types of data?(like, if one increases, does the other increase too?) and so on.</p>
+<p>Unsupervised learning is used to identify patterns, whereas supervised learning is used to get specific results from the data. This is the correct method to differentiate between these two!</p>
+<hr>
+<p>Now, coming to our topic today - <em>Clustering Algorithms!</em> We&rsquo;ll be looking at two algorithms -  <strong>K Means</strong> and <strong>K Nearest Neighbors</strong> Algorithms, and we&rsquo;ll explore both separately! So let&rsquo;s get started&hellip;</p>
+<h3 id="k-means-algorithm">K Means Algorithm</h3>
+<p>Take a look at this data below.</p>
+<p><img src="https://drive.google.com/uc?id=1gFNxPtQhVb8ekxZN4XV6NWZhGHgSwpFy" alt="" /></p>
+<!-- raw HTML omitted -->
+<p>This is a social network graph. It is basically a visualization of who is a connection of whom. For example, if this network belonged to Facebook, the image would depict which people are friends on facebook, and who aren&rsquo;t. People who are friends on facebook have a faint grey line joining their profile images. You might notice that there are some distinct groups in this photo, which appear as blobs. You can see two major such blobs, one on the left and one on the right. These are called <em>clusters</em> of data.</p>
+<p>Lets say that people in the left blob are college going kids, and on the right are business professionals. Obviously, college going kids are more likely to know each other than they would know business professionals, and similarly business professionals are more likely to know each other, rather than college going kids, only because of the shared experiences and backgrounds. Hence, you would expect college kids to be friends with each other, far more than you would expect college kids being Facebook friends with business professionals. Hence these two clusters.</p>
+<p>Within each cluster, people are connected to each other via Facebook. Obviously it is not true, that no college kids are connected to any business professionals, and vice versa. But still, there is such a stark lack of such connections, that the graph almost seems like its divided into two major clusters.</p>
+<p>Just by looking at the data, you can tell that there are 2 clusters in the data. You don&rsquo;t even have to know which person goes to college, and which is a business professional. We would like our machines to do that for us - without necessarily having to tell which person belongs to which category. Hence the concept of Unsupervised Learning!</p>
+<p>Why would we want to identify clusters? Let&rsquo;s take the example of Facebook itself. Facebook can&rsquo;t recommend the same Ads to everyone. It obviously needs to optimize this. But Facebook knows that if some college goers are interested in a product, say Fidget Spinners (even though that&rsquo;s not a thing anymore!) , others will be too! And they will be much more likely to buy these, than business professionals. So Facebook would recommend Fidget Spinners to college goers rather than business professionals. On the other hand, if Facebook realizes that there is a trend of buying international holiday trip packages, it would rather recommend those to all business professionals, rather than college kids, which are much less likely to afford one! Ofcourse to do all this, Facebook might  not necessarily know the fact that which group is which in profession.</p>
+<p>Hope this idea is clear!</p>
+<p>In Machine Learning, a great algorithm to carry out unsupervised clustering is the <strong>K Means</strong> Algorithm.</p>
+<p>The objective of the K Means Algorithm is to create K different clusters, that are visible separated from each other. The procedure is as follows:</p>
+<ol>
+<li>create K random data points, called as <em>centroids</em>. Each of these centroids will form a separate cluster later on.</li>
+<li>For each datapoint, find out which centroid is the datapoint closest to. Whichever centroid it is closest too, assign the datapoint the same group as the centroid. So at the end, each datapoint will be assigned a group, containing exacly one centroid.</li>
+<li>Update the value of centroids as the Mean of all the datapoints that exist in the group.</li>
+<li>Repeat Steps 2 and 3 until you get desired results. During step 2, the group assigned to a datapoint may change, depending on which centroid it is closest too at this point (after updating the position of centroids).</li>
+</ol>
+<p>Imagine what happens during step3. By updating the value of the centroid as the mean of all the datapoints, we are essentially <em>pulling</em> the centroid to where there is more density of data. If this process is repeated multiple times, we will eventually pull the centroid to a position where this high density of data, or in other words, a blob/cluster exists. Here is a quick visualization of the K Means algorithm.</p>
+<p><img src="https://drive.google.com/uc?id=15T7mCRh1AsTwFgFRxvrdXDkHRPcqiREZ" alt="" /></p>
+<p>In today&rsquo;s session we&rsquo;ll be looking at a very interesting problem - We will be identifying the crime hotspots of a city - meaning, identifying which areas are more prone to crimes and which are safer.</p>
+<h4 id="case-study-crime-hotpots-in-vancouver">Case Study: Crime Hotpots in Vancouver</h4>
+<p>We have some data about crimes in the city of Vancouver, Canada. The data includes their nature, the time of occurence, the location, etc. Our job is to identify the areas of the city where the crime is more likely to occur. This can help the local Police Department deploy enough personnel, so that they are ready, equipped, and well numbered to tackle crimes.</p>
+<p>This can also help people like us, who would want to find new homes. We would obviously like to buy a house in a safer locality, rather than a crime-prone locality.</p>
+<p>So let us first download the <a href="https://www.kaggle.com/wosaku/crime-in-vancouver">dataset</a> from kaggle. Before that, you need to upload the <em>kaggle.json</em> file</p>
+<pre><code>#run only once per session
+%cd 
+from google.colab import files
+uploaded = files.upload()
+!mkdir -p ~/.kaggle/ &amp;&amp; mv kaggle.json ~/.kaggle/ &amp;&amp; chmod 600 ~/.kaggle/kaggle.json
+!kaggle datasets download -d wosaku/crime-in-vancouver
+!mkdir -p vancouver_crime &amp;&amp; unzip crime-in-vancouver.zip -d vancouver_crime
+%cd vancouver_crime
+!ls
+</code></pre><p>As you can see, there is a file called the &ldquo;crime.csv&rdquo; in this dataset. So to read csv files, we&rsquo;ll be using the pandas library. We&rsquo;ll also be using the matplotlib library to visualize the locations of crimes in a graph plot.</p>
+<pre><code>import pandas as pd
+import matplotlib.pyplot as plt
+</code></pre><pre><code>df=pd.read_csv(&quot;crime.csv&quot;)
+</code></pre><pre><code>print(len(df))
+df.head()
+</code></pre><p>So there are 530,652 cases of crimes in this dataset. You can see, the dataset provides us with the coordinates of the crimes, as well as the Lattitudes and Longitudes and the times. They also provide us with the type of crimes. However, a crime is a crime, and we don&rsquo;t necessarily need to know the type of crime while looking for a house, or while the police department deploys personnel in different regions. But still, let us try to see what all crimes happen in Vancouver!</p>
+<pre><code>df.TYPE.unique()
+</code></pre><p>Before we start working with this data, let us remove any empty records (for example, a policeman, while recording the crime, might not have filled the coordinates, or might not have thought of it as relevant to the crime).</p>
+<pre><code>df.dropna(inplace=True)
+</code></pre><p>So let us now visualize this dataset. Let us plot on a graph, all the X cordinates and the Y cordinates of the crimes, so we get an idea of where do crimes take place, and how many crimes take place in any locality (a rough idea!). But before that, lets see the actual map of Vancouver!</p>
+<p><img src="https://drive.google.com/uc?id=1lEOKrWqTal2n9ZGSll1g8A7K4n6gICpI" alt="" /></p>
+<p>This map also shows the Neighborhoods in Vancouver, which is provided to us in the dataset as well.</p>
+<p>Let us now plot all crimes on a graph, and see where in Vancouver are crimes found!</p>
+<pre><code>plt.scatter(df.X,df.Y,s=0.001) #s is used to control the size of datapoints on the graphs. There are so many datapoints, that if you use the normal size, all the datapoints will get merged. Hence, use a small 's'
+</code></pre><p>You can see, that there are crimes all over the city. However, you may observe that in some parts, the density of crimes is higher than the rest of the city (For example, in the northern parts of the city)!</p>
+<p>So let us see, which neighborhoods have more crime than others. Below, we plot a colour coded map showing different neighborhoods, as well as a bar graph, showing the number of crimes per neighborhood.</p>
+<pre><code>category='NEIGHBOURHOOD'
+for name,group in df.groupby(category):
+    plt.scatter(group.X,group.Y,label=name)
+plt.legend(bbox_to_anchor=(1, 1), loc='upper left');
+</code></pre><pre><code>count={i:len(df[df[category]==i]) for i in df[category].unique()} # a dictionary that can help us keep track of which neighborhood has how many crimes
+for i in count:
+    plt.bar(i,count[i])
+plt.xticks(rotation='vertical');
+</code></pre><p>Now that we know the number of cases per neighborhood, Let us jump to our ultimate objective - to differentiate neighborhoods by the number of crimes. We would like to create <em>3 clusters</em> - High crime rate neighborhood, Moderate crime rate neighborhood, and Low crime neighborhood. Let us first also plot the number of crimes in a straight line.</p>
+<pre><code>for i in count: plt.scatter(count[i],0,label=f'{i}: {count[i]} cases')
+plt.xlabel('Number of Crimes')
+plt.legend(bbox_to_anchor=(1, 1), loc='upper left')
+</code></pre><p>You&rsquo;ll notice some things - The Central Business District has more crimes than any Neighborhood, and by a HUGE margin. Obviously that will be clustered as a high crime region. Then come low crime regions and moderate crime regions. We would like our model to automatically detect which district is lower/moderate in crime (based on blobs).</p>
+<p>Let us begin by initializing centroids. To do this, we&rsquo;ll be using the NumPy library, which is a numerical processing library in python. It provides us with mathematical tools, which are otherwise computationally and memory wise - intensive. NumPy also provides us with <em>arrays</em> which is a concept similar to tensors in PyTorch. However, NumPy arrays are 1-Dimensional only. We&rsquo;ll be using these arrays to do calculations on our data.</p>
+<p>Why numpy arrays and not lists? This is because NumPy arrays and functions are optimized to run at C/C++ speed, which is many orders of magnitude faster than Python itself. This is suitable for large amounts of data, and here we&rsquo;re dealing with hundreds of thousands of datapoints.</p>
+<pre><code>import numpy as np
+</code></pre><pre><code>values=list(count.values())
+clusters=['Low','Moderate','High']
+colour_scheme={'Low':'green',
+               'Moderate': 'orange',
+               'High': 'red'}
+num_clusters=len(clusters)
+</code></pre><pre><code>#INITIALIZE CENTROIDS
+centroids=np.sort(np.random.uniform(low=min(values),high=max(values),size=num_clusters))
+centroids #initial centroids. Represent the number of crimes
+</code></pre><p>As we mentioned before, K Means intrinsically doesn&rsquo;t know which cluster belongs to what kind of crime rate. But for better understanding, we will assign the categories of crime rates (Low, moderate and high). So to do that, what we&rsquo;ve done is we&rsquo;ve made sure that the randomly generated centroids are always in ascending order. These represent ascending order of crime rates. Correspondingly, the labels will automatically become Low Crime Rate, Moderate Crime Rate and High Crime Rate.</p>
+<p>We&rsquo;ve also assigned colour codes to these - green being low crime regions, orange for moderate and red for high crime regions.</p>
+<p>Below, we&rsquo;ve plotted the crime rates, along with the centroids, marked with crosses.</p>
+<pre><code>plt.scatter(list(count.values()),[0]*len(count))
+plt.scatter(centroids,[0]*num_clusters,marker='X',s=100)
+plt.xlabel('Number of Crimes');
+</code></pre><p>We&rsquo;ll make lists corresponding to each of these categories. For example, if a neighborhood&rsquo;s crime frequency is closest to the centroid corresponding to Low Crime rates, we will add the neighborhood to the list corresponding to low crime rates</p>
+<pre><code>categories=[[] for _ in range(num_clusters)]
+for i in count: categories[np.argmin([abs(count[i]-o) for o in centroids])].append(i)
+categories
+</code></pre><p>You can see, there are three lists in the variable <code>categories</code>, containing neighborhoods that lie closest to the corresponding centroids (randomly initialized, so the may not make proper sense right now).</p>
+<p>So now, We will assign the crime rate category to each datapoint that belongs to a certain category. This way, we can colour code the city, based on the location of the crime.</p>
+<pre><code>df['groups']=None
+for k,o in enumerate(categories):
+    for i in o: df.loc[df['NEIGHBOURHOOD']==i,'groups']=clusters[k]
+</code></pre><pre><code>df.head()
+</code></pre><p>We&rsquo;ve added a  column in the dataframe, called &lsquo;groups&rsquo;, which contains the crime rate category, as done by K means algorithm.</p>
+<pre><code>category='groups'
+for name,group in df.groupby(category):
+    plt.scatter(group.X,group.Y,label=name,c=colour_scheme[name],s=0.1)
+plt.legend(bbox_to_anchor=(1, 1), loc='upper left');
+</code></pre><p>You can see, that each region is colour coded as per crime region. Note: you MIGHT be encountering a small problem - you might not be seeing all the categories. You might be seeing less than 3 categories. This is because K Means is <em>very sensitive to initialization</em>. Because the initialization is random, it may be possible that some centroids do not lie closest to any datapoints. Each datapoint might be closest to any centroid But a particular centroid. If you&rsquo;re encountering such a problem, go back up, and reinitialize the centroids, and run all the cells of code upto the one just above this peice of text, and repeat this until all three categories are not visible. (Even if you are not encountering this issue, its a fun exercise to see this happen!).</p>
+<p>Next Step? Update the centroids as the mean of all datapoints that have been assigned to that cluster.</p>
+<pre><code>for k,o in enumerate(categories):
+    if o: centroids[k]=np.mean([count[i] for i in o])
+centroids
+</code></pre><p>Now all we have to do is repeat this procedure (excluding the random initialization - that needs to be done only once). So Let us write all the peices of code together, and see it work in one go!</p>
+<p>Try running the next two cells of code multiple times to see if you get slightly different results each time. This is because of the randomness during initialization. But nevertheless, you will get satisfactory results.</p>
+<pre><code>#Step 1: initialize centroids
+centroids=np.sort(np.random.uniform(low=min(values),high=max(values),size=num_clusters))
+centroids #initial centroids
+</code></pre><pre><code>for iteration in range(5): #We run this model for 5 iterations
+    #Step 2: categorize all points into one or the other groups
+    categories=[[] for _ in range(num_clusters)]
+    for i in count: categories[np.argmin([abs(count[i]-o) for o in centroids])].append(i)    
+    for k,o in enumerate(categories):
+        for i in o: df.loc[df['NEIGHBOURHOOD']==i,'groups']=clusters[k]
+    #Step 3: update centroids
+    for k,o in enumerate(categories):
+        if o: centroids[k]=np.mean([count[i] for i in o]) 
+
+    # Visualize
+    for name,group in df.groupby(category):
+        plt.scatter(group.X,group.Y,label=name,c=colour_scheme[name],s=0.1);
+    plt.title(f'iteration: {iteration+1}')
+    plt.show()
+</code></pre><p>And there you have it! You have successfully built your own Crime Hotspot Detection system! And using 4 simple steps only - Initialize, Assign, Update, Repeat! Congrats on that!</p>
+<p>But there is something we can, and should do. These 4 steps should not so many lines of code. We should <em>refactor</em> the code into functions, so that the model becomes easier to run and understand. So we&rsquo;ve build a basic structure to help us with all the major steps.</p>
+<pre><code>def initialize_centroids(values,num_clusters):
+    centroids=np.sort(np.random.uniform(low=min(values),high=max(values),size=num_clusters))
+    return centroids
+
+def count_frequencies_in_df(df,group_by='NEIGHBOURHOOD'):
+    df.dropna(inplace=True)
+    df.count_freqs={i:len(df[df[group_by]==i]) for i in df[group_by].unique()}
+
+def categorize(df,centroids,clusters,group_by='NEIGHBOURHOOD'):
+    num_clusters=len(clusters)
+    categories=[[] for _ in range(num_clusters)]
+    # for i in df.count_freqs: categories[np.argmin([abs(df.count_freqs[i]-o) for o in centroids])].append(i)  
+    for i in df.count_freqs:
+        argmin=np.argmin([abs(df.count_freqs[i]-o) for o in centroids])
+        categories[argmin].append(i)
+    
+    df['groups']=None  
+    for k,o in enumerate(categories):
+        for i in o: df.loc[df[group_by]==i,'groups']=clusters[k]
+    return categories
+
+def update_centroids(centroids, categories):
+    for k,o in enumerate(categories):
+        if o: centroids[k]=np.mean([df.count_freqs[i] for i in o])
+    return centroids
+
+def visualize(df, category_column, iteration ):
+    for name,group in df.groupby(category_column):
+        plt.scatter(group.X,group.Y,label=name,c=colour_scheme[name],s=0.001);
+    plt.title(f'iteration: {iteration+1}')
+    plt.show()
+</code></pre><p>And let us see an entire Crime Hotspot detection model running in only 7 lines of code!</p>
+<p>PS: Try running the cell below multiple times, to get slightly different results.</p>
+<pre><code>#Entire K means in just 7 lines of code , excluding comments, ofcourse
+
+#step0
+group_by='NEIGHBOURHOOD'
+count_frequencies_in_df(df,group_by=group_by) #method which creates a data structure based on which distinction is to be done
+# step1
+centroids=initialize_centroids(values, num_clusters)
+for i in range(5):
+    #step2
+    categories = categorize(df,centroids,clusters,group_by=group_by)
+    # step3
+    centroids = update_centroids(centroids,categories)
+    visualize(df,'groups',iteration=i)
+    #repeat step 2 through 3
+</code></pre><p>Just for comparison, here is the map of all crimes. Try noticing if high density regions have been correctly marked as red, and if low density regions correcly as green? What about orange?</p>
+<pre><code>plt.scatter(df.X,df.Y,s=0.001)
+</code></pre><pre><code>
+</code></pre><p>Now, let us move onto the second algorithm that we&rsquo;ll look at today - the <strong>K Nearest Neighbors</strong> algorithm.</p>
+<h3 id="k-nearest-neighbors">K Nearest Neighbors</h3>
+<p>K nearest Neighbors is a very simple algorithm. You are given some data. Now, suppose when you get some new data point, and you wish to either classify or predict a value, you simply look at its neighbors.</p>
+<ol>
+<li>
+<p>If you want to classify a datapoint into a category, look at K nearest datapoints. Whichever category occurs the most, is most likely to be the class of the datapoint as well.</p>
+</li>
+<li>
+<p>If you want to conduct regression, look at the values of K nearest datapoints. You can take the average of the taget values of these datapoints, and it will be a likely estimate of the target value of your datapoint as well.</p>
+</li>
+</ol>
+<p>The idea is simply as follows - &ldquo;<em>Birds of a feather flock together&hellip;</em>&quot;.</p>
+<p>This is technically a supervised learning problem, but still is closer to unsupervised learning than other supervised learning algorithms. There is no learning of parameters, only observing the position of other datapoints relative to the input data point.</p>
+<p>So previously we tried to cluster neighborhoods based on the number of crimes per neighborhood. Now we will try to classify each locality with respect to the most common crime in that area. We will analyse K nearest Neighbors and figure out which crime is the most common. Ofcourse, that is the most likely crime to happen at that particular location.</p>
+<p>Let us begin with some random coordinates and visualize it on the map!</p>
+<pre><code>coordinates=(494000,5453000)
+plt.scatter(df.X,df.Y,s=0.001)
+plt.scatter(*coordinates,c='RED',marker='X',s=100)
+</code></pre><pre><code>x,y=coordinates
+</code></pre><p>The next step is to calculate the <em>Distance</em> of this coordinate from other datapoints. This will be used to find the the nearest neighbors! But we won&rsquo;t write a for loop - that is awfully slow. Infact, we will use function that NumPy provides, which run at C/C++ speed. For 2D cordinates, the distance is defined as the euclidean distance between the two, given by -</p>
+<p>$$distance((x_1,y_1), (x_2,y_2)) = \sqrt{(x_1 - x_2)^2 + (y_1 -y_2)^2}$$</p>
+<p>We write all these distances in a new column of the dataframe - the &lsquo;Distance column&rsquo;.</p>
+<pre><code>df['Distance']=np.sqrt(np.square(x-df.X) + np.square(y-df.Y))
+</code></pre><p>Now, we need to find nearest neighbors. To do that, we will simply sort the dataframe with respect to the distances, and simply choose the top K rows.</p>
+<pre><code>df.sort_values('Distance',inplace=True)
+</code></pre><p>You can see that the rows are arranged in the ascending order of the distances.</p>
+<pre><code>df.head(10)
+</code></pre><p>Choose a K. There is no definite method to choose K. But for this case, we&rsquo;ll choose K as 1000. Meaning, we&rsquo;ll be analysing the most probable crime on a given pair of coordinates, based on 1000 surrounding points. Whichever crime occurs in majority in these 1000 points, is the most likely crime in that location as well.</p>
+<pre><code>k=1000
+</code></pre><p>Finally, let us carry out the prediction, which is simply the crime which occurs most frequently in the K points.</p>
+<pre><code>prediction = df[:k].TYPE.value_counts().index[0]
+prediction
+</code></pre><p>Hence, we have found the most probable crime on those coordinates. Let us also see, that, out of 1000 datapoints, how many of each crimes occur, and verify that the most frequent crimes is the same as our prediction.</p>
+<pre><code>df[:k].TYPE.value_counts()
+</code></pre><p>Let us visualize this! We plot only these K points, and see, the number of crimes in the area, and visually verify that most common crime in the area is the same as our prediction. For better visual aid, we&rsquo;ve enlarged the most probable crime with respect to other crimes.</p>
+<pre><code>for name,group in df[:k].groupby('TYPE'):
+    plt.scatter(group.X,group.Y,label=name,s=50 if name is prediction else 1 )
+plt.scatter(x,y,c='RED',marker='X',s=200,label='Target')
+plt.legend(bbox_to_anchor=(1, 1), loc='upper left')
+</code></pre><p>And thats it! You&rsquo;ve built your own crime predictor as well! With such less effort, that too!</p>
+<p>But again, we&rsquo;ve written way too much of code for such simple tasks. We should refactorize the code. Let us write some appropriate functions, carrying out the same tasks.</p>
+<pre><code>def visualize_target(coordinates:tuple, df):
+    x,y=coordinates
+    assert df.X.min()&lt;=x&lt;=df.X.max(),f'x cordinate should lie in Vancouver City - between cordinates {df.X.min()} and {df.X.max()}.'
+    assert df.Y.min()&lt;=y&lt;=df.Y.max(),f'y cordinate should lie in Vancouver City - between cordinates {df.Y.min()} and {df.Y.max()}.'
+    plt.scatter(df.X,df.Y,s=0.001)
+    plt.scatter(x,y,c='RED',marker='X',s=100)
+</code></pre><pre><code>def euclidean_2d_distance(x,y,df):
+    return np.sqrt(np.square(x-df.X) + np.square(y-df.Y))
+
+def get_k_nearest_neighbors(df,target_coordinates,k=1000,distance_func=euclidean_2d_distance):
+    df['Distance']=distance_func(*coordinates,df)
+    df.sort_values('Distance',inplace=True)
+    return df[:k]
+
+def get_prediction(df):
+    prediction = df.TYPE.value_counts().index[0]
+    return prediction
+
+def visualize_prediction(df,pred=None,k=None):
+    if pred is None: pred=get_prediction(df)
+    if k is None: k= len(df)
+    
+    for name,group in df[:k].groupby('TYPE'):
+        plt.scatter(group.X,group.Y,label=name,s=50 if name is prediction else 1 )
+    plt.scatter(x,y,c='RED',marker='X',s=200,label='Target')
+    plt.legend(bbox_to_anchor=(1, 1), loc='upper left')
+</code></pre><pre><code># KNN in 4 lines
+visualize_target(coordinates,df) #line1
+</code></pre><pre><code>pred=get_k_nearest_neighbors(df,coordinates) #line2
+get_prediction(pred) #line3
+</code></pre><pre><code>visualize_prediction(df,pred=pred,k=1000) #line4
+</code></pre><p>Try running this algorithm with a different pair of coordinates!</p>
+<h2 id="review-and-tips">Review and Tips</h2>
+<p>In this session, we studied about clustering algorithms in Machine Learning, which is a step towards Unsupervised learning in ML. In both the algorithms above, we did not direct our model towards a specific goal, but did general inference (patter identification) on the data. And still got some really meaningful results. That being said, one should not think that unsupervised leanring is not useful at all. It is very useful in its own applications.</p>
+<h4 id="tips">Tips</h4>
+<p>The only useful tip that you need to learn from this session is - Refactoring code. Most Machine Learning practitioners do not pay attention to this, and this creates a problem for them later on. Why? because if you simply make a good structure of code, you need not rewrite the entire structure if you want your model to perform just slightly differently. As you will see in the exercises below (in the K Means related question), all you need to do is modify one function to solve the biggest problem that K Means algorithms face.</p>
+<p>####Questionaire:
+These are non-evaluative, but highly recommended to go through. Make sure you clearly know the answer to each of these concepts. The answers to all these questions are somewhere in this notebook, so if you find yourself unclear with a concept, go back up and find the answer!</p>
+<ol>
+<li>What characteristics of Unsupervised Learning does the KNN algorithm have?</li>
+<li>What is the advantage of the NumPy library?</li>
+<li>Similar to the bar graph depicting the number of crimes per district, can you write a piece of code to build a bar graph showing number of crimes per category? (like, Theft from Vehicle and so on).</li>
+</ol>
+<h1 id="exercises-evaluative">Exercises (Evaluative)</h1>
+<h2 id="1-a-robust-k-means-algorithmic-system">1. A Robust K Means Algorithmic system</h2>
+<p>We learnt about the initialization problem in K Means. Many a times, a cluster is not assigned any datapoints. Let us try to solve it.</p>
+<p>All we need to do is, keep re-initializing the centroids, until some or the other datapoint lies closest to it, and the datapoint is assigned that cluster. You need to redefine the <code>initialize_centroids</code> function to implement this functionality.</p>
+<p>Then run the model again to see if your function works. (Even After reinitializing multiple times, there should be no empty cluster)!</p>
+<pre><code>
+</code></pre><h2 id="2-regression-using-k-nearest-neighbors">2. Regression using K Nearest Neighbors</h2>
+<p>Just like classification, we&rsquo;ll be carrying out Regression. Instead of finding the majority class, our Job is to find the average of the values of K Nearest Neighbors.</p>
+<p>In this exercise, we will be finding out the most probable <em>Hour</em> of crime in a particular locality. You can use any cordinates as the reference. Use k as 100.</p>
+<pre><code>
+</code></pre></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#k-means-and-k-nearest-neighbors-algorithms">K Means and K Nearest Neighbors Algorithms</a></li>
+        <li><a href="#k-means-algorithm">K Means Algorithm</a></li>
+        <li><a href="#k-nearest-neighbors">K Nearest Neighbors</a></li>
+      </ul>
+    </li>
+    <li><a href="#review-and-tips">Review and Tips</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#1-a-robust-k-means-algorithmic-system">1. A Robust K Means Algorithmic system</a></li>
+    <li><a href="#2-regression-using-k-nearest-neighbors">2. Regression using K Nearest Neighbors</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

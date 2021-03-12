@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta name="generator" content="Hugo 0.68.3" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="07 Decision Trees and Random Forests Welcome to the 2nd half of this course, and the 7th practical session in Machine Learning. This session is on Decision Trees and Random Forests.
+Till now we&rsquo;ve learnt about classical Machine Learning techniques. Now we&rsquo;re going to shift towards the modern era of Machine Learning, that lead to the present state of Artificial Intelligence. The state of Artificial Intelligence has become quite sophisticated.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://palaashagrawal.github.io/practicals/docs/07-decision-trees-and-random-forests/" />
+
+<title>07 Decision Trees and Random Forests | Palaash Agrawal</title>
+<link rel="manifest" href="https://palaashagrawal.github.io/practicals/manifest.json">
+<link rel="icon" href="https://palaashagrawal.github.io/practicals/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="https://palaashagrawal.github.io/practicals/book.min.2dc4d2afa8da6ac78d76671c21e140952e7a84846fed47ed02a1a2d68166d992.css" integrity="sha256-LcTSr6jaaseNdmccIeFAlS56hIRv7UftAqGi1oFm2ZI=">
+<script defer src="https://palaashagrawal.github.io/practicals/en.search.min.ca40c67ae3c71e5afca9d771d7e6ea511d0c4ba4f69a678a0b07e8c8557d56c0.js" integrity="sha256-ykDGeuPHHlr8qddx1&#43;bqUR0MS6T2mmeKCwfoyFV9VsA="></script>
+<link rel="alternate" type="application/rss+xml" href="https://palaashagrawal.github.io/practicals/docs/07-decision-trees-and-random-forests/index.xml" title="Palaash Agrawal" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="https://palaashagrawal.github.io/practicals/"><span>Palaash Agrawal</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/00-introduction-to-machine-learning-and-python/" class="">00 Introduction to Machine Learning and Python</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/01-linear-regression/" class="">01 Linear Regression</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/02-logistic-regression/" class="">02 Logistic Regression</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/03-singular-value-decomposition-and-principal-component-analysis/" class="">03 Singular Value Decomposition and Principal Component Analysis</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/04-bayesian-learning/" class="">04 Bayesian Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/05-clustering-algorithms-in-machine-learning/" class="">05 Clustering Algorithms in Machine Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/06-support-vector-machines/" class="">06 Support Vector Machines</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/07-decision-trees-and-random-forests/" class=" active">07 Decision Trees and Random Forests</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="https://palaashagrawal.github.io/practicals/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>07 Decision Trees and Random Forests</strong>
+
+  <label for="toc-control">
+    
+    <img src="https://palaashagrawal.github.io/practicals/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+
+    
+  </label>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  
+    window.addEventListener('load', (event) => {
+        document.querySelectorAll("mjx-container").forEach(function(x){
+          x.parentElement.classList += 'has-jax'})
+      });
+  
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#decision-trees">Decision Trees</a>
+      <ul>
+        <li><a href="#case-study-tic-tac-toe">Case Study: Tic Tac Toe</a></li>
+      </ul>
+    </li>
+    <li><a href="#random-forests">Random Forests</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#exercise">Exercise</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="07-decision-trees-and-random-forests">07 Decision Trees and Random Forests</h1>
+<p>Welcome to the 2nd half of this course, and the 7th practical session in Machine Learning. This session is on Decision Trees and Random Forests.</p>
+<p>Till now we&rsquo;ve learnt about classical Machine Learning techniques. Now we&rsquo;re going to shift towards the <em>modern era</em> of Machine Learning, that lead to the present state of Artificial Intelligence. The state of Artificial Intelligence has become quite sophisticated.</p>
+<p>At present, methods like Deep Learning and Reinforcement Learning are state of the art, and will remain so in the near future. These methods have only emerged recently.</p>
+<p>In early 2000s, <em>Random Forests</em> was introduced, and it started becoming a popular method for Regression and Classification in Machine Learning. Part of the reason for its popularity was because of its ability to handle complexity well, and the other part of its popularity was its simplicity and intuitiveness.</p>
+<p>Infact, even after the emergence of sophisticated methods like Deep Learning, Random Forests are still very significant. Deep Learning can solve a lot of complex problems, but is not very effective in many domains. For example, Deep Learning does not perform really well wherever traditional multi-layer perceptron type networks are used (it has reached to good levels of performance, buts its not sophisticated yet). For example, tabular data prediction is solved using traditional types of Neural Networks, and they do not perform very well as of now. But, Random Forests perform very well in the case of tabular data. Random Forests are infact more popular and effective than Neural Networks presently. (Though in 2019, some research showed that good feature engineering can help Neural Networks perform better, but still, Random Forests still outperform Neural Networks). Having said that, it is an important and really interesting topic to learn. We&rsquo;ve tried to solve many problems using tabular data, so today we&rsquo;ll be learning of the State of the Art (for real) modeling technique in Machine Learning to predict on tabular data.</p>
+<p>Random Forests are an extension of <em>Decision Trees</em>. So in this session, we&rsquo;ll first learn about Decision Trees, and then about Random Forests.</p>
+<h2 id="decision-trees">Decision Trees</h2>
+<p>Decision Trees are a very intuitive way to process information. They are not specific to Machine Learning, and actually come from psychology. Decision Trees were initially used to create logic models. Lets understand the beauty of Decision Trees with an example.</p>
+<p><img src="https://drive.google.com/uc?id=1pv7em1Ewu_90NllqHGdE-ww4pcmdrkss" alt="" /></p>
+<p><a href="https://medium.com/machine-learning-for-grandma/decision-tree-e6ab1037df16">Figure Credits</a></p>
+<p>When one applies for a loan, the bank needs takes into consideration many factors. And there can be many &ldquo;chains&rdquo; of queries(or questions, or  that can determine the final outcome (whether or not a loan should be given out to the applicant). For example, the above figure shows the following chain of decisions to be made while considering a loan application.</p>
+<ol>
+<li>
+<p>Do they have a credit history? Meaning, have they taken a loan before?</p>
+</li>
+<li>
+<p>If yes, do they have a pledge? (Meaning an asset that is on another loan or mortgage). If no, then it doesn&rsquo;t matter whether they have a pledge or not. The important question now is, how much debt they have. If its less than some amount, then its a yes for the loan. If the amount is greater than a value, then its a no.</p>
+</li>
+</ol>
+<p>and so on&hellip;</p>
+<p>You can think of many examples in real life where you think through such a structured chain of thought.</p>
+<p>Decision Trees come with an idea of features ranked by importance. For example, in the above example, whether or not an applicant has a pledged asset is not necessarily a deciding factor, but whether or not a person has a credit history is!</p>
+<p>So, how do Decision Trees work?</p>
+<p>Decision Trees ask a series of binary questions (yes/no questions) to arrive to a conclusion. That is the entire model! Now once you have this model, you can simply traverse through the tree to find the final answer.</p>
+<p>A decision Tree starts with one question, that splits into a yes, and a no. Each one of those too split into further yes and no&rsquo;s. Each question is called a <em>node</em>.</p>
+<p>The first question that is asked (or the first node. In this case, the question about whether or not an applicant has a credit history) is the most important question. Its called the <em>root</em> of the tree. The root <em>branches out</em> into <em>children nodes</em>. Each child further branches out, until we reach the final node in any branch. This node is called the <em>leaf</em> node.</p>
+<p>How do we decide which feature is more important and which node is less important? And how do we decide the correct sequence of decisions that need to be taken? We&rsquo;ll briefly describe the method.</p>
+<p>Before that, let us pick an interesting problem.</p>
+<h3 id="case-study-tic-tac-toe">Case Study: Tic Tac Toe</h3>
+<p><img src="https://drive.google.com/uc?id=11R5WhfpfjNG0fs0fxg_gAd3N4cBMi_vt" alt="" /></p>
+<p>You must have played a game of tic-tac-toe. Two players mark either a X or an O on a grid of 3x3 cells. If anyone manages to mark a complete row, column or diagonal, they win the game. We can visually look at the board and understand the meaning of a row, cell or column. But how would you hardcode the logic to a tic tac toe game app that you can find on the internet?</p>
+<p>One of the ways is to build a tree, that goes as follows.</p>
+<ol>
+<li>Mark all the cells as 1 through 9.</li>
+<li>If a person marks cell, does the adjacent cell have the same mark?</li>
+<li>If yes, then is does the same mark exist in the next cell <em>in the same direction</em>?</li>
+<li>If yes, the player wins the game.</li>
+</ol>
+<p><a href="https://www.kaggle.com/aungpyaeap/tictactoe-endgame-dataset-uci">This</a> dataset contains all the possible configurations of the tic-tac-toe grid that result in one of the players winning the game. Each cell has three possible values - X, O or blank (b). Configurations that lead player &lsquo;X&rsquo; to win are labeled as positive, and the ones that lead player &lsquo;O&rsquo; to win, are labeled as negative.</p>
+<p>Our job is to build a classifier that can take in a board configuration and come to a conclusion about which player won the game.</p>
+<p>Let us download this dataset. Since we are downloading this dataset from <em>Kaggle</em>, we need to first upload the kaggle.json file, that you may have downloaded earlier.</p>
+<pre><code>%cd 
+from google.colab import files
+uploaded = files.upload()
+!mkdir -p ~/.kaggle/ &amp;&amp; mv kaggle.json ~/.kaggle/ &amp;&amp; chmod 600 ~/.kaggle/kaggle.json
+
+</code></pre><pre><code>!kaggle datasets download -d aungpyaeap/tictactoe-endgame-dataset-uci
+!mkdir -p tictactoe &amp;&amp; unzip tictactoe-endgame-dataset-uci.zip -d tictactoe
+%cd tictactoe
+!ls
+</code></pre><p>We have a csv file containing data. So we&rsquo;ll use the pandas library to read and process this library.</p>
+<pre><code>import pandas as pd
+df=pd.read_csv('tic-tac-toe-endgame.csv')
+df.head()
+</code></pre><p>If the data is not intuitive to you, let us visualize the first row in a way that we are more used to seeing.</p>
+<pre><code>import numpy as np
+</code></pre><pre><code>config_=df.iloc[0]
+config=config_[:-1]
+config=[o if o!='b' else '' for o in config]
+print(f&quot;winner: player {'X' if config_[-1]=='positive' else 'O'}&quot;)
+pd.DataFrame(data=np.reshape(config,(3,3)))
+</code></pre><p>How many rows does this dataset contain in total?</p>
+<pre><code>len(df)
+</code></pre><p>And are there any rows which contain incomplete information in this dataset?</p>
+<pre><code>df.isna().any().any()
+</code></pre><p>No! There are no empty features in this dataset. We&rsquo;ve now setup our data. The next step is to feed the data into the model. But before that, we need to <em>preprocess</em> the data. Meaning, we have to first convert each feature into numbers, because computers cannot understand anything other than numbers. So we need to categorize all variables into numbers.</p>
+<p>We defined a function in Session 4 (On Bayesian Learning) called <code>categorify</code>, which categorizes each categorical variable, and also adds a method to the dataframe, called the <code>dictionary</code>, which keeps track of which categorical numbers refer to which original category. We&rsquo;ll categorify our dataframe below.</p>
+<pre><code>def categorify(df):
+    df.dictionary={}
+    for col in df: 
+        numerical_categories = {k:i for i,k in enumerate(sorted(df[col].unique()))}
+        df[col]=[numerical_categories[i] for i in df[col]]
+        df.dictionary[col]=numerical_categories
+categorify(df)
+</code></pre><pre><code>df.head()
+</code></pre><p>You can see that all feaures in the dataframe are now numbers. Lets see which features refer to which</p>
+<pre><code>df.dictionary
+</code></pre><p>Finally, lets split this data into the input and output , or <code>x</code> and <code>y</code>.</p>
+<pre><code>x=df.drop(['V10'],axis=1)
+y=df['V10']
+len(x),len(y)
+</code></pre><p>Finally lets build the model that we will use to build the classifier.</p>
+<p>We won&rsquo;t build a Decision Tree from scratch, but use an already existing implementation that is provided by the scikitlearn library.</p>
+<pre><code>from sklearn.tree import DecisionTreeClassifier
+</code></pre><p>According to the <a href="https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html">documentation</a> here&rsquo;s the syntax to build a classifier.</p>
+<pre><code>model = DecisionTreeClassifier(criterion = 'entropy', max_leaf_nodes=5)
+</code></pre><p>To understand how this model works, Let&rsquo;s explain how Decision Trees are built!</p>
+<p>As we mentioned before, Decision Trees are built upon the principle of ranking different features. For example, in the bank loan example, whether a person had a credit history is the most important feature.</p>
+<p>Here are the steps to build a Decision Tree.</p>
+<ol>
+<li>Go through each feature of the dataset one by one.</li>
+<li>For each possible value in the feature column, classify all relevant datapoints using that value as the threshold.</li>
+<li>Whichever threshold (among all values of all features) gives the best result becomes the criteria of classification at that node, and the corresponding feature becomes the node of the tree.</li>
+<li>Continue till all datapoints till you reach a satisfactory result, or reach a maximum number of iterations.</li>
+</ol>
+<p>For example, while going through all features, when the model comes across the feature &ldquo;credit history&rdquo;, and looks for all possible values. The possible values are 0 or 1. So the decision is, whether the value of credit history is 0 or 1. The ones for which credit history is 1, are classified as &ldquo;positive&rdquo; (for whether a loan should be given or not) &ldquo;negative for the other&rdquo;. So there are, say, <code>a</code> number of datapoints in the branch where credit history is 1, and <code>b</code> datapoints in 0. All of the &lsquo;a&rsquo; datapoints are <em>predicted</em> to be positive by this model at this point. And all of
+&lsquo;b&rsquo; datapoints are predicted as negative. Note, a+b is the total number of datapoints. And the reason that &ldquo;credit history&rdquo; was chosen as the node among all features, because it could classify the points the best among all features. Not perfect, but still the closest.</p>
+<p>Now, For the a datapoints, we go through all features again (excluding credit history, because we&rsquo;ve already covered it for this particular branch.) and choose the feature that further gives the best accuracy while doing a split. And we do this until we reach a point where either all the datapoints have been correctly classified, or we&rsquo;ve reached a limit on the <em>depth</em> or levels of the tree.</p>
+<p>In the syntax of the line <code>model = DecisionTreeClassifier(criterion = 'entropy', max_leaf_nodes=5)</code></p>
+<p><code>criterion</code> is the metric which helps decide which feature is better than the other. Its similar to a loss function we&rsquo;ve seen before. We&rsquo;ve studied about Entropy Loss in Logistic Regression. Here we will use the &lsquo;entropy&rsquo; criterion.</p>
+<p>We will also put a limit to the maximum number of leaf nodes there can be, so that the model does not try to fit every single datapoint correctly. That would be similar to <em>overfitting</em>. We don&rsquo;t want that. So we&rsquo;ll stop the model to go all the way to the end.</p>
+<p>Let us now train (aka fit) the model. According to the documentation, here&rsquo;s the syntax to do so.</p>
+<pre><code>model.fit(x, y);
+</code></pre><p>And we have built a Decision Tree. We would like to visualize this tree. We will do so by using the tree module in sklearn. Matplotlib is used to display the figure in Colab.</p>
+<pre><code>import matplotlib.pyplot as plt
+from sklearn import tree
+</code></pre><pre><code>plt.figure(figsize=(6,8))
+tree.plot_tree(model,filled=True)
+plt.show()
+</code></pre><p>For each node, the branch on the left corresponds to the &lsquo;Yes&rsquo; case, and the right corresponds to &lsquo;No&rsquo;. At each node, entropy of the decision tree is mentioned (basically, how well the tree is able to predict on the data , the lower - the better). You can also see that as we go down a tree, the entropy reduces. That is exactly what we want.</p>
+<p><code>Samples</code> tells us about the number of datapoints that are classified as positive or negative by the node above it. You can verify that at any node, the number of datapoints on its left and right child nodes (ie the datapoints classified as positive or negative) add up to the number of datapoints in that node.</p>
+<p>And finally, we would like to see how good the model performs on the dataset. We will do this by finding the accuracy of predictions. We haven&rsquo;t used a validation/testing dataset for this problem. We&rsquo;ll simply examine the trend of model performance on the training dataset itself.</p>
+<pre><code>from sklearn.metrics import accuracy_score
+y_pred=model.predict(x)
+accuracy_score(y_pred,y)
+</code></pre><p>Ideally if you put no condition on the depth of the tree, the model will keep splitting the data until every datapoint is correctly classified. But that probably won&rsquo;t work well on real world data, because of overfitting. But never the less, lets try it out.</p>
+<pre><code>model = DecisionTreeClassifier(criterion = 'entropy')
+model.fit(x, y);
+y_pred=model.predict(x)
+accuracy_score(y_pred,y)
+</code></pre><pre><code>plt.figure(figsize=(6,8))
+tree.plot_tree(model,filled=True)
+plt.show()
+</code></pre><p>This is quite a deep and complex decision tree! So, if you slowly increase the number of <code>max_leaf_nodes</code> in the model, your accuracy will increase. Initially we set it as 5, now lets set it as 20</p>
+<pre><code>model = DecisionTreeClassifier(criterion = 'entropy', max_leaf_nodes=20)
+model.fit(x, y);
+</code></pre><pre><code>y_pred=model.predict(x)
+accuracy_score(y_pred,y)
+</code></pre><pre><code>plt.figure(figsize=(8,8))
+tree.plot_tree(model,filled=True)
+plt.show()
+</code></pre><p>You can see that the accuracy has increased!</p>
+<p>So that is how Decision Trees are built in python!</p>
+<p>Now let us understand what Random Forests are&hellip;</p>
+<h2 id="random-forests">Random Forests</h2>
+<p>In 1994, Leo Breiman, a recently retired UC Berkley professor of statistics introduced <em>Bagging</em>, which is a statistics technique used to improve the performance of models (It is actually used by almost all corporates in any Machine Learning application). The idea is to not rely on a single Machine Learning model to get predictions, because there might be errors in the model predictions.</p>
+<p>However, if you <em>aggregate</em> the results of multiple Machine Learning model (using a democracy rule), you are likely to get stronger predictions. For example, a particular model might predict an input wrongly, but it is quite less likely for 10 models to predict wrong on the same input.</p>
+<p>Breiman proposed to do this by building multiple models, each with a random subset of the data. Because of the randomness, each model is independent of the other. The final result of the model is the aggregate of the predictions of all models. For example, for calssification, this  aggregation may be done by a majority-voting method.</p>
+<p>In 2001, Breiman demonstrated this method for Decision Trees, and that came to be called <em>Random Forests</em>.</p>
+<p>(Forests because forests have trees, and Random because of the randomness in the bagging technique.)</p>
+<p>Sklearn provides us with a class that build a Random Forest Classifier for us. We will use this..</p>
+<pre><code>from sklearn.ensemble import RandomForestClassifier
+</code></pre><p>We again set a limit on the maximum number of leaf nodes in any decision tree.</p>
+<p><code>n_estimators</code> is the number of decision trees in a Random Forest. Its default value is 100, meaning a 100 DTs will be built, and the final result will be an aggregate of all these 100 decision trees.</p>
+<p>There&rsquo;s also an attribute called as <code>max_samples</code> in the RandomForest function, which tells the model, what fraction of the entier dataset must be chosen to build any  of the 100 decision trees.</p>
+<pre><code>model=RandomForestClassifier(criterion='entropy',max_leaf_nodes=5,n_estimators=100,max_samples=0.5)
+model.fit(x,y);
+</code></pre><pre><code>y_pred=model.predict(x)
+accuracy_score(y_pred,y)
+</code></pre><p>You can see that the performance of a RandomForest for the same limit of <code>max_leaf_nodes</code> is better than its Decision Tree counterpart.</p>
+<p>Try playing around with the parameters of the model function and see the effect on the performance.</p>
+<h1 id="excercise-evaluative">Excercise (Evaluative)</h1>
+<p>Your task is to build both Decision Trees and Random Forests for another task. The task we will use in this question is the <a href="https://www.kaggle.com/uciml/mushroom-classification">Mushroom Classification</a> Dataset, which gives information about the mushrooms appearance, habitat, etc. We need to identify which mushroom is poisenous, and which is edible (given in the <code>class</code> column of the dataframe)</p>
+<pre><code>%cd
+!kaggle datasets download -d uciml/mushroom-classification
+!mkdir mushroom &amp;&amp; unzip mushroom-classification.zip -d mushroom
+%cd mushroom
+!ls
+</code></pre><pre><code>df=pd.read_csv('mushrooms.csv')
+df
+</code></pre><p>Some columns have <code>?</code>, which is equivalent to NaNs. We need to remove these blank values.</p>
+<pre><code>(df=='?').any()
+</code></pre><p>&lsquo;stalk-root&rsquo; contains such ?&lsquo;s. So we&rsquo;ll drop the entire column for the sake of this problem</p>
+<pre><code>df=df.drop('stalk-root',axis=1)
+</code></pre><h2 id="exercise">Exercise</h2>
+<ol>
+<li>Build a Decision Tree for this dataset. Run this decision tree for <code>max_leaf_nodes</code> varying from 2 to 20. Store the accuracy of the model for each of these decision trees in a list.</li>
+<li>Similarly build a Random Forest Model for <code>max_leaf_nodes</code> varying from 2 to 20. Store the accuracies in another list</li>
+<li>Plot the accuracies of the two models in a single graph, using matplotlib.</li>
+<li>Also plot another graph showing the effect of changing the <code>n_estimator</code> parameter of the Random FOrest constructor from 1 to 100, keeping <code>max_leaf_nodes</code> as 5.</li>
+</ol>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#decision-trees">Decision Trees</a>
+      <ul>
+        <li><a href="#case-study-tic-tac-toe">Case Study: Tic Tac Toe</a></li>
+      </ul>
+    </li>
+    <li><a href="#random-forests">Random Forests</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#exercise">Exercise</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

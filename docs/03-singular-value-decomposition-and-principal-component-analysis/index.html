@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta name="generator" content="Hugo 0.68.3" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Session 3: SVD and PCA Welcome to Session 3 of the practical Machine Learning sessions. In this session, we&rsquo;ll understand and implement SVD and PCA, which stand for Singlular Value Decomposition and Principal Component Analysis. These two ideas are very similar, and have the same end goal.
+In this session, we&rsquo;ll only introduce ourselves to these concepts. The reason we won&rsquo;t go deep into these topics in this session itself, is because these topics have no practical application independently.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://palaashagrawal.github.io/practicals/docs/03-singular-value-decomposition-and-principal-component-analysis/" />
+
+<title>03 Singular Value Decomposition and Principal Component Analysis | Palaash Agrawal</title>
+<link rel="manifest" href="https://palaashagrawal.github.io/practicals/manifest.json">
+<link rel="icon" href="https://palaashagrawal.github.io/practicals/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="https://palaashagrawal.github.io/practicals/book.min.2dc4d2afa8da6ac78d76671c21e140952e7a84846fed47ed02a1a2d68166d992.css" integrity="sha256-LcTSr6jaaseNdmccIeFAlS56hIRv7UftAqGi1oFm2ZI=">
+<script defer src="https://palaashagrawal.github.io/practicals/en.search.min.ca40c67ae3c71e5afca9d771d7e6ea511d0c4ba4f69a678a0b07e8c8557d56c0.js" integrity="sha256-ykDGeuPHHlr8qddx1&#43;bqUR0MS6T2mmeKCwfoyFV9VsA="></script>
+<link rel="alternate" type="application/rss+xml" href="https://palaashagrawal.github.io/practicals/docs/03-singular-value-decomposition-and-principal-component-analysis/index.xml" title="Palaash Agrawal" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="https://palaashagrawal.github.io/practicals/"><span>Palaash Agrawal</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/00-introduction-to-machine-learning-and-python/" class="">00 Introduction to Machine Learning and Python</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/01-linear-regression/" class="">01 Linear Regression</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/02-logistic-regression/" class="">02 Logistic Regression</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/03-singular-value-decomposition-and-principal-component-analysis/" class=" active">03 Singular Value Decomposition and Principal Component Analysis</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/04-bayesian-learning/" class="">04 Bayesian Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/05-clustering-algorithms-in-machine-learning/" class="">05 Clustering Algorithms in Machine Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/06-support-vector-machines/" class="">06 Support Vector Machines</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/07-decision-trees-and-random-forests/" class="">07 Decision Trees and Random Forests</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="https://palaashagrawal.github.io/practicals/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>03 Singular Value Decomposition and Principal Component Analysis</strong>
+
+  <label for="toc-control">
+    
+    <img src="https://palaashagrawal.github.io/practicals/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+
+    
+  </label>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  
+    window.addEventListener('load', (event) => {
+        document.querySelectorAll("mjx-container").forEach(function(x){
+          x.parentElement.classList += 'has-jax'})
+      });
+  
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-curse-of-dimensionality">The Curse of Dimensionality</a></li>
+    <li><a href="#variance-in-data-an-intuition">Variance in Data: An intuition</a></li>
+    <li><a href="#how-svd-ranks-features">How SVD ranks features</a></li>
+    <li><a href="#pca">PCA</a></li>
+    <li><a href="#can-we-apply-svdpca-through-other-libraries-too-optional">Can we Apply SVD/PCA through other libraries too? (Optional)</a>
+      <ul>
+        <li><a href="#1-using-numpy">1. Using NumPy</a></li>
+        <li><a href="#2-pca-using-sklearn">2. PCA Using sklearn</a></li>
+      </ul>
+    </li>
+    <li><a href="#review">Review</a>
+      <ul>
+        <li><a href="#review-questions">Review Questions:</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercise">Exercise</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="session-3-svd-and-pca">Session 3: SVD and PCA</h1>
+<p>Welcome to Session 3 of the practical Machine Learning sessions. In this session, we&rsquo;ll understand and implement SVD and PCA, which stand for <strong>Singlular Value Decomposition</strong> and <strong>Principal Component Analysis</strong>. These two ideas are very similar, and have the same end goal.</p>
+<p>In this session, we&rsquo;ll only introduce ourselves to these concepts. The reason we won&rsquo;t go deep into these topics in this session itself, is because these topics have no practical application independently. They are used as a part of bigger models. So in this session we&rsquo;ll understand the concepts and intuition behind SVD and PCA, and later use it as a part of other Machine Learning projects. But yet, these topics deserve an entire session dedicated to themselves, because even though we cannot build a model using these topics, the idea behind them is quite important in Machine Learning, and its not totally self-intuitive. So the ideas do need a little bit of explanation. Also, we will still build interesting models using these concepts.</p>
+<p>As you know, these sessions are more practically-oriented than theoretically-oriented. So, we will not dive into most of the mathematics and theory behind the concepts, and only touch the information that is needed to build the code for our model. Our focus will be on understanding the functionality. You can find the exact innards of these concepts through a lot of online resources. However, this is a concept that does require a little bit of mathematics to intuitively understand the concept, and so if you don&rsquo;t get it at once, don&rsquo;t be discouraged! Go through it slowly and you will surely understand the concepts.</p>
+<p>So, Let us first understand what is the motivation behind these concepts, and then understand what SVD and PCA are.</p>
+<h2 id="the-curse-of-dimensionality">The Curse of Dimensionality</h2>
+<p>Data, especially in recent times, often are of very high <em>dimensions</em>, or features. For example, satellite images sometimes contains thousands of bands of frequency spectrums, called <em>channels</em>, each of which is a separate feature. In Natural Language Processing (that is, the branch of AI that deals with Language understanding, for example, voice recognition (Siri, Google Assistant, Alexa), language to language translation, Sentiment Analysis (identifying hate speech, violence, etc)), words are represented as individual features. So if you wanted to model the entire English Language, you would be dealing with 1 million+ features.</p>
+<p>Infact, think of the amount of data that your phone generates. Modern phones have a lot of sensors, like Accelerometer, Gyroscope, Magnetometer, light sensor, biometric sensor (fingerprint scanner), GPS sensor, etc., all of which generate data continuously and independently, which is eventually transmitted to the company, which it uses to provide various services. Similarly, Aeroplanes generate hundreds of biliions of gigabytes of data every year, in the form of multiple sensors and manually fed data. The list goes on and on.</p>
+<p>Now, ideally, the goal of any model is to understand the data completely, or in other words, extract <em>all</em> the information that the data can provide to us, and the utopian solution to this is to build a model over all the data available, including all features.</p>
+<p>But, practically, its not an efficient method to use all the features of the data.</p>
+<ol>
+<li>It increases the time and space complexity of the problem. Hence, more resources are required. And this becomes a problem when we deal with huge amounts of data, (billions of data points, for example). (By the way, we call this <em>Big Data</em> in modern lingo). And even the most sophisticated computing system either are not capable of, or are pushed to the limits trying to handle such data.</li>
+<li>Most of the times, we do not even need all the features of the data. Many features are either useless, redundant, or provide very little information about the objective - so little, that even if we ignore the feature completely, there would not be a significant difference in the results.</li>
+</ol>
+<p>For example, the health tracking app on your phone determines how many steps you walked in a day. The data from the biometric sensor is of no use for this application. However, an application that tracks your daily screen time would need data from the biometric scanner, the light sensor, etc, but on the other hand, would not require data from the gyroscope. Maybe the gyroscope is somewhat related to your usage of the phone, and may give some additional information about your screen time, but the light sensor and biometric sensor may give us enough information to accurately determine your screen time, and hence, we may not need the gyroscope information at all!</p>
+<p>So, if you pick any domain, you will, more or less, have access to a lot of types of data. But not all of the data is useful or feasible to use, and so, as Data Science practitioners, one of the most important tasks in any project is to understand what data is useful for your purpose, and which is not. This problem of having way too much information, is called the <em>Curse  of Dimensionality</em>.</p>
+<p>This leads us to the idea of ranking features by their importance. We would like to retain more important features and discard the less important features. Cognitively speaking, we can identify which features are important to our particular problem. For example, if we were to build the fitness tracking app of your phone, which can track how many steps you take, you would know that the data from the light sensor is more or less useless to build this feature. This is possible because we have an <em>understanding</em> that features which are related to the number of steps taken are more relative to this application, and others are not.</p>
+<p>But Machines do not understand these concepts, atleast not in today&rsquo;s world. They treat all features with equal importance. So how do we build a system that can rank features based on their importance?</p>
+<h2 id="variance-in-data-an-intuition">Variance in Data: An intuition</h2>
+<p>The idea is to rank features based on the <em>amount of information</em> each feature carries. In mathematics, the idea of the amount of information is represented by the <em>variance</em> of the value of a feature for all data points, or in other words, how spread out the values of a feature are.</p>
+<blockquote>
+<p>If you&rsquo;re not familiar with the concept of variance, <a href="https://www.youtube.com/watch?v=MRqtXL2WX2M">here</a> is a great source to give you an intuition. This video is based on the idea of <em>standard deviation</em>, which is very much similar to variance. In mathematics, variance is defined as the square of the standard deviation. So the idea is similar. A larger standard deviation also means a larger variance. However, note, that we are not concerned with the mathematical formula of variance. Here, by reference, we only are refering to the idea of &ldquo;spread&rdquo;.</p>
+</blockquote>
+<blockquote>
+<p>Note: Variance is a concept that is applied to a <em>distribution</em> of data, or in other words, a collection of data. The data that we deal with is also a distribution (collection of items). Hence for each feature, a separate distribution can be generated. The values of a particular feature of all data points will constitute the distribution. So each feature will also have its own variance.</p>
+</blockquote>
+<p><strong>The more the Variance, more is the information constituted in the feature.</strong> The features with less variance do not provide us with a lot of information, and are thus, less relevant to us.</p>
+<p>To understand this concept more intuitively, have a look at this meme below.</p>
+<p><img src="https://drive.google.com/uc?id=142b3dOpsaLbYlTIHdh4gSOxu0MFqa3B6" alt="" /></p>
+<p>This is obviously meant as a joke, but it serves us as a great example. If you really wanted to differentiate between two species of animals, horses and crocodiles for example, you would collect data about these animals. The features could be - number of eyes, number of ears, weight, etc. As ridiculous as it may seem, even &ldquo;whether it is culpable for the death of Princess Diana&rdquo; is a feature.</p>
+<p>These features essentially have no <em>variance</em> among them. All horses have 2 eyes, and so do all crocodiles (atleast physically). No model in this world can differentiate between horses and crocodiles on the basis on number of eyes. This occurs due to the <em>lack of variance</em> in this feature. If you were to plot the number or eyes of 100 horses and 100 crocodiles, the distribution would not be spread out at all!</p>
+<p>Now consider the length of the ears of these two animals. The ears of a horse are of about 5 cm. Crocodiles on the other hand, do not have an external ear. So now you can easily differentiate between a horse and a crocodile now. This is because there exists variation in the data. And because of this, you can create two very distinct groups of animals.</p>
+<p>So now you see, among all the features, only one feature is sufficient to differentiate in this case. This is why extracting the more important features is important.</p>
+<p>The job of SVD and PCA algorithms is to find which features have the most variance, and hence carry the most information. Not only is it useful to identify the more important features, but also help us visualize data better. As you know, we can&rsquo;t imagine anything beyond 3 dimensions. So using SVD/PCA, we can represent almost all the information in just 3 dimensions, that would otherwise require, say, 100 dimensions.</p>
+<p>Lets learn about some details. We&rsquo;ll talk about SVD first, and then PCA. These 2 are anyways very similar concepts.</p>
+<h2 id="how-svd-ranks-features">How SVD ranks features</h2>
+<p>SVD refactorizes the input tensor (matrix) into a product of three matrices. Let us consider a matrix <em>A</em> of shape $m \times n$. SVD breaks it down into three matrices $U$,$S$ and $V$, such that</p>
+<p>$$A_{m \times n} = U_{m \times q} S_{q \times q} V^T_{q\times n}$$</p>
+<p>where S is a eye Matrix (a matrix whose only diagonal values are non zero, and remaining are zeros), and $V^T$ refers to the inverse of matrix $V$. $q$ takes the value of $min(m,n)$.</p>
+<p><img src="https://drive.google.com/uc?id=17fe47Y6cZuAedqNjvuYdz0igZGuJbrlr" alt="" /></p>
+<p>Let us test this out. PyTorch provides us methods to calculate SVD and PCA. We&rsquo;ll use it for now, and later introduce you to other libraries that can carry out these operations. However, we prefer PyTorch because, as we mentioned, we&rsquo;ll be using SVD and PCA as part of a bigger project, like a Linear Regression Model, or a Logistic Regression Model, or a Neural Network, and in that case, PyTorch will help us avoid gradient calculations, and also provide us with <em>tensors</em>, that can handle data very well.</p>
+<p>We also import matplotlib at this point, which will help us visualize our tensors.</p>
+<pre><code>import torch
+import matplotlib.pyplot as plt
+</code></pre><p>Let us generate a random tensor, of a random shape, lets say 10 x 6 (mxn)</p>
+<pre><code>A= torch.rand((10,6))
+</code></pre><p>Let us perform SVD on it. If you google &ldquo;pytorch svd&rdquo;, the first or second link will lead you to the documentation of SVD in PyTorch. <a href="https://pytorch.org/docs/stable/generated/torch.svd.html">Here</a> is the documentation. In the example section, the syntax is mentioned. Let us follow the exact syntax.</p>
+<pre><code>u,s,v = torch.svd(A)
+</code></pre><p>In PyTorch, all data containers are expected to be tensors. U, S and V too must be tensors. Let us verify that.</p>
+<pre><code>type(u), type(s), type(v)
+</code></pre><p>Let us also determine the shapes of these tensors.</p>
+<pre><code>u.shape ,s.shape, v.shape
+</code></pre><p>$q$ is $min(m,n) = min(10,6) = 6$.</p>
+<p>So u is of shape $m \times q = 10\times6$</p>
+<p>$s$ is supposed to a diagonal matrix. Instead, PyTorch directly provides us with the values of the diagonal elements. You can simply convert it to the diagonal matrix by <code>torch.diag(s)</code>.</p>
+<p>And finally $V^T$ is of shape $q\times n =6\times 6$ meaning, $V$ is of shape $6 \times 6$ too.</p>
+<p>Let us verify if the relationship written above holds.</p>
+<pre><code>u@torch.diag(s)@v.T #this is a tensor
+</code></pre><pre><code>print(A)
+</code></pre><p>You can compare by a quick visual look. The two tensors are exactly identical.
+Using a randomly generated tensor may not be as intuitive. Let us try this with a real world example. Let us upload an image to this notebook. Let us work with a specific image.</p>
+<p><img src="https://drive.google.com/uc?id=1cEmeBLncAbrbDparKHZ7hU_AXaRvJ_ql" alt="" /></p>
+<p>This is a 1920x1080 pixel image. Pretty large! Let&rsquo;s download this image to our notebook. To save you time, we&rsquo;re using a publically shared google drive image, which can be downloaded into the local environment in Google Colab by using the <code>!gdown</code> statement!</p>
+<p>We also use the PIL library, which is a standard Python Image processing Library (ie, to read a jpg/png file). Also, in order to convert jpg images to PyTorch tensors, we&rsquo;ll need the PyTorch child library torchvision.</p>
+<pre><code>from PIL import Image
+import torchvision
+
+#let us also define functions that convert image to tensor and viceversa
+image2tensor = torchvision.transforms.ToTensor()
+tensor2image = torchvision.transforms.ToPILImage()
+</code></pre><pre><code>!gdown --id 1cEmeBLncAbrbDparKHZ7hU_AXaRvJ_ql &gt;/.tmp
+!ls
+</code></pre><pre><code>img=Image.open('03 landscape.jpg')
+img
+</code></pre><pre><code>tensor_landscape = image2tensor(img).float()
+tensor_landscape.shape
+</code></pre><p>Notice that this image has 3 channels (Red Green and Blue), each of which is a tensor of shape (1080 x 1920). In total, there are 3x1080x1920 pixels = 6,220,800 pixels (6.2 million pixels). Thats a lot of pixels. We often undervalue modern technology. Just a few decades ago, it would not have been possible to fit this image in a single computer, that occupied an entire room (<a href="https://www.snopes.com/fact-check/computer-storage-1956/">source</a>).</p>
+<blockquote>
+<p>Note: In Many other libraries, image tensors are usually of the shape (m,n,3) rather than (3,m,n). This is one speciality about PyTorch. This is because PyTorch does all operations from the right. For example, PCA/SVD is done on a 2D matrix. So PyTorch would only operate SVD/PCA on the right most 2 dimensions, and leave the rest dimensions untouched. As you will see, this is not only efficient (doesn&rsquo;t require extra lines of code to exclude certain dimensions), but also is desirable for visualization as well as ease of operation of large amounts of data.</p>
+</blockquote>
+<p>So Now let us apply SVD to this image.
+same method as above!</p>
+<pre><code>u,s,v = torch.svd(tensor_landscape)
+u.shape, s.shape, v.shape
+</code></pre><p>Notice the extra dimension of 3 in these tensors. This is because of the 3 channels in the image. PyTorch has applied SVD on all 3 2-D matrices independently, and kept all dimensions separate.</p>
+<p>Let us verify that we can reobtain the image from these vectors. We have defined a function that can take these decomposed tensors (u,s,v) and return a tensor which represents the original tensors. You can ignore all the new PyTorch functions used in this function. We do this because the <code>@</code> operator does not know how to handle batches. So we have to use inbuilt pytorch functions.</p>
+<pre><code>def decomposed2tensor(u,s,v): return torch.matmul(torch.matmul(u,torch.diag_embed(s)),torch.transpose(v,-1,-2))
+</code></pre><pre><code>tensor = decomposed2tensor(u,s,v)
+tensor2image(tensor).resize((800,400))
+</code></pre><p>We have recovered the same image!</p>
+<p>So now lets choose a subset of features.
+As you would remember from the MNIST example from the Logistic Regression session, each pixel in this image is a separate feature. Here too, each pixel is a separate feature. But there are way too many features here - 6,220,800 features.</p>
+<p>How do we choose the most important features?</p>
+<p>The $S$ tensor is the key to our answer. $S$ gives the variance of each new feature in descending order. Hence, it also represents features in the descending order of the amount of information the features carry.</p>
+<p>Let us see this for ourselves!</p>
+<pre><code>plt.plot(s[0])
+plt.xlabel('feature number')
+plt.ylabel('amount of information')
+</code></pre><p>As you can see, $S$ is a constantly decreasing tensor. The first value corresponds to the feature with the highest variance. You can also notice - the first 50 or so features carry most of the information. Then why would we need the remaning 1030 features?</p>
+<blockquote>
+<p>Note: This method of determination of number of useful features is called the elbow selection method. Wherever there is a steep bend in the amount of information is a good selection of number of crucial features. However, this is not a hard and fast rule, and trial and error is the only absolute method. It depends on how much information you&rsquo;re willing to throw away.</p>
+</blockquote>
+<p>By the way, internally, $USV^T$ is not exactly same as $A$, even though the final values are the same. Actually, U, S and V jumble up all the features of A in such a manner, that the feature with the most variance (can be a linear combination on many original features) emerges at the first position, and the one with the least variance comes at the end.</p>
+<p>Let us now choose the first 50 most important features from this photo.</p>
+<p>Remember, A is decomposed as</p>
+<p>$$A_{m \times n} = U_{m \times q} S_{q \times q} V^T_{q\times n}$$</p>
+<p>Out of q features, if you were to choose 50 features you would choose the first 50 elements of $S$. Correspondingly you would choose the first 50 elements of the columns of $U$ and first 50 rows of $V^T$, in order to make the matrix operations compatible. Here is a great visualization of the concepts.</p>
+<p><img src="https://drive.google.com/uc?id=1cYCEqI-9Bbl8-wC6cTkdc0HSCKC4MN2t" alt="" />
+Or mathematically,</p>
+<p>$$A_{m \times n} = U_{m \times 50} S_{50 \times 50} V^T_{50\times n}$$</p>
+<p>The most beautiful thing about this equation is that, the output of the product of these vector is still the original size (ie, 1080x1920 pixels)</p>
+<pre><code>u1,s1,v1 = u[:,:,:50] , s[:,:50] , v[:,:,:50]
+u1.shape, s1.shape, v1.shape 
+</code></pre><p>Let us Reconstruct the original image from these vectors.</p>
+<pre><code>tensor = decomposed2tensor(u1,s1,v1)
+img=tensor2image(tensor)
+img.resize((800,400))
+</code></pre><p>The image quality has slightly gone down, But, the image is still understandable. All the while, having reduced its size by a lot.</p>
+<p>The original Image was 3x1920x1080 pixel values = 6,220,800 pixels
+This image, made from decomposed matrices, have a size of only 450150 values (3x1080x50 + 3x50 + 3x1920x50), which is over 13 times smaller than the size of the file. If the original file was 5MB, this file would be less than 400 KiloBytes.</p>
+<p>This is how WhatsApp transfers images. It does not transfer the image in its original quality, but <em>compresses</em> the image, using a similar algorithm. The quality is not compromised much, but the size reduces dramatically.</p>
+<p>How much variance (information) has been used to generate this image?</p>
+<pre><code>print((torch.sum(s[:,:50])/torch.sum(s)), '% of the information has been used')
+</code></pre><p>Meaning, almost the first 50 features contain 50% more information than all remaining 1030 features combined.</p>
+<p>Obviously, SVD throws away certain information. So we can&rsquo;t expect the quality of the image to be the same as the original, and at the same time, the memory efficiency of the data to reduce. You always need to do a tradeoff. But SVD is a great tool when memory is an issue, and at the same time, <em>some</em> tradeoff in the quality of data is acceptable. For example, we can still accept a Machine Learning model to identify that this is a picture of a lake and mountains, even though we&rsquo;ve reduced the size by over 13 times.</p>
+<hr>
+<p>For the sake of simplicity, let us redefine a function, so that we dont have to manually slice tensors according to the number of features to be selected. To this you can pass the decomposed tensors, as well as (optionally) how many features to choose. If nothing is passed to <code>k</code>,all the features are chosen.</p>
+<p>You can also pass in any types of data, not necessarily a single image, but a batch of mutiple images (both multichanneled and single channeled (such as Black and White images).</p>
+<pre><code>def decomposed2tensor(u,s,v,k=None):
+    if k is None: k=s.shape[-1] + 1 
+    u1,s1,v1 = u[...,:k] , s[...,:k] , v[...,:k]
+    return torch.matmul(torch.matmul(u1,torch.diag_embed(s1)),torch.transpose(v1,-1,-2))
+
+
+#does it work?
+decomposed2tensor(u,s,v,k=10).shape , decomposed2tensor(u,s,v).shape 
+</code></pre><h2 id="pca">PCA</h2>
+<p>PCA is an optimized version of SVD.</p>
+<ul>
+<li>It normalizes the data before decomposing it</li>
+<li>It only calculates certain number of features, and not all possible features, thus speeding up the process of calculations. In PyTorch, this value is $min(6,m,n)$, though it can be adjusted by us.</li>
+</ul>
+<p><a href="https://pytorch.org/docs/stable/generated/torch.pca_lowrank.html">Here</a> is the documentation of the function.</p>
+<p>If you remove the normalization, and set the number of features to be calculated the same as SVD, then this algorithm will basically work like SVD. Hence, you see, PCA and SVD are not very different algorithms.</p>
+<p>For this example, we will not normalize the data, because normalization usually does not work well with images. Just to demonstrate, we first show you the result of PCA <em>with</em> normalization.</p>
+<p>However, for other types of data, normalization gives better, more stable results.</p>
+<pre><code>u,s,v = torch.pca_lowrank(tensor_landscape) # with normalization
+u.shape, s.shape, v.shape
+</code></pre><pre><code>tensor=decomposed2tensor(u,s,v)
+tensor2image(tensor).resize((500,500))
+</code></pre><p>Clearly, normalization creates a lot of noise in Images. To avoid normalization, set the <code>center</code> parameter as <code>False</code>. We will also choose 50 features, just as before, using the <code>q</code> parameter. (Read documentation to understand syntax)</p>
+<pre><code>u,s,v = torch.pca_lowrank(tensor_landscape,center=False,q=50)
+tensor=decomposed2tensor(u,s,v)
+tensor2image(tensor).resize((800,400))
+</code></pre><p>This is absolutely the same as the result we received from SVD.</p>
+<h2 id="can-we-apply-svdpca-through-other-libraries-too-optional">Can we Apply SVD/PCA through other libraries too? (Optional)</h2>
+<p>Yes we can! Why just stick to PyTorch? In Many cases, other libraries may be more appropriate to use!</p>
+<h3 id="1-using-numpy">1. Using NumPy</h3>
+<p>NumPy provides us with a method to calculate the decomposed matrices (U,S,V).</p>
+<pre><code>import numpy as np
+</code></pre><p>Let us begin by creating a random matrix, just like we did in the beginning of this notebook.</p>
+<pre><code>array = np.random.randn(10, 6)
+</code></pre><p>Now let us calucalte the decomposed matrices. Note: that np.linalg.svd directly returns $V^T$, and not $V$.</p>
+<pre><code>u,s,vT = np.linalg.svd(array,full_matrices=False) 
+u.shape, s.shape, vT.shape
+</code></pre><p>Can we reconstruct <code>array</code> from these matrices?</p>
+<pre><code>pred = u @ np.diag(s) @ vT
+pred
+</code></pre><pre><code>array
+</code></pre><p>You can compare that these two matrices are the same. Again you can simply slice the decomposed matrices to obtain the more important features.</p>
+<h3 id="2-pca-using-sklearn">2. PCA Using sklearn</h3>
+<pre><code>from sklearn.decomposition import PCA
+</code></pre><pre><code>pca = PCA(n_components=3)
+</code></pre><p>sklearn too expects numpy arrays as input.</p>
+<pre><code>pca.fit(array);
+</code></pre><p>And then you can access the values of each of these matrices separately.</p>
+<pre><code>pca.singular_values_ # S values
+</code></pre><pre><code>
+</code></pre><h2 id="review">Review</h2>
+<p>There you have it! You have implemented the PCA and the SVD algorithm. Congratulations!
+Below we&rsquo;ve given some review questions for you to try out. But before that, there are a few tips and review points, that you should go through, think over, and make sure you understand each of them. These points are the most important points of this entire session - and not surprisingly, these are the concepts and ideas that will actually help you be a good Machine Learning practitioner.</p>
+<ul>
+<li>Its natural you would be feeling slightly overwhelmed by all the mathematics and concepts we learned above. But in reality, there are entire books written just on the mathematics of these algorithms. We&rsquo;ve barely scratched the surface, and to be honest, thats all that we need to know to get what we need.</li>
+</ul>
+<p>Don&rsquo;t try to memorize the formulae, the concepts are enough to know! Regarding the code, you can always come back, and refer to the structure of the code, and even copy paste it to your own application. Programming is all about how to get the most out of the resources available. You should know the art of how to write, rather than what to write!</p>
+<ul>
+<li>As Data Science Practitioners, we cannot completely avoid the math and the stats. However, in practical Machine Learning, a lot can be avoided (unless you&rsquo;re pursuing research, in which case, math is essential!). That being said, don&rsquo;t be afraid of the math. Patience is key!</li>
+</ul>
+<h3 id="review-questions">Review Questions:</h3>
+<p>These are non-evaluative, but highly recommended to go through. Make sure you clearly know the answer to each of these concepts. The answers to all these questions are somewhere in this notebook, so if you find yourself unclear with a concept, go back up and find the answer!</p>
+<ol>
+<li>Mathematically, how is the concept of <em>information</em> represented in data?</li>
+<li>What does the tensor $S$ represent in SVD (or PCA)?</li>
+<li>Why do we need to rank the importance of data. Can you give an example from outide the examples above?</li>
+<li>When is dimensionality reduction suitable?</li>
+<li>How do we determine how many features are the optimal number of features to use?</li>
+</ol>
+<h2 id="exercise">Exercise</h2>
+<p>In Session 2: Logistic Regression, we built a MNIST Digit classifier. We acheived an accuracy of about 88% between 3&rsquo;s and 5&rsquo;s. Let us now further apply SVD to the dataset and see how it affects the performance of the mdel.
+To simulate this, we will apply reduce the size of all images in our dataset by selecting a few important <em>features</em> from the images.</p>
+<p>We provide you with a structure of the code we used before. You need to modify this code to apply PCA to the dataset.</p>
+<pre><code>#necessary imports
+from torch.utils.data import DataLoader
+</code></pre><pre><code>#necessary definitions
+
+def convert_PIL_to_tensors(images):
+    images=list(images) #to make sure we can index the collection of images properly. Because of this, the input to this function need
+                        #not necessarily be a list, but can a set, tuple, generator or even a dictionary
+    return torch.stack(list(map(torchvision.transforms.ToTensor(),images))).float()
+
+def init_params(size, requires_grad=True): return (torch.randn(size)).requires_grad_()
+
+def logistic_regression_model(x): 
+    return torch.sigmoid(x@weights + bias)
+
+def binary_classification_loss(preds,targets):
+    assert len(preds)==len(targets)
+    return torch.where(targets==1,1-preds,preds).mean()
+
+def calc_grad(x_batch,y_batch,model): 
+    preds=model(x_batch)
+    loss=binary_classification_loss(preds,y_batch)
+    loss.backward()
+
+def train_epoch(model,lr,params):
+    for x_batch,y_batch in dl: 
+        calc_grad(x_batch,y_batch,model)
+        for p in params:
+            p.data -= lr*p.grad 
+            p.grad.zero_()
+
+def batch_accuracy(preds,y_batch):
+    return ((preds&gt;=0.5)==y_batch).float().mean()
+
+def validate_epoch(model):
+    accs=[batch_accuracy(model(x_batch),y_batch) for x_batch,y_batch in valid_dl]
+    return torch.stack(accs).mean().item()
+
+</code></pre><pre><code>mnist_train_ds = torchvision.datasets.MNIST(root='',download=True)
+mnist_test_ds  = torchvision.datasets.MNIST(root='',train = False, download=True)
+len(mnist_train_ds), len(mnist_test_ds)
+</code></pre><pre><code>threes_ds = [i for i in mnist_train_ds if i[1]==3]
+fives_ds  = [i for i in mnist_train_ds if i[1]==5]
+</code></pre><pre><code>threes_test_ds = [i for i in mnist_test_ds if i[1]==3]
+fives_test_ds  = [i for i in mnist_test_ds if i[1]==5]
+</code></pre><pre><code>x_threes=convert_PIL_to_tensors([i[0] for i in threes_ds]).view(-1,28*28)
+x_fives =convert_PIL_to_tensors([i[0] for i in fives_ds]).view(-1,28*28)
+
+x_dataset = torch.cat((x_threes,x_fives))
+y_dataset = torch.stack([torch.tensor(1.)]*len(x_threes) + [torch.tensor(0.)]*len(x_fives))
+</code></pre><pre><code>x_threes_test=convert_PIL_to_tensors([i[0] for i in threes_test_ds]).view(-1,28*28)
+x_fives_test =convert_PIL_to_tensors([i[0] for i in fives_test_ds]).view(-1,28*28)
+
+x_test_dataset = torch.cat((x_threes_test,x_fives_test))
+y_test_dataset = torch.stack([torch.tensor(1.)]*len(x_threes_test) + [torch.tensor(0.)]*len(x_fives_test))
+</code></pre><p>At this point, when we trained our model.</p>
+<pre><code>weights=init_params((28*28,1))
+bias=init_params(1)
+params=weights,bias
+
+train_dset=list(zip(x_dataset,y_dataset))
+valid_dset=list(zip(x_test_dataset,y_test_dataset))
+dl=DataLoader(train_dset,batch_size=16)
+valid_dl=DataLoader(valid_dset,batch_size=32)
+
+for _ in range(100):
+    train_epoch(logistic_regression_model,0.25,params)
+    print(validate_epoch(logistic_regression_model),end=' ')
+</code></pre><p>Now, apply svd to the train and test datasets. We apply SVD only to the x datasets , ie, only the <code>x_dataset</code> and the <code>x_test_dataset</code>. Determine the appropriate number of features through the training dataset. Train this dataset.</p>
+<p>Vary the number of features and record the change in final testing accuracy. Plot a number-of-features(k) vs accuracy plot for a few k values.</p>
+<p>You may use some of the functions defined earlier in this notebook.</p>
+<pre><code>
+</code></pre></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-curse-of-dimensionality">The Curse of Dimensionality</a></li>
+    <li><a href="#variance-in-data-an-intuition">Variance in Data: An intuition</a></li>
+    <li><a href="#how-svd-ranks-features">How SVD ranks features</a></li>
+    <li><a href="#pca">PCA</a></li>
+    <li><a href="#can-we-apply-svdpca-through-other-libraries-too-optional">Can we Apply SVD/PCA through other libraries too? (Optional)</a>
+      <ul>
+        <li><a href="#1-using-numpy">1. Using NumPy</a></li>
+        <li><a href="#2-pca-using-sklearn">2. PCA Using sklearn</a></li>
+      </ul>
+    </li>
+    <li><a href="#review">Review</a>
+      <ul>
+        <li><a href="#review-questions">Review Questions:</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercise">Exercise</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
