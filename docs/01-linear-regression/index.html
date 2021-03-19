@@ -5,7 +5,7 @@
   <meta name="generator" content="Hugo 0.68.3" />
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Lab 1: Linear Regression Welcome to the second lab session of the Machine Learning Course. In this session, let&rsquo;s look at a fundamental topic in Machine Learning - Linear Regression
+<meta name="description" content="Linear Regression Welcome to the second lab session of the Machine Learning Course. In this session, let&rsquo;s look at a fundamental topic in Machine Learning - Linear Regression
 Before we start, let us see what &lsquo;Regression&rsquo; means.
 Regression Regression is a statistical concept, which refers to finding relationships between different quantities. This lies at the core of Data Sciences. Finding how different types of data are related are used to find meaningful conclusions and decisions.">
 <meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="" />
@@ -13,12 +13,12 @@ Regression Regression is a statistical concept, which refers to finding relation
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://palaashagrawal.github.io/practicals/docs/01-linear-regression/" />
 
-<title>01 Linear Regression | Palaash Agrawal</title>
+<title>01 Linear Regression | Practical Machine Learning</title>
 <link rel="manifest" href="https://palaashagrawal.github.io/practicals/manifest.json">
 <link rel="icon" href="https://palaashagrawal.github.io/practicals/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="https://palaashagrawal.github.io/practicals/book.min.2dc4d2afa8da6ac78d76671c21e140952e7a84846fed47ed02a1a2d68166d992.css" integrity="sha256-LcTSr6jaaseNdmccIeFAlS56hIRv7UftAqGi1oFm2ZI=">
-<script defer src="https://palaashagrawal.github.io/practicals/en.search.min.ca40c67ae3c71e5afca9d771d7e6ea511d0c4ba4f69a678a0b07e8c8557d56c0.js" integrity="sha256-ykDGeuPHHlr8qddx1&#43;bqUR0MS6T2mmeKCwfoyFV9VsA="></script>
-<link rel="alternate" type="application/rss+xml" href="https://palaashagrawal.github.io/practicals/docs/01-linear-regression/index.xml" title="Palaash Agrawal" />
+<script defer src="https://palaashagrawal.github.io/practicals/en.search.min.d9bbc43679a68b10a114fe2293ecbdc6494f21fb8dd68df27c14cf80eff2e607.js" integrity="sha256-2bvENnmmixChFP4ik&#43;y9xklPIfuN1o3yfBTPgO/y5gc="></script>
+<link rel="alternate" type="application/rss+xml" href="https://palaashagrawal.github.io/practicals/docs/01-linear-regression/index.xml" title="Practical Machine Learning" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -36,7 +36,7 @@ https://github.com/alex-shpak/hugo-book
         
   <nav>
 <h2 class="book-brand">
-  <a href="https://palaashagrawal.github.io/practicals/"><span>Palaash Agrawal</span>
+  <a href="https://palaashagrawal.github.io/practicals/"><span>Practical Machine Learning</span>
   </a>
 </h2>
 
@@ -71,7 +71,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://palaashagrawal.github.io/practicals/docs/00-introduction-to-machine-learning-and-python/" class="">00 Introduction to Machine Learning and Python</a>
+    <a href="https://palaashagrawal.github.io/practicals/docs/00-basics-of-python-and-introduction-to-machine-learning/" class="">00 Basics of Python and Introduction to Machine Learning</a>
   
 
           
@@ -208,6 +208,24 @@ https://github.com/alex-shpak/hugo-book
         </li>
       
     
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/08-neural-networks-part-1/" class="">08 Neural Networks Part 1</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
   </ul>
 
 
@@ -294,7 +312,6 @@ https://github.com/alex-shpak/hugo-book
       <ul>
         <li><a href="#method-1-direct-formula">Method 1: Direct Formula:</a></li>
         <li><a href="#method-2-gradient-descent">Method 2: Gradient Descent</a></li>
-        <li><a href="#implementing-gradient-descent"><strong>Implementing Gradient Descent</strong></a></li>
       </ul>
     </li>
     <li><a href="#review">Review</a>
@@ -320,7 +337,7 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"><h1 id="lab-1-linear-regression">Lab 1: Linear Regression</h1>
+  <article class="markdown"><h1 id="linear-regression">Linear Regression</h1>
 <p>Welcome to the second lab session of the Machine Learning Course. In this session, let&rsquo;s look at a fundamental topic in Machine Learning - Linear Regression</p>
 <p>Before we start, let us see what &lsquo;Regression&rsquo; means.</p>
 <h2 id="regression">Regression</h2>
@@ -334,7 +351,7 @@ https://github.com/alex-shpak/hugo-book
 <p>If you were to predict the  number of cases on the following day, it would be very reasonable to the number of Covid-19 positive patients to be above 200,000, because thats the trend. Ofcourse, you never know, the number may be lower or even extremely high - It may even cross 400,000. But <em>chances</em> are the number will be in this ballpark. This is what regression means - to observe the patterns in the data and <em>predict</em> a value with high confidence. Here, given the input, such as the number of new cases in the past month, the number of tests carried out, and the history of the events of the past few days (for example, public events that may have acted as super-spreader events), we predict how many cases there will be in the future. Infact, this is what statisticians do - they predict how worse the pandemic can get, and when the curve is expected to flatten, using these techniques.</p>
 <p>One important concept to understand is - that we can only <strong>predict</strong> our results, with a probability (or, in other words, with high confidence), and so, there is always a chance that our prediction is wrong, or off by a large margin. Our job is to give the best possible results, based on the data that we have been provided with. And a larger probability (ie, higher confidence) is desirable, because we can be more sure that our results will be accurate (or close to the actual value).</p>
 <p>Let us begin with our discussion on Linear Regression!</p>
-<h4 id="linear-regression">Linear Regression</h4>
+<h4 id="linear-regression-1">Linear Regression</h4>
 <p>Given some data <code>x</code>, the results of which we know, and represent as <code>y</code> (which may be refered to as the target value, or the ground truth value) (keep in mind, the target values are not predictions - they are actual values which were factually observed in the real world), our simplest approach can be to map a function <code>y=f(x)</code> that maps the relation between the inputs (<code>x</code>) and the output (<code>y</code>).</p>
 <p>The simplest function that can be made to &ldquo;learn&rdquo; these relations and patterns is a linear function. Given an input <code>x</code>, the output will be given as:</p>
 <pre><code> f(x) = w.x + b  #this is our model. '.' represents multiplication
@@ -548,7 +565,7 @@ Step_size is a small positive number, which lets us control <strong>how big a pa
 <hr>
 <p>So how would Gradient Descent look like for our problem? What would be our model function (y)? and what would be the independent function (x)?</p>
 <p>y is the function which needs to be minimized, so this would be our Loss Function (the average sum of squared error between the target and model predictions). x would be our parameters which need to updated such that y (the dependent variable) is minimum. So we&rsquo;ll be running the gradient descent separately for each of the parameters (w1,w2,w3&hellip;.,wk,b)</p>
-<h3 id="implementing-gradient-descent"><strong>Implementing Gradient Descent</strong></h3>
+<h4 id="implementing-gradient-descent">Implementing Gradient Descent</h4>
 <p>To implement this library, we&rsquo;ll be using PyTorch, a framework built on top of Python, which is known for efficiently handling Deep Learning (ie, the Machine Learning concerned with Neural Networks). The reason we are using PyTorch, is because PyTorch can calculate the gradients for us, without us having to tell the mathematical formula for the gradient. You can calculate the gradients for <strong>ANY</strong> function, however complex, and we don&rsquo;t even have to know how to calculate the gradient. It may seem bizarre at first - you may ask, how would pytorch know what our model, or loss function is! And so, how would it know how to calculate the gradients? Does it know the gradients of all functions in this universe?
 We will see how this works. This mechanism is called <em>autograd</em>.</p>
 <pre><code>#let us start by importing the PyTorch library, which is denoted by torch
@@ -733,7 +750,6 @@ Show 5 different reasonable learning rates, and show the plots.</p>
       <ul>
         <li><a href="#method-1-direct-formula">Method 1: Direct Formula:</a></li>
         <li><a href="#method-2-gradient-descent">Method 2: Gradient Descent</a></li>
-        <li><a href="#implementing-gradient-descent"><strong>Implementing Gradient Descent</strong></a></li>
       </ul>
     </li>
     <li><a href="#review">Review</a>

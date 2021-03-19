@@ -11,12 +11,12 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://palaashagrawal.github.io/practicals/docs/06-support-vector-machines/" />
 
-<title>06 Support Vector Machines | Palaash Agrawal</title>
+<title>06 Support Vector Machines | Practical Machine Learning</title>
 <link rel="manifest" href="https://palaashagrawal.github.io/practicals/manifest.json">
 <link rel="icon" href="https://palaashagrawal.github.io/practicals/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="https://palaashagrawal.github.io/practicals/book.min.2dc4d2afa8da6ac78d76671c21e140952e7a84846fed47ed02a1a2d68166d992.css" integrity="sha256-LcTSr6jaaseNdmccIeFAlS56hIRv7UftAqGi1oFm2ZI=">
-<script defer src="https://palaashagrawal.github.io/practicals/en.search.min.ca40c67ae3c71e5afca9d771d7e6ea511d0c4ba4f69a678a0b07e8c8557d56c0.js" integrity="sha256-ykDGeuPHHlr8qddx1&#43;bqUR0MS6T2mmeKCwfoyFV9VsA="></script>
-<link rel="alternate" type="application/rss+xml" href="https://palaashagrawal.github.io/practicals/docs/06-support-vector-machines/index.xml" title="Palaash Agrawal" />
+<script defer src="https://palaashagrawal.github.io/practicals/en.search.min.d9bbc43679a68b10a114fe2293ecbdc6494f21fb8dd68df27c14cf80eff2e607.js" integrity="sha256-2bvENnmmixChFP4ik&#43;y9xklPIfuN1o3yfBTPgO/y5gc="></script>
+<link rel="alternate" type="application/rss+xml" href="https://palaashagrawal.github.io/practicals/docs/06-support-vector-machines/index.xml" title="Practical Machine Learning" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -34,7 +34,7 @@ https://github.com/alex-shpak/hugo-book
         
   <nav>
 <h2 class="book-brand">
-  <a href="https://palaashagrawal.github.io/practicals/"><span>Palaash Agrawal</span>
+  <a href="https://palaashagrawal.github.io/practicals/"><span>Practical Machine Learning</span>
   </a>
 </h2>
 
@@ -69,7 +69,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://palaashagrawal.github.io/practicals/docs/00-introduction-to-machine-learning-and-python/" class="">00 Introduction to Machine Learning and Python</a>
+    <a href="https://palaashagrawal.github.io/practicals/docs/00-basics-of-python-and-introduction-to-machine-learning/" class="">00 Basics of Python and Introduction to Machine Learning</a>
   
 
           
@@ -206,6 +206,24 @@ https://github.com/alex-shpak/hugo-book
         </li>
       
     
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/08-neural-networks-part-1/" class="">08 Neural Networks Part 1</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
   </ul>
 
 
@@ -284,14 +302,12 @@ https://github.com/alex-shpak/hugo-book
   <ul>
     <li><a href="#what-are-support-vector-machines">What are Support Vector Machines</a></li>
     <li><a href="#building-an-svm-model">Building an SVM Model</a></li>
-    <li><a href="#review-and-questionnaire">Review and Questionnaire</a>
+    <li><a href="#review">Review</a>
       <ul>
-        <li><a href="#questionnaire">Questionnaire:</a></li>
+        <li><a href="#questionnaire">Questionnaire</a></li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
+    <li><a href="#whats-next-in-these-sessions">Whats Next in these Sessions?</a></li>
     <li><a href="#exercise">Exercise</a></li>
   </ul>
 </nav>
@@ -444,17 +460,17 @@ print(classifier_linear.predict(review_vector))
 review_vector = vectorizer.transform([review]) # vectorizing
 print(classifier_linear.predict(review_vector))
 </code></pre><p>Try it out for yourself! Enter a sentence and find out what the model thinks of it!</p>
-<h2 id="review-and-questionnaire">Review and Questionnaire</h2>
+<h2 id="review">Review</h2>
 <p>In this lab, we learnt of classification/regression system, that takes the traditional linear/logistic regression models to the next level, by not only finding the best results, but also the best fit model. We build an NLP model using this system, and also learnt about some techniques in NLP to represent textual information in the needed format.</p>
 <p>In the end, any classification or regression problem can be solved by any suitable model, like the SVM, if the information is correctly represented. This comes from experience, so whats more important right now is to simply keep these concepts in mind. As and when you start coming across these topics more, you will learn the depths too.</p>
-<h3 id="questionnaire">Questionnaire:</h3>
+<h3 id="questionnaire">Questionnaire</h3>
 <p>These are non-evaluative, but highly recommended to go through. Make sure you clearly know the answer to each of these concepts.</p>
 <ol>
 <li>What are Kernels in SVM? What are the different types of kernels in SVM?</li>
 <li>Describe the two representation techniques we studied about text.</li>
 <li>SVMs uses a layered class approach - meaning there are multiple steps involved in a model, each of which has a state, contained in the form of a python class. In this example, what was the structuring of our code? What was the heirarchy of classes used?</li>
 </ol>
-<h1 id="whats-next-in-these-sessions">Whats Next in these Sessions?</h1>
+<h2 id="whats-next-in-these-sessions">Whats Next in these Sessions?</h2>
 <p>Upto Now, we&rsquo;ve covered all the basics and fundamentals of Machine Learning. Now its time for us to move to the modern era of Machine Learning. So for the remaining sessions, we&rsquo;ll look at progressively modern and progressively important concepts in Machine Learning. We&rsquo;ll be transitioning towards Deep Learning slowly, which is THE field that dominates the present state of Machine Learning. We&rsquo;ll also be learning Decision Trees and Random Forests, and even Reinforcement Learnings, which have their own interesting applications. So you&rsquo;ll definitely enjoy it.</p>
 <p>A gentle suggestion from our end. Please do attempt these sessions, even if you feel intimidated to attempt the exercises. As you might have realized, most of these sessions are fun exercises. Many exercises are simply meant for you to enjoy and explore. There&rsquo;s no wrong answers, and you are almost never evaluated based on how well your model performs.</p>
 <p>You also don&rsquo;t need to know a lot of theory to attempt these sessions. So if you feel you&rsquo;re not good at Machine Learning theory, you can still attempt the sessions, since we never focus on theory, but only practical techniques in these sessions. So, if you wish to be an effective Data practitioner, these sessions are guaranteed to help you.</p>
@@ -547,14 +563,12 @@ valid_paths,valid_labels=return_paths(Path('test'),items=400)
   <ul>
     <li><a href="#what-are-support-vector-machines">What are Support Vector Machines</a></li>
     <li><a href="#building-an-svm-model">Building an SVM Model</a></li>
-    <li><a href="#review-and-questionnaire">Review and Questionnaire</a>
+    <li><a href="#review">Review</a>
       <ul>
-        <li><a href="#questionnaire">Questionnaire:</a></li>
+        <li><a href="#questionnaire">Questionnaire</a></li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
+    <li><a href="#whats-next-in-these-sessions">Whats Next in these Sessions?</a></li>
     <li><a href="#exercise">Exercise</a></li>
   </ul>
 </nav>

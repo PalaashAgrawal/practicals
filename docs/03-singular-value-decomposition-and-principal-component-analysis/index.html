@@ -5,19 +5,19 @@
   <meta name="generator" content="Hugo 0.68.3" />
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Session 3: SVD and PCA Welcome to Session 3 of the practical Machine Learning sessions. In this session, we&rsquo;ll understand and implement SVD and PCA, which stand for Singlular Value Decomposition and Principal Component Analysis. These two ideas are very similar, and have the same end goal.
+<meta name="description" content="SVD and PCA Welcome to Session 3 of the practical Machine Learning sessions. In this session, we&rsquo;ll understand and implement SVD and PCA, which stand for Singlular Value Decomposition and Principal Component Analysis. These two ideas are very similar, and have the same end goal.
 In this session, we&rsquo;ll only introduce ourselves to these concepts. The reason we won&rsquo;t go deep into these topics in this session itself, is because these topics have no practical application independently.">
 <meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://palaashagrawal.github.io/practicals/docs/03-singular-value-decomposition-and-principal-component-analysis/" />
 
-<title>03 Singular Value Decomposition and Principal Component Analysis | Palaash Agrawal</title>
+<title>03 Singular Value Decomposition and Principal Component Analysis | Practical Machine Learning</title>
 <link rel="manifest" href="https://palaashagrawal.github.io/practicals/manifest.json">
 <link rel="icon" href="https://palaashagrawal.github.io/practicals/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="https://palaashagrawal.github.io/practicals/book.min.2dc4d2afa8da6ac78d76671c21e140952e7a84846fed47ed02a1a2d68166d992.css" integrity="sha256-LcTSr6jaaseNdmccIeFAlS56hIRv7UftAqGi1oFm2ZI=">
-<script defer src="https://palaashagrawal.github.io/practicals/en.search.min.ca40c67ae3c71e5afca9d771d7e6ea511d0c4ba4f69a678a0b07e8c8557d56c0.js" integrity="sha256-ykDGeuPHHlr8qddx1&#43;bqUR0MS6T2mmeKCwfoyFV9VsA="></script>
-<link rel="alternate" type="application/rss+xml" href="https://palaashagrawal.github.io/practicals/docs/03-singular-value-decomposition-and-principal-component-analysis/index.xml" title="Palaash Agrawal" />
+<script defer src="https://palaashagrawal.github.io/practicals/en.search.min.d9bbc43679a68b10a114fe2293ecbdc6494f21fb8dd68df27c14cf80eff2e607.js" integrity="sha256-2bvENnmmixChFP4ik&#43;y9xklPIfuN1o3yfBTPgO/y5gc="></script>
+<link rel="alternate" type="application/rss+xml" href="https://palaashagrawal.github.io/practicals/docs/03-singular-value-decomposition-and-principal-component-analysis/index.xml" title="Practical Machine Learning" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -35,7 +35,7 @@ https://github.com/alex-shpak/hugo-book
         
   <nav>
 <h2 class="book-brand">
-  <a href="https://palaashagrawal.github.io/practicals/"><span>Palaash Agrawal</span>
+  <a href="https://palaashagrawal.github.io/practicals/"><span>Practical Machine Learning</span>
   </a>
 </h2>
 
@@ -70,7 +70,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://palaashagrawal.github.io/practicals/docs/00-introduction-to-machine-learning-and-python/" class="">00 Introduction to Machine Learning and Python</a>
+    <a href="https://palaashagrawal.github.io/practicals/docs/00-basics-of-python-and-introduction-to-machine-learning/" class="">00 Basics of Python and Introduction to Machine Learning</a>
   
 
           
@@ -207,6 +207,24 @@ https://github.com/alex-shpak/hugo-book
         </li>
       
     
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/08-neural-networks-part-1/" class="">08 Neural Networks Part 1</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
   </ul>
 
 
@@ -311,7 +329,7 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"><h1 id="session-3-svd-and-pca">Session 3: SVD and PCA</h1>
+  <article class="markdown"><h1 id="svd-and-pca">SVD and PCA</h1>
 <p>Welcome to Session 3 of the practical Machine Learning sessions. In this session, we&rsquo;ll understand and implement SVD and PCA, which stand for <strong>Singlular Value Decomposition</strong> and <strong>Principal Component Analysis</strong>. These two ideas are very similar, and have the same end goal.</p>
 <p>In this session, we&rsquo;ll only introduce ourselves to these concepts. The reason we won&rsquo;t go deep into these topics in this session itself, is because these topics have no practical application independently. They are used as a part of bigger models. So in this session we&rsquo;ll understand the concepts and intuition behind SVD and PCA, and later use it as a part of other Machine Learning projects. But yet, these topics deserve an entire session dedicated to themselves, because even though we cannot build a model using these topics, the idea behind them is quite important in Machine Learning, and its not totally self-intuitive. So the ideas do need a little bit of explanation. Also, we will still build interesting models using these concepts.</p>
 <p>As you know, these sessions are more practically-oriented than theoretically-oriented. So, we will not dive into most of the mathematics and theory behind the concepts, and only touch the information that is needed to build the code for our model. Our focus will be on understanding the functionality. You can find the exact innards of these concepts through a lot of online resources. However, this is a concept that does require a little bit of mathematics to intuitively understand the concept, and so if you don&rsquo;t get it at once, don&rsquo;t be discouraged! Go through it slowly and you will surely understand the concepts.</p>

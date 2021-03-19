@@ -5,8 +5,7 @@
   <meta name="generator" content="Hugo 0.68.3" />
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="#Session 2: Logistic Regression
-We studied about Linear Regression in the last session. Let us learn about another fundamental concept in Machine Learning: The Logistic Regression.
+<meta name="description" content="Logistic Regression We studied about Linear Regression in the last session. Let us learn about another fundamental concept in Machine Learning: The Logistic Regression.
 So let us first start by dissecting the terms and try to get an intuition of what logistic regression means.
 Logistic Regression: an Intuition You may recognize the term &ldquo;Regression&rdquo;. Do you recall what Regression means in Machine Learning?
 Regression is prediction of a value, given some inputs.">
@@ -15,12 +14,12 @@ Regression is prediction of a value, given some inputs.">
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://palaashagrawal.github.io/practicals/docs/02-logistic-regression/" />
 
-<title>02 Logistic Regression | Palaash Agrawal</title>
+<title>02 Logistic Regression | Practical Machine Learning</title>
 <link rel="manifest" href="https://palaashagrawal.github.io/practicals/manifest.json">
 <link rel="icon" href="https://palaashagrawal.github.io/practicals/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="https://palaashagrawal.github.io/practicals/book.min.2dc4d2afa8da6ac78d76671c21e140952e7a84846fed47ed02a1a2d68166d992.css" integrity="sha256-LcTSr6jaaseNdmccIeFAlS56hIRv7UftAqGi1oFm2ZI=">
-<script defer src="https://palaashagrawal.github.io/practicals/en.search.min.ca40c67ae3c71e5afca9d771d7e6ea511d0c4ba4f69a678a0b07e8c8557d56c0.js" integrity="sha256-ykDGeuPHHlr8qddx1&#43;bqUR0MS6T2mmeKCwfoyFV9VsA="></script>
-<link rel="alternate" type="application/rss+xml" href="https://palaashagrawal.github.io/practicals/docs/02-logistic-regression/index.xml" title="Palaash Agrawal" />
+<script defer src="https://palaashagrawal.github.io/practicals/en.search.min.d9bbc43679a68b10a114fe2293ecbdc6494f21fb8dd68df27c14cf80eff2e607.js" integrity="sha256-2bvENnmmixChFP4ik&#43;y9xklPIfuN1o3yfBTPgO/y5gc="></script>
+<link rel="alternate" type="application/rss+xml" href="https://palaashagrawal.github.io/practicals/docs/02-logistic-regression/index.xml" title="Practical Machine Learning" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -38,7 +37,7 @@ https://github.com/alex-shpak/hugo-book
         
   <nav>
 <h2 class="book-brand">
-  <a href="https://palaashagrawal.github.io/practicals/"><span>Palaash Agrawal</span>
+  <a href="https://palaashagrawal.github.io/practicals/"><span>Practical Machine Learning</span>
   </a>
 </h2>
 
@@ -73,7 +72,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://palaashagrawal.github.io/practicals/docs/00-introduction-to-machine-learning-and-python/" class="">00 Introduction to Machine Learning and Python</a>
+    <a href="https://palaashagrawal.github.io/practicals/docs/00-basics-of-python-and-introduction-to-machine-learning/" class="">00 Basics of Python and Introduction to Machine Learning</a>
   
 
           
@@ -210,6 +209,24 @@ https://github.com/alex-shpak/hugo-book
         </li>
       
     
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/08-neural-networks-part-1/" class="">08 Neural Networks Part 1</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
   </ul>
 
 
@@ -286,38 +303,35 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li>
-      <ul>
-        <li><a href="#logistic-regression-an-intuition">Logistic Regression: an Intuition</a></li>
-      </ul>
-    </li>
-    <li><a href="#logistic-regression">Logistic Regression</a>
+    <li><a href="#logistic-regression-an-intuition">Logistic Regression: an Intuition</a></li>
+    <li><a href="#logistic-regression-1">Logistic Regression</a>
       <ul>
         <li></li>
+        <li><a href="#so-how-do-we-model-a-logistic-regression-model">So how do we model a Logistic Regression Model?</a></li>
+        <li><a href="#okay-so-how-does-it-work">Okay, so how does it work?</a></li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li>
+    <li><a href="#case-study-identifying-handwritten-digits">Case Study: Identifying Handwritten Digits</a>
       <ul>
         <li><a href="#splitting-datasets-into-training-and-testing-sets">Splitting Datasets into training and testing sets</a></li>
-        <li><a href="#so-how-do-we-make-sure-that-the-model-fits-well-through-the-data">So how do we make sure that the model fits well through the data?</a></li>
+        <li><a href="#how-do-we-make-sure-that-the-model-fits-well-through-the-data">How do we make sure that the model fits well through the data?</a></li>
+        <li><a href="#binary-classification-in-the-mnist-dataset">Binary Classification in the MNIST dataset</a></li>
+        <li><a href="#the-loss-function">The <strong>Loss Function</strong></a></li>
+        <li><a href="#batch-gradient-descent">Batch Gradient Descent</a></li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li>
+    <li><a href="#review">Review</a>
       <ul>
-        <li><a href="#some-tips">Some Tips:</a></li>
-        <li><a href="#review-questions">Review Questions:</a></li>
+        <li><a href="#some-tips">Some Tips</a></li>
+        <li><a href="#review-questions">Review Questions</a></li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li><a href="#1-who-survived-the-titanic">1. Who survived the Titanic?</a></li>
+    <li><a href="#exercise-evaluative">Exercise (Evaluative):</a>
+      <ul>
+        <li><a href="#who-survived-the-titanic">Who survived the Titanic?</a></li>
+      </ul>
+    </li>
+    <li><a href="#optional-normalization">Optional: Normalization</a></li>
   </ul>
 </nav>
 
@@ -330,10 +344,10 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"><p>#Session 2: Logistic Regression</p>
+  <article class="markdown"><h1 id="logistic-regression">Logistic Regression</h1>
 <p>We studied about Linear Regression in the last session. Let us learn about another fundamental concept in Machine Learning: The Logistic Regression.</p>
 <p>So let us first start by dissecting the terms and try to get an intuition of what logistic regression means.</p>
-<h3 id="logistic-regression-an-intuition">Logistic Regression: an Intuition</h3>
+<h2 id="logistic-regression-an-intuition">Logistic Regression: an Intuition</h2>
 <p>You may recognize the term &ldquo;Regression&rdquo;. Do you recall what Regression means in Machine Learning?</p>
 <p>Regression is prediction of a value, given some inputs. This value is calculated by feeding the input to a function. This function is adjusted in a way, that it gives us the best predictions over the data that we provide to it.</p>
 <p>Then we studied about Linear Regression, which is a regression technique that uses a linear function as the model. We also studied about non-linear regression as an extension of linear regression.</p>
@@ -342,7 +356,7 @@ https://github.com/alex-shpak/hugo-book
 <p>Classification means to classify items into categories, or classes. For example, among a collection of pictures of dogs and cats, we would like our model to tell which one is which.</p>
 <p>We&rsquo;ll be looking at a lot of classification techniques over this course. Logistic Regression will be the first of these.</p>
 <p>So let us first understand how logistic regression works, and then we&rsquo;ll surely answer the question - <em>Why is Logistic Regression called Regression, if its a classification technique?</em></p>
-<h2 id="logistic-regression">Logistic Regression</h2>
+<h2 id="logistic-regression-1">Logistic Regression</h2>
 <p>If you were to break down what Linear Regression is - you would realize, it simply means - <strong>Regression</strong> using a <strong>Linear</strong> Model. By the same logic, Logistic Regression would relate to a Logistic Model (function).</p>
 <p>What is a Logistic function?</p>
 <h4 id="logistic-function">Logistic Function</h4>
@@ -371,7 +385,7 @@ https://github.com/alex-shpak/hugo-book
 <p>So this is how Logistic Regression is used for Classification.</p>
 <p>Now coming to the question - <em>Then why is it called Regression anyways?</em></p>
 <p>The answer would be clearer as we look into the details. What you should know now, is that, we would ultimately create a Regression Model - a model that predicts a value, which lies between 0 and 1. And then we would create a condition, that would classify the prediction as 0 or 1, based on whether the value of the prediction is less or more than the threshold of 0.5. So we&rsquo;re trying to do classification through a regression model. Fascinating!</p>
-<h4 id="so-how-do-we-model-a-logistic-regression-model">So how do we model a Logistic Regression Model?</h4>
+<h3 id="so-how-do-we-model-a-logistic-regression-model">So how do we model a Logistic Regression Model?</h3>
 <p>By this, what we actually mean is - given some data points, which have multiple features (<code>x1</code>,<code>x2</code> and so on) and a target value (label , or categories , or classes), how do we form a logistic regression model?</p>
 <p>Let us take a look at the logistic function again, because we know have an idea that in the end, our output is going to be the result of the logistic function.</p>
 <p>$$sigmoid(a) = \frac{1}{1+e^{-a}}$$</p>
@@ -384,14 +398,14 @@ https://github.com/alex-shpak/hugo-book
 <p>or in other words,</p>
 <p>$$model(x_1,x_2,x_3&hellip;.) = \frac{1}{1+e^{-(w_1x_1 + w_2x_2 + w_3x_3 + &hellip; + b)}} $$</p>
 <p>Thats it! That is the logistic regression model.</p>
-<h4 id="so-how-does-it-work">So how does it work?</h4>
+<h3 id="okay-so-how-does-it-work">Okay, so how does it work?</h3>
 <p>What are the parameters of the model? Remember, that parameters are the variables that we change in order to make our model work. We do not have control over the exponential $e$, nor do we have control over the data (x1,x2&hellip;). We only have control over w1,w2&hellip;.,b. These are our parameters.</p>
 <p>We would like to adjust our parameters in a way, that for each data point (having features x1,x2&hellip;), the linear function <code>w1*x1 + w2*x2 + .... + b</code> predicts a value greater than 0 if the target class is a 1 (hence giving the output of the logistic function greater than 0.5, which means, we would say that the model predicts the model to be a 1).</p>
 <p>And if the actual target class is 0, we would want the linear function to return a value less than 0, so that the sigmoid (logistic) function returns a value less than 0.5, and thus we would say, that the model predicts the class to be a 0.</p>
 <p>Phew! That&rsquo;s a lot to take in at once. Go back and read this again, and make sure you understand the logic. If needed, go back and study the logistic function, the linear regression model, and how they work, and how they all come together to form a classification model.</p>
 <p>We would adjust the parameters w1,w2&hellip;.,b using an algorithm we already learned about - the <em>Gradient Descent!</em></p>
 <pre><code>
-</code></pre><h1 id="case-study-identifying-handwritten-digits">Case Study: Identifying Handwritten Digits</h1>
+</code></pre><h2 id="case-study-identifying-handwritten-digits">Case Study: Identifying Handwritten Digits</h2>
 <p>Given an image of a handwritten digit, can we build a classifier that can identify what digit it is? Digits refers to integers from 0 to 9, both inclusive.</p>
 <p><img src="https://drive.google.com/uc?id=1SLXc1HNY9uiO3jGVJ8sTYm0WE-ZpcJNc" alt="" /></p>
 <p>In the image above, notice, all the different styles in which any digit can be written. The model needs to &ldquo;learn&rdquo; the characteristics of digits. What differentiates a 1 from a 2, or a 5 from a 9? To be fair, it is difficult for even humans to express the idea of distinction in words. But we still Can give a vague answer to this question - each number has its own way of writing - for example, a 1 is not likely to have a curved line, but a 2 is likely to have a curve. Its quite amazing that a model can learn these ideas - and remember, all this is learnt in the form of parameters, which are nothing but numbers in themselves!</p>
@@ -411,7 +425,7 @@ len(mnist_train_ds), len(mnist_test_ds)
 <p>For example, if your model predicts which image is that of a cat or a dog - you would expect your model to learn the general characterisitics of dogs and cats, and not features such as - a picture of a dog is likely to have a green background (grass), while a cat is not (because dogs like to go out of the house, cats don&rsquo;t!). What if all your training images have dogs with a green background, and all cat images with an indoor background? Your model is likely to learn that too!</p>
 <p>Now, suppose you have a pet dog at home, and click a picture, and feed it to your model. This picture has an indoor setting, so the model is likely to predict it as a cat. That is how improper fitting works.</p>
 <hr>
-<h3 id="so-how-do-we-make-sure-that-the-model-fits-well-through-the-data">So how do we make sure that the model fits well through the data?</h3>
+<h3 id="how-do-we-make-sure-that-the-model-fits-well-through-the-data">How do we make sure that the model fits well through the data?</h3>
 <p>Keep aside a small portion (say, 20%) of the dataset aside. Only train your model on the remaining data. And at the end, see how the model performs on the data that we kept aside (the data that the model has never seen). This would be an indicator of how well the model has learnt the general features of the data. Because if the model works well on data that it never came across, it <em>has</em> to be because the model has learnt the right characterisitics.</p>
 <p>This dataset, that we keep aside is called the <strong>Validation Set</strong>, or the <strong>Test Dataset</strong>. These two essentially mean the same thing - a sub-dataset that is used to validate or test the correctness of the model. The model never trains on this dataset, and is used only to test the accuracy of the model.</p>
 <p>If the model does not perform well on the validation dataset, we make changes in the model and training mechanism. More specifically, we change the <em>hyperparameters</em> of the model, which are values other than the parameters (w1,w2&hellip;.), which cannot be learned by the model, but need to be manually set by us. Learning Rate in the Gradient Descent Algorithm is one such example. So you may adjust the learning rate until the validation set accuracy is good enough for our application.</p>
@@ -432,7 +446,7 @@ len(mnist_train_ds), len(mnist_test_ds)
 <p>Let us look at how this dataset looks like. According to the documentation, you can index these dataset variables to get a tuple with the image, and the label</p>
 <pre><code>mnist_train_ds[0]
 </code></pre><pre><code>mnist_train_ds[0][0]
-</code></pre><h4 id="case-study-binary-classification-in-the-mnist-dataset">Case Study: Binary Classification in the MNIST dataset</h4>
+</code></pre><h3 id="binary-classification-in-the-mnist-dataset">Binary Classification in the MNIST dataset</h3>
 <p>The MNIST dataset contains 10 labels (0 through 9), but if you remember, logisitic regression is meant to do binary classification. So let us take out two labels, say - 3&rsquo;s and 5&rsquo;s and try to differentiate between them.</p>
 <pre><code>threes_ds = [i for i in mnist_train_ds if i[1]==3]
 fives_ds  = [i for i in mnist_train_ds if i[1]==5]
@@ -506,7 +520,7 @@ bias=init_params(1)
 <p>Lets test this model out!</p>
 <pre><code>preds = logistic_regression_model(x_dataset)
 preds.shape
-</code></pre><h4 id="the-loss-function">The LOSS FUNCTION</h4>
+</code></pre><h3 id="the-loss-function">The <strong>Loss Function</strong></h3>
 <p>So far we&rsquo;ve looked at the Mean Square Error Loss Function. It represents the idea, that the larger the distance between two values, the larger the loss. This worked well for the regression case, where we wanted the predictions of the model to be as close as the target values. But that is not applicable for the classification case. We cannot define the difference between two classes, like the dog and class. What we need is a right/wrong approach. Is the prediction right? or is it wrong?</p>
 <p>Let us analyse what we would want our model to do.</p>
 <p>We would want our model to predict the value for 3&rsquo;s to be as close to 1., and predict 7&rsquo;s to be as close to 0. Because as we mentioned, if the prediction is closer to a 1 than to a 0, we would classify the result to be a 1. And if the prediction is closer to a 0 than to a 1, we would classify the result to be a 0.If you cannot wrap your hand around this concept, please go back a step and read the concepts again. Because if you understand the concepts well, you can implement the concepts easily too.</p>
@@ -521,7 +535,7 @@ preds.shape
 <p>$$Loss(pred, target) = mean([-y_i log(pred_i) – (1 – y_i) log(1-pred_i)])$$</p>
 <p>If you are familiar with this loss function, and are confused with why we have not used this form of expression - the answer is - we have implemented a similar idea. This loss function too penalizes the model based on similar principles. But we haven&rsquo;t used the <code>log</code> in our loss function. Actually, the <code>log</code> arises during the mathematics behind theory of prediction. When you study the concept of <em>Maximum Likelihood</em>, you will learn the exact details. But theory aside, in practice, the loss function we have implemented is correct too! In Practice, Loss function should be thought of as a function that penalizes wrong predictions, and rewards correct predicitions. And it should have some nice mathematical qualites wherever required, such as smoothness and continuity (so that it can be properly differentiated during Gradient Descent, for example).</p>
 <p>Our task is to minimize this loss function. We do this through the Gradient Descent Algorithm. But before that, we will learn of an important variant of Gradient Descent - <em>The Batch Gradient Descent</em>.</p>
-<h4 id="batch-gradient-descent">Batch Gradient Descent</h4>
+<h3 id="batch-gradient-descent">Batch Gradient Descent</h3>
 <p>If you go back to the last lab session (Linear Regression), you would notice, that we passed the entire set of data into the model at once. This worked alright for our case, becaues the number of data points was not very huge. We were dealing with less than 2000 points. But in many cases, the number of datapoints is of the order of tens of thousands to anywhere close to millions of datapoints, and computers cannot handle so many datapoints at once. It leads to a lot of problems - sums tend to approach very large values which computers cannot process. It is also slow and thus, the model rarely works. This problem increases multifold when the number of features increases.</p>
 <p>The solution? We divide the data into smaller chunks, called <em>Batches</em>. And we only train the model on one batch at a time. The number of items in a batch, is called the <em>batch size</em>. You would usually see batch_sizes as powers of 2 - 2,4,8,16,32,64,128 and so on. The larger each datapoint is in size, the smaller batch size is recommended. Eg - pictures have a lot of features (pixels), and thus, a smaller batch size, like 8 or 16 is recommended.</p>
 <p>In PyTorch, this is done using the <code>DataLoader</code>, which is nothing but a class, that can divide the data into batches, and has some other useful properties, which you will learn as you use it more and more. PyTorch Dataloaders are found in the module <code>torch.utils.data</code></p>
@@ -562,9 +576,9 @@ params=weights,bias
 <p>Note: the number of iterations in Gradient Descent are also called as <strong>Epochs</strong>. So for the above case, we train this model for 50 epochs.</p>
 <p>Task: (Non-Evaluative) - Try adjusting the learning rate and epochs by hit and trial and try to get as much accuracy as possible. Atleast try getting an accuracy of more than 90%.</p>
 <p>So there you have it! You have trained your first classification model! Congratulations!</p>
-<h1 id="review">Review:</h1>
+<h2 id="review">Review</h2>
 <p>Below we&rsquo;ve given some review questions for you to try out. But before that, there are a few tips and review points, that you should go through, think over, and make sure you understand each of them. These points are the most important points of this entire session - and not surprisingly, these are the concepts and ideas that will actually help you be a good Machine Learning practitioner.</p>
-<h3 id="some-tips">Some Tips:</h3>
+<h3 id="some-tips">Some Tips</h3>
 <ul>
 <li><strong>Stay up-to-date with the tools of Machine Learning</strong>: As we&rsquo;ve mentioned earlier, Machine Learning is an extremely fast moving domain. Every few weeks, new ideas and tools emerge, and within the next few weeks, these will become obsolete too. There are very few concepts and tools that last very long. That shouldn&rsquo;t discourage you. But encourage you to learn the skill of <em>unlearning</em> and <em>learning</em> fast. For example, a lot of you may have heard of the library NumPy, which is a numerical processing library. A * lot * of practitioners use this library to carry out the calculations (that we have done in this session, such as calculation of the sigmoid function, or matrix multiplications, etc). But notice how we carried out all numerical processing using PyTorch itself. Its not true that we could not have done the processing using NumPy, but it just wasnt the right choice. PyTorch offers the majority of processing tools offered by numpy, with the only difference - it is optimized for Tensors. It clearly was better suitable in this case. However, in another problem, numpy would be a better choice. Its also not true that PyTorch&rsquo;s numerical processing is superior than NumPy, its simply a case of suitability to the environment. We will use NumPy at some point too in these labs.</li>
 </ul>
@@ -578,7 +592,7 @@ params=weights,bias
 <p>As you develop codes, it is important to test whether the peice of code is working correctly. You would have noticed - at each step, we find out the shape of output tensors, and what all does a function return.</p>
 </li>
 </ul>
-<h3 id="review-questions">Review Questions:</h3>
+<h3 id="review-questions">Review Questions</h3>
 <p>These are non-evaluative, but highly recommended to go through. Make sure you clearly know the answer to each of these concepts. The answers to all these questions are somewhere in this notebook, so if you find yourself unclear with a concept, go back up and find the answer!</p>
 <ol>
 <li>
@@ -603,8 +617,8 @@ params=weights,bias
 <p>Explain the difference between the training set, the validation set and the test set.</p>
 </li>
 </ol>
-<h1 id="exercise-evaluative">Exercise (Evaluative):</h1>
-<h2 id="1-who-survived-the-titanic">1. Who survived the Titanic?</h2>
+<h2 id="exercise-evaluative">Exercise (Evaluative):</h2>
+<h3 id="who-survived-the-titanic">Who survived the Titanic?</h3>
 <p><a href="https://www.kaggle.com/c/titanic/overview">This problem</a> is one of the most famous problems on Kaggle. It has (real) information of all passengers on the Titanic, such as the age, sex, ticket class, fare price (which may be indicators of their social status), etc. Can you build a logistic regression model to identify who survived the Titanic, and who did not?</p>
 <p>The dataset is available from Kaggle itself, so we need to download the data using the API. Run the code below to upload the kaggle.json file, and download the data.</p>
 <p>Consider the following features: (See the details on the Kaggle page)</p>
@@ -664,7 +678,7 @@ train_df.head()
 </code></pre><pre><code>
 </code></pre><pre><code>
 </code></pre><pre><code>
-</code></pre><p>Normalization</p>
+</code></pre><h2 id="optional-normalization">Optional: Normalization</h2>
 <p>Many times, we come accross, data that are of different scales. For example, if you have two features - age and annual salary, age is of the order of $O(10^2)$, while annual salary may be of the order $O(10^5)$. This creates a problem when we build the model, especially during training. The gradients of each parameter is affected by the values of all features, and so it is desirable that all these features have equal and reasonable contribution.</p>
 <p>We&rsquo;ve already seen an example of normalization in the last session. We divided some values by a number, to make all features comparable. Normalization especially needs to be done for values of very large magnitude, because they often lead to <em>gradient explosion</em> (the gradient tends to become infinite (Nan)).</p>
 <p>A standard method to normalize values of a feature is to normalize them to a mean of 0 and standard deviation of 1. The way this is carried out is:</p>
@@ -708,38 +722,35 @@ train_df.head()
   
 <nav id="TableOfContents">
   <ul>
-    <li>
-      <ul>
-        <li><a href="#logistic-regression-an-intuition">Logistic Regression: an Intuition</a></li>
-      </ul>
-    </li>
-    <li><a href="#logistic-regression">Logistic Regression</a>
+    <li><a href="#logistic-regression-an-intuition">Logistic Regression: an Intuition</a></li>
+    <li><a href="#logistic-regression-1">Logistic Regression</a>
       <ul>
         <li></li>
+        <li><a href="#so-how-do-we-model-a-logistic-regression-model">So how do we model a Logistic Regression Model?</a></li>
+        <li><a href="#okay-so-how-does-it-work">Okay, so how does it work?</a></li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li>
+    <li><a href="#case-study-identifying-handwritten-digits">Case Study: Identifying Handwritten Digits</a>
       <ul>
         <li><a href="#splitting-datasets-into-training-and-testing-sets">Splitting Datasets into training and testing sets</a></li>
-        <li><a href="#so-how-do-we-make-sure-that-the-model-fits-well-through-the-data">So how do we make sure that the model fits well through the data?</a></li>
+        <li><a href="#how-do-we-make-sure-that-the-model-fits-well-through-the-data">How do we make sure that the model fits well through the data?</a></li>
+        <li><a href="#binary-classification-in-the-mnist-dataset">Binary Classification in the MNIST dataset</a></li>
+        <li><a href="#the-loss-function">The <strong>Loss Function</strong></a></li>
+        <li><a href="#batch-gradient-descent">Batch Gradient Descent</a></li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li>
+    <li><a href="#review">Review</a>
       <ul>
-        <li><a href="#some-tips">Some Tips:</a></li>
-        <li><a href="#review-questions">Review Questions:</a></li>
+        <li><a href="#some-tips">Some Tips</a></li>
+        <li><a href="#review-questions">Review Questions</a></li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li><a href="#1-who-survived-the-titanic">1. Who survived the Titanic?</a></li>
+    <li><a href="#exercise-evaluative">Exercise (Evaluative):</a>
+      <ul>
+        <li><a href="#who-survived-the-titanic">Who survived the Titanic?</a></li>
+      </ul>
+    </li>
+    <li><a href="#optional-normalization">Optional: Normalization</a></li>
   </ul>
 </nav>
 

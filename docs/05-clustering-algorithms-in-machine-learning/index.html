@@ -5,19 +5,18 @@
   <meta name="generator" content="Hugo 0.68.3" />
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="#05 Clustering Algorithms in Machine Learning
-K Means and K Nearest Neighbors Algorithms Welcome to the fifth session of the Practical Machine Learning sessions. In this session, we will move slightly towards a relatively overlooked domain of Machine Learning - Unsupervised Learning. Till Now, and for the most of the part in the future, we will be looking at Supervised Learning problems. So, first of all, what is the difference between supervised learning and unsupervised learning?">
+<meta name="description" content="Clustering Algorithms in Machine Learning K Means and K Nearest Neighbors Algorithms Welcome to the fifth session of the Practical Machine Learning sessions. In this session, we will move slightly towards a relatively overlooked domain of Machine Learning - Unsupervised Learning. Till Now, and for the most of the part in the future, we will be looking at Supervised Learning problems. So, first of all, what is the difference between supervised learning and unsupervised learning?">
 <meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://palaashagrawal.github.io/practicals/docs/05-clustering-algorithms-in-machine-learning/" />
 
-<title>05 Clustering Algorithms in Machine Learning | Palaash Agrawal</title>
+<title>05 Clustering Algorithms in Machine Learning | Practical Machine Learning</title>
 <link rel="manifest" href="https://palaashagrawal.github.io/practicals/manifest.json">
 <link rel="icon" href="https://palaashagrawal.github.io/practicals/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="https://palaashagrawal.github.io/practicals/book.min.2dc4d2afa8da6ac78d76671c21e140952e7a84846fed47ed02a1a2d68166d992.css" integrity="sha256-LcTSr6jaaseNdmccIeFAlS56hIRv7UftAqGi1oFm2ZI=">
-<script defer src="https://palaashagrawal.github.io/practicals/en.search.min.ca40c67ae3c71e5afca9d771d7e6ea511d0c4ba4f69a678a0b07e8c8557d56c0.js" integrity="sha256-ykDGeuPHHlr8qddx1&#43;bqUR0MS6T2mmeKCwfoyFV9VsA="></script>
-<link rel="alternate" type="application/rss+xml" href="https://palaashagrawal.github.io/practicals/docs/05-clustering-algorithms-in-machine-learning/index.xml" title="Palaash Agrawal" />
+<script defer src="https://palaashagrawal.github.io/practicals/en.search.min.d9bbc43679a68b10a114fe2293ecbdc6494f21fb8dd68df27c14cf80eff2e607.js" integrity="sha256-2bvENnmmixChFP4ik&#43;y9xklPIfuN1o3yfBTPgO/y5gc="></script>
+<link rel="alternate" type="application/rss+xml" href="https://palaashagrawal.github.io/practicals/docs/05-clustering-algorithms-in-machine-learning/index.xml" title="Practical Machine Learning" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -35,7 +34,7 @@ https://github.com/alex-shpak/hugo-book
         
   <nav>
 <h2 class="book-brand">
-  <a href="https://palaashagrawal.github.io/practicals/"><span>Palaash Agrawal</span>
+  <a href="https://palaashagrawal.github.io/practicals/"><span>Practical Machine Learning</span>
   </a>
 </h2>
 
@@ -70,7 +69,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://palaashagrawal.github.io/practicals/docs/00-introduction-to-machine-learning-and-python/" class="">00 Introduction to Machine Learning and Python</a>
+    <a href="https://palaashagrawal.github.io/practicals/docs/00-basics-of-python-and-introduction-to-machine-learning/" class="">00 Basics of Python and Introduction to Machine Learning</a>
   
 
           
@@ -207,6 +206,24 @@ https://github.com/alex-shpak/hugo-book
         </li>
       
     
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/08-neural-networks-part-1/" class="">08 Neural Networks Part 1</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
   </ul>
 
 
@@ -285,21 +302,27 @@ https://github.com/alex-shpak/hugo-book
   <ul>
     <li>
       <ul>
-        <li><a href="#k-means-and-k-nearest-neighbors-algorithms">K Means and K Nearest Neighbors Algorithms</a></li>
-        <li><a href="#k-means-algorithm">K Means Algorithm</a></li>
-        <li><a href="#k-nearest-neighbors">K Nearest Neighbors</a></li>
-      </ul>
-    </li>
-    <li><a href="#review-and-tips">Review and Tips</a>
-      <ul>
         <li></li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li><a href="#1-a-robust-k-means-algorithmic-system">1. A Robust K Means Algorithmic system</a></li>
-    <li><a href="#2-regression-using-k-nearest-neighbors">2. Regression using K Nearest Neighbors</a></li>
+    <li><a href="#k-means-algorithm">K Means Algorithm</a>
+      <ul>
+        <li><a href="#case-study-crime-hotpots-in-vancouver">Case Study: Crime Hotpots in Vancouver</a></li>
+      </ul>
+    </li>
+    <li><a href="#k-nearest-neighbors">K Nearest Neighbors</a></li>
+    <li><a href="#review">Review</a>
+      <ul>
+        <li><a href="#a-few-practical-tips">A few practical Tips</a></li>
+        <li><a href="#questionaire">Questionaire:</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercises-evaluative">Exercises (Evaluative)</a>
+      <ul>
+        <li><a href="#1-a-robust-k-means-algorithmic-system">1. A Robust K Means Algorithmic system</a></li>
+        <li><a href="#2-regression-using-k-nearest-neighbors">2. Regression using K Nearest Neighbors</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 
@@ -312,8 +335,8 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"><p>#05 Clustering Algorithms in Machine Learning</p>
-<h3 id="k-means-and-k-nearest-neighbors-algorithms">K Means and K Nearest Neighbors Algorithms</h3>
+  <article class="markdown"><h1 id="clustering-algorithms-in-machine-learning">Clustering Algorithms in Machine Learning</h1>
+<h4 id="k-means-and-k-nearest-neighbors-algorithms">K Means and K Nearest Neighbors Algorithms</h4>
 <p>Welcome to the fifth session of the Practical Machine Learning sessions. In this session, we will move slightly towards a relatively overlooked domain of Machine Learning - <em>Unsupervised Learning</em>. Till Now, and for the most of the part in the future, we will be looking at <em>Supervised Learning</em> problems. So, first of all, what is the difference between supervised learning and unsupervised learning?</p>
 <p>If I were to tell you the textbook definition of the difference between the two,I would simply tell you, that unsupervised learning requires labels, and supervised learning does require labels. Yes, that is a difference, but in introspection, it is really not a good way to tell the difference between the two. We simply answered the question, &ldquo;What do these learning methods <em>require</em> in order to learn&rdquo;, but not the most important question - <em>What on earth IS unsupervised learning, or supervised learning, and what is the difference in terms of the approach?</em></p>
 <p>So, lets spend some time to understand that first.
@@ -323,7 +346,7 @@ All of the supervised training algorithms we saw till now had a very common them
 <p>Unsupervised learning is used to identify patterns, whereas supervised learning is used to get specific results from the data. This is the correct method to differentiate between these two!</p>
 <hr>
 <p>Now, coming to our topic today - <em>Clustering Algorithms!</em> We&rsquo;ll be looking at two algorithms -  <strong>K Means</strong> and <strong>K Nearest Neighbors</strong> Algorithms, and we&rsquo;ll explore both separately! So let&rsquo;s get started&hellip;</p>
-<h3 id="k-means-algorithm">K Means Algorithm</h3>
+<h2 id="k-means-algorithm">K Means Algorithm</h2>
 <p>Take a look at this data below.</p>
 <p><img src="https://drive.google.com/uc?id=1gFNxPtQhVb8ekxZN4XV6NWZhGHgSwpFy" alt="" /></p>
 <!-- raw HTML omitted -->
@@ -344,7 +367,7 @@ All of the supervised training algorithms we saw till now had a very common them
 <p>Imagine what happens during step3. By updating the value of the centroid as the mean of all the datapoints, we are essentially <em>pulling</em> the centroid to where there is more density of data. If this process is repeated multiple times, we will eventually pull the centroid to a position where this high density of data, or in other words, a blob/cluster exists. Here is a quick visualization of the K Means algorithm.</p>
 <p><img src="https://drive.google.com/uc?id=15T7mCRh1AsTwFgFRxvrdXDkHRPcqiREZ" alt="" /></p>
 <p>In today&rsquo;s session we&rsquo;ll be looking at a very interesting problem - We will be identifying the crime hotspots of a city - meaning, identifying which areas are more prone to crimes and which are safer.</p>
-<h4 id="case-study-crime-hotpots-in-vancouver">Case Study: Crime Hotpots in Vancouver</h4>
+<h3 id="case-study-crime-hotpots-in-vancouver">Case Study: Crime Hotpots in Vancouver</h3>
 <p>We have some data about crimes in the city of Vancouver, Canada. The data includes their nature, the time of occurence, the location, etc. Our job is to identify the areas of the city where the crime is more likely to occur. This can help the local Police Department deploy enough personnel, so that they are ready, equipped, and well numbered to tackle crimes.</p>
 <p>This can also help people like us, who would want to find new homes. We would obviously like to buy a house in a safer locality, rather than a crime-prone locality.</p>
 <p>So let us first download the <a href="https://www.kaggle.com/wosaku/crime-in-vancouver">dataset</a> from kaggle. Before that, you need to upload the <em>kaggle.json</em> file</p>
@@ -498,7 +521,7 @@ for i in range(5):
 <pre><code>plt.scatter(df.X,df.Y,s=0.001)
 </code></pre><pre><code>
 </code></pre><p>Now, let us move onto the second algorithm that we&rsquo;ll look at today - the <strong>K Nearest Neighbors</strong> algorithm.</p>
-<h3 id="k-nearest-neighbors">K Nearest Neighbors</h3>
+<h2 id="k-nearest-neighbors">K Nearest Neighbors</h2>
 <p>K nearest Neighbors is a very simple algorithm. You are given some data. Now, suppose when you get some new data point, and you wish to either classify or predict a value, you simply look at its neighbors.</p>
 <ol>
 <li>
@@ -570,24 +593,24 @@ visualize_target(coordinates,df) #line1
 get_prediction(pred) #line3
 </code></pre><pre><code>visualize_prediction(df,pred=pred,k=1000) #line4
 </code></pre><p>Try running this algorithm with a different pair of coordinates!</p>
-<h2 id="review-and-tips">Review and Tips</h2>
+<h2 id="review">Review</h2>
 <p>In this session, we studied about clustering algorithms in Machine Learning, which is a step towards Unsupervised learning in ML. In both the algorithms above, we did not direct our model towards a specific goal, but did general inference (patter identification) on the data. And still got some really meaningful results. That being said, one should not think that unsupervised leanring is not useful at all. It is very useful in its own applications.</p>
-<h4 id="tips">Tips</h4>
+<h3 id="a-few-practical-tips">A few practical Tips</h3>
 <p>The only useful tip that you need to learn from this session is - Refactoring code. Most Machine Learning practitioners do not pay attention to this, and this creates a problem for them later on. Why? because if you simply make a good structure of code, you need not rewrite the entire structure if you want your model to perform just slightly differently. As you will see in the exercises below (in the K Means related question), all you need to do is modify one function to solve the biggest problem that K Means algorithms face.</p>
-<p>####Questionaire:
-These are non-evaluative, but highly recommended to go through. Make sure you clearly know the answer to each of these concepts. The answers to all these questions are somewhere in this notebook, so if you find yourself unclear with a concept, go back up and find the answer!</p>
+<h3 id="questionaire">Questionaire:</h3>
+<p>These are non-evaluative, but highly recommended to go through. Make sure you clearly know the answer to each of these concepts. The answers to all these questions are somewhere in this notebook, so if you find yourself unclear with a concept, go back up and find the answer!</p>
 <ol>
 <li>What characteristics of Unsupervised Learning does the KNN algorithm have?</li>
 <li>What is the advantage of the NumPy library?</li>
 <li>Similar to the bar graph depicting the number of crimes per district, can you write a piece of code to build a bar graph showing number of crimes per category? (like, Theft from Vehicle and so on).</li>
 </ol>
-<h1 id="exercises-evaluative">Exercises (Evaluative)</h1>
-<h2 id="1-a-robust-k-means-algorithmic-system">1. A Robust K Means Algorithmic system</h2>
+<h2 id="exercises-evaluative">Exercises (Evaluative)</h2>
+<h3 id="1-a-robust-k-means-algorithmic-system">1. A Robust K Means Algorithmic system</h3>
 <p>We learnt about the initialization problem in K Means. Many a times, a cluster is not assigned any datapoints. Let us try to solve it.</p>
 <p>All we need to do is, keep re-initializing the centroids, until some or the other datapoint lies closest to it, and the datapoint is assigned that cluster. You need to redefine the <code>initialize_centroids</code> function to implement this functionality.</p>
 <p>Then run the model again to see if your function works. (Even After reinitializing multiple times, there should be no empty cluster)!</p>
 <pre><code>
-</code></pre><h2 id="2-regression-using-k-nearest-neighbors">2. Regression using K Nearest Neighbors</h2>
+</code></pre><h3 id="2-regression-using-k-nearest-neighbors">2. Regression using K Nearest Neighbors</h3>
 <p>Just like classification, we&rsquo;ll be carrying out Regression. Instead of finding the majority class, our Job is to find the average of the values of K Nearest Neighbors.</p>
 <p>In this exercise, we will be finding out the most probable <em>Hour</em> of crime in a particular locality. You can use any cordinates as the reference. Use k as 100.</p>
 <pre><code>
@@ -629,21 +652,27 @@ These are non-evaluative, but highly recommended to go through. Make sure you cl
   <ul>
     <li>
       <ul>
-        <li><a href="#k-means-and-k-nearest-neighbors-algorithms">K Means and K Nearest Neighbors Algorithms</a></li>
-        <li><a href="#k-means-algorithm">K Means Algorithm</a></li>
-        <li><a href="#k-nearest-neighbors">K Nearest Neighbors</a></li>
-      </ul>
-    </li>
-    <li><a href="#review-and-tips">Review and Tips</a>
-      <ul>
         <li></li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li><a href="#1-a-robust-k-means-algorithmic-system">1. A Robust K Means Algorithmic system</a></li>
-    <li><a href="#2-regression-using-k-nearest-neighbors">2. Regression using K Nearest Neighbors</a></li>
+    <li><a href="#k-means-algorithm">K Means Algorithm</a>
+      <ul>
+        <li><a href="#case-study-crime-hotpots-in-vancouver">Case Study: Crime Hotpots in Vancouver</a></li>
+      </ul>
+    </li>
+    <li><a href="#k-nearest-neighbors">K Nearest Neighbors</a></li>
+    <li><a href="#review">Review</a>
+      <ul>
+        <li><a href="#a-few-practical-tips">A few practical Tips</a></li>
+        <li><a href="#questionaire">Questionaire:</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercises-evaluative">Exercises (Evaluative)</a>
+      <ul>
+        <li><a href="#1-a-robust-k-means-algorithmic-system">1. A Robust K Means Algorithmic system</a></li>
+        <li><a href="#2-regression-using-k-nearest-neighbors">2. Regression using K Nearest Neighbors</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 

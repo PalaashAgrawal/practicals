@@ -12,12 +12,12 @@ For example, in logistic regression, the final output (the output from the sigmo
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://palaashagrawal.github.io/practicals/docs/04-bayesian-learning/" />
 
-<title>04 Bayesian Learning | Palaash Agrawal</title>
+<title>04 Bayesian Learning | Practical Machine Learning</title>
 <link rel="manifest" href="https://palaashagrawal.github.io/practicals/manifest.json">
 <link rel="icon" href="https://palaashagrawal.github.io/practicals/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="https://palaashagrawal.github.io/practicals/book.min.2dc4d2afa8da6ac78d76671c21e140952e7a84846fed47ed02a1a2d68166d992.css" integrity="sha256-LcTSr6jaaseNdmccIeFAlS56hIRv7UftAqGi1oFm2ZI=">
-<script defer src="https://palaashagrawal.github.io/practicals/en.search.min.ca40c67ae3c71e5afca9d771d7e6ea511d0c4ba4f69a678a0b07e8c8557d56c0.js" integrity="sha256-ykDGeuPHHlr8qddx1&#43;bqUR0MS6T2mmeKCwfoyFV9VsA="></script>
-<link rel="alternate" type="application/rss+xml" href="https://palaashagrawal.github.io/practicals/docs/04-bayesian-learning/index.xml" title="Palaash Agrawal" />
+<script defer src="https://palaashagrawal.github.io/practicals/en.search.min.d9bbc43679a68b10a114fe2293ecbdc6494f21fb8dd68df27c14cf80eff2e607.js" integrity="sha256-2bvENnmmixChFP4ik&#43;y9xklPIfuN1o3yfBTPgO/y5gc="></script>
+<link rel="alternate" type="application/rss+xml" href="https://palaashagrawal.github.io/practicals/docs/04-bayesian-learning/index.xml" title="Practical Machine Learning" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -35,7 +35,7 @@ https://github.com/alex-shpak/hugo-book
         
   <nav>
 <h2 class="book-brand">
-  <a href="https://palaashagrawal.github.io/practicals/"><span>Palaash Agrawal</span>
+  <a href="https://palaashagrawal.github.io/practicals/"><span>Practical Machine Learning</span>
   </a>
 </h2>
 
@@ -70,7 +70,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://palaashagrawal.github.io/practicals/docs/00-introduction-to-machine-learning-and-python/" class="">00 Introduction to Machine Learning and Python</a>
+    <a href="https://palaashagrawal.github.io/practicals/docs/00-basics-of-python-and-introduction-to-machine-learning/" class="">00 Basics of Python and Introduction to Machine Learning</a>
   
 
           
@@ -207,6 +207,24 @@ https://github.com/alex-shpak/hugo-book
         </li>
       
     
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/08-neural-networks-part-1/" class="">08 Neural Networks Part 1</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
   </ul>
 
 
@@ -293,13 +311,17 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#case-study-auto-text-generator">Case Study: Auto Text Generator</a></li>
       </ul>
     </li>
-    <li><a href="#review">Review</a></li>
-    <li><a href="#review-questions">Review Questions:</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#problem-1-extended-naive-bayes-classifier">Problem 1: Extended Naive Bayes Classifier</a></li>
-    <li><a href="#problem-2-markov-shakespeare-what-is-in-the-name">Problem 2: Markov? Shakespeare? What is in the name!</a></li>
+    <li><a href="#review">Review</a>
+      <ul>
+        <li><a href="#review-questions">Review Questions</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercise">Exercise</a>
+      <ul>
+        <li><a href="#problem-1-extended-naive-bayes-classifier">Problem 1: Extended Naive Bayes Classifier</a></li>
+        <li><a href="#problem-2-markov-shakespeare-what-is-in-the-name">Problem 2: Markov? Shakespeare? What is in the name!</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 
@@ -541,8 +563,8 @@ word
 <h2 id="review">Review</h2>
 <p>In this session, we learnt about two very interesting Bayesian models, or probabilistic models - the Naive Bayes Classifier and the Markov Chain Model. These both work in different ways and have great applications in their own domains. We built a classifier using no iterative learning, and only through analyzing the frequencies of occurence of a particular value.</p>
 <p>Simple probabilistic models are very crude, because of the fact that there exists unguided randomness in these models. But yet, there does exist logical sense in these models.</p>
-<h2 id="review-questions">Review Questions:</h2>
-<p>These are non-evaluative, but highly recommended to go through. Make sure you clearly know the answer to each of these concepts. The answers to all these questions are somewhere in this notebook, so if you find yourself unclear with a concept, go back up and find the answer!</p>
+<h3 id="review-questions">Review Questions</h3>
+<p>These are highly recommended to go through. Make sure you clearly know the answer to each of these concepts. The answers to all these questions are somewhere in this notebook, so if you find yourself unclear with a concept, go back up and find the answer!</p>
 <ol>
 <li>What is the significance of <em>probability</em> in Machine Learning?</li>
 <li>Explain what $P(pred)$,$ P(data)$ and $P(data|pred)$ mean in essence?, and how are they related to our classification model?</li>
@@ -552,8 +574,8 @@ word
 <li>What is Regex?</li>
 <li>When would a Markov Chain result in an infinite looping situation?</li>
 </ol>
-<h1 id="exercise-evaluative">Exercise (Evaluative):</h1>
-<h2 id="problem-1-extended-naive-bayes-classifier">Problem 1: Extended Naive Bayes Classifier</h2>
+<h2 id="exercise">Exercise</h2>
+<h3 id="problem-1-extended-naive-bayes-classifier">Problem 1: Extended Naive Bayes Classifier</h3>
 <p>In the above problem, we simply dropped all continuous variables (Why?). But there are ways to convert continuous variables into categorical variables. One such method is <em>binning</em>, which means, we divide the data into separate categories, or bins, based on their value. For example, values from 0 to 5 lie in one bin, 5 to 10 in another and so on. So let us try to include continuous variables as well into our data, and see if we can get a better Bayesian accuracy.</p>
 <p>So first do it for the variable Age. According to the dataset Age lies between 0 and 85. So you can create bins of 10 years (ie, 0 to 10, 10 to 20 and so on).</p>
 <p>Hint: You can do it easily using list comprehensions:</p>
@@ -575,7 +597,7 @@ test=pd.read_csv('test.csv',index_col=0).drop(['id','Departure Delay in Minutes'
 'satisfaction']
 </code></pre><p><code>id</code> will be always dropped (removed) from the dataframe</p>
 <pre><code>
-</code></pre><h2 id="problem-2-markov-shakespeare-what-is-in-the-name">Problem 2: Markov? Shakespeare? What is in the name!</h2>
+</code></pre><h3 id="problem-2-markov-shakespeare-what-is-in-the-name">Problem 2: Markov? Shakespeare? What is in the name!</h3>
 <p>We learnt that the next prediction of a Markov Model only depends on the present prediction/value, i.e. the model is a <em>memoryless</em> model.</p>
 <p>Let us build a memory model, ie a model, which also takes into account the predecessor of the current prediction, along with the current prediction itself. Meaning, what would be the next word, given the last <em>2</em> predictions?!</p>
 <p>But this most probably won&rsquo;t work on the text we wrote above (the boring text), because it contains only 2400 words. So there is a very low probability that the successor of two consecutive words will have more than one possible options. We will end up getting the exact same text as the text we wrote, or almost on the same lines.</p>
@@ -648,13 +670,17 @@ txt[:1000] #print the first 1000 words
         <li><a href="#case-study-auto-text-generator">Case Study: Auto Text Generator</a></li>
       </ul>
     </li>
-    <li><a href="#review">Review</a></li>
-    <li><a href="#review-questions">Review Questions:</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#problem-1-extended-naive-bayes-classifier">Problem 1: Extended Naive Bayes Classifier</a></li>
-    <li><a href="#problem-2-markov-shakespeare-what-is-in-the-name">Problem 2: Markov? Shakespeare? What is in the name!</a></li>
+    <li><a href="#review">Review</a>
+      <ul>
+        <li><a href="#review-questions">Review Questions</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercise">Exercise</a>
+      <ul>
+        <li><a href="#problem-1-extended-naive-bayes-classifier">Problem 1: Extended Naive Bayes Classifier</a></li>
+        <li><a href="#problem-2-markov-shakespeare-what-is-in-the-name">Problem 2: Markov? Shakespeare? What is in the name!</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 
