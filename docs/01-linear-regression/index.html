@@ -17,7 +17,7 @@ Regression Regression is a statistical concept, which refers to finding relation
 <link rel="manifest" href="https://palaashagrawal.github.io/practicals/manifest.json">
 <link rel="icon" href="https://palaashagrawal.github.io/practicals/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="https://palaashagrawal.github.io/practicals/book.min.2dc4d2afa8da6ac78d76671c21e140952e7a84846fed47ed02a1a2d68166d992.css" integrity="sha256-LcTSr6jaaseNdmccIeFAlS56hIRv7UftAqGi1oFm2ZI=">
-<script defer src="https://palaashagrawal.github.io/practicals/en.search.min.d9bbc43679a68b10a114fe2293ecbdc6494f21fb8dd68df27c14cf80eff2e607.js" integrity="sha256-2bvENnmmixChFP4ik&#43;y9xklPIfuN1o3yfBTPgO/y5gc="></script>
+<script defer src="https://palaashagrawal.github.io/practicals/en.search.min.e9a8aaa838b2209aa9fafb291a3b9832e38290dcbfe57bfa088e79a7b28dfc5d.js" integrity="sha256-6aiqqDiyIJqp&#43;vspGjuYMuOCkNy/5Xv6CI55p7KN/F0="></script>
 <link rel="alternate" type="application/rss+xml" href="https://palaashagrawal.github.io/practicals/docs/01-linear-regression/index.xml" title="Practical Machine Learning" />
 <!--
 Made with Book Theme
@@ -510,8 +510,8 @@ plt.xlabel('Days since 4 Jan 2010');
 <p>Given some input x and output y, you can directly calculating the line of best fit using the formula described below. :
 (Disclaimer: You Don&rsquo;t need to  memorize these formulae!)</p>
 <p>$$ y= w_{1}x_1 + w_2x_2 + &hellip;. + w_k x_k + b$$</p>
-<p>$$w_i =  \frac{\sum_1^n(x_i - \bar{x_i})(y - \bar{y})}{\sum_1^n(x_i - \bar{x_i})}$$</p>
-<p>$$b= \frac{1}{n} \left {\sum_{1}^{n} y - \sum_{i=1}^{k} w_i (\sum_{1}^{n}x_i)  \right }$$</p>
+<p>$$ w_i =  \frac{\sum_1^n(x_i - \bar{x_i}) (y - \bar{y}) }{\sum_1^n (x_i - \bar{x_i}) }$$</p>
+<p>$$b= \frac{1}{n} \left( \sum_{1}^{n} y - \sum_{i=1}^{k} w_i (\sum_{1}^{n}x_i)  \right)$$</p>
 <p>Where n is the number of training points, k is the number of independent variables, and all other notations have standard mathematical meanings. These calculations come from solving a differential equation in order to minimize the square of the difference.</p>
 <p>This seems quite confusing. Fortunately, there are many python libraries out there that do this calculation for us. One such library is the <code>scikitlearn</code> library. Let us import that library.</p>
 <pre><code>from sklearn.linear_model import LinearRegression
