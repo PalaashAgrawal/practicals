@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta name="generator" content="Hugo 0.68.3" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="09 Convolutional Neural Networks  Before Starting, we will change the accelerator of this notebook from a CPU to a GPU, since we&rsquo;ll be running our Neural Networks on the GPU.
+  Go to Runtime &ndash;&gt; Change Runtime Type &ndash;&gt; GPU
+ Welcome to the 9th session in Practical Machine Learning. In this session, we will continue our journey in Deep Learning. In this session, we will learn about one of the most interesting domains of AI - Computer Vision.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://palaashagrawal.github.io/practicals/docs/09-convolution-neural-networks/" />
+
+<title>09 Convolution Neural Networks | Practical Machine Learning</title>
+<link rel="manifest" href="https://palaashagrawal.github.io/practicals/manifest.json">
+<link rel="icon" href="https://palaashagrawal.github.io/practicals/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="https://palaashagrawal.github.io/practicals/book.min.2dc4d2afa8da6ac78d76671c21e140952e7a84846fed47ed02a1a2d68166d992.css" integrity="sha256-LcTSr6jaaseNdmccIeFAlS56hIRv7UftAqGi1oFm2ZI=">
+<script defer src="https://palaashagrawal.github.io/practicals/en.search.min.311c7d87c54b6e01e59661cd37c56d057349a5ebdc30eb159b75a5dea4d4f03a.js" integrity="sha256-MRx9h8VLbgHllmHNN8VtBXNJpevcMOsVm3Wl3qTU8Do="></script>
+<link rel="alternate" type="application/rss+xml" href="https://palaashagrawal.github.io/practicals/docs/09-convolution-neural-networks/index.xml" title="Practical Machine Learning" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="https://palaashagrawal.github.io/practicals/"><span>Practical Machine Learning</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/00-basics-of-python-and-introduction-to-machine-learning/" class="">00 Basics of Python and Introduction to Machine Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/01-linear-regression/" class="">01 Linear Regression</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/02-logistic-regression/" class="">02 Logistic Regression</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/03-singular-value-decomposition-and-principal-component-analysis/" class="">03 Singular Value Decomposition and Principal Component Analysis</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/04-bayesian-learning/" class="">04 Bayesian Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/05-clustering-algorithms-in-machine-learning/" class="">05 Clustering Algorithms in Machine Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/06-support-vector-machines/" class="">06 Support Vector Machines</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/07-decision-trees-and-random-forests/" class="">07 Decision Trees and Random Forests</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/08-neural-networks-part-1/" class="">08 Neural Networks Part 1</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/09-convolution-neural-networks/" class=" active">09 Convolution Neural Networks</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="https://palaashagrawal.github.io/practicals/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>09 Convolution Neural Networks</strong>
+
+  <label for="toc-control">
+    
+    <img src="https://palaashagrawal.github.io/practicals/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+
+    
+  </label>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  
+    window.addEventListener('load', (event) => {
+        document.querySelectorAll("mjx-container").forEach(function(x){
+          x.parentElement.classList += 'has-jax'})
+      });
+  
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-a-convolutional-neural-network">What is a Convolutional Neural Network?</a>
+      <ul>
+        <li><a href="#what-is-a-convolutional-block">What is a Convolutional Block?</a></li>
+        <li><a href="#why-does-a-convolutional-network-work-better-than-multilayer-perceptrons">Why does a Convolutional Network work better than MultiLayer Perceptrons?</a></li>
+        <li><a href="#history-of-cnns">History of CNNs</a></li>
+      </ul>
+    </li>
+    <li><a href="#the-resnet-architecture-and-other-image-classification-models">The ResNet Architecture and other Image Classification Models</a>
+      <ul>
+        <li><a href="#pretrained-weights-and-transfer-learning">Pretrained Weights and Transfer Learning</a></li>
+      </ul>
+    </li>
+    <li><a href="#using-external-models-for-transfer-learning">Using external models for transfer learning</a></li>
+    <li><a href="#additional-tasks">Additional Tasks</a>
+      <ul>
+        <li><a href="#task-1">Task 1</a></li>
+        <li><a href="#task-2">Task 2</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercise">Exercise</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="09-convolutional-neural-networks">09 Convolutional Neural Networks</h1>
+<blockquote>
+<p>Before Starting, we will change the accelerator of this notebook from a CPU to a GPU, since we&rsquo;ll be running our Neural Networks on the GPU.</p>
+</blockquote>
+<blockquote>
+<p>Go to Runtime &ndash;&gt; Change Runtime Type &ndash;&gt; GPU</p>
+</blockquote>
+<p>Welcome to the 9th session in Practical Machine Learning. In this session, we will continue our journey in Deep Learning. In this session, we will learn about one of the most interesting domains of AI - <em>Computer Vision</em>.</p>
+<p><img src="https://drive.google.com/uc?id=1wYMDn_gWGMeH7OLV3kbO9zlf42f283sF" alt="" /></p>
+<p>Computer Vision is the domain that focuses on Machines&rsquo; ability to perceive the physical space around us through vision, just like we do through our eyes. Even before there were sophisticated algorithms to perform Computer Vision tasks, the idea and importance of Computer Vision has existed. Vision was one of the key components of the Turing Test.</p>
+<p>It is safe to say that among all Machine Learning tasks, Computer Vision has advanced the most. Every year, we see more and more advanced research in Computer Vision tasks. The most influential conference in AI is CVPR, which stands for <em>Computer Vision and Pattern Recognition</em>.</p>
+<p>Computer Vision finds its applications in very sophisticated systems nowadays. Self driving cars, or autonomous robots use Computer Vision. So clearly, Computer Vision cannot be neglected in AI, because we literally let it decide the fate of things as precious as human life!</p>
+<p>All this is mostly credited to one single technique in Deep Learning - <em>Convolutional Neural Networks</em>. They are a variant of traditional Neural Networks that are capable of handling images as whole.</p>
+<p>So, let us actually begin by building our own model, to see what Convolutional Neural Networks are capable of, and what potential they have. This is the session where we will be learning how to build the best models among all types of models we&rsquo;ve built, in terms of performance.</p>
+<p>We&rsquo;ll build our models using PyTorch. However, PyTorch only provides us inbuilt functionality for basic (and frankly slightly archaic) training methods. Instead of plain PyTorch, we recommend using  using a library called <em>fastai</em>, which is built on top of PyTorch. We&rsquo;ve used fastai in the very Introduction to Python and ML introductory session. <em>fastai</em> allows users to implement world class research practices in Deep Learning, without having to deal with all the technical details. Let us begin by installing this library.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> IPython.display <span style="color:#f92672">import</span> YouTubeVideo
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#960050;background-color:#1e0010">!</span>pip install <span style="color:#f92672">--</span>upgrade fastai <span style="color:#f92672">&gt;./</span>tmp
+<span style="color:#f92672">from</span> fastai.vision.all <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+<span style="color:#75715e">#note: If you&#39;re using Colab, you may see an erro message about incompatibility. Ignore that!</span>
+</code></pre></div><p>Let us revisit the problem of the Cat vs the Dog classifier. However, this time we will not only understand various concepts that you may have ekarng in the preovious. If you don&rsquo;t find such things, thats okay. You are now ready to learn those. We will look at the components that fastai needs to build a model. However you are not required to understand or memorize the internal working of the library at this point. We will guide you on how to build the model. All the steps and documentations can be found <a href="https://docs.fast.ai/">here</a>.</p>
+<p>We start by downloading the datasets. <em>fastai</em> has the <code>untar_data</code> function that automatically downloads the data from a link and unzips it. It returns the paths of the destination where the dataset would be.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">path <span style="color:#f92672">=</span> untar_data(URLs<span style="color:#f92672">.</span>PETS)
+path
+</code></pre></div><p>So the dataset is contained at this location. <em>fastai</em> has a wonderful API that can dynamically retrive data in the form of tensors just by taking in a list of path addresses of all datapoints, and a method to reallocate.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">files <span style="color:#f92672">=</span> get_image_files(path<span style="color:#f92672">/</span><span style="color:#e6db74">&#34;images&#34;</span>)
+files
+</code></pre></div><p>This dataset contains not only images of Cats and Dogs, but even different breeds. You have the option to either use this as a dataset to classifiy different breeds of cats and dogs, so simply classifiy between cats or dogs. Cats are specifically labeled with words starting with a Capital Letter, while a small letter for dogs. So <em>fastai</em> needs to know, how labels of an image with a path, is determined. We do so by defining a function <code>label_func</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">label_func</span>(f): <span style="color:#66d9ef">return</span> f[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>isupper() <span style="color:#75715e">#Cats will be labeled as True, and Dogs as False</span>
+</code></pre></div><p>Finally, let us finish building our dataset by creating dataloaders, which we learnt about in the previous lab session. <em>fastai</em> is built on top of PyTorch, so dataloaders is used in that as well.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">dls <span style="color:#f92672">=</span> ImageDataLoaders<span style="color:#f92672">.</span>from_name_func(path, files, label_func, item_tfms<span style="color:#f92672">=</span>Resize(<span style="color:#ae81ff">224</span>)) <span style="color:#75715e">#Each image is of size 224x224 pixels, since in order to put the data in a tensor, they mst of uniform shape</span>
+dls<span style="color:#f92672">.</span>show_batch()
+</code></pre></div><p><code>dls</code> is nothing but a tuple of the <em>train_dl</em> and the <em>valid_dl</em>, that we used in the last lab session. So if we simply deconstruct this variable called <code>dls</code> as</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">train_dl,valid_dl <span style="color:#f92672">=</span> dls
+</code></pre></div><p>We reach the same point!</p>
+<p>Next, we create a <em>Learner</em>, which is nothing but a python class, similar to the <code>NeuralNetwork</code> class in the previous session. Its job is to simply keep track of the data, model, optimizer, and the state of the parameters. We can train the model using the <code>fine_tune</code> method of the class.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn <span style="color:#f92672">=</span> cnn_learner(dls, resnet34, metrics<span style="color:#f92672">=</span>accuracy)
+learn<span style="color:#f92672">.</span>fine_tune(<span style="color:#ae81ff">1</span>) <span style="color:#75715e">#Make sure your GPU is enabled, otherwise this may take an hour or so</span>
+</code></pre></div><p>Wow, In less than 2 mins, we have built a model that is about 98% accurate in classifying dogs from cats. If you set the hyperparameters of this model carefully, you may achieve even more.</p>
+<p>We have not been able to achieve this kind of accuracy in any of the previously built dataset. This is the current State of Computer Vision, and as you can see, there are great tools out there, like the fastai library, which bring all these wonders to your fingertips. And in return you don&rsquo;t have to spend years and years on learning the math, or the theory. You can build your own world class models with minimal effort.</p>
+<p>Infact, let us build our own classifier!</p>
+<p>I very recently came across <a href="https://joedockrill.github.io/jmd_imagescraper/">this</a> tool developed by someone, which easily lets us build our own datasets by scraping images from the Internet. It works using a simple duckduckgo based search engine, which lets it downlaod images using a search query. So using this, you can create a dataset of images easily.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#960050;background-color:#1e0010">!</span>pip install jmd_imagescraper <span style="color:#f92672">&gt;./</span>tmp
+<span style="color:#f92672">from</span> jmd_imagescraper.core <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+</code></pre></div><p>Build your own Image Classifier, not necessarily only 2 classes.</p>
+<p>In the below example, we pick a random, but slighlty harder problem - classifying between 2 very similar monuments - the <em>India Gate</em>, in New Delhi, and the <em>Arc De Triomphe</em>, in Paris. Infact, India Gate was inspired by Arc De Triomphe, and actually look quite similar, atleast from a distance. Can a Convolutional Neural Network identify which one is which?</p>
+<p>You can change the queries to anything else. Duck Vs Goose, Mickey Mouse vs Tom the cat, Horse vs Donkey. There can even be more than 2 classes, not an issue. Try building your own Image Classifier.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">root <span style="color:#f92672">=</span> Path()<span style="color:#f92672">.</span>cwd()<span style="color:#f92672">/</span><span style="color:#e6db74">&#34;monuments/&#34;</span>
+duckduckgo_search(root, <span style="color:#e6db74">&#34;India Gate&#34;</span>, <span style="color:#e6db74">&#34;India Gate&#34;</span>, max_results<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>);
+duckduckgo_search(root, <span style="color:#e6db74">&#34;Arc de Triomphe&#34;</span>, <span style="color:#e6db74">&#34;Arc de Triomphe&#34;</span>, max_results<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>);
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">files <span style="color:#f92672">=</span> get_image_files(root)
+files
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">dls <span style="color:#f92672">=</span> ImageDataLoaders<span style="color:#f92672">.</span>from_path_func(path,files,label_func<span style="color:#f92672">=</span>parent_label,item_tfms<span style="color:#f92672">=</span>Resize(<span style="color:#ae81ff">224</span>))
+dls<span style="color:#f92672">.</span>show_batch()
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn <span style="color:#f92672">=</span> cnn_learner(dls, resnet34, metrics<span style="color:#f92672">=</span>accuracy)
+learn<span style="color:#f92672">.</span>fine_tune(<span style="color:#ae81ff">5</span>)
+</code></pre></div><p>So In just a few lines of code, you have built your own Image classifier, with world class accuracy!</p>
+<h2 id="what-is-a-convolutional-neural-network">What is a Convolutional Neural Network?</h2>
+<p>Now that we&rsquo;ve seen the potential of Convolutional Neural Nets (CNNs). For those who have no idea about what a Convolutional Neural Net is or looks like, below is a great video to help you</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">YouTubeVideo(<span style="color:#e6db74">&#39;K_BHmztRTpA&#39;</span>,<span style="color:#ae81ff">700</span>,<span style="color:#ae81ff">450</span>)
+</code></pre></div><p>Let us learn about what they exactly are. Let us look at the represenation of the model we used above.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn<span style="color:#f92672">.</span>model
+</code></pre></div><p>Few Observations! This is a nn.Sequential Object, which we know about. This particular model is a very famous architecture in Computer Vision, and is called the <em>ResNet</em> Architecture. We&rsquo;ll look into it in detail in the following subsection.</p>
+<p>Just like in the previous session, we learnt that models are composed of blocks called <em>modules</em>. Let us look at one of these modules.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn<span style="color:#f92672">.</span>model[<span style="color:#ae81ff">0</span>]
+</code></pre></div><p>Turns out even this module is composed of many blocks. Let us look at an even more basic block within this module.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn<span style="color:#f92672">.</span>model[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>]
+</code></pre></div><p>Here we have a new PyTorch object, called as the <em>nn.Conv2D</em>, which stands for the 2D Convolutional Block (since Images are 2D). This is analogous to the Linear Layer we learnt about. Except that if you look at the model, there are both Conv Blocks as well as linear blocks in this ResNet model.</p>
+<h3 id="what-is-a-convolutional-block">What is a Convolutional Block?</h3>
+<p>For that let us start by understanding what a convolution is. A convolution is a feature engineering technique, by which we derive information from an image. A specific kind of convolution may be helpful in identifying the edges of an image, the other may be helpful in identifying where the color green is present, and so on. Visually, this is how convolutions are performed.</p>
+<p><img src="https://drive.google.com/uc?id=1J92FpdbRlXnd1Mr5tZSYtMrhGZSqbeA3" alt="" /></p>
+<p><img src="https://drive.google.com/uc?id=14Dbf6jLFMSVvpbjBm9KUkGNk8lEVye2f" alt="" /></p>
+<p>The 3x3 matrix you see, over which convolution takes place is called the <em>kernel</em>. Each kernel is responsible for deriving a feature.</p>
+<p>There may be multiple kernels working on the same image per layer. This resulting matrix (on the right) is the output of one layer, and represents some feature. This is also the input to the next layer of the convNet. The next layer will learn even more complex features, until it can reach a point, where it can learn about features that differentiate between dogs and cats, for example.</p>
+<p>There is a great <a href="https://www.cs.ryerson.ca/~aharley/vis/conv/">visualization tool</a> created by Adam Harley to visualize how CNNs process image data.</p>
+<h3 id="why-does-a-convolutional-network-work-better-than-multilayer-perceptrons">Why does a Convolutional Network work better than MultiLayer Perceptrons?</h3>
+<p>In the real world, pixels don&rsquo;t really mean much. It is a <em>group</em> of pixels that has a meaning. A group of pixels forms the eyes, the nose, the ears of a cat. And a group of these groups collectively forms the face of the cat. MLPs don&rsquo;t consider this spatial relationship between pixels. It simply breaks them apart and treats each pixel independently. Through this we lose spatial information. But CNNs retain this spatial relationship. It works on the pronciple of finding features from a group of pixels without disturbing their spatial distribution. THis is the reason CNNs work better on visual data rather than straightforward MLP Neural Networks.</p>
+<h3 id="history-of-cnns">History of CNNs</h3>
+<p><img src="https://drive.google.com/uc?id=1aliUnCaqWQURkSYN5MVsm3bUBpMFjPRU" alt="" /></p>
+<p>CNNs were first popularized by Yann LeCun in 1989. At that time, however, the research community did not beleive in the potential of Neural Nets. However, Yann LeCun was one of the few researchers who did, and kept working on its development. Here is a video of him demonstrating the first ConvNet for Handwritten Digit recognition while he was at Bell Labs.</p>
+<p>This model of his was used by Banks to read cheques and the Post Office to read postal codes.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">YouTubeVideo(<span style="color:#e6db74">&#39;FwFduRA_L6Q&#39;</span>,width<span style="color:#f92672">=</span><span style="color:#ae81ff">700</span>,height<span style="color:#f92672">=</span><span style="color:#ae81ff">450</span>)
+</code></pre></div><p>Today, LeCun works as the Director of Facebook AI Research, which is a pioneer in many AI techniques, that is used as baseline by other researchers throughout the world to build upon their own work!</p>
+<h2 id="the-resnet-architecture-and-other-image-classification-models">The ResNet Architecture and other Image Classification Models</h2>
+<p>ResNets are one of the most Vanilla image classification models used for classification. They were introduced in 2015 by Kaiming He et al.
+They are particulary effective due to the skip connection feature, which looks something like this.</p>
+<p><img src="https://drive.google.com/uc?id=1TCdBQjz8qEegGfOpPi_VLQUtBACiPuYh" alt="" /></p>
+<p>This is a great regulization feature. It serves the model in two ways.</p>
+<ul>
+<li>It prevents the model from overskipping, since the data can somewhat be directed to skip over layers.</li>
+<li>Most importantly, it is a great way to propagate activation distributions, and prevents them from collapsing to zero mean/zero standard deviation.</li>
+</ul>
+<p>Zero Activations are a huge problem in Neural Networks. If a model is not trained carefully, the activations can collapse very fast, and at that point, there will be no learning, since the gradients will be zero too, and there will be no significant parameter update.</p>
+<p>This is what the ResNet architecture looks like in total.</p>
+<p><img src="https://drive.google.com/uc?id=1JD56yCUf_GoyQxy69l_jQ_hPImW6OCrd" alt="" /></p>
+<p>This Skip Connection Technique became so popular, that many modern Image architectures use this. For example, here is the EfficientNet architecture.</p>
+<p><img src="https://drive.google.com/uc?id=1-mcRP0oDyyfkqBS4cPQJPBM37nL418ie" alt="" /></p>
+<p>And the MobileNet architecture!</p>
+<p><img src="https://drive.google.com/uc?id=1_5_HT1RXCAgkfBs_Zu5NA9p5rXZG16vi" alt="" /></p>
+<p>Lets actually look inside the ResNet architecture!</p>
+<p>ResNet architecture has many variants, based on the number of layers. There is ResNet18, ResNet34, ResNet50, ResNet101,and ResNet151. If you scroll up, you&rsquo;ll notice we used the ResNet34 architecture, because it falls in between the two extremes, and works satisfactorily.</p>
+<p>Torchvision provides us with the architectures of these models, along with <em>pretrained</em> weights. <a href="https://pytorch.org/vision/stable/models.html">Link</a> for all models provided by PyTorch.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> torchvision
+</code></pre></div><p>Here is the implementation of the resnet34 architecture.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">model<span style="color:#f92672">=</span>torchvision<span style="color:#f92672">.</span>models<span style="color:#f92672">.</span>resnet34(pretrained<span style="color:#f92672">=</span>True)
+</code></pre></div><p>Lets look up the source-code of the implementation of this model.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#960050;background-color:#1e0010">??</span>model
+</code></pre></div><p>You would have noticed the argument called <code>pretrained</code>. Whats that?</p>
+<h3 id="pretrained-weights-and-transfer-learning">Pretrained Weights and Transfer Learning</h3>
+<p><em>fastai</em> learner provides us with a method in its Learner class, called <code>summary</code>, which gives the summary of the model layers it contains. It provides information about each layer in the model, the number of parameters it has, as well as the input and output shape of the data that goes into the model.</p>
+<p>It also provides information about the total number of parameters in the model. Let us try to find the total number of parameters in the Resnet34 architecture, which is by the way, on the lower end of the complexity spectrum of models</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn<span style="color:#f92672">.</span>summary()
+</code></pre></div><p>There are 21 million parameters in the model. Turns out, it is very computationally expensive to train this model from scratch for whatever task we have (cat vs dog in our example). Most of us do not have the resources to carry out model trainings from scratch. Its very common for models to take multiple GPUs over multiple days to train a model from scratch.</p>
+<p>So, how did we bring down the training time from multiple days to less than 2 minutes?</p>
+<p><em>Transfer Learning</em> is the answer.</p>
+<p>The way CNNs work is, that the earlier layers of the model learn basic features, such as right edge, or the presence of a colour. As you progress deeper into the model, the model learns more complex features. Here is a great representation of this from a 2013 paper by Zeiler and Fergus.</p>
+<p><img src="https://drive.google.com/uc?id=1zvOzZbvCCP-jsZL2oj_4K30BOdBWyBEc" alt="" /></p>
+<p>The basic features are more or less common for all Image recognition tasks. For example, every image recognition task involves the model needing to identify edges, colours, basic shapes such as squares, circles, etc. It is only the later layers of the model that need to be different in order for the model to adapt for the particular problem that you&rsquo;re trying to solve.</p>
+<p>So, researchers already train these architectures on standard Image datasets (such as ImageNet, a corpus of 1.4 Million Images containing 1000 categories of everyday objects, or the COCO dataset), and provide the parameters of the model publically, so that we don&rsquo;t have to train them from scratch. THis is called <em>Transfer Learning</em>, and the process is called using pretrained weights (parameters).</p>
+<p>Now, for any task, all we need to do is, to <em>fine-tune</em> the later layers of the model to adapt to our task.</p>
+<h2 id="using-external-models-for-transfer-learning">Using external models for transfer learning</h2>
+<p>There is a practitioner named <a href="https://github.com/rwightman">Ross Wrightman</a>, who provides PyTorch compatible ImageNet-pretrained weights for many modern architectures - even those architectures which are not present by default in PyTorch or Keras. He provides us with a <a href="https://github.com/rwightman/pytorch-image-models/tree/master/timm">library</a> called <code>timm</code>, which facilitates retrieving such models.</p>
+<p>We would like to integrate these models with a fastai style learner. But these models are not immediately ready to go into the learner object. Thats because by default, all the layers are clubbed into a single module. To use all the functionality that fastai provides, you need to first split each layer into a separate module, and also do a few architectural changes to make it compatible with the data that you&rsquo;re training with (Image Net has 1000 classes, we have only 2)!</p>
+<p>Zach Mueller is a very active contributor to the fastai community, and created a library that contains this functionality. You can find it <a href="https://walkwithfastai.com/vision.external.timm">here</a>.</p>
+<p>Our purpose here is not to learn all the technical details all at once, but rather providing you with the tools to build your own models. Many a times, you want to use other models other than standard ResNets or Inceptions, etc. Such open-source work from the AI community is a great way to learn and grow.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#960050;background-color:#1e0010">!</span>pip install timm <span style="color:#f92672">&gt;./</span>tmp
+<span style="color:#960050;background-color:#1e0010">!</span>pip install wwf <span style="color:#f92672">&gt;./</span>tmp
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> wwf.vision.timm <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+<span style="color:#f92672">import</span> timm
+</code></pre></div><p>These are all the models that are available in the timm library.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">timm<span style="color:#f92672">.</span>list_models(pretrained<span style="color:#f92672">=</span>True)
+</code></pre></div><p>Let us build a model with another architecture, say <code>inception_v4</code>. <code>wwf</code> provides us with a convenient function that takes in the model architecture, splits it into modules, and modifies the architecture according to our data input and output dimensions, and returns a fastai style learner object</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">dls<span style="color:#f92672">.</span>show_batch()
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn <span style="color:#f92672">=</span> timm_learner(dls, <span style="color:#e6db74">&#39;inception_v4&#39;</span>, metrics<span style="color:#f92672">=</span>accuracy)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn<span style="color:#f92672">.</span>summary()
+</code></pre></div><p>Then you can simply follow the same step to train the model</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn<span style="color:#f92672">.</span>fine_tune(<span style="color:#ae81ff">4</span>)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#This will be used in the exercise. This line can be used to get the final accuracy of the model</span>
+learn<span style="color:#f92672">.</span>recorder<span style="color:#f92672">.</span>values[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+</code></pre></div><p>That&rsquo;s it. Now you have all the tools to build your own Image Classification models. There are a few tasks that you should do before heading to the Exercises.</p>
+<p>Finally, We would like to talk about the fastai library, which we have used extensively in this lab. The reason why we did not use PyTorch directly, was because there are way too many concepts to be learned before implementing state of the art models. It also does not make sense to implement watered down, or substandard models. One of the objectives of this course is to teach the real world Machine Learning, rather than Machine Learning from 5 or 10 years ago. Fastai is a pioneer in teaching Deep Learning in a top-down fashion - where you first learn how to implement models, and then learn the details.</p>
+<p>So a lot of details in this notebook that we have not convered are meant to be learnt slowly. We really recommend the fastai course to learn how to implement your own models, and also learn the theory behind a lot of techniques used in Deep Learning today.</p>
+<h2 id="additional-tasks">Additional Tasks</h2>
+<h3 id="task-1">Task 1</h3>
+<p>On the dataset you built, try implementing another model from <code>timm</code>. Make sure the model is not one which starts with <code>tf_</code> or <code>hr</code> as recommended by the wwf library. Train your model on this dataset.</p>
+<h3 id="task-2">Task 2</h3>
+<p>Additional Research:
+Many models have modules like Dropout, BatchNorm, and Pooling. Search on Google to understand what each one of these does. It is recommended you go through the original Research papers that introduced these, or did significant study on these topics</p>
+<h2 id="exercise">Exercise</h2>
+<p>Build a new dataset with 5 categories (any classification problem will work), using <code>duckduckgo_search</code>. For all models that are available with pretrained weights, and that do not start with <code>tf_</code> or <code>hr</code>, and train using <code>fine_tune</code> for 4 epochs. Plot all the accuracies on a graph with y denoting the accuracy, and x being fixed at 0. Annotate the points with the name of the architecture used, using <code>plt.annotate</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#f92672">as</span> plt
+</code></pre></div></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-a-convolutional-neural-network">What is a Convolutional Neural Network?</a>
+      <ul>
+        <li><a href="#what-is-a-convolutional-block">What is a Convolutional Block?</a></li>
+        <li><a href="#why-does-a-convolutional-network-work-better-than-multilayer-perceptrons">Why does a Convolutional Network work better than MultiLayer Perceptrons?</a></li>
+        <li><a href="#history-of-cnns">History of CNNs</a></li>
+      </ul>
+    </li>
+    <li><a href="#the-resnet-architecture-and-other-image-classification-models">The ResNet Architecture and other Image Classification Models</a>
+      <ul>
+        <li><a href="#pretrained-weights-and-transfer-learning">Pretrained Weights and Transfer Learning</a></li>
+      </ul>
+    </li>
+    <li><a href="#using-external-models-for-transfer-learning">Using external models for transfer learning</a></li>
+    <li><a href="#additional-tasks">Additional Tasks</a>
+      <ul>
+        <li><a href="#task-1">Task 1</a></li>
+        <li><a href="#task-2">Task 2</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercise">Exercise</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
