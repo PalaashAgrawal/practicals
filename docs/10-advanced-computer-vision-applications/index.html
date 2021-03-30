@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta name="generator" content="Hugo 0.68.3" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Advanced Computer Vision Applications  Before Starting, we will change the accelerator of this notebook from a CPU to a GPU, since we&rsquo;ll be running our Neural Networks on the GPU.
+  Go to Runtime &ndash;&gt; Change Runtime Type &ndash;&gt; GPU
+ Welcome to the 10th session in Practical Machine Learning. We discussed about Convolutional Neural Networks and how to use it for fundamental computer vision applications such as classification of images, and got some pretty wonderful results as well.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://palaashagrawal.github.io/practicals/docs/10-advanced-computer-vision-applications/" />
+
+<title>10 Advanced Computer Vision Applications | Practical Machine Learning</title>
+<link rel="manifest" href="https://palaashagrawal.github.io/practicals/manifest.json">
+<link rel="icon" href="https://palaashagrawal.github.io/practicals/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="https://palaashagrawal.github.io/practicals/book.min.2dc4d2afa8da6ac78d76671c21e140952e7a84846fed47ed02a1a2d68166d992.css" integrity="sha256-LcTSr6jaaseNdmccIeFAlS56hIRv7UftAqGi1oFm2ZI=">
+<script defer src="https://palaashagrawal.github.io/practicals/en.search.min.6a85d4f8df87072e37d72596f2cfd7225a446e0e0dca25093b64275a22f23950.js" integrity="sha256-aoXU&#43;N&#43;HBy431yWW8s/XIlpEbg4NyiUJO2QnWiLyOVA="></script>
+<link rel="alternate" type="application/rss+xml" href="https://palaashagrawal.github.io/practicals/docs/10-advanced-computer-vision-applications/index.xml" title="Practical Machine Learning" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="https://palaashagrawal.github.io/practicals/"><span>Practical Machine Learning</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/00-basics-of-python-and-introduction-to-machine-learning/" class="">00 Basics of Python and Introduction to Machine Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/01-linear-regression/" class="">01 Linear Regression</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/02-logistic-regression/" class="">02 Logistic Regression</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/03-singular-value-decomposition-and-principal-component-analysis/" class="">03 Singular Value Decomposition and Principal Component Analysis</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/04-bayesian-learning/" class="">04 Bayesian Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/05-clustering-algorithms-in-machine-learning/" class="">05 Clustering Algorithms in Machine Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/06-support-vector-machines/" class="">06 Support Vector Machines</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/07-decision-trees-and-random-forests/" class="">07 Decision Trees and Random Forests</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/08-neural-networks/" class="">08 Neural Networks</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/09-convolution-neural-networks/" class="">09 Convolution Neural Networks</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/10-advanced-computer-vision-applications/" class=" active">10 Advanced Computer Vision Applications</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="https://palaashagrawal.github.io/practicals/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>10 Advanced Computer Vision Applications</strong>
+
+  <label for="toc-control">
+    
+    <img src="https://palaashagrawal.github.io/practicals/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+
+    
+  </label>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  
+    window.addEventListener('load', (event) => {
+        document.querySelectorAll("mjx-container").forEach(function(x){
+          x.parentElement.classList += 'has-jax'})
+      });
+  
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#bounding-box-object-detection">Bounding Box Object Detection</a>
+      <ul>
+        <li><a href="#loss-function-the-focal-loss">Loss function: the Focal Loss</a></li>
+      </ul>
+    </li>
+    <li><a href="#segmentation">Segmentation</a></li>
+    <li><a href="#summary">Summary</a></li>
+    <li><a href="#exercise">Exercise</a>
+      <ul>
+        <li><a href="#1-exercise-1">1. Exercise 1</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="advanced-computer-vision-applications">Advanced Computer Vision Applications</h1>
+<blockquote>
+<p>Before Starting, we will change the accelerator of this notebook from a CPU to a GPU, since we&rsquo;ll be running our Neural Networks on the GPU.</p>
+</blockquote>
+<blockquote>
+<p>Go to Runtime &ndash;&gt; Change Runtime Type &ndash;&gt; GPU</p>
+</blockquote>
+<p>Welcome to the 10th session in Practical Machine Learning. We discussed about Convolutional Neural Networks and how to use it for fundamental computer vision applications such as classification of images, and got some pretty wonderful results as well. You must have built your own image classifier on your own dataset, using very less lines of code. Let us continue our journey in computer vision. We&rsquo;ll be building some advanced computer vision systems. In this session, we&rsquo;ll be learning about two types of Computer Vision applications - <em>Object localization</em> and <em>Segmentation</em>.</p>
+<p>Object Localization involves identifying where in an image certain objects lie. There are many ways to do this, but an extremely popular way to do this is by bounding boxes.</p>
+<p><img src="https://drive.google.com/uc?id=1Ft_d89BCa4SJXzhryQSJKvmSnHkcSj9T" alt="" /></p>
+<p>It is extremely useful in tracking the position and movement of objects. For example, bounding boxes are very widely used in surveillance systems to identify accidents, criminals, or just to ensure that everything is going smoothly.</p>
+<p>Goverments use traffic surveillances systems that use object localization technology to identify which cars pass through a particular location. This not only can be used to automatically fine people who break the traffic rules, but also as an intelligence system that accounts for the whereabouts of a vehicle in case of a criminal activity. It can also be used to identify accidents, without a human operator necessarily searching for such incidents. Thus, a system like this can help reduce burden on the human resources required for efficient monitoring.</p>
+<p><img src="https://drive.google.com/uc?id=1HKsH_yKs9L5WrbOBePqsP38fmie02ie6" alt="" /></p>
+<p>Apart from this, it is a key element in the vision system of self-driving cars, that need to identify objects to avoid collisions.</p>
+<p><img src="https://drive.google.com/uc?id=1W_jZmPvmVppB6hXBSCsgFTbvVbjfR_tg" alt="" /></p>
+<p>Not only vehicles, even people can be monitored for similar reasons. Many people even install such systems at their homes to detect burglaries. And this is also the technology that is used for facial recognition. While it is a wonderful application, there are also some growing concerns regarding the right to privacy of citizens of a place, when it comes to facial recognition for surveillance systems at places, which may not be completely necessary.</p>
+<p><img src="https://drive.google.com/uc?id=1q-dIQvqpdjnIWQgYi3xzHB87dWg-wwn0" alt="" /></p>
+<p>Not just humans or vehicles, localization can be used for specific applications, like keeping track of your cattle if you&rsquo;re a farmer, or to separate different types of trash through a robot at a recycling factory, and so on.</p>
+<p>AI has turned out to be one of the most efficient ways to carry out object localization. A lot of research has been done in this area. A few years ago, it used to be one of the hottest topic in AI research. An algorithm called <a href="https://arxiv.org/abs/1506.02640">YOLO</a> (<em>You Only Look Once</em>) was one such object localization algorithm, the name of which is still very famous, and even after many years, people are working to improve it, even if marginally. Just last year in 2020, the fifth version of YOLO (YOLOv5) was released, which introduced minor changes such as changing the activation function, or the architecture very slightly.</p>
+<p>Lately, however, there has been a decline in the number of publications each year on this topic. Yet, it is still one of the most popular systems deployed in the industry, especially in high end systems such as self driving cars, autonomous robots, surveillance systems.</p>
+<p>Infact, it is such a huge deal, that there are full fledged companies that build software for object localization. Most car manufacturers, that now use computer vision driving aid do not develop their own software, but outsource it. Even Tesla used to outsource its driving assist technologies until a few years ago.</p>
+<p>Segmentation is another form of object localization, but with a slightly different approach. The idea is not to create a bounding box around objects, but to create a map of pixels which tell us which pixel belongs to which object. This makes it a somewhat more refined version of object localization and detection. This is what segmentation looks like.</p>
+<p><img src="https://drive.google.com/uc?id=1VCqNjLnU5JDvH0MSHfAqf9s5GNssAOCw" alt="" /></p>
+<p>Each pixel is classified into an object. This produces a segmentation map, which you can overlay ontop of the original image to understand where objects are in the image.</p>
+<p>Segmentation helps us better understand the overall image, since every pixel is classified into an object. It is widely used in satellite imagery to understand the different types of land areas, or settlements ir even individual peices of farmlands. Some institutions have been doing some research on using segmentation to classify soil as fertile or infertile based on only satellite imagery and thermal sensors.</p>
+<p>Let us begin by understanding a bounding box prediction system, and then move on to segmentation.</p>
+<p>Before anything else, we will begin by installing the necessary libraries.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">%</span>cd
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#960050;background-color:#1e0010">!</span>pip install <span style="color:#f92672">--</span>upgrade fastai <span style="color:#f92672">&gt;./</span>tmp
+<span style="color:#f92672">from</span> fastai.vision.all <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+
+<span style="color:#960050;background-color:#1e0010">!</span>git clone https:<span style="color:#f92672">//</span>github<span style="color:#f92672">.</span>com<span style="color:#f92672">/</span>muellerzr<span style="color:#f92672">/</span>Practical<span style="color:#f92672">-</span>Deep<span style="color:#f92672">-</span>Learning<span style="color:#f92672">-</span><span style="color:#66d9ef">for</span><span style="color:#f92672">-</span>Coders<span style="color:#f92672">-</span><span style="color:#ae81ff">2.0</span><span style="color:#f92672">.</span>git <span style="color:#f92672">&gt;./</span>tmp
+<span style="color:#f92672">%</span>cd <span style="color:#e6db74">&#39;Practical-Deep-Learning-for-Coders-2.0/Computer Vision&#39;</span>
+<span style="color:#f92672">from</span> imports <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+<span style="color:#f92672">%</span>cd
+
+</code></pre></div><h2 id="bounding-box-object-detection">Bounding Box Object Detection</h2>
+<p>Our goal is to train a Convolutional Neural Network that can predict not classes, but cordinates of a bounding box. We also want it to predict which object there is inside the box. The latter is a simple image classification task. Once you predict bounding boxes, you can simply pass the area of the image inside the bounding box to an image classidier, and it will give us the class to which the object belongs. The tough part is to predict the bounding boxes. This is in essence a regression proble, where we&rsquo;re trying to predict four pairs of cordinates.</p>
+<p>Before jumping into the model implementation, let us set up the data. There is a dataset called the <a href="http://host.robots.ox.ac.uk/pascal/VOC/">PASCAL</a> dataset, which is a dataset, which provides comprehensive information about the categories, as well as locations in the form of bounding boxes as well as segmentation maps. We are concerned only with the bounding boxes.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">path<span style="color:#f92672">=</span>untar_data(URLs<span style="color:#f92672">.</span>PASCAL_2007)
+path<span style="color:#f92672">.</span>ls()
+</code></pre></div><p>It is always helpful to analyze the structure of the directory where our data is. There is folder called <code>train.json</code>, which contains annotations of bounding boxes of all objects in each image of the training set, present in the <code>train</code> directory. These annotations are quite common in many datasets, such as the COCO dataset, or other recent localization datasets, and usually follow a similar structuring internally. Because of this, fasatai provides us with a function called <code>get_annotations</code> to retrive these bounding boxes.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">imgs, lbl_bbox <span style="color:#f92672">=</span> get_annotations(path<span style="color:#f92672">/</span><span style="color:#e6db74">&#39;train.json&#39;</span>)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#960050;background-color:#1e0010">??</span>get_annotations
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">Image<span style="color:#f92672">.</span>open(path<span style="color:#f92672">/</span>f<span style="color:#e6db74">&#39;train/{imgs[0]}&#39;</span>)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">lbl_bbox[<span style="color:#ae81ff">0</span>] <span style="color:#75715e">#cordinates and class of the object</span>
+</code></pre></div><p>The dataset (dataloader) would obviously expect the image as well as the annotations together, so let us create a dictionaty that maps each training image.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">img2bbox <span style="color:#f92672">=</span> dict(zip(imgs, lbl_bbox))
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#ultimately we will be using the fastai API, which uses a function to retreive these images/labels. So we create a function that return this. </span>
+getters <span style="color:#f92672">=</span> [<span style="color:#66d9ef">lambda</span> o: path<span style="color:#f92672">/</span><span style="color:#e6db74">&#39;train&#39;</span><span style="color:#f92672">/</span>o, <span style="color:#66d9ef">lambda</span> o: img2bbox[o][<span style="color:#ae81ff">0</span>], <span style="color:#66d9ef">lambda</span> o: img2bbox[o][<span style="color:#ae81ff">1</span>]]
+</code></pre></div><p><em>Lessons in Python</em></p>
+<p><strong>THe lambda function</strong></p>
+<p>the lambda function is an equivalent to any other function, except that is is very handy when you only have to write a single line of functionality.</p>
+<p><code> func = lambda x: res</code></p>
+<p>is the same as</p>
+<pre><code>def func(x):
+    return res
+</code></pre><p>So lambda function are a great way to help better organize the code.</p>
+<p>This is all we need to create a data. Now all we need to do it so create dataloaders of our data, which we do using the fastai API. You need not memorize each specific component that is used in the API.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Don&#39;t worry about what a DataBlock is. It is nothing but a way of telling the API - what kind of data we&#39;re handling, how to retrieve it, how to split it, what to do with it before training, etc. </span>
+pascal <span style="color:#f92672">=</span> DataBlock(blocks<span style="color:#f92672">=</span>(ImageBlock, BBoxBlock, BBoxLblBlock),
+                 splitter<span style="color:#f92672">=</span>RandomSplitter(),
+                 get_items<span style="color:#f92672">=</span><span style="color:#66d9ef">lambda</span> x:imgs,
+                 getters<span style="color:#f92672">=</span>getters,
+                 item_tfms<span style="color:#f92672">=</span>[Resize(<span style="color:#ae81ff">128</span>, method<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;pad&#39;</span>)],
+                 batch_tfms<span style="color:#f92672">=</span>[Rotate(), Flip(), Dihedral(), Normalize<span style="color:#f92672">.</span>from_stats(<span style="color:#f92672">*</span>imagenet_stats)],
+                 n_inp<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">dls <span style="color:#f92672">=</span> pascal<span style="color:#f92672">.</span>dataloaders(path<span style="color:#f92672">/</span><span style="color:#e6db74">&#39;train&#39;</span>)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#dls.c represents the number of classes in the datasets. Again, you can ignnore it. </span>
+<span style="color:#75715e">#According to the homepage, there are 20 classes in this dataset. </span>
+dls<span style="color:#f92672">.</span>c <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>
+</code></pre></div><p>Let us see what our data looks like.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">dls<span style="color:#f92672">.</span>show_batch()
+</code></pre></div><p>Now coming to our model. We&rsquo;ll be implementing the <a href="https://arxiv.org/abs/1708.02002">RetinaNet</a> model. Before proceeding further, you are encouraged to read this paper. The idea behind this exercise is not only to understand the concepts in this paper, but also to learn how to read a research paper (Yes! It&rsquo;s a skill in itself)</p>
+<p>You can&rsquo;t read a paper word by word, end to end. Its just way too inefficient. Also, a lot of times, research papers are written only to fill up space. A researcher may only have a page worth of idea, but will try to extend it to 10 pages, so that it looks more impactful to reviewers and readers. So searching for key concepts and ideas within a research paper is a key skill you should gain. Since AI is a field that is constantly evolving, and so fast changing, you <em>will</em> have to involve yourself with the latest research in AI in order to keep yourself up-to-date with current trends.</p>
+<p><a href="https://www.youtube.com/watch?v=733m6qBH-jI">This</a> is a great video by Andrew Ng at Stanford University showing how to read research papers. Trust us, this one hour or so is a great investment of your time, for all of your future endeavours, especially in AI.</p>
+<p>Coming back to the RetinaNet model, it is a very simple model, that can do 2 tasks sumultaneously - it can</p>
+<ol>
+<li>Predict bounding boxes around objects in an image</li>
+<li>It can simultaneouly predict which class the object belongs to.</li>
+</ol>
+<p>Here&rsquo;s the diagram of the architecture of the RetinaNet model, that the authors used in the research paper.</p>
+<p><img src="https://drive.google.com/uc?id=1hFE3mhFWn6geW8r8cwAUuFPE1SS3IdVM" alt="" /></p>
+<p>Can you notice <em>ResNets</em> in the model? That is the backbone, or the main element of the model. We already have seen ResNets - they&rsquo;re used for classification.</p>
+<p>Ultimately, ResNets, or CNNs are used <em>to extract useful features from input data (images)</em>, which is necessary for any image recognition task. Images themselves are way too complex for models to be understood directly - they have to broken down into <em>features</em> to understand what is going on in the picture. Infact, even a complex system such as our brain has to break down visual data from the eyes to more meaningful features for it to understand. Though it is a completely separate issue that we don&rsquo;t exactly know what those features are.</p>
+<p>Any sequential model that is used to derive features is called an <em>encoder</em>. To this encoder, additional layers are stacked to get desired results. For example, in this cases, on top of the ResNet based encoder, there are other Convolution Layers (which the authors collectively refer to as a Feature Pyramid Network), which does the task of creating bounding boxes as well as predict the class of the object.</p>
+<p>So first we build the encoder using a standard ResNet architecture with 34 layers, and we use ImageNet pretrained weights to accelerate our training.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">encoder <span style="color:#f92672">=</span> create_body(resnet34, pretrained<span style="color:#f92672">=</span>True)
+</code></pre></div><p>Next, there is an inbuilt class called <code>RetinaNet</code> in Zach Mueller&rsquo;s github repo, that implements the Feature Pyramid Network. We will however, not implement it from scratch, since there are a lot of advanced python and pytorch concepts that are involved in it, and you do not necessarily need to know the intricate details. However, we will skim through the source code to get a general idea of how the model is built from ground-up.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">arch <span style="color:#f92672">=</span> RetinaNet(encoder, dls<span style="color:#f92672">.</span>c, final_bias<span style="color:#f92672">=-</span><span style="color:#ae81ff">4</span>)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#960050;background-color:#1e0010">??</span>RetinaNet <span style="color:#75715e">#implementation of the whole paper in around 15 lines of code</span>
+</code></pre></div><h3 id="loss-function-the-focal-loss">Loss function: the Focal Loss</h3>
+<p>The paper introduces a novel loss function called as the focal loss. You can read about the details in the paper. In total, it is somewhat similar in behaviour to the traditional Cross Entropy loss function that we&rsquo;ve seen earlier. However, one objective of the focal loss function is, that it works well even when the categories of data are <em>skewed</em>, or imbalanced in number by a huge margin.</p>
+<p>Here is the definition of Cross Entropy Loss function, vs the novel focal loss function.</p>
+<p>Cross Entropy loss</p>
+<p><img src="https://drive.google.com/uc?id=1Rl-LnVHALpK4IVkHTOuSev8vLyyzUfVa" alt="" /></p>
+<p>v/s the Focal Loss</p>
+<p><img src="https://drive.google.com/uc?id=1x8laGDndOAYFUpBXZdjEIyfBAjcolL8W" alt="" /></p>
+<p>The implementation of the Focal loss is fairly straightforward.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#960050;background-color:#1e0010">??</span>RetinaNetFocalLoss <span style="color:#75715e">#see def _focal_loss</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#These are the hyperparameters of the focal loss class. Try to understand them, through the paper, but if you don&#39;t, thats okay!</span>
+ratios <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>]
+scales <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span><span style="color:#f92672">**</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">3</span>), <span style="color:#ae81ff">2</span><span style="color:#f92672">**</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">/</span><span style="color:#ae81ff">3</span>)]
+crit <span style="color:#f92672">=</span> RetinaNetFocalLoss(scales<span style="color:#f92672">=</span>scales, ratios<span style="color:#f92672">=</span>ratios)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#additional functionality for fastai&#39;s internal API. As we mentioned before, fastai expects the model in a split modular way, rather than one single big module. This is so that it can efficiently apply hyperparameter schedules to each individual module. </span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_retinanet_split</span>(m): <span style="color:#66d9ef">return</span> L(m<span style="color:#f92672">.</span>encoder,nn<span style="color:#f92672">.</span>Sequential(m<span style="color:#f92672">.</span>c5top6, m<span style="color:#f92672">.</span>p6top7, m<span style="color:#f92672">.</span>merges, m<span style="color:#f92672">.</span>smoothers, m<span style="color:#f92672">.</span>classifier, m<span style="color:#f92672">.</span>box_regressor))<span style="color:#f92672">.</span>map(params)
+</code></pre></div><p>Now, our architecture is ready to be fed for training. As we mentioned, fastai has a <code>Learner</code> class, which can be used to train your own model.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn <span style="color:#f92672">=</span> Learner(dls, arch, loss_func<span style="color:#f92672">=</span>crit, splitter<span style="color:#f92672">=</span>_retinanet_split)
+learn<span style="color:#f92672">.</span>freeze()
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn<span style="color:#f92672">.</span>fit_one_cycle(<span style="color:#ae81ff">10</span>, slice(<span style="color:#ae81ff">1e-5</span>, <span style="color:#ae81ff">1e-4</span>))
+</code></pre></div><p>So, you see how you can train your own Object Localization model.</p>
+<p>Fastai in itself is a very expansive library, and provides a lot of functionality in terms of datasets and models. Sometimes however, not all types of data, models or functionalities are available. Nevertheless, you only need to learn how to set up key elements of the data. For example, fastai provided us with the PASCAL datasets, but with no functionality to set up bounding boxes. So we first had to do that.</p>
+<p>Next, we had to set up a custom model ourselves. We could have used the Cross Entropy Loss, but for the sake of implementing the paper, we implemented the novel loss function introduced by the authors.</p>
+<p>And after that, all procedures of training were the same.</p>
+<p>Don&rsquo;t worry if you don&rsquo;t understand all the details at once. Its natural. Whats ore important is that you understand the broader idea of Object Localization and how it was done! It takes practice, effort and time to understand all these elements.</p>
+<p>Next, we&rsquo;ll be looking at segmentation, a refined version of object localization. Thankfully, fastai provides us with all functionalities required to create segmentation models, so we don&rsquo;t go into a lot of technical details.</p>
+<h2 id="segmentation">Segmentation</h2>
+<p>This tutorial is directly taken from the fastai documentation. We will go through each step and try to understand what is happening at each line of code.</p>
+<p>As usual, the first task is to set up the data. For this model, we&rsquo;ll be using the <a href="http://mi.eng.cam.ac.uk/research/projects/VideoRec/CamVid/">CAMVID</a> dataset, which is a small dataset containing images of streets, with segmentation annotations, called as <em>masks</em>. Basically, for a street, which pixel belongs to a building, or a person, or a car, or a bicycle, and so on.</p>
+<p>This is what the dataset looks like&hellip;</p>
+<p><img src="https://drive.google.com/uc?id=1GGHbn1kUyCd7g5czrz1AE3IvNKzPa2cD" alt="" /></p>
+<p>Can you see how each category is color coded with a separate color? A separate color for buildings, a separate colour for cars, a separate color for the roads, a separate color for the footpath.</p>
+<p>Once you have a segmentation mask of the entire image, you can overlay this mask on top of the original image to get something like this. These maps are called masks, because they are used to overlay the original image, to produe meaningful interpretations.</p>
+<p><img src="https://drive.google.com/uc?id=13u7-wbdcWESCeD_5Z-2Lt-JFeEs5T7KP" alt="" /></p>
+<p>In total, there are 32 different classes in this dataset.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">path <span style="color:#f92672">=</span> untar_data(URLs<span style="color:#f92672">.</span>CAMVID_TINY)
+path<span style="color:#f92672">.</span>ls()
+</code></pre></div><p>As a good coding practice, we try to see how the data is organised in our directory, so that we can efficiently access the data. Apparantly, the input images are within the <code>images</code> subdirectory, while the segmentation <em>masks</em> are within the <code>labels</code> directory. For each image in the <code>images</code> directory, the corresponding mask has an extra <code>_P</code> at the end of the stem of the filename.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fnames <span style="color:#f92672">=</span> get_image_files(path<span style="color:#f92672">/</span><span style="color:#e6db74">&#34;images&#34;</span>)
+Image<span style="color:#f92672">.</span>open(fnames[<span style="color:#ae81ff">0</span>])<span style="color:#f92672">.</span>reshape(<span style="color:#ae81ff">300</span>,<span style="color:#ae81ff">400</span>)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#just for visualization purpose</span>
+Image<span style="color:#f92672">.</span>open(path<span style="color:#f92672">/</span>f<span style="color:#e6db74">&#34;labels/{fnames[0].stem}_P.png&#34;</span>)<span style="color:#f92672">.</span>reshape(<span style="color:#ae81ff">300</span>,<span style="color:#ae81ff">400</span>) <span style="color:#75715e">#this is what a segmentation mask look like. Why is it so dark? because the values are from 0 through 36, and not spread out between pixel values 0 and 255</span>
+</code></pre></div><p>and the <code>codes.txt</code> files contains a mapping of categories. Meaning, which pixel value corresponds to which category.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">codes <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>loadtxt(path<span style="color:#f92672">/</span><span style="color:#e6db74">&#39;codes.txt&#39;</span>, dtype<span style="color:#f92672">=</span>str)
+codes
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">len(codes)
+</code></pre></div><p>As you can see, there are 32 classes in total.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#here we&#39;re basically defining a function that tells fastai that in order to get the mask for an image, simply append _P to the end of the stem of the filename</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">label_func</span>(fn): <span style="color:#66d9ef">return</span> path<span style="color:#f92672">/</span><span style="color:#e6db74">&#34;labels&#34;</span><span style="color:#f92672">/</span>f<span style="color:#e6db74">&#34;{fn.stem}_P{fn.suffix}&#34;</span>
+</code></pre></div><p>Now that we&rsquo;ve finished setting up the data, we can put them into dataloaders, and visualize what the dataset looks like.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">dls <span style="color:#f92672">=</span> SegmentationDataLoaders<span style="color:#f92672">.</span>from_label_func(path, bs<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>, fnames <span style="color:#f92672">=</span> fnames, label_func <span style="color:#f92672">=</span> label_func, codes <span style="color:#f92672">=</span> codes)
+dls<span style="color:#f92672">.</span>show_batch()
+</code></pre></div><p>And now coming to the model.</p>
+<p>Segmentation is a slightly different approach towards Computer Vision. It is nothing like we&rsquo;ve seen before. All models that we&rsquo;ve seen either predict classes out of a finite number of categories, which we call as <em>classification</em>, or we&rsquo;ve seen models predict values, which we call as <em>regression</em>. But here, the model gives an entire image (mask) as the output. How do we design Neural Nets that do that.</p>
+<p>There is a separate class of Convolutional Neural Networks, called as <strong>U-Nets</strong>. UNets <a href="https://arxiv.org/abs/1505.04597">were first introduced</a> in 2015 for biomedical image segmentation. Initially it was not given much attention by the AI community, but in the past 3 years or so, they have become very famous for segmentation in areas outside of biomedical studies.</p>
+<p>This is what a UNet looks like</p>
+<p><img src="https://drive.google.com/uc?id=1RESdhDSKaa-wSlVb7wT4O045Z4r5qkaP" alt="" /></p>
+<p>Its called a Unet because it is generally represented as a U-shaped network!</p>
+<p>The first half of the network is called an encoder, and the other half (on the right) is called the decoder network.</p>
+<p>As we discussed before, encoder is anything that derives features. And we also discussed that our standard CNN, such as a ResNet can do that!</p>
+<p>So now you know that the first part is nothing but a ResNet architecture. We feed an image, and get certain features at the end.</p>
+<p>The second half is nothing but the <em>reverse</em> of a CNN. The reverse of a convolution is often called as a deconvolution.</p>
+<p>Remember how a convolution over an image, results in a map that is slightly lower in dimensions that the image iteself? A deconvolution does the reverse - it takes in a lower dimension representation, and results in a representation with larger dimensions.</p>
+<p><img src="https://drive.google.com/uc?id=1-CGXB7vv8LCMTPPvCaqBrXKyBb0BRzHk" alt="" /></p>
+<p>See, how a 3x3 representation (blue cells) results in a 5x5 representation. This is done by introducing spacings between the &ldquo;pixels&rdquo; of the representation, and performing a standard convolution.</p>
+<p>There are also skip connections in between layers, as you can see. This is similar to the ResNet architecture as we&rsquo;ve seen. The purpose of these is to retain maximum information, since we likely lose a lot of information at the bottom of the UNet (because we&rsquo;re trying to condense all the information in the input image, to a vector of very less dimension, say only 1024 features).</p>
+<p>So, because of this deconvolutional network, we get an image as an output. We can apply standard Training procedure on this. The idea is the same as before. We have an input (image), and a target (image, in this case, unlike before). This target image need not be the same as the input image. In our case, the raw input image is the input, and the segmentation masks are the output. We wish that the predictions are as close to the target value as possible. So we define a loss function, that measures how different the prediction and target are. Next we use standard Gradient Descent to optimize the model.</p>
+<p>This is a third type of Machine Learning prediction, which I refer to as &ldquo;Generation&rdquo;. So we slighly change the application domain of Machine Learning now -</p>
+<p><em>All of Machine Learning can be condensed into either Classification, Regression, or Generation</em>.</p>
+<p>We will dedicate an entire session on generation. But for now lets study this architecture.</p>
+<p>All classical books on statistics and Machine Learning will tell you, that everything can be condensed into Classification or Regression. However, it makes much more sense to identify Generation as a separate class. This is not meant to conflict with traditional beliefs, but only a proposal from my side to consider while forming your views about Machine Learning in general. The way you look at things has a huge impact on your decisions. So I leave this decision of accepting this idea, upto you!</p>
+<p>Let us build this model. Fastai provides with an internal API to handle UNets. All you need to do is tell the API, the encoder is a ResNet34 (say) architecture (you can replace it with another CNN). And it will automatically construct its corresponding <em>deconvolutional</em> network.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn <span style="color:#f92672">=</span> unet_learner(dls, resnet34,metrics<span style="color:#f92672">=</span>DiceMulti)
+learn<span style="color:#f92672">.</span>fine_tune(<span style="color:#ae81ff">10</span>)
+</code></pre></div><p>Note that Unets use a slightly different accuracy metric, since we&rsquo;re not dealing with classes anymore. We need to compare how similar two segmnetation masks are. We use the Dice metric, which was introduced in <a href="https://arxiv.org/pdf/1911.03347.pdf">this</a> paper. The higher the dice metric, the better the model.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn<span style="color:#f92672">.</span>show_results()
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn<span style="color:#f92672">.</span>recorder<span style="color:#f92672">.</span>values
+</code></pre></div><p>Thats it, we&rsquo;ve successfuly built our segmentation model.</p>
+<h2 id="summary">Summary</h2>
+<p>In this session, we learnt about Object Localization and Segmentation, two of the more advanced computer vision applications. With segmentation, we also looked at a totally new domain of Machine learning applications - Generation! In general, UNets are used whenever we wish to generate an image that is related to the input image. The applications are endless.</p>
+<p>Later on, when we study about Generative Adversarial Networks, the &ldquo;Generation&rdquo; version of which also uses a UNet like architecture, we will see how we can use UNets to perform superresolution of blurry images, convert black and white photos to coloured images, bring still photos to life, and much more</p>
+<h2 id="exercise">Exercise</h2>
+<h3 id="1-exercise-1">1. Exercise 1</h3>
+<p>This exercise is similar to the exercise in the last session.
+Train the Segmentation model for various models and compare the effect of number of layers on training. Use the same dataset as above.</p>
+<p>For this exercise, you will use 3 ResNet variants -</p>
+<ol>
+<li><code>resnet18</code></li>
+<li><code>resnet34</code></li>
+<li><code>resnet50</code></li>
+</ol>
+<p>You dont have to import the model from anywhere, simply type the name of the model during the initialization of the <code>unet_learner</code> class.</p>
+<p>Plot the accuracies on a graph, and annotate the points with the name of the architecture.</p>
+<p>Before you start training, factory reset your runtime, and dont run the cells above this section. Start from this section itself.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#960050;background-color:#1e0010">!</span>pip install <span style="color:#f92672">--</span>upgrade fastai <span style="color:#f92672">&gt;./</span>tmp
+<span style="color:#f92672">from</span> fastai.vision.all <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">path <span style="color:#f92672">=</span> untar_data(URLs<span style="color:#f92672">.</span>CAMVID_TINY)
+fnames <span style="color:#f92672">=</span> get_image_files(path<span style="color:#f92672">/</span><span style="color:#e6db74">&#34;images&#34;</span>)
+codes <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>loadtxt(path<span style="color:#f92672">/</span><span style="color:#e6db74">&#39;codes.txt&#39;</span>, dtype<span style="color:#f92672">=</span>str)
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">label_func</span>(fn): <span style="color:#66d9ef">return</span> path<span style="color:#f92672">/</span><span style="color:#e6db74">&#34;labels&#34;</span><span style="color:#f92672">/</span>f<span style="color:#e6db74">&#34;{fn.stem}_P{fn.suffix}&#34;</span>
+dls <span style="color:#f92672">=</span> SegmentationDataLoaders<span style="color:#f92672">.</span>from_label_func(path, bs<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>, fnames <span style="color:#f92672">=</span> fnames, label_func <span style="color:#f92672">=</span> label_func, codes <span style="color:#f92672">=</span> codes)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">models<span style="color:#f92672">=</span>[resnet18,resnet34,resnet50]
+</code></pre></div><p>You can either use a for loop, or train the models individually. But after each model training, do type <code>del learn</code>, so that it clears up the memory.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#bounding-box-object-detection">Bounding Box Object Detection</a>
+      <ul>
+        <li><a href="#loss-function-the-focal-loss">Loss function: the Focal Loss</a></li>
+      </ul>
+    </li>
+    <li><a href="#segmentation">Segmentation</a></li>
+    <li><a href="#summary">Summary</a></li>
+    <li><a href="#exercise">Exercise</a>
+      <ul>
+        <li><a href="#1-exercise-1">1. Exercise 1</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
