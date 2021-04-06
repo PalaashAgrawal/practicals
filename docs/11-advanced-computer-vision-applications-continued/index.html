@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta name="generator" content="Hugo 0.68.3" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="11 Advanced Computer Vision Applications continued  Before Starting, we will change the accelerator of this notebook from a CPU to a GPU, since we&rsquo;ll be running our Neural Networks on the GPU.
+  Go to Runtime &ndash;&gt; Change Runtime Type &ndash;&gt; GPU
+ Welcome to the 11th session in the Practical Machine Learning. In this session, we will continue our exploration in Computer Vision.
+Till now we&rsquo;ve seen a few Computer Vision applications, like Image Classifiers, Segmentation Models and Object Localizer Systems.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://palaashagrawal.github.io/practicals/docs/11-advanced-computer-vision-applications-continued/" />
+
+<title>11 Advanced Computer Vision Applications Continued | Practical Machine Learning</title>
+<link rel="manifest" href="https://palaashagrawal.github.io/practicals/manifest.json">
+<link rel="icon" href="https://palaashagrawal.github.io/practicals/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="https://palaashagrawal.github.io/practicals/book.min.2dc4d2afa8da6ac78d76671c21e140952e7a84846fed47ed02a1a2d68166d992.css" integrity="sha256-LcTSr6jaaseNdmccIeFAlS56hIRv7UftAqGi1oFm2ZI=">
+<script defer src="https://palaashagrawal.github.io/practicals/en.search.min.04bc9d34bf913a8e7fd2e243405da2424c17970b1407e6733478ce542eb58cae.js" integrity="sha256-BLydNL&#43;ROo5/0uJDQF2iQkwXlwsUB&#43;ZzNHjOVC61jK4="></script>
+<link rel="alternate" type="application/rss+xml" href="https://palaashagrawal.github.io/practicals/docs/11-advanced-computer-vision-applications-continued/index.xml" title="Practical Machine Learning" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="https://palaashagrawal.github.io/practicals/"><span>Practical Machine Learning</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/00-basics-of-python-and-introduction-to-machine-learning/" class="">00 Basics of Python and Introduction to Machine Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/01-linear-regression/" class="">01 Linear Regression</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/02-logistic-regression/" class="">02 Logistic Regression</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/03-singular-value-decomposition-and-principal-component-analysis/" class="">03 Singular Value Decomposition and Principal Component Analysis</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/04-bayesian-learning/" class="">04 Bayesian Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/05-clustering-algorithms-in-machine-learning/" class="">05 Clustering Algorithms in Machine Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/06-support-vector-machines/" class="">06 Support Vector Machines</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/07-decision-trees-and-random-forests/" class="">07 Decision Trees and Random Forests</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/08-neural-networks/" class="">08 Neural Networks</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/09-convolution-neural-networks/" class="">09 Convolution Neural Networks</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/10-advanced-computer-vision-applications/" class="">10 Advanced Computer Vision Applications</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/11-advanced-computer-vision-applications-continued/" class=" active">11 Advanced Computer Vision Applications Continued</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="https://palaashagrawal.github.io/practicals/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>11 Advanced Computer Vision Applications Continued</strong>
+
+  <label for="toc-control">
+    
+    <img src="https://palaashagrawal.github.io/practicals/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+
+    
+  </label>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  
+    window.addEventListener('load', (event) => {
+        document.querySelectorAll("mjx-container").forEach(function(x){
+          x.parentElement.classList += 'has-jax'})
+      });
+  
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-siamese-network-problem">The Siamese Network Problem</a>
+      <ul>
+        <li><a href="#how-does-a-siamese-network-work">How does a Siamese Network work?</a></li>
+        <li><a href="#setting-up-the-dataset">Setting up the dataset</a></li>
+        <li><a href="#setting-up-data-for-siamese-network">Setting up data for Siamese Network</a></li>
+        <li><a href="#the-siamese-model">The Siamese Model</a></li>
+      </ul>
+    </li>
+    <li><a href="#neural-style-transfer">Neural Style Transfer</a>
+      <ul>
+        <li><a href="#the-loss-network">The Loss Network</a></li>
+        <li><a href="#the-image-transform-net">The Image Transform Net</a></li>
+        <li><a href="#training-the-model">Training the Model</a></li>
+      </ul>
+    </li>
+    <li><a href="#review">Review</a></li>
+    <li><a href="#exercise-evaluative">Exercise (Evaluative)</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="11-advanced-computer-vision-applications-continued">11 Advanced Computer Vision Applications continued</h1>
+<p><img src="https://drive.google.com/uc?id=1cbE342r_rUhoqnL6fzlpGsVqI7QHhbOn" alt="" /></p>
+<blockquote>
+<p>Before Starting, we will change the accelerator of this notebook from a CPU to a GPU, since we&rsquo;ll be running our Neural Networks on the GPU.</p>
+</blockquote>
+<blockquote>
+<p>Go to Runtime &ndash;&gt; Change Runtime Type &ndash;&gt; GPU</p>
+</blockquote>
+<p>Welcome to the 11th session in the Practical Machine Learning. In this session, we will continue our exploration in Computer Vision.</p>
+<p>Till now we&rsquo;ve seen a few Computer Vision applications, like Image Classifiers, Segmentation Models and Object Localizer Systems. But as we mentioned, computer vision is such an expansive field, with such expansive applications, that researchers have come up with endless way to apply Deep Learning for Computer Vision.</p>
+<p>As we reach towards the end of our discussion on Computer Vision, here is a wonderful insight for you.</p>
+<p>The broad task of any Computer Vision system is the same - to recognize what is going on in an image/sequence of images. The only thing that varies is the way in which the objects in the image(s) are recognized.</p>
+<p>For example, in a simple CNN based Image Classifier, the image is processed as a whole to categorize an image into one of the predefined classes (like a cat, or a dog, etc.).</p>
+<p>In a segmentation model, the analysis is carried out over each individual pixel of the image, and each pixel is classified into one of the predefined categories. Ofcourse each pixel is not independent of others - a single pixel anyways does not make sense. It is a group of pixels that make logical and spatial sense. (For example, a single pixel is meaningless, but a group of pixels forms the eye, or the chin, and groups of these groups forms higher level objects like entire faces, and so on). But still the segmentation model holds the power to differentiate between two adjacent pixels at the very minute level.</p>
+<p>In a bounding box prediction model, the model predicted a box, in which it was most likely that the object of our interest lay.</p>
+<p>There are many more ways in Computer Vision to identify objects. For example, there are models that predict certain key points on a person&rsquo;s body, which can be connected later to form a skeleton. And this skeleton prediction is the method through which objects are detected through this particular method.</p>
+<p>In this session, we&rsquo;ll look at slightly different use cases. We will be studyinng about the <em>Siamese Network problem</em>  and <em>Neural Style Transfer</em>. Again, the only thing that differs in these problems is the way that objects are recognised in images.</p>
+<p>Let us start by understanding each one of these. Let us also install the necessary libraries that are needed to run this notebook! These particular examples are already present out there.  We will however, explain each component from the perspective of what we already know through this course.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#960050;background-color:#1e0010">!</span>pip install <span style="color:#f92672">--</span>upgrade fastai <span style="color:#f92672">&gt;./</span>tmp
+<span style="color:#f92672">from</span> fastai.vision.all <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> PIL
+</code></pre></div><h2 id="the-siamese-network-problem">The Siamese Network Problem</h2>
+<p>The Siamese Network tries to solve an extreme case of Image Classification - the case where we just don&rsquo;t have enough data.</p>
+<p>One of the key reasons Image Classification models are so robust and well generalizable is the sheer amount of data that is available to train them. Companies such as Facebook and Instagram have access to literally 100s of billions of photos to train their models upon. Even the model that we train usually start with a pretrained model that has been trained upon a dataset like ImageNet, which contains 1.4 Million images in total. And to be frank, in a lot of cases, data is not even an issue anymore. Everyone has smartphones with cameras, and tools to make and share content on the Internet, especially visual media (Images, videos, etc.). There is infact, more visual data currently out there, than we know how to utilize properly.</p>
+<p>But what if you do not have enough data? Traditional CNNs do not perform good in those cases. Let&rsquo;s say, for example, you wish to build a face detection system for a company that wishes to use AI for automatically marking the attendance of its employees without them having to manually register their names somewhere. Ideally, it would want to match the face (that is captured in the camera) with the photos in the database. But we don&rsquo;t usually have 100s of photos of each employee! We usually have one photo per employee - the photo they must have registered in the database at the beginning of their jobs! So how do we build a system that can learn to identify you from others, using just such scarce data?</p>
+<p>Let us think how the human brain works. Ideally, if you see a picture of someone, and are then asked to recognize the person from a crowd, you will most probably be able to do that, even if you may not have seen a hundred pictures of that person! If our brain can do it, why should AI Systems not be able to do that too?</p>
+<p>This is a special domain in AI, called as <em>Few Shot Learning</em>. Basically, the task is to make good predictions even when only a few (sometimes one, sometimes even zero! (yes, its possible)) training examples are given. Siamese Networks were one of the first attempt to address this in Computer Vision.</p>
+<p>Let us understand the working principle of a Siamese Network.</p>
+<h3 id="how-does-a-siamese-network-work">How does a Siamese Network work?</h3>
+<p>Siamese Networks use a clever technique. Rather than trying to learn features of categories (classes), Siamese Networks try to differentiate between individual instances. So now, the model does not need to identify what a particular person looks like. All it needs to do is to compare the input with a reference image and predict whether or not the image is of the same class/object/person or not. So ultimately our problem is a binary classification problem.</p>
+<p><img src="https://drive.google.com/uc?id=1pFz7P2zc37Bw6R7t4-Vy4pWDfL-V1y_u" alt="" /></p>
+<p>How do Neural Networks identify what an image is about? It does so using <em>features</em>. And how do models derive features, especially in Images? through convolutions! So there is a network in a Siamese Network that derives features in the form of some parameter tensors. And we also learnt that this network, the job of which is to find features, is called an <em>encoder</em>.</p>
+<p>Now this encoder would derive features from both images.</p>
+<p>(Note that for a properly trained network, the features are independent of what the image looks like, as long as the image contains the same particular object. Like for the above image, both images contain tigers, and the features of the network that any Image classifier would be related. I am stressing on this point, because you might ask, well, if you really wanted to compare whether or not two images are the same or not, why even use a Neural Network? Why cant you simply compare pixel values? But in that case, images of two persons can only &lsquo;match&rsquo; if the two images are exact copies of each other. Now if you wish to compare the photo in the database, and the photo captured by the camera for the case study that we were discussing, the two photos would most likely not match! So this is why Convolutional Neural Networks are used. Neural Networks ideally are independent of such differences. They try to incorporate the overall spatial nature of images.)</p>
+<p>Now our job is to build a system that can identify whether or not these two feature tensors match or not. Basically a binary classifier which predicts - Do these match (Yes! or a 1) or not (No! or a 0).</p>
+<p>This is just another Fully Connected Network. We call this the <em>head</em> of the model. The original approach involved <em>concatenating</em>, or joining the two feature tensors end to end, and using that as an input.</p>
+<p>So, in essence, Siamese Networks are a combination of 2 models, the ultimate job of which is to do a binary classification! Let us see how to build this model. Before starting, we will download the PETS dataset. You can use any dataset really. But for demonstration, this dataset works too! (Even though its not really scarce).</p>
+<h3 id="setting-up-the-dataset">Setting up the dataset</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">path<span style="color:#f92672">=</span>untar_data(URLs<span style="color:#f92672">.</span>PETS)
+files<span style="color:#f92672">=</span>get_image_files(path<span style="color:#f92672">/</span><span style="color:#e6db74">&#39;images&#39;</span>) <span style="color:#75715e">#get the paths of all images in this dataset</span>
+files
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">print</span>(files[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>stem)
+Image<span style="color:#f92672">.</span>open(files[<span style="color:#ae81ff">0</span>])
+</code></pre></div><p>Before we even start with formatting our Siamese Network problem, we need to get the basic things right. Like how do we compare two images? We do that using labels. But how do we derive labels? Ofcourse using a labeling function.</p>
+<p>We&rsquo;ve already built this function in one of the previous sessions where we used the PETS dataset. It uses something called as an regex expression. You&rsquo;re not expected to memorize this as such. You can always do a quick google search for syntax rules anyways!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">label_func</span>(f): <span style="color:#66d9ef">return</span> re<span style="color:#f92672">.</span>match(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;^(.*)_\d+.jpg$&#39;</span>, f<span style="color:#f92672">.</span>name)<span style="color:#f92672">.</span>groups()[<span style="color:#ae81ff">0</span>]
+
+<span style="color:#75715e">#lets see if this works. We should be able to get the breed name when a file path is passed</span>
+label_func(files[<span style="color:#ae81ff">0</span>])
+</code></pre></div><p>Let us take a look at all the labels that we will be dealing with (Just for visualization!)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">labels <span style="color:#f92672">=</span> list(set(files<span style="color:#f92672">.</span>map(label_func)))
+labels
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">len(labels)
+</code></pre></div><p>And parallely, for convenience, we will make a dictionary of all files categorized by label. The reason is explained clearly later</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">label2files <span style="color:#f92672">=</span> {l: [f <span style="color:#66d9ef">for</span> f <span style="color:#f92672">in</span> files <span style="color:#66d9ef">if</span> label_func(f) <span style="color:#f92672">==</span> l] <span style="color:#66d9ef">for</span> l <span style="color:#f92672">in</span> labels}
+</code></pre></div><p>We should also split the dataset into the train and validation set. Let us split the data into a 80/20 split for now.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">idxs <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>permutation(range(len(files)))
+cut <span style="color:#f92672">=</span> int(<span style="color:#ae81ff">0.8</span> <span style="color:#f92672">*</span> len(files))
+train_files <span style="color:#f92672">=</span> files[idxs[:cut]]
+valid_files <span style="color:#f92672">=</span> files[idxs[cut:]]
+</code></pre></div><h3 id="setting-up-data-for-siamese-network">Setting up data for Siamese Network</h3>
+<p>We didn&rsquo;t have to do anything special for normal Image classification models, because they were just one single image. So all we needed to do was to take all these images, and put them in a batch, and feed them into a network (after converting them to tensors).</p>
+<p>But now, we need to make some changes. The input is no longer a single image, but a collection of two images, which need to be fed together (in the form of a tuple, lets say). (A tuple, if you remember is like a list, except its not mutable).</p>
+<p>So lets build a dataset class that can handle these two images together. Remember that every dataset has 2 important attribute - the <code>__len__</code> attribute (to get the length of the dataset) and the <code>__getitem__</code> attribute (to retrieve and element from the dataset). (If you don&rsquo;t remember this, go back and revise what a Dataset and a DataLoader are! They are very important concepts!).</p>
+<p>The <code>__len__</code> attribute will simply return the number of images there are in the dataset.</p>
+<p>The <code>__getattr__</code> is slightly tricky. Earlier, we used <code>__getattr__</code> to return the input (tensor) and the output (tensor). Now it needs to be input tensor 1, input tensor 2 and the output (a tensor of 0s and 1s (or Falses and Trues, but since computers only understand numbers, they need to be 0s and 1s))</p>
+<p>We define a function called as <code>open_image</code> which takes a path, and returns the final processed, normalized tensor. (Its nothing! just simple code refactoring)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#this is a function that takes in an image path, and returns a PyTorch compatible tensor  </span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">open_image</span>(fname, size<span style="color:#f92672">=</span><span style="color:#ae81ff">224</span>):
+    img <span style="color:#f92672">=</span> PIL<span style="color:#f92672">.</span>Image<span style="color:#f92672">.</span>open(fname)<span style="color:#f92672">.</span>convert(<span style="color:#e6db74">&#39;RGB&#39;</span>)
+    img <span style="color:#f92672">=</span> img<span style="color:#f92672">.</span>resize((size, size)) <span style="color:#75715e">#by default, we will use size 224, which is the standard ResNet presize</span>
+    t <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>Tensor(np<span style="color:#f92672">.</span>array(img)) <span style="color:#75715e"># converting the image to a tensor</span>
+    <span style="color:#66d9ef">return</span> t<span style="color:#f92672">.</span>permute(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>float()<span style="color:#f92672">/</span><span style="color:#ae81ff">255.0</span>  <span style="color:#75715e">#by default, PIL Images have channel as the last dimension. But PyTorch expects channel to be the first dimension. Also .float()/255. is a standard way to normalize the data</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SiameseDataset</span>(torch<span style="color:#f92672">.</span>utils<span style="color:#f92672">.</span>data<span style="color:#f92672">.</span>Dataset):
+    <span style="color:#66d9ef">def</span> __init__(self, files):
+        self<span style="color:#f92672">.</span>files <span style="color:#f92672">=</span> files
+        
+    <span style="color:#66d9ef">def</span> __getitem__(self, i):
+        file1 <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>files[i]
+        (file2,same)<span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>_draw(file1)
+        img1,img2 <span style="color:#f92672">=</span> open_image(file1),open_image(file2)
+        <span style="color:#66d9ef">return</span> (img1, img2, torch<span style="color:#f92672">.</span>Tensor([same])<span style="color:#f92672">.</span>squeeze())
+    
+    <span style="color:#66d9ef">def</span> __len__(self): <span style="color:#66d9ef">return</span> len(self<span style="color:#f92672">.</span>files)
+    
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_draw</span>(self, f):
+        same <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>random() <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0.5</span>
+        cls <span style="color:#f92672">=</span> label_func(f)
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> same: cls <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>choice([l <span style="color:#66d9ef">for</span> l <span style="color:#f92672">in</span> labels <span style="color:#66d9ef">if</span> l <span style="color:#f92672">!=</span> cls]) 
+        <span style="color:#66d9ef">return</span> random<span style="color:#f92672">.</span>choice(label2files[cls]),same
+</code></pre></div><p>What does <code>_draw</code> do? Remember that we need a pair of images?
+So _draw randomly picks a seond image from the file list, and according assigns a label. If the two images are from the same category, the label is <code>True</code>, and otherwise false. This is where <code>label2files</code> also comes in handy. We pick up the random image file from this dictionary.</p>
+<p>So now let us build the training and validation set using the newly created Dataset class.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">train_ds <span style="color:#f92672">=</span> SiameseDataset(train_files)
+valid_ds <span style="color:#f92672">=</span> SiameseDataset(valid_files)
+</code></pre></div><p>And as always, once we build datasets, we need to build Dataloaders, which will feed the data into our model.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">dls <span style="color:#f92672">=</span> DataLoaders<span style="color:#f92672">.</span>from_dsets(train_ds, valid_ds)<span style="color:#f92672">.</span>cuda() <span style="color:#75715e"># .cuda() feeds the dataloaders to the GPU. We didnt have to do it before, because fastai did it for us. But here we had to define our custom dataset.</span>
+</code></pre></div><p>Here is what a single batch would look like in the dataloader.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">b<span style="color:#f92672">=</span>dls<span style="color:#f92672">.</span>one_batch()
+b[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>shape, b[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>shape, b[<span style="color:#ae81ff">2</span>]
+</code></pre></div><h3 id="the-siamese-model">The Siamese Model</h3>
+<p>Now let us come to the final component of the Siamese Network - The model.</p>
+<p>As we mentioned before, the Siamese Model is nothing but a bundle of two models - the encoder and the head (if you don&rsquo;t recall what each one of these does, go back up and read what their job is!). So before defining any functionality, let us first create a class that can handle these two things.</p>
+<p>We can also define the <code>forward</code> function, which if you remember is the function that is used to do the forward pass in Pytorch nn.Modules classes. And since our function <em>inherits</em> from nn.Module, it will also use <code>def forward</code> to do a forward pass.</p>
+<p>This forward pass basically passes image 1 through the <code>encoder</code>, then passes image 2 through the same <code>encoder</code>, concatenates the features into a single tensor, and passes this tensor through the <code>head</code> architecture.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SiameseModel</span>(nn<span style="color:#f92672">.</span>Module):
+    <span style="color:#66d9ef">def</span> __init__(self,encoder,head):
+        super()<span style="color:#f92672">.</span>__init__()
+        self<span style="color:#f92672">.</span>encoder,self<span style="color:#f92672">.</span>head <span style="color:#f92672">=</span> encoder,head
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self,x1,x2): 
+        features <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>cat([self<span style="color:#f92672">.</span>encoder(x1),self<span style="color:#f92672">.</span>encoder(x2)],dim<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>head(features)
+</code></pre></div><p>Okay, so all we need to do is define the encoder and the head. Encoder is nothing but a standard CNN that derives features. So let us use ResNets! (Why not?!)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">encoder<span style="color:#f92672">=</span>create_body(resnet34,cut<span style="color:#f92672">=-</span><span style="color:#ae81ff">2</span>) <span style="color:#75715e"># cut basically removes the final layers from the model. Remember, the final layers calculate probabilities, not features, so we dont need them</span>
+encoder
+</code></pre></div><p>Notice that there are 512 features in the final layer, meaning the encoder will output 512 neurons for each image.</p>
+<p>So after concatenation, we will feed a 512*2 = 1024 neuron tensor to the head, and get two neurons and output (corresponding to True or False (0 or 1)) (remember, 0 means, that the model thinks the two images are not from the same category, and 1 means that the model thinks they are!)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">head<span style="color:#f92672">=</span>create_head(<span style="color:#ae81ff">512</span><span style="color:#f92672">*</span><span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,ps<span style="color:#f92672">=</span><span style="color:#ae81ff">0.5</span>) <span style="color:#75715e"># 512 because encoder ends with 512 features </span>
+head 
+</code></pre></div><p>And now that we have defined our encoder and head architectures, let us initialize our model using the <code>SiameseModel</code> class that we just defined.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">model<span style="color:#f92672">=</span>SiameseModel(encoder,head)<span style="color:#f92672">.</span>cuda()
+</code></pre></div><p>All we need to do now, is train the model. But before that, we need to tell fastai&rsquo;s Learner class the parameters are not only present in the encoder, but in the head also. So it needs to look simultaneously in two places. So we define a function for that. Its a little complicated, and requires some background explanation. So for now, you can leave it. Don&rsquo;t worry about the following line of code!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#additional thing</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">siamese_splitter</span>(model): <span style="color:#66d9ef">return</span> [params(model<span style="color:#f92672">.</span>encoder), params(model<span style="color:#f92672">.</span>head)]
+</code></pre></div><p>Now let us build our Learner (which will train our model). We also need to define the loss function. But as you know, our problem is a simple binary classification problem. So a simple Cross Entropy Loss will work!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">loss_func</span>(out,targ): <span style="color:#66d9ef">return</span> nn<span style="color:#f92672">.</span>CrossEntropyLoss()(out,targ<span style="color:#f92672">.</span>long()) <span style="color:#75715e">#.long() because targets are integers by default, and GPUs give errors on integers.</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn <span style="color:#f92672">=</span> Learner(dls,model,loss_func<span style="color:#f92672">=</span>loss_func,splitter<span style="color:#f92672">=</span>siamese_splitter,metrics<span style="color:#f92672">=</span>accuracy)
+learn<span style="color:#f92672">.</span>freeze()
+</code></pre></div><p>Let us train this model and see the result ourselves</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn<span style="color:#f92672">.</span>fit_one_cycle(<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">2e-3</span>)
+</code></pre></div><p>Almost a 94% accuracy, is a pretty strong result! That&rsquo;s it. That&rsquo;s all it takes to build a Siamese Network.</p>
+<p>Before we jump onto the next section on Style Transfer, let us discuss about the use of Siamese Networks in general.</p>
+<p>Siamese Networks were first introduced in 2012, in <a href="https://www.cs.cmu.edu/~rsalakhu/papers/oneshot1.pdf">this</a> paper. It is still used in facial detection systems in a lot of institution all around the world. But Siamese Networks are definitely NOT State of the Art. You may have guessed that, since they were proposed almost a decade ago, and a decade in Machine Learning most definitely makes anything obsolete.</p>
+<p>Its not the technique used that makes it inefficient. Infact, it is one of the more sophisticated techniques in Computer Vision. (The fact that you can carry out predictions with very scarce data is amazing). It is one fundamental error in the model design that makes it inefficient. That is, the use of Fully connected layers to do the main task - binary prediction.</p>
+<blockquote>
+<p>Quick Question. Why do you think CNNs work better than Fully Connected Neural Networks for Images? Search it up on Google. Its a wonderful insight to gain about Deep Learning in general, and you&rsquo;ll really appreciate it. It will also give you the answer to the above question.</p>
+</blockquote>
+<p>There are much better one-shot/few-shot/zero-shot learning algorithms present now, that can maintain the spatial distribution of data (this is one of the keys of the answers to the above asked question, Please DO search it up on Google!).</p>
+<p>But still Siamese remains one of the most famous few-shot learning algorithms out there. This is a testament of the fact that a sophisticated and good design need not be incredibly complex. Infact more complex algorithms are more likely to be forgotten fast!</p>
+<h2 id="neural-style-transfer">Neural Style Transfer</h2>
+<p>Style Transfer is a really niche problem of Computer Vision. The idea is to combine the <em>styles</em> of 2 different images, into one. The most famous application of this is making a photo from our everyday lives in the style of a famous artist (like Van Gogh, or Da Vinci, or Monet, or Picasso, or Michelangelo). Take a look at this.
+<img src="https://drive.google.com/uc?id=1sptBT69cDS5TwmUP7OvpfWfiqTznCpa8" alt="" /></p>
+<p>Its amazing to think that all this was done by AI. We ourselves don&rsquo;t know how exactly such an algorithm can be designed through a procedural workflow, so it still seems like magic, even after many years of its release in the academic world.</p>
+<p>Style Transfer has been attempted by many researchers. But we will essentially focus on the work introduced by a group of researchers from Stanford through <a href="https://arxiv.org/abs/1603.08155">this</a> paper (Try reading the paper!). The reason being that this paper is one of the most influential papers in Deep Learning. It introduced a new type of loss function known as the Perceptual Loss function, and also demonstrated its application in various Computer Vision problems apart from style transfer, like, Super Resolution, which is still a very hot topic in research, and still takes inspiration from the proposed loss function and other techniques.</p>
+<p>We&rsquo;ll basically be implementing this paper below, and training a state-of-the-art style transfer model.</p>
+<p>So let us see what we will be essentially implementing.</p>
+<p><img src="https://drive.google.com/uc?id=19ATk2L27svRaoUgRGDSQ4AJIuywfB0S8" alt="" /></p>
+<p>We will be implementing an <em>Image Transform Network</em>, which takes an input image, that we provide to it, and outputs the image with the change in style. We&rsquo;ve already seen a model that does this. The UNet Model! The Transformation Network is very similar to the UNet in design.</p>
+<p>Now the task of our overall model is to bring in some elements from the &ldquo;Style Image&rdquo; (the image of the famous artist, lets say), while still retaining some elements of the &ldquo;Content Image&rdquo; (The image you want to transform to another style). One way to match the similarity of two values is to simply calculate some sort of <em>loss</em> value between the two values, that measures the dissimilarity between the two, and try to minimize this loss value. We&rsquo;ve seen loss between target and prediction of a Neural Network (we try to make predictions and targets as similar as possible)!. So here, all we need to do is to implement two types of losses - Loss between the output image and the Style Image, and the loss between the output image and Content Image. Our final job is to simply minimize both these losses. You can basically create a new loss function, which is the aggregate of these two loss values, which the authors call, in fancy terms, &ldquo;Perceptual Loss&rdquo;.</p>
+<p>The loss is not calculated for the output of a Neural Network, but for the values of the features from the various layers of another Neural Network in itself (yes, pretty confusing, but quite interesting). We will see the details of how this exactly works step by step.</p>
+<p>The authors called this second Neural Network (thorugh which the loss was calculated) the Loss Network. This itself is a Convolutional Neural Network. Think of this as basically any other Neural Network. There&rsquo;s an architecture (the Image Transform Network), to which you feed an input, and get a prediction. You calculate the loss between the target and the prediction. Just that, here, the loss is not a simple math function (like the Cross Entropy loss), but uses an entire Neural Network in itself. The authors used a variant of CNN, called as the VGG Network. So let us implement that first.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#960050;background-color:#1e0010">!</span>pip install <span style="color:#f92672">--</span>upgrade fastai <span style="color:#f92672">&gt;./</span>tmp
+<span style="color:#f92672">from</span> fastai.vision.all <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+</code></pre></div><h3 id="the-loss-network">The Loss Network</h3>
+<p>We will implement this model over a vgg16 and vgg19 model. However, for the purpose of implementation, we will be using mostly the vgg16 architecture, because of the lesser number of parameters. vgg19 may cause a CUDA Out of memory error. But feel free to try it out if you feel so.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> torchvision.models <span style="color:#f92672">import</span> vgg16, vgg19
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">loss_net <span style="color:#f92672">=</span> vgg16(pretrained<span style="color:#f92672">=</span>True)<span style="color:#f92672">.</span>features<span style="color:#f92672">.</span>cuda()<span style="color:#f92672">.</span>eval()
+loss_net
+</code></pre></div><p>According to the paper, this network is already pretrained on another Image classification task (say on an ImageNet dataset). (We&rsquo;ve taken care of that, since the model that we downloaded above has ImageNet pretrained weights). So we don&rsquo;t actually train this model, we only train the Image Transform Network. This already trained Loss Network is solely used for loss calculation, as we will see.</p>
+<p>So to <em>freeze</em> the model (ie, make the model untrainable), all we have to do is tell PyTorch, that the parameters of this network do not need gradients (if they have gradients, they will be updated by the Gradient Descent Algorithm).</p>
+<p>(We&rsquo;ve already seen the <code>.requires_grad</code> attribute of PyTorch parameters. If you don&rsquo;t remember what they do, go back to Linear Regression/Logisitic Regression and remember what they do!)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">for</span> p <span style="color:#f92672">in</span> loss_net<span style="color:#f92672">.</span>parameters(): p<span style="color:#f92672">.</span>requires_grad<span style="color:#f92672">=</span>False
+</code></pre></div><p>So now let us move onto how exactly the loss values are calculated. We will first focus on the Content Loss Go back to the image of the proposed architecture above.</p>
+<p>We calculate the (style) loss after certain layers where ReLU is present in the loss network. Go to the code cell just above this, where we printed what the vgg architectural module looks like, and see where all you see the ReLU function.</p>
+<p>So we first of store these  layer (pointers) in a separate list</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">layers<span style="color:#f92672">=</span>[loss_net[i] <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">11</span>,<span style="color:#ae81ff">20</span>,<span style="color:#ae81ff">29</span>,<span style="color:#ae81ff">22</span>]]
+layers
+</code></pre></div><p>Actually, we can refactor all of this to a single function that does all these steps. So let&rsquo;s do that. Refactorign code is never a bad idea!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">_vgg_config<span style="color:#f92672">=</span>{
+    <span style="color:#e6db74">&#39;vgg16&#39;</span> : [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">11</span>,<span style="color:#ae81ff">20</span>,<span style="color:#ae81ff">29</span>,<span style="color:#ae81ff">22</span>], <span style="color:#75715e">#the authors proposed that these are the layer over which loss will be calculated</span>
+    <span style="color:#e6db74">&#39;vgg19&#39;</span> : [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">11</span>,<span style="color:#ae81ff">20</span>,<span style="color:#ae81ff">29</span>,<span style="color:#ae81ff">22</span>]}
+    
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_get_layers</span>(arch:str, pretrained<span style="color:#f92672">=</span>True):
+  <span style="color:#e6db74">&#34;Get the layers and arch for a VGG Model (16 and 19 are supported only), but 19 is likely to cause a CUDA out of memory error&#34;</span>
+  <span style="color:#66d9ef">assert</span> arch <span style="color:#f92672">in</span> _vgg_config, f<span style="color:#e6db74">&#39;only {_vgg_config.keys()} architectures are supported&#39;</span>
+  loss_net <span style="color:#f92672">=</span>  vgg16(pretrained<span style="color:#f92672">=</span>pretrained)<span style="color:#f92672">.</span>cuda() <span style="color:#66d9ef">if</span> arch<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;vgg16&#39;</span> <span style="color:#66d9ef">else</span> vgg16(pretrained<span style="color:#f92672">=</span>pretrained)<span style="color:#f92672">.</span>cuda() 
+  config <span style="color:#f92672">=</span> _vgg_config<span style="color:#f92672">.</span>get(arch)
+  features <span style="color:#f92672">=</span> loss_net<span style="color:#f92672">.</span>features<span style="color:#f92672">.</span>cuda()<span style="color:#f92672">.</span>eval()
+  <span style="color:#66d9ef">for</span> p <span style="color:#f92672">in</span> features<span style="color:#f92672">.</span>parameters(): p<span style="color:#f92672">.</span>requires_grad<span style="color:#f92672">=</span>False
+  <span style="color:#66d9ef">return</span> loss_net, [features[i] <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> config]
+</code></pre></div><p>Here comes the problem. We now need find a way to find the values of the features <em>during training</em>, in order calculate the loss with them. We have no way of tapping into the activations of the layers of a Neural Network mid-training. You can find out parameter values, but not values of the activation (that is output of a particular layer) during training. So how do we tap into those values?</p>
+<p>The answer lies in a very clever tool provided by PyTorch, known as <em>hooks</em>. They are, as the name suggests, tools that can hook into the layers of a network. They can provide us with the required activation values, even mid training. They&rsquo;re just classes, that can be called whenever we want to know the last value of the activation of a particular layer. Each required layer will be assigned a separate hook. And we will call each of these hooks at the end of one forward pass, to calculate the style loss.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_acts</span>(arch:str, pretrained<span style="color:#f92672">=</span>True):
+  <span style="color:#e6db74">&#34;Get the actications of an architecture&#34;</span>
+  loss_net, layers <span style="color:#f92672">=</span> _get_layers(arch, pretrained)
+  hooks <span style="color:#f92672">=</span> hook_outputs(layers, detach<span style="color:#f92672">=</span>False)
+  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_inner</span>(x):
+    loss_net(x)
+    <span style="color:#66d9ef">return</span> hooks<span style="color:#f92672">.</span>stored
+  <span style="color:#66d9ef">return</span> _inner
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">acts <span style="color:#f92672">=</span> get_acts(<span style="color:#e6db74">&#39;vgg16&#39;</span>)
+</code></pre></div><p>All set up. Let us try to see what the style loss will look like. So the style loss will essentially be the pixel-wise loss between the activation of the layer when the Image Transform Net prediction is fed through the network,  and activation of the same layer when the style image is fed through the network. Let us first download a style image and see what we are dealing with.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https://static.greatbigcanvas.com/images/singlecanvas_thick_none/megan-aroon-duncanson/little-village-abstract-art-house-painting,1162125.jpg&#39;</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_style_im</span>(url):
+  download_url(url, <span style="color:#e6db74">&#39;style.jpg&#39;</span>)
+  fn <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;style.jpg&#39;</span>
+  dset <span style="color:#f92672">=</span> Datasets(fn, tfms<span style="color:#f92672">=</span>[PILImage<span style="color:#f92672">.</span>create])
+  dl <span style="color:#f92672">=</span> dset<span style="color:#f92672">.</span>dataloaders(after_item<span style="color:#f92672">=</span>[ToTensor()], after_batch<span style="color:#f92672">=</span>[IntToFloatTensor(), Normalize<span style="color:#f92672">.</span>from_stats(<span style="color:#f92672">*</span>imagenet_stats)], bs<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>) <span style="color:#75715e">#need to convert image into a normalized, float tensor, otherwise GPU wont function properly</span>
+  <span style="color:#66d9ef">return</span> dl<span style="color:#f92672">.</span>one_batch()[<span style="color:#ae81ff">0</span>] <span style="color:#75715e">#Pytorch expects all data to be in the form of DataLoaders.</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">style_im <span style="color:#f92672">=</span> get_style_im(url)
+style_im<span style="color:#f92672">.</span>shape
+</code></pre></div><p>We could have simply used a loss function like Mean Square error or something to calcuate the difference between two tensors. But The authors define a way to calculate the loss of an activation of the prediction and actication of the style image. They call this the Gram Matrix method.</p>
+<p><img src="https://drive.google.com/uc?id=1UELPdMGhKrz3zAeLsSW9SCM8JfEcsGZU" alt="" /></p>
+<p>We simply define this in a function for convenience. Don&rsquo;t try to memorize it!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">gram</span>(x:Tensor):
+  <span style="color:#e6db74">&#34;Transpose a tensor based on c,w,h&#34;</span>
+  n, c, h, w <span style="color:#f92672">=</span> x<span style="color:#f92672">.</span>shape
+  x <span style="color:#f92672">=</span> x<span style="color:#f92672">.</span>view(n, c, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+  <span style="color:#66d9ef">return</span> (x <span style="color:#960050;background-color:#1e0010">@</span> x<span style="color:#f92672">.</span>transpose(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>))<span style="color:#f92672">/</span>(c<span style="color:#f92672">*</span>w<span style="color:#f92672">*</span>h)    
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">im_acts<span style="color:#f92672">=</span>acts(style_im)
+im_grams <span style="color:#f92672">=</span> [gram(f) <span style="color:#66d9ef">for</span> f <span style="color:#f92672">in</span> im_acts]
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_stl_fs</span>(fs): <span style="color:#66d9ef">return</span> fs[:<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#75715e">#to get the latest activation from each hook</span>
+</code></pre></div><p>So once we have the style losses from various layers of the Loss Network, we aggregate them. This method is provided by in the paper, and we simply implement it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">style_loss</span>(inp:Tensor, out_feat:Tensor):
+  <span style="color:#e6db74">&#34;Calculate style loss, assumes we have `im_grams`&#34;</span>
+  <span style="color:#75715e"># Get batch size</span>
+  bs <span style="color:#f92672">=</span> inp[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">0</span>]
+  loss <span style="color:#f92672">=</span> []
+  <span style="color:#75715e"># For every item in our inputs</span>
+  <span style="color:#66d9ef">for</span> y, f <span style="color:#f92672">in</span> zip(<span style="color:#f92672">*</span>map(get_stl_fs, [im_grams, inp])):
+    <span style="color:#75715e"># Calculate MSE</span>
+    loss<span style="color:#f92672">.</span>append(F<span style="color:#f92672">.</span>mse_loss(y<span style="color:#f92672">.</span>repeat(bs, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>), gram(f)))
+  <span style="color:#75715e"># Multiply their sum by 30000. We notice that without this, the loss value is really neglegible</span>
+  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">3e5</span> <span style="color:#f92672">*</span> sum(loss)
+</code></pre></div><p>We&rsquo;ve finished implementing the style loss. Now we need to implement the Feature Loss, which is the loss function corresponding to the content image. We simply implement the details given in the research paper.</p>
+<p><img src="https://drive.google.com/uc?id=1eJyhtmUptXfSstaUIzDeU9-iwhKStUVI" alt="" /></p>
+<p>For now we don&rsquo;t normalize the value by C<em>H</em>W, since we notice, the value almost becomes negligible in that case.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">feat_loss</span>(inp:Tensor, targ:Tensor):
+  <span style="color:#e6db74">&#34;Calculate the MSE loss of the activation layers&#34;</span>
+  <span style="color:#66d9ef">return</span> F<span style="color:#f92672">.</span>mse_loss(inp[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], targ[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>])
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PerceptualLoss</span>(Module):
+  <span style="color:#e6db74">&#34;Combines two losses and features into a useable loss function&#34;</span>
+  <span style="color:#66d9ef">def</span> __init__(self, acts, style_loss, feat_loss):
+    self<span style="color:#f92672">.</span>acts<span style="color:#f92672">=</span>acts
+    self<span style="color:#f92672">.</span>style_loss<span style="color:#f92672">=</span>style_loss
+    self<span style="color:#f92672">.</span>feat_loss<span style="color:#f92672">=</span>feat_loss 
+    self<span style="color:#f92672">.</span>reset_metrics()
+
+
+  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self, pred, targ):
+    <span style="color:#75715e"># First get the features of our prediction and target</span>
+    pred_act, targ_act <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>acts(pred), self<span style="color:#f92672">.</span>acts(targ)
+    <span style="color:#75715e"># Calculate style and activation loss</span>
+    style_loss <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>style_loss(pred_act, targ_act)
+    feat_loss <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>feat_loss(pred_act, targ_act)
+    self<span style="color:#f92672">.</span>_add_loss(style_loss, feat_loss) <span style="color:#75715e">#store the loss, so that you can plot it later if you want</span>
+    <span style="color:#66d9ef">return</span> style_loss <span style="color:#f92672">+</span> feat_loss
+
+  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">reset_metrics</span>(self):
+    <span style="color:#75715e"># Generates a blank metric</span>
+    self<span style="color:#f92672">.</span>metrics <span style="color:#f92672">=</span> dict(style <span style="color:#f92672">=</span> [], content <span style="color:#f92672">=</span> [])
+
+  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_add_loss</span>(self, style_loss, feat_loss):
+    <span style="color:#75715e"># Add to our metrics</span>
+    self<span style="color:#f92672">.</span>metrics[<span style="color:#e6db74">&#39;style&#39;</span>]<span style="color:#f92672">.</span>append(style_loss)
+    self<span style="color:#f92672">.</span>metrics[<span style="color:#e6db74">&#39;content&#39;</span>]<span style="color:#f92672">.</span>append(feat_loss)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">loss_func <span style="color:#f92672">=</span> PerceptualLoss(acts, style_loss, feat_loss)
+</code></pre></div><h3 id="the-image-transform-net">The Image Transform Net</h3>
+<p>Now that we&rsquo;re done with the Loss function, we have one last thing to do - we need to implement the Image Transform Net. Its very similar to a UNet. So we simply implement it in python. You don&rsquo;t need to memorize it, or feel worried if you don&rsquo;t understand. What you should care about is the final UNet type
+network that you get.</p>
+<p>The next 3 blocks of code are simply layers used by the authors of this paper. But ideally we could have used a UNet too.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ReflectionLayer</span>(Module): <span style="color:#75715e">#this module ensures that the size of the image remains same after convolution. The size is retained through adding extra pixels around the corners. </span>
+<span style="color:#75715e"># THis is called padding This particular module uses Reflection padding. Meaning, if you plot the images, the extra pixels would look as if you&#39;ve reflected the image around the original boundary of the image </span>
+    <span style="color:#e6db74">&#34;A series of Reflection Padding followed by a ConvLayer&#34;</span>
+    <span style="color:#66d9ef">def</span> __init__(self, in_channels, out_channels, ks<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, stride<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>):
+        reflection_padding <span style="color:#f92672">=</span> ks <span style="color:#f92672">//</span> <span style="color:#ae81ff">2</span>
+        self<span style="color:#f92672">.</span>reflection_pad <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>ReflectionPad2d(reflection_padding)
+        self<span style="color:#f92672">.</span>conv2d <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Conv2d(in_channels, out_channels, ks, stride)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self, x):
+        out <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>reflection_pad(x)
+        out <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>conv2d(out)
+        <span style="color:#66d9ef">return</span> out
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ResidualBlock</span>(Module): <span style="color:#75715e">#this is the implementation of the residual block (from the famous ResNet paper). As we mentioned before, the residual block approach is really famous. </span>
+    <span style="color:#e6db74">&#34;Two reflection layers and an added activation function with residual&#34;</span>
+    <span style="color:#66d9ef">def</span> __init__(self, channels):
+          self<span style="color:#f92672">.</span>conv1 <span style="color:#f92672">=</span> ReflectionLayer(channels, channels, ks<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, stride<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+          self<span style="color:#f92672">.</span>in1 <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>InstanceNorm2d(channels, affine<span style="color:#f92672">=</span>True)
+          self<span style="color:#f92672">.</span>conv2 <span style="color:#f92672">=</span> ReflectionLayer(channels, channels, ks<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, stride<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+          self<span style="color:#f92672">.</span>in2 <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>InstanceNorm2d(channels, affine<span style="color:#f92672">=</span>True)
+          self<span style="color:#f92672">.</span>relu <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>ReLU()
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self, x):
+          residual <span style="color:#f92672">=</span> x
+          out <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>relu(self<span style="color:#f92672">.</span>in1(self<span style="color:#f92672">.</span>conv1(x)))
+          out <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>in2(self<span style="color:#f92672">.</span>conv2(out))
+          out <span style="color:#f92672">=</span> out <span style="color:#f92672">+</span> residual
+          <span style="color:#66d9ef">return</span> out
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UpsampleConvLayer</span>(Module): <span style="color:#75715e">#this is the implementation of the deconvolution type layer</span>
+    <span style="color:#e6db74">&#34;Upsample with a ReflectionLayer&#34;</span>
+    <span style="color:#66d9ef">def</span> __init__(self, in_channels, out_channels, ks<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, stride<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, upsample<span style="color:#f92672">=</span>None):
+        self<span style="color:#f92672">.</span>upsample <span style="color:#f92672">=</span> upsample
+        reflection_padding <span style="color:#f92672">=</span> ks <span style="color:#f92672">//</span> <span style="color:#ae81ff">2</span>
+        self<span style="color:#f92672">.</span>reflection_pad <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>ReflectionPad2d(reflection_padding)
+        self<span style="color:#f92672">.</span>conv2d <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Conv2d(in_channels, out_channels, ks, stride)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self, x):
+        x_in <span style="color:#f92672">=</span> x
+        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>upsample:
+            x_in <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>nn<span style="color:#f92672">.</span>functional<span style="color:#f92672">.</span>interpolate(x_in, mode<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;nearest&#39;</span>, scale_factor<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>upsample)
+        out <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>reflection_pad(x_in)
+        out <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>conv2d(out)
+        <span style="color:#66d9ef">return</span> out
+</code></pre></div><p>Finally we construct the transform Net</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TransformerNet</span>(Module):
+    <span style="color:#e6db74">&#34;A simple network for style transfer&#34;</span>
+    <span style="color:#66d9ef">def</span> __init__(self):
+        <span style="color:#75715e"># Initial convolution layers</span>
+        self<span style="color:#f92672">.</span>conv1 <span style="color:#f92672">=</span> ReflectionLayer(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">32</span>, ks<span style="color:#f92672">=</span><span style="color:#ae81ff">9</span>, stride<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+        self<span style="color:#f92672">.</span>in1 <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>InstanceNorm2d(<span style="color:#ae81ff">32</span>, affine<span style="color:#f92672">=</span>True)
+        self<span style="color:#f92672">.</span>conv2 <span style="color:#f92672">=</span> ReflectionLayer(<span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">64</span>, ks<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, stride<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+        self<span style="color:#f92672">.</span>in2 <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>InstanceNorm2d(<span style="color:#ae81ff">64</span>, affine<span style="color:#f92672">=</span>True)
+        self<span style="color:#f92672">.</span>conv3 <span style="color:#f92672">=</span> ReflectionLayer(<span style="color:#ae81ff">64</span>, <span style="color:#ae81ff">128</span>, ks<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, stride<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+        self<span style="color:#f92672">.</span>in3 <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>InstanceNorm2d(<span style="color:#ae81ff">128</span>, affine<span style="color:#f92672">=</span>True)
+        <span style="color:#75715e"># Residual layers</span>
+        self<span style="color:#f92672">.</span>res1 <span style="color:#f92672">=</span> ResidualBlock(<span style="color:#ae81ff">128</span>)
+        self<span style="color:#f92672">.</span>res2 <span style="color:#f92672">=</span> ResidualBlock(<span style="color:#ae81ff">128</span>)
+        self<span style="color:#f92672">.</span>res3 <span style="color:#f92672">=</span> ResidualBlock(<span style="color:#ae81ff">128</span>)
+        self<span style="color:#f92672">.</span>res4 <span style="color:#f92672">=</span> ResidualBlock(<span style="color:#ae81ff">128</span>)
+        self<span style="color:#f92672">.</span>res5 <span style="color:#f92672">=</span> ResidualBlock(<span style="color:#ae81ff">128</span>)
+        <span style="color:#75715e"># Upsampling Layers</span>
+        self<span style="color:#f92672">.</span>deconv1 <span style="color:#f92672">=</span> UpsampleConvLayer(<span style="color:#ae81ff">128</span>, <span style="color:#ae81ff">64</span>, ks<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, stride<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, upsample<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+        self<span style="color:#f92672">.</span>in4 <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>InstanceNorm2d(<span style="color:#ae81ff">64</span>, affine<span style="color:#f92672">=</span>True)
+        self<span style="color:#f92672">.</span>deconv2 <span style="color:#f92672">=</span> UpsampleConvLayer(<span style="color:#ae81ff">64</span>, <span style="color:#ae81ff">32</span>, ks<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, stride<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, upsample<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+        self<span style="color:#f92672">.</span>in5 <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>InstanceNorm2d(<span style="color:#ae81ff">32</span>, affine<span style="color:#f92672">=</span>True)
+        self<span style="color:#f92672">.</span>deconv3 <span style="color:#f92672">=</span> ReflectionLayer(<span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">3</span>, ks<span style="color:#f92672">=</span><span style="color:#ae81ff">9</span>, stride<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+        <span style="color:#75715e"># Non-linearities</span>
+        self<span style="color:#f92672">.</span>relu <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>ReLU()
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self, X):
+        y <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>relu(self<span style="color:#f92672">.</span>in1(self<span style="color:#f92672">.</span>conv1(X)))
+        y <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>relu(self<span style="color:#f92672">.</span>in2(self<span style="color:#f92672">.</span>conv2(y)))
+        y <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>relu(self<span style="color:#f92672">.</span>in3(self<span style="color:#f92672">.</span>conv3(y)))
+        y <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>res1(y)
+        y <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>res2(y)
+        y <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>res3(y)
+        y <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>res4(y)
+        y <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>res5(y)
+        y <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>relu(self<span style="color:#f92672">.</span>in4(self<span style="color:#f92672">.</span>deconv1(y)))
+        y <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>relu(self<span style="color:#f92672">.</span>in5(self<span style="color:#f92672">.</span>deconv2(y)))
+        y <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>deconv3(y)
+        <span style="color:#66d9ef">return</span> y
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">net <span style="color:#f92672">=</span> TransformerNet()
+</code></pre></div><h3 id="training-the-model">Training the Model</h3>
+<p>Let us pick a standard dataset to train our model. We&rsquo;ll be using a small subset of the ImageNet dataset, called the ImageNette dataset, which contains 10 difficult classes from the 1000 classes of the original Imagenet dataset.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">path <span style="color:#f92672">=</span> untar_data(URLs<span style="color:#f92672">.</span>IMAGENETTE_160)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">dblock <span style="color:#f92672">=</span> DataBlock(blocks<span style="color:#f92672">=</span>(ImageBlock, ImageBlock),
+                   get_items<span style="color:#f92672">=</span>get_image_files,
+                   splitter<span style="color:#f92672">=</span>RandomSplitter(<span style="color:#ae81ff">0.1</span>, seed<span style="color:#f92672">=</span><span style="color:#ae81ff">42</span>),
+                   item_tfms<span style="color:#f92672">=</span>[Resize(<span style="color:#ae81ff">224</span>)],
+                   batch_tfms<span style="color:#f92672">=</span>[Normalize<span style="color:#f92672">.</span>from_stats(<span style="color:#f92672">*</span>imagenet_stats)])
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">dls <span style="color:#f92672">=</span> dblock<span style="color:#f92672">.</span>dataloaders(path, bs<span style="color:#f92672">=</span><span style="color:#ae81ff">16</span>)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">dls<span style="color:#f92672">.</span>show_batch()
+</code></pre></div><p>Let us train the model. Here, we are not defining any metric, since the we&rsquo;ve distorted all features of an image. So the traditional accuracy will not make any logical sense. Looking at the results visually is the only way, unfortunately.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn <span style="color:#f92672">=</span> Learner(dls, TransformerNet(), loss_func<span style="color:#f92672">=</span>loss_func) 
+</code></pre></div><p>If you still see a CUDA Out of Memory error with the below line of code, factory reset your notebook, and only run the Neural Style Transfer Part.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn<span style="color:#f92672">.</span>fit_one_cycle(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1e-3</span>)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn<span style="color:#f92672">.</span>show_results()
+</code></pre></div><p>Let us see how this model is working. I picked up this photo of the BITS Pilani Clock Tower, to see the results.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#960050;background-color:#1e0010">!</span>gdown https:<span style="color:#f92672">//</span>drive<span style="color:#f92672">.</span>google<span style="color:#f92672">.</span>com<span style="color:#f92672">/</span>uc<span style="color:#960050;background-color:#1e0010">?</span>id<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>vNrb_BCyNs5xU95bZnNY5owcE97EUq_k
+<span style="color:#960050;background-color:#1e0010">!</span>ls
+</code></pre></div><p>This is what the original image looks like.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">dset <span style="color:#f92672">=</span> Datasets(<span style="color:#e6db74">&#39;11 BITS Pilani.jpg&#39;</span>, tfms<span style="color:#f92672">=</span>[PILImage<span style="color:#f92672">.</span>create])
+dl <span style="color:#f92672">=</span> dset<span style="color:#f92672">.</span>dataloaders(after_item<span style="color:#f92672">=</span>[ToTensor()], after_batch<span style="color:#f92672">=</span>[IntToFloatTensor(), Normalize<span style="color:#f92672">.</span>from_stats(<span style="color:#f92672">*</span>imagenet_stats)], bs<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+dl<span style="color:#f92672">.</span>show_batch()
+</code></pre></div><p>And this is what the Style Transfered Image Looks like.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#predicting the Neural Style Transfered Image</span>
+t_im<span style="color:#f92672">=</span>dl<span style="color:#f92672">.</span>one_batch()[<span style="color:#ae81ff">0</span>]
+<span style="color:#66d9ef">with</span> torch<span style="color:#f92672">.</span>no_grad():
+    res<span style="color:#f92672">=</span>learn<span style="color:#f92672">.</span>model(t_im)
+TensorImage(res[<span style="color:#ae81ff">0</span>])<span style="color:#f92672">.</span>show()
+</code></pre></div><p>Looks great! You can try it on your own images to see the result for yourself!
+This is like making paintings like the best painters this world has ever seen (perhaps even better). This might be your moment to shine. Someone actually <a href="https://scitechdaily.com/artificial-intelligence-generated-artwork-sells-for-432500-is-ai-a-simple-tool-or-creative-genius">sold an AI Generated painting</a> for $432,500. Who knew just a few lines of code could be so valuable!</p>
+<h2 id="review">Review</h2>
+<p>In this session we saw some more advanced Computer Vision Applications, specifically some niche problems like the Siamese Network problem and the Neural Style Transfer Problem. We even learnt how to write these models from scratch, with just very minimal and logical tweaks to the already existing Neural Network framework. Infact, in the case of Neural Style Transfer, all we did was implement the paper straight. So through this we also learnt some ideas about paper implementations are done (and that they are impossible or extrememly hard, if you get the hold of it).</p>
+<h2 id="exercise-evaluative">Exercise (Evaluative)</h2>
+<p>Your task is to build Neural Style Machines that create art in the form of any 3 artists. Pick a style image that is a famous painting by 3 artists. (If you&rsquo;re a painter, your paintings will work too!). And try it out on any picture of your choice after training (on any standard Image Dataset. The ImageNette works perfectly fine too). (You can upload a picture of your choice, or use the BITS Pilani Clock Tower too).</p>
+<p>Note: you may need to restart the runtime each time after training a model, so make sure you run these 3 models on three different cells, so that the output is seen later during Evaulation.</p>
+<p>To upload a picture you can do either of the following steps.</p>
+<ol>
+<li>Through Colab Files:</li>
+</ol>
+<p>(just like we did for the kaggle.json file). You can simply do.</p>
+<pre><code>from google.colab import files
+uploaded = files.upload()
+</code></pre><p>and then you can directly access the file you&rsquo;re using</p>
+<ol start="2">
+<li>Through Google Drive:</li>
+</ol>
+<p>You can upload the required images on Google Drive. Then right click, Share, Change access to &ldquo;Anyone with the link can access the link&rdquo;. Then copy the link and modify it using the following Examplle.</p>
+<p><code>https://drive.google.com/file/d/1vNrb_BCyNs5xU95bZnNY5owcE97EUq_k/view?usp=sharing</code></p>
+<p>becomes</p>
+<p><code>https://drive.google.com/uc?id=1vNrb_BCyNs5xU95bZnNY5owcE97EUq_k</code></p>
+<p>remove the <code>/view?usp=sharing</code>, and replace <code>/files/d/</code> with <code>uc?id=</code></p>
+<p>Then you can do <code>gdown &lt;modified url&gt;</code> and directly access the Image file, as we&rsquo;ve done above.</p>
+<ol start="3">
+<li>If you have a link which directly downloads an image, you can use the <code>download_url</code> function, which we&rsquo;ve used above to download the style image.</li>
+</ol>
+<p>Note that: the style image needs to be converted into a dataloader (refer back to above to see how we did that), but the image on which we did prediction finally need not be a dataloader.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+</code></pre></div></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-siamese-network-problem">The Siamese Network Problem</a>
+      <ul>
+        <li><a href="#how-does-a-siamese-network-work">How does a Siamese Network work?</a></li>
+        <li><a href="#setting-up-the-dataset">Setting up the dataset</a></li>
+        <li><a href="#setting-up-data-for-siamese-network">Setting up data for Siamese Network</a></li>
+        <li><a href="#the-siamese-model">The Siamese Model</a></li>
+      </ul>
+    </li>
+    <li><a href="#neural-style-transfer">Neural Style Transfer</a>
+      <ul>
+        <li><a href="#the-loss-network">The Loss Network</a></li>
+        <li><a href="#the-image-transform-net">The Image Transform Net</a></li>
+        <li><a href="#training-the-model">Training the Model</a></li>
+      </ul>
+    </li>
+    <li><a href="#review">Review</a></li>
+    <li><a href="#exercise-evaluative">Exercise (Evaluative)</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
