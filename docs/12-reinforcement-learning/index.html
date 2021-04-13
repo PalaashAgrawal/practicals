@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta name="generator" content="Hugo 0.68.3" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="12 Reinforcement Learning Welcome to the 12th session in the Machine Learning practical series. In this session, we&rsquo;ll be deviating a little from Deep Learning, and studying about Reinforcement Learning, a slightly different field of Machine Learning, which uses a slightly different approach towards learning. Its a really interesting domain, and has lots of unexplored possibilities. So let&rsquo;s dive into an overview of what Reinforcement Learning is.
+Imagine a real life scenario, how you learnt social behaviors.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://palaashagrawal.github.io/practicals/docs/12-reinforcement-learning/" />
+
+<title>12 Reinforcement Learning | Practical Machine Learning</title>
+<link rel="manifest" href="https://palaashagrawal.github.io/practicals/manifest.json">
+<link rel="icon" href="https://palaashagrawal.github.io/practicals/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="https://palaashagrawal.github.io/practicals/book.min.2dc4d2afa8da6ac78d76671c21e140952e7a84846fed47ed02a1a2d68166d992.css" integrity="sha256-LcTSr6jaaseNdmccIeFAlS56hIRv7UftAqGi1oFm2ZI=">
+<script defer src="https://palaashagrawal.github.io/practicals/en.search.min.96ccfb2c5867cedc831b46f10d42a5f371f22bfade1610bc6697ba06c4ac2602.js" integrity="sha256-lsz7LFhnztyDG0bxDUKl83HyK/reFhC8Zpe6BsSsJgI="></script>
+<link rel="alternate" type="application/rss+xml" href="https://palaashagrawal.github.io/practicals/docs/12-reinforcement-learning/index.xml" title="Practical Machine Learning" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="https://palaashagrawal.github.io/practicals/"><span>Practical Machine Learning</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/00-basics-of-python-and-introduction-to-machine-learning/" class="">00 Basics of Python and Introduction to Machine Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/01-linear-regression/" class="">01 Linear Regression</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/02-logistic-regression/" class="">02 Logistic Regression</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/03-singular-value-decomposition-and-principal-component-analysis/" class="">03 Singular Value Decomposition and Principal Component Analysis</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/04-bayesian-learning/" class="">04 Bayesian Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/05-clustering-algorithms-in-machine-learning/" class="">05 Clustering Algorithms in Machine Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/06-support-vector-machines/" class="">06 Support Vector Machines</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/07-decision-trees-and-random-forests/" class="">07 Decision Trees and Random Forests</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/08-neural-networks/" class="">08 Neural Networks</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/09-convolution-neural-networks/" class="">09 Convolution Neural Networks</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/10-advanced-computer-vision-applications/" class="">10 Advanced Computer Vision Applications</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/11-advanced-computer-vision-applications-continued/" class="">11 Advanced Computer Vision Applications Continued</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/12-reinforcement-learning/" class=" active">12 Reinforcement Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="https://palaashagrawal.github.io/practicals/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>12 Reinforcement Learning</strong>
+
+  <label for="toc-control">
+    
+    <img src="https://palaashagrawal.github.io/practicals/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+
+    
+  </label>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  
+    window.addEventListener('load', (event) => {
+        document.querySelectorAll("mjx-container").forEach(function(x){
+          x.parentElement.classList += 'has-jax'})
+      });
+  
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#reinforcement-learning-with-openai-gym">Reinforcement Learning with OpenAI Gym</a>
+      <ul>
+        <li><a href="#random-actions-and-states">Random Actions and States</a></li>
+        <li><a href="#creating-an-ai-model--deep-reinforcement-learning">Creating an AI Model : Deep Reinforcement Learning</a></li>
+        <li><a href="#model-inference">Model Inference</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercise">Exercise</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="12-reinforcement-learning">12 Reinforcement Learning</h1>
+<p><img src="https://drive.google.com/uc?id=1e3fTjnZLdR5skojks4zIzuc_qjsFgJZo" alt="" /></p>
+<p>Welcome to the 12th session in the Machine Learning practical series. In this session, we&rsquo;ll be deviating a little from Deep Learning, and studying about Reinforcement Learning, a slightly different field of Machine Learning, which uses a slightly different approach towards <em>learning</em>. Its a really interesting domain, and has lots of unexplored possibilities. So let&rsquo;s dive into an overview of what Reinforcement Learning is.</p>
+<p>Imagine a real life scenario, how you learnt social behaviors. When you were really young, you did not necessarily know how to behave, and simply explored everything. In that, you did a lot of wrong things, and even some good things. Whenever you do a good thing, there was some sort of <em>reward</em> that you used to get. For example, maybe you scored good marks in your test when you were young, and your parents praised your effort, maybe even got you a gift. This reward is meant to encourage you to study more, and keep up your grades at school. On the other hand, you may have done a lot of &ldquo;bad&rdquo; things as well, and by bad, we mean, socially inacceptable actions, like, maybe, you broke something in your house, hurt your sibling, trashed the house, or picked up a curse word from somewhere. And immediately, you were <em>punished</em>, or <em>penalized</em> for it, maybe you got a scolding. So in the future, a subtle fear of this penalty would  stop you from doing it again (and if not, atleast make you think of it!). A really long history of rewards and penalties shapes us into socially acceptable humans. Now, it need not be just parents who reward/punish us, it can be other entities too - like, the society in general, including your immediate friend circle, the immediate surroundings, police and the courts, etc. This method of <em>learning</em> through rewards and penalties is called reinforced learning. An agent learns through constant reinforcement of ideas and tasks.</p>
+<p>This is completely different from traditional Supervised Learning. In Supervised Learning, the learning entity is shown multiple examples of a target, which we wish that the entitity learns to identify. That&rsquo;s not how we learn. We don&rsquo;t learn not to break things at home by watching millions of examples of other kids not doing the same. So, reinforcement learning does not entail elarning through example, but learning through trial and error, and a series of rewards and penalties. Pretty interesting, right?</p>
+<p>So where is reinforcement learning used? Reinforcement Learning is used when we care about some result, without caring about what path is chosen to achieve the result. This result need not necessarily be  end goals, but also guidelines/goals that are to be followed throughout the learning process, like, what is good (reward-worthy) and what is bad (penalty worthy). The task is to maximise the reward, or minimize the penalty, or a mixture of both, depending on what the scenario is. So within these guidelines, on the basis of which rewards or penalties are given, our task is to learn to do something, and how we do it doesn&rsquo;t matter much. Let&rsquo;s take some real life examples of how reinforcement learning is used.</p>
+<p>In 2017, <a href="https://deepmind.com/">DeepMind</a> developed a model called <a href="https://deepmind.com/blog/article/alphago-zero-starting-scratch">AlphaGo Zero</a>, which beat the world champion in the game of Go, which is a Chinese Game, considered to be one of the most difficult board games, because of the extremely large number of possible states that can be achieved in a game (about $3^{361}$ states in total, which is of the order of $10^{172}$ .Lets imagine what would be required to train a model that plays this game using a supervised learning approach. First of all it would simply not be possible to gather datasets of the scale of $10^{172}$. But to be fair, such an approach has been attempted, and was pretty successful too. DeepMind, the same company that developed AlphaGo Zero, developed <a href="https://deepmind.com/research/case-studies/alphago-the-story-so-far">AlphaGo</a> in 2015, which used a supervised learning approach, and beat a professional Go player (which at the time, was a huge deal - the fact that an AI model could beat a human). The approach was simple - AlphaGo learnt the game by playing thousands of matches with amateur and professional players. This obviously wouldn&rsquo;t make it totally perfect, but would atleast make the model learn enough to pay decently well.</p>
+<p>AlphaGo Zero didn&rsquo;t use Supervised Learning, but used Reinforcement Learning. Instead of providing the model with a mechanism to learn features of a dataset, but with some guidelines of the game. And a mechanism to reward or penalize the model over its history of actions and the opponents actions (note: not just the last action is rewarded/penalized, but the entire history of actions matters in the end result. So rewards/penalities are determined by a series of actions). And AlphaGo Zero played millions of games against itself, making itself better each time, and reached a point where it beat the world champion in Go. Because of this, Google bought DeepMind for $600,000,000 (USD 600 Million).</p>
+<p>Reinforcement Learning is really popular in applications that relate to understanding and developing the potential of Human-Computer Interactions, or human behavior in general. For example, DeepMind created this model (above) to gain insights about how humans might have evolved to walk the way that we do today, entirely from scratch. The only guidelines provided in this case was a physical form (having a torso having 2 legs), and the fact that the farther it can traverse, more the reward.</p>
+<p>If you wish to gain an intuition about the entire learning process of a Reinforcement Learning model, here is a video of an AI agent try to learn how to park a car.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> IPython.display <span style="color:#f92672">import</span> YouTubeVideo
+YouTubeVideo(<span style="color:#e6db74">&#39;VMp6pq6_QjI&#39;</span>)
+</code></pre></div><p>Video Games are perfect environments for Reinforcement Learning models. Which is what we are going to do today. A lot of work has been done in developing Video Game interfaces to incorporate AI that can be trained by us. So we&rsquo;ll be learning how to apply reinforcement learning on a video game environment, as a proxy to how reinforcement learning can be applied in the real world, and even as a way to make this session interesting.</p>
+<p>Let us first discuss briefly what reinforcement learning is all about. Before that, let us install and import all necessary libraries. We&rsquo;ll be using PyTorch to run our model.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#960050;background-color:#1e0010">!</span>pip install box2d<span style="color:#f92672">-</span>py <span style="color:#f92672">&gt;./</span>tmp
+<span style="color:#960050;background-color:#1e0010">!</span>pip3 install gym[Box_2D] <span style="color:#f92672">--</span>upgrade<span style="color:#f92672">&gt;./</span>tmp
+<span style="color:#960050;background-color:#1e0010">!</span>pip install pyvirtualdisplay <span style="color:#f92672">&gt;./</span>tmp
+<span style="color:#960050;background-color:#1e0010">!</span>sudo apt<span style="color:#f92672">-</span>get install xvfb <span style="color:#f92672">&gt;./</span>tmp
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">%</span>matplotlib inline
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> gym
+<span style="color:#f92672">import</span> matplotlib
+<span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#f92672">as</span> plt
+<span style="color:#f92672">import</span> matplotlib.animation
+<span style="color:#f92672">from</span> IPython.display <span style="color:#f92672">import</span> HTML
+<span style="color:#f92672">from</span> pyvirtualdisplay <span style="color:#f92672">import</span> Display
+
+<span style="color:#75715e">#display</span>
+display <span style="color:#f92672">=</span> Display(visible<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, size<span style="color:#f92672">=</span>(<span style="color:#ae81ff">512</span>, <span style="color:#ae81ff">512</span>))
+display<span style="color:#f92672">.</span>start()
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> torch
+<span style="color:#f92672">import</span> torch.nn <span style="color:#f92672">as</span> nn
+<span style="color:#f92672">import</span> torch.nn.functional <span style="color:#f92672">as</span> F
+<span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> optim
+<span style="color:#f92672">from</span> torch.distributions <span style="color:#f92672">import</span> Categorical
+device<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;cpu&#39;</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#f92672">as</span> plt
+<span style="color:#f92672">from</span> tqdm <span style="color:#f92672">import</span> tqdm_notebook
+<span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
+<span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> Counter, deque
+<span style="color:#f92672">import</span> warnings
+warnings<span style="color:#f92672">.</span>filterwarnings(<span style="color:#e6db74">&#34;ignore&#34;</span>)
+<span style="color:#f92672">import</span> random
+<span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> defaultdict, namedtuple, deque
+</code></pre></div><h2 id="reinforcement-learning-with-openai-gym">Reinforcement Learning with OpenAI Gym</h2>
+<p><a href="https://gym.openai.com/">OpenAI</a> provides us with a collection of interactive environments to test reinforcement learning systems, including many video game environments, and other graphic based interfaces, some simple, and others complex!</p>
+<p>In OpenAI&rsquo;s own terms -</p>
+<p><img src="https://drive.google.com/uc?id=1PbpIEcjP0oapY8hgL--XI2DxqeVUvk0_" alt="" /></p>
+<p>Since we&rsquo;re already somewhat comfortable in PyTorch, we&rsquo;ll be using that in this session.</p>
+<p>So, step number 1 is to create an environment where we&rsquo;ll be building our model. For the purpose of this session, we&rsquo;ve picked a problem called the <a href="https://gym.openai.com/envs/MountainCar-v0/">Mountain Car</a>. The problem is simple:</p>
+<blockquote>
+<p>The goal is to drive up the mountain on the right; however, the car&rsquo;s engine is not strong enough to scale the mountain in a single pass. Therefore, the only way to succeed is to drive back and forth to build up momentum.</p>
+</blockquote>
+<p><img src="https://drive.google.com/uc?id=1NvAwZp1EhEgcmZKobtgtjHRYiSrtNf2J" alt="" /></p>
+<p>All we need to do to initialize this environment is one simple line of code as follows.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">env <span style="color:#f92672">=</span> gym<span style="color:#f92672">.</span>make(<span style="color:#e6db74">&#39;MountainCar-v0&#39;</span>)
+state <span style="color:#f92672">=</span> env<span style="color:#f92672">.</span>reset()
+</code></pre></div><p>Before we start, let us talk about what goes into a reinforcement learning model.</p>
+<p>In Reinforcement Learning, we divide the universe into <em>agents</em> and <em>environments</em>. Agent is the entity that learns or interacts with other such agents. An agent performs within an environment, under some circumstances, and makes an <em>action</em> based on it. The action will lead it to reach some <em>state</em> of the environement (like, here, after some action (acceleration,etc), the car will reach some height). And each state comes with its own circumstances, to which the actor(agent) needs to adapt to, and come up with another suitable action from that point.</p>
+<p>Some actions will increase the <em>final reward</em>, while some may lead to failures. So we need to find an optimal path, through various states of the environement, that will lead to maximization of reward (in this case, reaching the topmost point).</p>
+<p>Meaning, any action that leads to higher altitude, results in higher reward. We may not need any penalty in this case, but you can come up with a case that leads to some sort of penalty. So we represent the net reward ($reward - penalty$) as the <em>score</em>.</p>
+<p>So, for each environment, there is a finite set of state that can be achieved, and for each agent, only a finite set of actions can be taken.</p>
+<p>Corresponding to an action taken in a state, there is some reward (and/or penalty) that is associated. Our job is to <em>optimize</em> this action-reward pair such that this reward is maximized. This is the crux of all reinforcement learning systems.</p>
+<p>Let us see how this is implemented in the case of the Mountain Car problem.</p>
+<h3 id="random-actions-and-states">Random Actions and States</h3>
+<p>So at this point we have a car which really doesn&rsquo;t know how to reach the top of the right mountain, so it would be trying random actions. Let us see how it performs.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#this is a random action case</span>
+score <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+t<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+frames <span style="color:#f92672">=</span> []
+<span style="color:#66d9ef">while</span> True:
+    action <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>choice([<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>]) <span style="color:#75715e">#here, actions can be one (randomly chosen value) out of three values from 0,1 and 2. </span>
+                                        <span style="color:#75715e">#See the source code to understand what it means</span>
+    
+    state, reward, done, info <span style="color:#f92672">=</span> env<span style="color:#f92672">.</span>step(action) <span style="color:#75715e">#the step function is the functin that changes the state of the car. See the source code</span>
+    t<span style="color:#f92672">+=</span><span style="color:#ae81ff">1</span>
+    score<span style="color:#f92672">+=</span>reward <span style="color:#75715e">#we care about the total reward of all actions</span>
+    
+    <span style="color:#75715e">#append frame</span>
+    frames<span style="color:#f92672">.</span>append(env<span style="color:#f92672">.</span>render(mode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;rgb_array&#39;</span>)) <span style="color:#75715e">#env.render returns a graphical image of the actions taking place. </span>
+                                                <span style="color:#75715e">#Colab actually doesn&#39;t support dynamically changing popup windows, </span>
+                                                <span style="color:#75715e">#so we&#39;re first storing it in a list, and then we&#39;ll make a small gif out of it</span>
+    <span style="color:#66d9ef">if</span> done: <span style="color:#66d9ef">break</span> <span style="color:#75715e">#done is a boolean variable. Which represents whether or not we have reached the end of the prediction cycle. </span>
+
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Done in {t} timsteps with score {score}.&#39;</span>) <span style="color:#75715e">#just some book keeping stats</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#this little cell of code converts our frames list to a HTML embedding that can be played as a video clip</span>
+<span style="color:#75715e">#animate frames</span>
+patch <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>imshow(frames[<span style="color:#ae81ff">0</span>])
+animate <span style="color:#f92672">=</span> <span style="color:#66d9ef">lambda</span> i: patch<span style="color:#f92672">.</span>set_data(frames[i])
+ani <span style="color:#f92672">=</span> matplotlib<span style="color:#f92672">.</span>animation<span style="color:#f92672">.</span>FuncAnimation(plt<span style="color:#f92672">.</span>gcf(), animate, frames<span style="color:#f92672">=</span>len(frames), interval <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)
+HTML(ani<span style="color:#f92672">.</span>to_jshtml())
+</code></pre></div><p>In order to understand what exactly is happening here, we need to dive into the <a href="https://github.com/openai/gym/blob/38a1f630dc9815a567aaf299ae5844c8f8b9a6fa/gym/envs/classic_control/mountain_car.py">source code</a>.</p>
+<p>PS: if you&rsquo;re also a physics enthusiast, you&rsquo;ll enjoy reading the code.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#960050;background-color:#1e0010">??</span>gym<span style="color:#f92672">.</span>envs<span style="color:#f92672">.</span>classic_control<span style="color:#f92672">.</span>MountainCarEnv
+<span style="color:#75715e">#look for how actions are defined, how steps are taken and how scores are calculated.</span>
+</code></pre></div><p>We only have a crude prediction model, that randomly choses the action of the car at the very start. As OpenAI says, OpenAI Gym provides an environment, and its upto us to implement a model that can learn to do the specific task we need to do.</p>
+<h3 id="creating-an-ai-model--deep-reinforcement-learning">Creating an AI Model : Deep Reinforcement Learning</h3>
+<p>So we need to build a model that can predict actions appropriately in our environment. There are many learning models that have been developed specifically for reinforcement learning, like Markov Chain based models, and Q learning. But recently there has emerged a new type of modeling technique in reinforcement learning - What if this model is a <em>Neural Network</em>? (surprise surprise!), because, why not? Afterall what can be better for prediction than Neural Nets?! This is the state of the art reinforcement learning technique as of now. So, in the spirit of trying to learn the best, let us focus on Neural Nets for this session, and how it can be integrated with Reinforcement Learning.</p>
+<p>The goal of using Neural Nets is two fold -</p>
+<ol>
+<li>Not only Neural Nets are the best option when it comes to prediction, either in terms of regression or classification of values, but also</li>
+<li>Other modeling techniques involve some mathematics, which we try to avoid in these sessions. We also know Neural Nets well, so its easier to understand as well. And then, we know that ultimately, there&rsquo;s no point in learning something in depth, which we would not use in the end.</li>
+</ol>
+<p>But before that, let us set up some additional things that are common to all learning models. That is, we need a mechanism to store the states and actions of the past. Why do we need this? Obviously because we need to keep track of all transitional parameters. But also because, as we mentioned, rewards need to be assigned based on the entire action history. This is one feature of reinforcement learning - its not just the last action that determines the final state, but the entire set of actions taken.</p>
+<p>So we define a class that can store these parameters. What will be these parameters? We define them below in a tuple that we call <em>Transition</em>, that will be a tuple of parameters representing any transition (between actions, states and rewards).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">Transition <span style="color:#f92672">=</span> namedtuple(<span style="color:#e6db74">&#39;Transition&#39;</span>, (<span style="color:#e6db74">&#39;state&#39;</span>, <span style="color:#e6db74">&#39;action&#39;</span>, <span style="color:#e6db74">&#39;reward&#39;</span>, <span style="color:#e6db74">&#39;next_state&#39;</span>,<span style="color:#e6db74">&#39;done&#39;</span>))
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Memory</span>:
+    <span style="color:#66d9ef">def</span> __init__(self, capacity, seed <span style="color:#f92672">=</span> <span style="color:#ae81ff">1412</span>):
+        self<span style="color:#f92672">.</span>capacity <span style="color:#f92672">=</span> capacity
+        self<span style="color:#f92672">.</span>memory <span style="color:#f92672">=</span> deque(maxlen<span style="color:#f92672">=</span>capacity) <span style="color:#75715e">#incase you only want to retain the last `capacity` number of states</span>
+        self<span style="color:#f92672">.</span>seed <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>seed(seed)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">add</span>(self, <span style="color:#f92672">*</span>args):
+        t <span style="color:#f92672">=</span> Transition(<span style="color:#f92672">*</span>args)
+        self<span style="color:#f92672">.</span>memory<span style="color:#f92672">.</span>append(t)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">sample</span>(self, batch_size):
+        ts <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>sample(self<span style="color:#f92672">.</span>memory, batch_size)
+        states <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>from_numpy(np<span style="color:#f92672">.</span>vstack([t<span style="color:#f92672">.</span>state <span style="color:#66d9ef">for</span> t <span style="color:#f92672">in</span> ts]))<span style="color:#f92672">.</span>float()<span style="color:#f92672">.</span>to(device)
+        actions <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>from_numpy(np<span style="color:#f92672">.</span>vstack([t<span style="color:#f92672">.</span>action <span style="color:#66d9ef">for</span> t <span style="color:#f92672">in</span> ts]))<span style="color:#f92672">.</span>float()<span style="color:#f92672">.</span>to(device)
+        rewards <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>from_numpy(np<span style="color:#f92672">.</span>vstack([t<span style="color:#f92672">.</span>reward <span style="color:#66d9ef">for</span> t <span style="color:#f92672">in</span> ts]))<span style="color:#f92672">.</span>float()<span style="color:#f92672">.</span>to(device)
+        next_states <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>from_numpy(np<span style="color:#f92672">.</span>vstack([t<span style="color:#f92672">.</span>next_state <span style="color:#66d9ef">for</span> t <span style="color:#f92672">in</span> ts]))<span style="color:#f92672">.</span>float()<span style="color:#f92672">.</span>to(device)
+        dones <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>from_numpy(np<span style="color:#f92672">.</span>vstack([t<span style="color:#f92672">.</span>done <span style="color:#66d9ef">for</span> t <span style="color:#f92672">in</span> ts])<span style="color:#f92672">.</span>astype(np<span style="color:#f92672">.</span>uint8))<span style="color:#f92672">.</span>float()<span style="color:#f92672">.</span>to(device)
+        <span style="color:#66d9ef">return</span>(states,actions,rewards,next_states,dones) <span style="color:#75715e">#the transition parameters</span>
+
+    <span style="color:#66d9ef">def</span> __len__(self):
+        <span style="color:#66d9ef">return</span>(len(self<span style="color:#f92672">.</span>memory))
+</code></pre></div><p>Let us now build our main model - The Neural Network that learns how to predict! In Reinforcement Learning, it has been given a fancy name - Deep Q Networks. Thats because its just a Deep Learning variant of Q learning. So we&rsquo;ll understand what Q learning is basically about, as we proceed.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#This class is just a structure for storing different things, including the model, its hyperparameters, the optimizer, the memory_storage, etc</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DQNAgent</span>:
+    <span style="color:#66d9ef">def</span> __init__(self, state_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, action_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>, replay_memory <span style="color:#f92672">=</span> None, seed <span style="color:#f92672">=</span> <span style="color:#ae81ff">1412</span>,
+        lr <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e-3</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">4</span>, bs <span style="color:#f92672">=</span> <span style="color:#ae81ff">64</span>, nb_hidden <span style="color:#f92672">=</span> <span style="color:#ae81ff">256</span>, clip <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.</span>,
+        gamma<span style="color:#f92672">=</span><span style="color:#ae81ff">0.99</span>, tau<span style="color:#f92672">=</span> <span style="color:#ae81ff">1e-3</span>, update_interval <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>, update_times <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, tpe <span style="color:#f92672">=</span> <span style="color:#ae81ff">200</span>):
+        
+        self<span style="color:#f92672">.</span>state_size <span style="color:#f92672">=</span> state_size
+        self<span style="color:#f92672">.</span>action_size <span style="color:#f92672">=</span> action_size
+        self<span style="color:#f92672">.</span>seed <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>seed(seed)
+        self<span style="color:#f92672">.</span>npseed <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>seed(seed)
+        self<span style="color:#f92672">.</span>lr <span style="color:#f92672">=</span> lr
+        self<span style="color:#f92672">.</span>bs <span style="color:#f92672">=</span> bs
+        self<span style="color:#f92672">.</span>gamma <span style="color:#f92672">=</span> gamma
+        self<span style="color:#f92672">.</span>update_interval <span style="color:#f92672">=</span> update_interval
+        self<span style="color:#f92672">.</span>update_times <span style="color:#f92672">=</span> update_times
+        self<span style="color:#f92672">.</span>tau <span style="color:#f92672">=</span> tau
+        self<span style="color:#f92672">.</span>losses <span style="color:#f92672">=</span> []
+        self<span style="color:#f92672">.</span>tpe <span style="color:#f92672">=</span> tpe
+        self<span style="color:#f92672">.</span>clip <span style="color:#f92672">=</span> clip
+
+        <span style="color:#75715e">#vanilla</span>
+        self<span style="color:#f92672">.</span>network_local <span style="color:#f92672">=</span> QNetwork(state_size, action_size, nb_hidden)<span style="color:#f92672">.</span>to(device)
+        self<span style="color:#f92672">.</span>network_target <span style="color:#f92672">=</span> QNetwork(state_size, action_size, nb_hidden)<span style="color:#f92672">.</span>to(device)
+        
+        <span style="color:#75715e">#dueling</span>
+<span style="color:#75715e">#         self.network_local = DuelingNetwork(state_size, action_size, nb_hidden).to(device)</span>
+<span style="color:#75715e">#         self.network_target = DuelingNetwork(state_size, action_size, nb_hidden).to(device)</span>
+        
+        <span style="color:#75715e">#optimizer. Adam optimizer, we even used this is CNNs</span>
+        self<span style="color:#f92672">.</span>optimizer <span style="color:#f92672">=</span> optim<span style="color:#f92672">.</span>Adam(self<span style="color:#f92672">.</span>network_local<span style="color:#f92672">.</span>parameters(), lr<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>lr)
+
+        <span style="color:#75715e"># replay memory</span>
+        self<span style="color:#f92672">.</span>memory <span style="color:#f92672">=</span> replay_memory
+        <span style="color:#75715e"># count time steps</span>
+        self<span style="color:#f92672">.</span>t_step <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+        
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_eps</span>(self, i, eps_start <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.</span>, eps_end <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.001</span>, eps_decay <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.9</span>):
+        eps <span style="color:#f92672">=</span> max(eps_start <span style="color:#f92672">*</span> (eps_decay <span style="color:#f92672">**</span> i), eps_end)
+        <span style="color:#66d9ef">return</span>(eps)
+    
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">step</span>(self, state, action, reward, next_state, done):
+        <span style="color:#75715e">#add transition to replay memory</span>
+        self<span style="color:#f92672">.</span>memory<span style="color:#f92672">.</span>add(state, action, reward, next_state, done)
+        
+        <span style="color:#75715e">#update target network</span>
+        self<span style="color:#f92672">.</span>soft_update(self<span style="color:#f92672">.</span>network_local, self<span style="color:#f92672">.</span>network_target)
+<span style="color:#75715e">#         self.hard_update(self.network_local, self.network_target)</span>
+        
+        <span style="color:#75715e"># learn every self.t_step</span>
+        self<span style="color:#f92672">.</span>t_step <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>t_step <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>update_interval <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+            <span style="color:#66d9ef">if</span> len(self<span style="color:#f92672">.</span>memory) <span style="color:#f92672">&gt;</span> self<span style="color:#f92672">.</span>bs:
+                <span style="color:#75715e">#vanilla</span>
+                <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(self<span style="color:#f92672">.</span>update_times):
+                    transitions <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>memory<span style="color:#f92672">.</span>sample(self<span style="color:#f92672">.</span>bs)
+                    self<span style="color:#f92672">.</span>learn(transitions)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">act</span>(self, state):
+        eps <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>get_eps(int(self<span style="color:#f92672">.</span>t_step <span style="color:#f92672">/</span> self<span style="color:#f92672">.</span>tpe))
+        state <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>from_numpy(state)<span style="color:#f92672">.</span>float()<span style="color:#f92672">.</span>unsqueeze(<span style="color:#ae81ff">0</span>)<span style="color:#f92672">.</span>to(device)
+        self<span style="color:#f92672">.</span>network_local<span style="color:#f92672">.</span>eval()
+        <span style="color:#66d9ef">with</span> torch<span style="color:#f92672">.</span>no_grad():
+            action_values <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>network_local(state)
+        self<span style="color:#f92672">.</span>network_local<span style="color:#f92672">.</span>train()
+
+        <span style="color:#75715e">#epsilon greedy</span>
+        <span style="color:#66d9ef">if</span> random<span style="color:#f92672">.</span>random() <span style="color:#f92672">&gt;</span> eps:
+            <span style="color:#66d9ef">return</span> np<span style="color:#f92672">.</span>argmax(action_values<span style="color:#f92672">.</span>cpu()<span style="color:#f92672">.</span>data<span style="color:#f92672">.</span>numpy())
+        <span style="color:#66d9ef">else</span>:
+            <span style="color:#66d9ef">return</span> random<span style="color:#f92672">.</span>choice(np<span style="color:#f92672">.</span>arange(self<span style="color:#f92672">.</span>action_size))
+        
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">vanilla_loss</span>(self,q_targets,q_expected):
+        loss <span style="color:#f92672">=</span> F<span style="color:#f92672">.</span>mse_loss(q_expected,q_targets)
+        <span style="color:#66d9ef">return</span>(loss)
+        
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">learn</span>(self, transitions, small_e <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e-5</span>):
+        <span style="color:#75715e">#vanilla</span>
+        states, actions, rewards, next_states, dones <span style="color:#f92672">=</span> transitions
+        max_actions_next <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>network_local(next_states)<span style="color:#f92672">.</span>detach()<span style="color:#f92672">.</span>max(<span style="color:#ae81ff">1</span>)[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>unsqueeze(<span style="color:#ae81ff">1</span>)
+        q_targets_next <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>network_target(next_states)<span style="color:#f92672">.</span>detach()<span style="color:#f92672">.</span>gather(<span style="color:#ae81ff">1</span>, max_actions_next<span style="color:#f92672">.</span>long())
+
+        <span style="color:#75715e">#compute loss</span>
+        q_targets <span style="color:#f92672">=</span> rewards <span style="color:#f92672">+</span> (self<span style="color:#f92672">.</span>gamma <span style="color:#f92672">*</span> q_targets_next) <span style="color:#f92672">*</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> dones) <span style="color:#75715e">#this is the crux of Q learning. So this is how Deep Learning and Q learning have been combined.</span>
+        q_expected <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>network_local(states)<span style="color:#f92672">.</span>gather(<span style="color:#ae81ff">1</span>, actions<span style="color:#f92672">.</span>long())
+        <span style="color:#75715e">#vanilla</span>
+        loss <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>vanilla_loss(q_expected, q_targets)
+        <span style="color:#75715e">#append for reporting</span>
+        self<span style="color:#f92672">.</span>losses<span style="color:#f92672">.</span>append(loss)
+        
+        <span style="color:#75715e">#backprop</span>
+        self<span style="color:#f92672">.</span>optimizer<span style="color:#f92672">.</span>zero_grad()
+        loss<span style="color:#f92672">.</span>backward()
+        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>clip: torch<span style="color:#f92672">.</span>nn<span style="color:#f92672">.</span>utils<span style="color:#f92672">.</span>clip_grad_norm(self<span style="color:#f92672">.</span>network_local<span style="color:#f92672">.</span>parameters(), self<span style="color:#f92672">.</span>clip)
+        self<span style="color:#f92672">.</span>optimizer<span style="color:#f92672">.</span>step()
+      
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">hard_update</span>(self, local_model, target_model):
+        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>t_step <span style="color:#f92672">%</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">/</span>self<span style="color:#f92672">.</span>tau<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>:
+            target_model<span style="color:#f92672">.</span>load_state_dict(local_model<span style="color:#f92672">.</span>state_dict())
+            
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">soft_update</span>(self, local_model, target_model):
+        <span style="color:#e6db74">&#34;&#34;&#34;Soft update model parameters.
+</span><span style="color:#e6db74">        θ_target = τ*θ_local + (1 - τ)*θ_target
+</span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+        <span style="color:#66d9ef">for</span> target_param, local_param <span style="color:#f92672">in</span> zip(target_model<span style="color:#f92672">.</span>parameters(), local_model<span style="color:#f92672">.</span>parameters()):
+            target_param<span style="color:#f92672">.</span>data<span style="color:#f92672">.</span>copy_(self<span style="color:#f92672">.</span>tau<span style="color:#f92672">*</span>local_param<span style="color:#f92672">.</span>data <span style="color:#f92672">+</span> (<span style="color:#ae81ff">1.0</span><span style="color:#f92672">-</span>self<span style="color:#f92672">.</span>tau)<span style="color:#f92672">*</span>target_param<span style="color:#f92672">.</span>data)
+</code></pre></div><p>Now let us simply define our model, which is simply a Neural Network. For this we&rsquo;ll be using a simple Fully Connected, 3 Layer Neural Network.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">QNetwork</span>(nn<span style="color:#f92672">.</span>Module):
+    <span style="color:#66d9ef">def</span> __init__(self, state_size, action_size, nb_hidden, seed<span style="color:#f92672">=</span><span style="color:#ae81ff">1412</span>):
+        super(QNetwork, self)<span style="color:#f92672">.</span>__init__()
+        self<span style="color:#f92672">.</span>seed <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>manual_seed(seed)
+        self<span style="color:#f92672">.</span>model <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Sequential(
+            nn<span style="color:#f92672">.</span>Linear(state_size, nb_hidden),
+            nn<span style="color:#f92672">.</span>ReLU(),
+            nn<span style="color:#f92672">.</span>Linear(nb_hidden, nb_hidden),
+            nn<span style="color:#f92672">.</span>ReLU(),
+            nn<span style="color:#f92672">.</span>Linear(nb_hidden, action_size)
+        )
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self, state):
+        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>model(state)
+        <span style="color:#66d9ef">return</span>(x)
+</code></pre></div><p>That&rsquo;s it. Now let us see how to train this model for our particular problem.</p>
+<p>Try changing the hyperparameters once you run this model using what has been provided to you.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#initializing the environment, the model and memory states</span>
+
+env <span style="color:#f92672">=</span> gym<span style="color:#f92672">.</span>make(<span style="color:#e6db74">&#39;MountainCar-v0&#39;</span>) <span style="color:#75715e">#reinitializing the environment</span>
+mem <span style="color:#f92672">=</span> Memory(capacity<span style="color:#f92672">=</span>int(<span style="color:#ae81ff">1e3</span>)) <span style="color:#75715e">#always store `capacity` timesteps</span>
+a <span style="color:#f92672">=</span> DQNAgent(state_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, action_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>, replay_memory <span style="color:#f92672">=</span> mem, seed <span style="color:#f92672">=</span> <span style="color:#ae81ff">1412</span>,
+        lr <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e-3</span>, <span style="color:#75715e">#learning rate; try something between 1e-4 and 1e-3</span>
+        bs <span style="color:#f92672">=</span> <span style="color:#ae81ff">64</span>, <span style="color:#75715e">#batch size; try 64, 128, 256</span>
+        clip <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.</span>, <span style="color:#75715e">#gradient clipping</span>
+        nb_hidden <span style="color:#f92672">=</span> <span style="color:#ae81ff">64</span>, <span style="color:#75715e">#number of hidden units in the q network; try 64,128,256,512</span>
+        gamma <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.99</span>, <span style="color:#75715e">#discount factor</span>
+        tau<span style="color:#f92672">=</span> <span style="color:#ae81ff">1e-3</span>, <span style="color:#75715e">#how fast we update the target network; try something between 1e-2 and 1e-3</span>
+        update_interval <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>,  <span style="color:#75715e">#how often we update local network</span>
+        update_times <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, <span style="color:#75715e">#how many times you train the local network per update</span>
+        tpe <span style="color:#f92672">=</span> <span style="color:#ae81ff">200</span>) <span style="color:#75715e">#how many timesteps per episode</span>
+</code></pre></div><p>Let us train the model. You can read the DQNAgent class properly to understand (braodly) what&rsquo;s happening. You don&rsquo;t need to memorize any method per se.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">scores <span style="color:#f92672">=</span> []
+scores_deque <span style="color:#f92672">=</span> deque(maxlen<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>) 
+moving_scores <span style="color:#f92672">=</span> []
+start_time <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>now()
+
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> tqdm_notebook(range(<span style="color:#ae81ff">1000</span>)): <span style="color:#75715e">#training for 1000 epochs.</span>
+    <span style="color:#66d9ef">if</span> (i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">%</span> <span style="color:#ae81ff">100</span><span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>: <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Episode {i} Moving Average: {np.mean(scores_deque)}&#39;</span>)
+    state <span style="color:#f92672">=</span> env<span style="color:#f92672">.</span>reset()
+    score <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+    t<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+    <span style="color:#66d9ef">while</span> True:
+        t<span style="color:#f92672">+=</span><span style="color:#ae81ff">1</span>
+        <span style="color:#75715e">#select action</span>
+        action <span style="color:#f92672">=</span> a<span style="color:#f92672">.</span>act(state)  <span style="color:#75715e">#there&#39;s a threshold based function that chooses the action based on the present state</span>
+
+        <span style="color:#75715e">#env step</span>
+        next_state, reward, done, info <span style="color:#f92672">=</span> env<span style="color:#f92672">.</span>step(action)   <span style="color:#75715e">#inbuilt function. Nothing for us to worry about</span>
+        
+        <span style="color:#75715e">#You can engineer the reward to motive your agent even more</span>
+        reward_ <span style="color:#f92672">=</span> reward
+
+        <span style="color:#75715e">#agent step</span>
+        a<span style="color:#f92672">.</span>step(state,action,reward_,next_state,done)
+        
+        <span style="color:#75715e">#collect score</span>
+        score <span style="color:#f92672">+=</span> reward
+        
+        <span style="color:#75715e">#go to next state</span>
+        state <span style="color:#f92672">=</span> next_state   
+        
+        <span style="color:#75715e">#break if done</span>
+        <span style="color:#66d9ef">if</span> done: <span style="color:#66d9ef">break</span>
+            
+    <span style="color:#75715e">#book keeping</span>
+    scores<span style="color:#f92672">.</span>append(score)
+    scores_deque<span style="color:#f92672">.</span>append(score)
+    moving_scores<span style="color:#f92672">.</span>append(np<span style="color:#f92672">.</span>mean(scores_deque))
+        
+    <span style="color:#75715e">#solved at -110; easy solve at -150</span>
+    <span style="color:#66d9ef">if</span> moving_scores[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">110</span>: 
+        <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Solved at Play {i}: {datetime.now() - start_time} Moving average: {moving_scores[-1]}&#39;</span>)
+        <span style="color:#66d9ef">break</span>
+</code></pre></div><p>On closer inspection, you&rsquo;ll notice there is not much difference between the broader methods of Deep Learning and Reinforcement Learning. There is some sort of connections between the parametric approach of deep learning and reinforcement learning, and the optimization method. There are hyperparameters that need to be optimized, and the reward is loosely related to the loss function. I stress on the word &ldquo;loose&rdquo; because in actual, theorists will tell you (correctly), the approaches are quite far apart. My goal of stating this point is, to point out the learning approach in all of AI, which has some common themes.</p>
+<p>Let us plot the losses, and rewards</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">plt<span style="color:#f92672">.</span>plot(scores)
+plt<span style="color:#f92672">.</span>plot(moving_scores)
+</code></pre></div><p>In the plot above, we&rsquo;ve plotted the scores, which is nothing but the reward over the training cycle. The higher the better! So you can see, that around 600-700 epochs, the reward maximized.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">plt<span style="color:#f92672">.</span>plot(a<span style="color:#f92672">.</span>losses)
+</code></pre></div><p>In this plot, we show the <em>losses</em> from the Neural Network. You can see, that after about 25000 batches, the loss is at its minimum. (Which is around the same time as the reward maximized).</p>
+<p>So, we may interpret that the model fits well around this point, and sort of overfits beyond that. So you may change the number of epochs too, while optimizing this model.</p>
+<h3 id="model-inference">Model Inference</h3>
+<p>Well, we&rsquo;ve trained the model, and interpreted it. But let&rsquo;s see it working! So here, we reinitialize the environment (bring the car to its initial state), and run our model on it. Its as simple as feedforwarding states through the network,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">env <span style="color:#f92672">=</span> gym<span style="color:#f92672">.</span>make(<span style="color:#e6db74">&#39;MountainCar-v0&#39;</span>)
+state <span style="color:#f92672">=</span> env<span style="color:#f92672">.</span>reset()
+score <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+t<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+frames <span style="color:#f92672">=</span> []
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">200</span>):
+    <span style="color:#75715e">#only infer action; no training</span>
+    action <span style="color:#f92672">=</span> a<span style="color:#f92672">.</span>act(state)
+    
+    <span style="color:#75715e">#env step</span>
+    state, reward, done, info <span style="color:#f92672">=</span> env<span style="color:#f92672">.</span>step(action)
+    
+    <span style="color:#75715e">#book keeping</span>
+    t<span style="color:#f92672">+=</span><span style="color:#ae81ff">1</span>
+    score<span style="color:#f92672">+=</span>reward
+    
+    <span style="color:#75715e">#break if done</span>
+    <span style="color:#66d9ef">if</span> done: <span style="color:#66d9ef">break</span>
+    
+    <span style="color:#75715e">#append frame</span>
+    frames<span style="color:#f92672">.</span>append(env<span style="color:#f92672">.</span>render(mode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;rgb_array&#39;</span>))
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Done in {t} timsteps with score {score}.&#39;</span>)
+</code></pre></div><p>And finally, let&rsquo;s run the cell that we used to animate the results.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">patch <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>imshow(frames[<span style="color:#ae81ff">0</span>])
+animate <span style="color:#f92672">=</span> <span style="color:#66d9ef">lambda</span> i: patch<span style="color:#f92672">.</span>set_data(frames[i])
+ani <span style="color:#f92672">=</span> matplotlib<span style="color:#f92672">.</span>animation<span style="color:#f92672">.</span>FuncAnimation(plt<span style="color:#f92672">.</span>gcf(), animate, frames<span style="color:#f92672">=</span>len(frames), interval <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)
+HTML(ani<span style="color:#f92672">.</span>to_jshtml())
+</code></pre></div><p>That&rsquo;s definitely an improvement. You can optimize this model by changing hyperparameters, the model architecture, or the optimizer. But, the most significant change can come simply by optimizing the hyperparameters, without touching the model or optimizer.</p>
+<p>However, for those, who really want to experiment above and beyond, certainly do free to change the model architecture, optimizer, or anything else that you feel necessary.</p>
+<h2 id="exercise">Exercise</h2>
+<p>This is a subjective exercise, meaning everyone may have different results. Your task is to optimize this model by changing different things (mostly hyperparameters, but again, you are free to experiment with other things). Try making this model work perfectly. Our ideal goal would be to make the car reach the top in one go!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+</code></pre></div></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#reinforcement-learning-with-openai-gym">Reinforcement Learning with OpenAI Gym</a>
+      <ul>
+        <li><a href="#random-actions-and-states">Random Actions and States</a></li>
+        <li><a href="#creating-an-ai-model--deep-reinforcement-learning">Creating an AI Model : Deep Reinforcement Learning</a></li>
+        <li><a href="#model-inference">Model Inference</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercise">Exercise</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

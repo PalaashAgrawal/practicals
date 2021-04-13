@@ -63,6 +63,11 @@
   </url>
   
   <url>
+    <loc>https://palaashagrawal.github.io/practicals/docs/12-reinforcement-learning/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://palaashagrawal.github.io/practicals/docs/</loc>
     <priority>0</priority>
   </url>
