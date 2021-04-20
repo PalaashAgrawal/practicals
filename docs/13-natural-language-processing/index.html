@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta name="generator" content="Hugo 0.68.3" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="13 Natural Language Processing with Deep Learning Welcome to the 13th session of this series on Practical Machine Learning, where we will continue our discussion on Deep Learning. So we&rsquo;ve covered a lot on Computer Vision till now, not only from the perspective of Deep Learning, but also in the entire series. In this session, we will be focussing on Natural Language Processing (or simply called NLP for short), specifically from the perspective of Deep Learning.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://palaashagrawal.github.io/practicals/docs/13-natural-language-processing/" />
+
+<title>13 Natural Language Processing | Practical Machine Learning</title>
+<link rel="manifest" href="https://palaashagrawal.github.io/practicals/manifest.json">
+<link rel="icon" href="https://palaashagrawal.github.io/practicals/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="https://palaashagrawal.github.io/practicals/book.min.2dc4d2afa8da6ac78d76671c21e140952e7a84846fed47ed02a1a2d68166d992.css" integrity="sha256-LcTSr6jaaseNdmccIeFAlS56hIRv7UftAqGi1oFm2ZI=">
+<script defer src="https://palaashagrawal.github.io/practicals/en.search.min.4861b13b12541f7c6c4bb36fc31e5bd83ac76838f9ced2af2bce9907173d1cb8.js" integrity="sha256-SGGxOxJUH3xsS7Nvwx5b2DrHaDj5ztKvK86ZBxc9HLg="></script>
+<link rel="alternate" type="application/rss+xml" href="https://palaashagrawal.github.io/practicals/docs/13-natural-language-processing/index.xml" title="Practical Machine Learning" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="https://palaashagrawal.github.io/practicals/"><span>Practical Machine Learning</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/00-basics-of-python-and-introduction-to-machine-learning/" class="">00 Basics of Python and Introduction to Machine Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/01-linear-regression/" class="">01 Linear Regression</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/02-logistic-regression/" class="">02 Logistic Regression</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/03-singular-value-decomposition-and-principal-component-analysis/" class="">03 Singular Value Decomposition and Principal Component Analysis</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/04-bayesian-learning/" class="">04 Bayesian Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/05-clustering-algorithms-in-machine-learning/" class="">05 Clustering Algorithms in Machine Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/06-support-vector-machines/" class="">06 Support Vector Machines</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/07-decision-trees-and-random-forests/" class="">07 Decision Trees and Random Forests</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/08-neural-networks/" class="">08 Neural Networks</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/09-convolution-neural-networks/" class="">09 Convolution Neural Networks</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/10-advanced-computer-vision-applications/" class="">10 Advanced Computer Vision Applications</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/11-advanced-computer-vision-applications-continued/" class="">11 Advanced Computer Vision Applications Continued</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/12-reinforcement-learning/" class="">12 Reinforcement Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/13-natural-language-processing/" class=" active">13 Natural Language Processing</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="https://palaashagrawal.github.io/practicals/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>13 Natural Language Processing</strong>
+
+  <label for="toc-control">
+    
+    <img src="https://palaashagrawal.github.io/practicals/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+
+    
+  </label>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  
+    window.addEventListener('load', (event) => {
+        document.querySelectorAll("mjx-container").forEach(function(x){
+          x.parentElement.classList += 'has-jax'})
+      });
+  
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#setting-up-the-data">Setting up the Data</a>
+      <ul>
+        <li><a href="#tokenizing-our-text">Tokenizing our text</a></li>
+        <li><a href="#numericalizing-the-tokens">Numericalizing the tokens</a></li>
+      </ul>
+    </li>
+    <li><a href="#creating-our-language-model">Creating our Language Model</a>
+      <ul>
+        <li><a href="#finetuning-a-language-model">Finetuning a Language Model</a></li>
+      </ul>
+    </li>
+    <li><a href="#text-classifier">Text classifier</a></li>
+    <li><a href="#creating-rnns-from-scratch">Creating RNNs from scratch</a>
+      <ul>
+        <li><a href="#setting-up-a-very-basic-dataset">Setting up a very basic dataset</a></li>
+        <li><a href="#building-a-simple-rnn">Building a simple RNN</a></li>
+        <li><a href="#improving-the-rnn">Improving the RNN</a></li>
+        <li><a href="#multilayer-rnns">Multilayer RNNs</a></li>
+      </ul>
+    </li>
+    <li><a href="#long-short-term-memory-lstm-models">Long Short Term Memory (LSTM) Models</a>
+      <ul>
+        <li><a href="#regularizing-lstms">Regularizing LSTMs</a></li>
+      </ul>
+    </li>
+    <li><a href="#transformers">Transformers</a>
+      <ul>
+        <li><a href="#finetuning-the-transformers-model">Finetuning the Transformers Model</a></li>
+      </ul>
+    </li>
+    <li><a href="#review">Review</a></li>
+    <li><a href="#exercise">Exercise</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="13-natural-language-processing-with-deep-learning">13 Natural Language Processing with Deep Learning</h1>
+<p>Welcome to the 13th session of this series on Practical Machine Learning, where we will continue our discussion on Deep Learning. So we&rsquo;ve covered a lot on Computer Vision till now, not only from the perspective of Deep Learning, but also in the entire series. In this session, we will be focussing on <em>Natural Language Processing</em> (or simply called <em>NLP</em> for short), specifically from the perspective of Deep Learning.</p>
+<p>Before we proceed with NLP, let us discuss what NLP even is, and what it implies in today&rsquo;s world.</p>
+<p>Till now, we have understood some basics about Natural Language Processing (in Session 4, on Bayesian Learning). But, what does it mean in the first place?</p>
+<p>Natural Language Processing is broad field in Artificial Intelligence, that deals with understanding language. This includes building models that understand speech, audio, text, etc. For example, Google Translate, an AI Model, somehow knows how to convert a peice of text/speech into another language. You say &ldquo;Hi Siri&rdquo; or &ldquo;Hey Google&rdquo; or &ldquo;Alexa&rdquo;, and your home/phone assistant responds to you in an intelligent way. And this is where today&rsquo;s state of NLP lies. But there&rsquo;s so much that is yet to be developed and discovered. Let us talk about the aspirations of this feild.</p>
+<p>NLP is not only about identifying language, but also understanding it. Currently NLP has not quite reached there. For example, we still don&rsquo;t know how to build models that actually <em>understand</em> the semantics of a language. Like, just apart from identifying English, we don&rsquo;t know how to build models that understand sarcasm, or emotions, or slightly misspelt/mistyped words. Today&rsquo;s models don&rsquo;t understand context well. Infact, there are models now that can generate entire segments of texts. On a superficial inspection, it <em>seems</em> that the model generates sensible text, but on closer inspection, you would find out that most of the text, in most cases doesn&rsquo;t make great sense. That is why, even in 2021, most AI chatbots don&rsquo;t work well.</p>
+<p>To be fair, it is not a fault in the modeling techniques used in NLP, but more so because of our (humans&rsquo;) own lack of understanding of how to model language on a very broad level. Though, I expect, that in a few years, we will be able to develop much better modeling methods to understand language. With that, there will also be new types of models that will be more suitable for NLP tasks. Present Models and optimizers tasks just do the job, but it is possible that NLP techniques will see some major changes in the coming few years, from the very fundamentals, including optimization techniques. The very basis of communication in human society is language, and unless we figure out how AI effectively processes language, it is hard for it to make its place in soceity.</p>
+<p>But we shouldn&rsquo;t deny that NLP has made some great progress over the few years, and Deep Learning is the reason behind it. If you remember building a text generator in session 4, you will see, how using Deep Learning, we can significantly improve the model. In this session, we will be learning how to build state of the art language models, that generate text, and are also capable of classifying texts into categories. We will be learning how to build Deep Learnign models that are capable of handling texts (called as <em>Recurrent Neural Networks</em> (<em>RNNs</em>), and also about some variants that have been known to perform effectively, including <em>LSTMs (Long Short Term Memory Models)</em> and <em>Transformers</em>.</p>
+<p>Let us begin this session by installing the necessary libraries. We&rsquo;ll be using the fastai library to handle data pipelining and training, so that we can really focus on building our models. And under the hood, we&rsquo;ll essentially be using the PyTorch library, and when you import the fastai library, you&rsquo;re automatically importing all necessary functionalities from the PyTorch library.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#960050;background-color:#1e0010">!</span>pip install sentencepiece <span style="color:#f92672">&gt;./</span>temp
+<span style="color:#960050;background-color:#1e0010">!</span>pip install <span style="color:#f92672">--</span>upgrade fastai <span style="color:#f92672">&gt;./</span>temp
+<span style="color:#f92672">from</span> fastai.text.all <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+</code></pre></div><pre><code>[31mERROR: torchtext 0.9.1 has requirement torch==1.8.1, but you'll have torch 1.7.1 which is incompatible.[0m
+</code></pre>
+<h2 id="setting-up-the-data">Setting up the Data</h2>
+<p>Before starting to explore Language Models, we need a language(text) dataset, on which we perform our experiments. We&rsquo;ll be using the <a href="https://ai.stanford.edu/~amaas/data/sentiment/">IMDb Movie Reviews</a> by Stanford University, that contains movie reviews from IMDb&rsquo;s website. It contains 50,000 labeled datapoints, the labels of which are a binary class label depicting the sentiment of the review (whether the review is a &lsquo;positive&rsquo; or a &lsquo;negative&rsquo; review), and an additional 50,000 unlabeled movie reviews. You might have guessed that (atleast) one of the things that we will build will be a text classifier using this data. But that&rsquo;s not all! We will discuss how to use these unlabeled datapoints as well. We will go much beyond a text classifier, and essentially build a model that understands language in general!</p>
+<p>Fastai gives cloud access to download famous datasets, this being one of them. The cloud link can be found by typing <code>URLs.IMDB</code>. We can then download the dataset by using the <code>untar_data</code> function, which not only downloads the dataset, but also uncompresses the data. Datasets can be in the form of zip files, tar files, 7z files, gzip files, etc.,  but <code>untar_data</code> automatically handles all these internally. And finally the function returns the local path where the dataset is stored.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">path<span style="color:#f92672">=</span>untar_data(URLs<span style="color:#f92672">.</span>IMDB)
+</code></pre></div><p>And then we can simply see what is present in the path, by using a custom method of the Path class, <code>ls</code>, that enumerates all items in a particular path location.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">path<span style="color:#f92672">.</span>ls()
+</code></pre></div><pre><code>(#8) [Path('/root/.fastai/data/imdb/README'),Path('/root/.fastai/data/imdb/tmp_clas'),Path('/root/.fastai/data/imdb/imdb.vocab'),Path('/root/.fastai/data/imdb/train'),Path('/root/.fastai/data/imdb/unsup'),Path('/root/.fastai/data/imdb/tmp_lm'),Path('/root/.fastai/data/imdb/models'),Path('/root/.fastai/data/imdb/test')]
+</code></pre>
+<p>The text files are present in three folders, namely the <code>train</code>, the <code>test</code> and the <code>unsup</code> (for unsupervised, or unlabeled) folder. So before we start talking about any distinction between all these folders, let us create a list of <em>all</em> text files. Essentially we are also throwing away all labels for now, and just collecting the raw text files. We will discuss why in the following section. So before we start talking about any distinction between all these folders, let us create a list of <em>all</em> text files. Essentially we are also throwing away all labels for now, and just collecting the raw text files.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">files<span style="color:#f92672">=</span>get_text_files(path,folders<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;train&#39;</span>,<span style="color:#e6db74">&#39;test&#39;</span>,<span style="color:#e6db74">&#39;unsup&#39;</span>])
+</code></pre></div><p>Just for visualization, let us see what these reviews look like.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">txt<span style="color:#f92672">=</span>files[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>open()<span style="color:#f92672">.</span>read()
+txt
+</code></pre></div><pre><code>'I liked this movie I remember there was one very well done scene in this movie where Riff Randell (played by P.J. Soles) is lying in her bed smoking pot and then she begins to visualize that the Ramon'
+</code></pre>
+<p>Using these, we will be discussing about some preprocessing techniques that are essential to understand before we even jump into building models. Why do we need preprocessing? Obviously because models don&rsquo;t understand words. They only understand numbers. So one logical solution would be to map each word in our entire <em>corpus</em> (meaning, our collection of documents/text files) to a unique number, and simply replacing each word with its corresponding number, and using that to build our models.</p>
+<p>There are 2 steps involved in this whole process. First we need to identify different words in our text files, and then break our sentences into lists of these indivdual words, or components. Once we do this, we don&rsquo;t treat our data as strings containing sentences and paragraphs, but as sequences of small chunks (words). These small chunks are called <em>Tokens</em>, and this whole process is called <em>Tokenization</em>.</p>
+<p>And secondly, create a mapping between these words and numbers. But there are a few nuiances in these processes that need to be discussed.</p>
+<p>So, let us start by creating Tokens of our text.</p>
+<h3 id="tokenizing-our-text">Tokenizing our text</h3>
+<p>By default, fastai uses a library called <a href="https://spacy.io/api/tokenizer"><em>SpaCy</em></a> that handles the tokenization process. You might think that the process is as simple as simply separating words between spaces or punctuation marks. But in practice, its not as simple as it seems. Here are a few examples of the problems we may face.</p>
+<ul>
+<li>
+<p>How do we deal with a word like “don’t”? Is it one word or two?</p>
+</li>
+<li>
+<p>What about long medical or chemical words? Should they be split into their separate pieces of meaning? How about hyphenated words?</p>
+</li>
+<li>
+<p>What about languages like German and Polish, which can create really long words from many, many pieces?</p>
+</li>
+</ul>
+<p>These are just a few examples of the problems that we may face.</p>
+<h4 id="word-tokenization">Word Tokenization</h4>
+<p>Spacy has a sophisticated API to create word tokens, that can handle special English Words (like don&rsquo;t is separated as do and n&rsquo;t, and treating the <code>.</code> between two words as a full stop, but not in special words such as &lsquo;U.S.'), URLs, etc. This API can be easily accessed by a fastai class called <code>WordTokenizer</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">spacy<span style="color:#f92672">=</span>WordTokenizer() <span style="color:#75715e">#we store the class initialization in a variable called spacy</span>
+toks<span style="color:#f92672">=</span>first(spacy([txt])) <span style="color:#75715e"># spacy[text] will create a generator that has been applied on all strings. You can then use the first function to get a list of all these tokens</span>
+toks <span style="color:#75715e">#display the tokens</span>
+</code></pre></div><pre><code>(#146) ['I','liked','this','movie','I','remember','there','was','one','very'...]
+</code></pre>
+<p>You can see below, that SpaCy knows how to handle full stops and dots in between special abbreviations such as in &lsquo;U.S.', and also words like don&rsquo;t properly.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">print</span>(first(spacy([<span style="color:#e6db74">&#34;The U.S. dollar $1 is 75.00 rupees today. I don&#39;t think you should convert your rupees right now&#34;</span> ]))) <span style="color:#75715e"># the full stop is a separate token, but U.S. is a single token </span>
+</code></pre></div><pre><code>['The', 'U.S.', 'dollar', '$', '1', 'is', '75.00', 'rupees', 'today', '.', 'I', 'do', &quot;n't&quot;, 'think', 'you', 'should', 'convert', 'your', 'rupees', 'right', 'now']
+</code></pre>
+<p>But we will be using fastai&rsquo;s <code>Tokenizer</code> class, which builds on top of the <code>WordTokenizer</code> class. It contains some additional rules like adding tokens that represent the begenning of the stream, or end of the stream, and replacing meaningless repetitions of characters, denoting capital letters by a separate token and converting the word to lowercase, etc).</p>
+<p>This is because we would not only like to remove redundant information, but also like to provide our text models with some additional information, like, when the stream ends (which may indicate to the model to forget whatever it has learnt till now), or when the stream begins (which may indicate to the model to start afresh), or indicate where a capitalized word is present, or replace unknown (or very rare) words with a special token (like <code>xxunk</code>)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">tkn<span style="color:#f92672">=</span>Tokenizer(spacy)
+tkn(txt)
+</code></pre></div><pre><code>(#165) ['xxbos','i','liked','this','movie','i','remember','there','was','one'...]
+</code></pre>
+<p>You can see all the rules that fastai applies here. You can find what each one of these does, through the <a href="https://docs.fast.ai/text.core.html#Preprocessing-rules">documentation&rsquo;s page</a>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">defaults<span style="color:#f92672">.</span>text_proc_rules
+</code></pre></div><pre><code>[&lt;function fastai.text.core.fix_html&gt;,
+ &lt;function fastai.text.core.replace_rep&gt;,
+ &lt;function fastai.text.core.replace_wrep&gt;,
+ &lt;function fastai.text.core.spec_add_spaces&gt;,
+ &lt;function fastai.text.core.rm_useless_spaces&gt;,
+ &lt;function fastai.text.core.replace_all_caps&gt;,
+ &lt;function fastai.text.core.replace_maj&gt;,
+ &lt;function fastai.text.core.lowercase&gt;]
+</code></pre>
+<p>or for those who like to be more hands on, you can dive right into the source code like so&hellip;</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#960050;background-color:#1e0010">??</span>core<span style="color:#f92672">.</span>replace_all_caps 
+</code></pre></div><p>So what we&rsquo;ve done is essentially built a Word Tokenizer. But now let us talk about a different kind of problem.</p>
+<h4 id="subword-tokenization">Subword Tokenization</h4>
+<p>What if we&rsquo;re dealing with languages like Japanese and Chinese, that don’t use bases at all, and don’t really have a well-defined idea of word?</p>
+<p>In that case, it may be a better idea to not tokenize words, but commonly occuring parts of words.The problem is, how do we make a function that can identify parts of a word? We can easily make a function to identify spaces, or in another extreme, a function that separates each character, but what rues do we use to group a few characters. One way is is to group the most commonly occuring sequence of characters. This is a lengthy process, because you need to go through the entire document multiple times in order to count the frequency of characters.</p>
+<p>Now we obviously need to specify some limit to the number of tokens in our vocabulary, because in a case where there are no limits, the function would ultimately tokenize to the very end, and would end up tokenizing even single characters that don&rsquo;t occur frequently enough with other characters, in which case, our final vocabulary can potentially be infinitely long. So in essence, it is important to set some limit to the vocaubulary size, containing the most commonly occuring subwords. All other words will be represented as unknown (<code>xxunk</code>) tokens.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">txts<span style="color:#f92672">=</span>L(o<span style="color:#f92672">.</span>open()<span style="color:#f92672">.</span>read() <span style="color:#66d9ef">for</span> o <span style="color:#f92672">in</span> files[:<span style="color:#ae81ff">2000</span>]) <span style="color:#75715e">#getting 2000 characters </span>
+</code></pre></div><p>We define a function called as <code>subword</code> that counts up the frequencies of commonly occuring subwords. The exact working is quite complex, but feel free to go into the source code of the <code>SubWordTokenizer</code> class.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">subword</span>(sz): <span style="color:#75715e">#sz is the maximum number of tokens that will be created </span>
+    sp<span style="color:#f92672">=</span>SubwordTokenizer(vocab_sz<span style="color:#f92672">=</span>sz)
+    sp<span style="color:#f92672">.</span>setup(txts) <span style="color:#75715e">#this creates tokens</span>
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39; &#39;</span><span style="color:#f92672">.</span>join(first(sp([txt]))[:<span style="color:#ae81ff">40</span>])
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">subword(<span style="color:#ae81ff">1000</span>)
+</code></pre></div><pre><code>'▁I ▁like d ▁this ▁movie ▁I ▁remember ▁there ▁was ▁one ▁very ▁well ▁done ▁scene ▁in ▁this ▁movie ▁where ▁R i ff ▁R and ell ▁( play ed ▁by ▁P . J . ▁So le s ) ▁is ▁ ly ing'
+</code></pre>
+<p>Here we use a vocabuary limit of 1000 tokens. The underscores represent spaces that occur in the text. This is to differentiate the spaces that occur between tokens of subwords and the spaces that naturally occur in the text documents.</p>
+<p>Just for comparison, let us compare the tokens that are generated when we change the vocab limit to a shorter length.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">subword(<span style="color:#ae81ff">200</span>)
+</code></pre></div><pre><code>'▁I ▁ li k ed ▁this ▁movie ▁I ▁re m e m b er ▁the re ▁was ▁on e ▁ ver y ▁w e ll ▁ d on e ▁ s ce ne ▁in ▁this ▁movie ▁w h er e'
+</code></pre>
+<p>You may notice that the tokens in the latter case are generally smaller than the former. That&rsquo;s because when we increase the vocab length, we are also accounting for lesser and lesser frequent substrings, of which whole words are more likely to be a part of. When we limit our vocabulary to a lesser limit, smaller subwords (like &ldquo;on&rdquo; or &ldquo;ed&rdquo; ) are more likely to be more frequent that whole words.</p>
+<p>Just for a better understanding, we will use an even larger vocabulary size, and you will notice, that it is almost the same as counting entire words as tokens.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">subword(<span style="color:#ae81ff">10000</span>)
+</code></pre></div><pre><code>'▁I ▁liked ▁this ▁movie ▁I ▁remember ▁there ▁was ▁one ▁very ▁well ▁done ▁scene ▁in ▁this ▁movie ▁where ▁Riff ▁Rand ell ▁( played ▁by ▁P . J . ▁Soles ) ▁is ▁lying ▁in ▁her ▁bed ▁ smoking ▁pot ▁and ▁then ▁she'
+</code></pre>
+<p>Once we&rsquo;ve setup our tokens, we need to <em>numericalize</em> them, ie, convert each token to a unique representative number, because machines can only understand numbers. For the rest of the session, we will be using word tokens, rather than subword tokens.</p>
+<h3 id="numericalizing-the-tokens">Numericalizing the tokens</h3>
+<p>For simplicity, let us create tokens on a smaller corpus, and convert it to tokens using the word tokenizer provided by fastai.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">toks200 <span style="color:#f92672">=</span> txts[:<span style="color:#ae81ff">200</span>]<span style="color:#f92672">.</span>map(tkn)
+toks200[<span style="color:#ae81ff">0</span>]
+</code></pre></div><pre><code>(#165) ['xxbos','i','liked','this','movie','i','remember','there','was','one'...]
+</code></pre>
+<p>To map each token to a unique number, we can use fastai&rsquo;s <code>Numericalize</code> class. This class also provides us with an attribute <code>vocab</code> to map the numericalized tokens back to their original values (words).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">num<span style="color:#f92672">=</span>Numericalize()
+num<span style="color:#f92672">.</span>setup(toks200) <span style="color:#75715e">#the setup function does the mapping</span>
+</code></pre></div><p>let us see what what the numericalized tokens would look like. the <code>num</code> class takes a list of strings, and using the tokens generated on the corpus (<code>toks200</code>), and replace each word with its corresponding number. Any word that wasn&rsquo;t there in the vocabulary will be replaced with an unknown token (<code>xxunk</code>).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">nums<span style="color:#f92672">=</span>num(toks)
+nums
+</code></pre></div><pre><code>TensorText([   0,  220,   21,   34,    0,  442,   64,   32,   40,   54,   75,  313,
+         184,   17,   21,   34,  135,    0,    0,   33,  157,   42,    0,    0,
+          31,   16,    0,   17,   63, 1275,    0,    0,   12,  129,   80,  677,
+          15,    0,   20,    9,    0,   39,   17,    9,  678,   29,   63, 1058,
+           9,  769,   25,    0,    0,    0,    0,   25,    0,   54,   54,  415,
+           0,    0,    0,   32,  198,   10,    0,   10, 1610,   12,  415,   11,
+           0,    0,  272,  888,   20,    9,  263,   16,  101,   24,  101,  158,
+           9,  264,   12,  299,    0,    0,   28,   18,  102,   43,  612,   96,
+          18,   16,  198,   21,   16,   13,   54,  198,   34,   11,    0,   22,
+           0,   10,    0,   12,    0,    0,    0, 1278,    0,    0,    0,    0,
+         285,   20,    0,    0,   32,    9,  890,   50,   32,    0,   15,  392,
+          17,   21,  443,    0,    0,   79,   41,  153,   71,   21,   16,  273,
+          69,   41])
+</code></pre>
+<p>We can even map back these tokens to the original text using the <code>vocab</code> attribute of the Numericalize class.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#e6db74">&#39; &#39;</span><span style="color:#f92672">.</span>join(num<span style="color:#f92672">.</span>vocab[o] <span style="color:#66d9ef">for</span> o <span style="color:#f92672">in</span> nums) <span style="color:#75715e">#notice the frequent xxunk&#39;s. That is because of the words that were present in toks, but not in the corpus (toks200)</span>
+</code></pre></div><pre><code>'xxunk liked this movie xxunk remember there was one very well done scene in this movie where xxunk xxunk ( played by xxunk xxunk ) is xxunk in her bed xxunk xxunk and then she begins to xxunk that the xxunk are in the room with her sing the song &quot; xxunk xxunk xxunk xxunk &quot; xxunk very very cool xxunk xxunk xxunk was fun , xxunk , quirky and cool . xxunk xxunk \'ll admit that the ending is way - way over the top and far xxunk xxunk but it does n\'t matter because it is fun this is a very fun movie . xxunk \'s xxunk , xxunk and xxunk xxunk xxunk forever xxunk xxunk xxunk xxunk read that xxunk xxunk was the band who was xxunk to star in this .. xxunk xxunk do not know if this is true or not'
+</code></pre>
+<h2 id="creating-our-language-model">Creating our Language Model</h2>
+<p>We have understood the key ideas behind preprocessing our text. Now we need to feed the data into the model and create our text classifier.</p>
+<p>The fundamental argument is as follows. We know that transfer learning generally helps improve model performance. In the case of images, we used a pretrained model trained on ImageNet or some other dataset, the reason being that we know that training on a larger dataset helps the model understand basic image features that we would expect from the model over any standard image classification problem, like, features of humans, or trees in general.</p>
+<p>The NLP equivalent of that would be to use weights from a model that already knows the innards of the English Language, like, for example, basic grammar, sentence construction, the meanings of punctuation marks, contexts and so on. This is called a <em>Language Model</em>, ie a model that - understand language in a very general sense. The pretrained weights can be used to fine tune our classifier of text.</p>
+<p>In the case of images, we pretrain our model on a supervised learning dataset, ie a dataset that itself brings forth a supervised learning problem (classification). Turns out that you don&rsquo;t need explicit labels to create language models that understand language. You can train the model without any explicit labels. Essentially we&rsquo;re training the language model using a <em>self supervised learning</em> approach. Self Supervised Learning is a type of learning where the task is to learn the general features of the data, rather than doing a mapping from some input to some output. Let us discuss how this is done.</p>
+<p>So, one of the most common datasets used for pretraining language models is the <a href="https://blog.einstein.ai/the-wikitext-long-term-dependency-language-modeling-dataset/">WikiText103</a>, which is a dataset containing lots of text from the WikiPedia website, from random articles (over 100 million tokens in total). The idea behind this dataset is, that, no matter what your final task is, if it involves English, your model would need to understand basic grammatical, syntactical and logical rules involved in the language. Now, even though Wikipedia may contain a more formal language than the task you wish to do, but it is safe to assume that there is still a lot to learn about basic rules of English from Wikipedia, and this will help our final model, no matter what. So our task is to get a model that has been pretrained on a dataset like WikiText103.</p>
+<p>But how is this model even trained in the first place? As we mentioned, we use a supervised learning technique. Obviously the neural net that was used to train this model uses some sort of input/output mapping (because that is how neural nets work, there is no other way). But then, how do we make Neural Nets work without explicitly mentioning an output? Well this is done by making the output the same as the input (or of the same type as the input). In which case, the Neural Net would essentially be doing a mapping from the input to the input itself. This is another broad field in Machine Learning, and is known as Representational Learning.</p>
+<p>In our specific context, we feed a series of tokens as our input, and the target output is the same text, just offset by one token. So our model would be trying to predict the next sequence of text, whenever a peice of text is given. This is how supervised learning approach works in the context of NLP.</p>
+<p>This is how this would look like. This type of mapping of a text to a peice of text that is offset by only one token is automatically done by the <code>LMDataLoader</code> class. It is essentially a child class of the DataLoader class, the job of which is to break the data into batches and feed it into the model.</p>
+<p>One more important thing to note is that, usually in the case of Images, the dataloader also shuffled the data, so that the model doesnt learn the sequence of images. But here, we can&rsquo;t shuffle text tokens, or they won&rsquo;t sense anymore. <code>LMDataLoader</code> takes care of that for us.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">nums200<span style="color:#f92672">=</span>toks200<span style="color:#f92672">.</span>map(num)
+dl<span style="color:#f92672">=</span>LMDataLoader(nums200)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x,y<span style="color:#f92672">=</span>first(dl)
+x<span style="color:#f92672">.</span>shape,y<span style="color:#f92672">.</span>shape <span style="color:#75715e">#each batch has 64 items, each containing a fixed number of tokens</span>
+</code></pre></div><pre><code>(torch.Size([64, 72]), torch.Size([64, 72]))
+</code></pre>
+<p>You can see that x and y are offset by only one token. Our Neural Net only needs to learn how to take in a sequence of text, and predict the next sequence of words.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x[<span style="color:#ae81ff">0</span>],y[<span style="color:#ae81ff">0</span>]
+</code></pre></div><pre><code>(LMTensorText([   2,    8,    0,    8, 1066,  249,  147,  611,   10,   40, 1600,   30,   40,    0,  163,   12,    9,    0,   14,  667,   10,   12,    0,  108,  254,   10,  668,  104,  667, 1601,    9,  767,
+           14,   12,    0,    0,    8,  366,   11,   25,    8,    9,   95,   16, 1262,   13,  266,    0,   10,   12,  151,   60, 1602,    0,   39,   20,   10,   19,  288,   20,   18,   68, 1067,    9,
+          120,    0,  255,   53,   79, 1263,   12, 1603]),
+ TensorText([   8,    0,    8, 1066,  249,  147,  611,   10,   40, 1600,   30,   40,    0,  163,   12,    9,    0,   14,  667,   10,   12,    0,  108,  254,   10,  668,  104,  667, 1601,    9,  767,   14,
+           12,    0,    0,    8,  366,   11,   25,    8,    9,   95,   16, 1262,   13,  266,    0,   10,   12,  151,   60, 1602,    0,   39,   20,   10,   19,  288,   20,   18,   68, 1067,    9,  120,
+            0,  255,   53,   79, 1263,   12, 1603,   14]))
+</code></pre>
+<p>Let us also map these tokens back to words, because we can&rsquo;t visualize numbers as well as words themselves.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#e6db74">&#39; &#39;</span><span style="color:#f92672">.</span>join(num<span style="color:#f92672">.</span>vocab[o] <span style="color:#66d9ef">for</span> o <span style="color:#f92672">in</span> x[<span style="color:#ae81ff">0</span>])
+</code></pre></div><pre><code>'xxbos i liked this movie i remember there was one very well done scene in this movie where xxmaj xxunk xxmaj xxunk ( played by xxup xxunk . xxmaj soles ) is xxunk in her bed xxunk xxunk and then she begins to xxunk that the xxmaj ramones are in the room with her sing the song &quot; i xxmaj want xxmaj you xxmaj around &quot; … very very cool stuff .'
+</code></pre>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#e6db74">&#39; &#39;</span><span style="color:#f92672">.</span>join(num<span style="color:#f92672">.</span>vocab[o] <span style="color:#66d9ef">for</span> o <span style="color:#f92672">in</span> y[<span style="color:#ae81ff">0</span>])
+</code></pre></div><pre><code>'i liked this movie i remember there was one very well done scene in this movie where xxmaj xxunk xxmaj xxunk ( played by xxup xxunk . xxmaj soles ) is xxunk in her bed xxunk xxunk and then she begins to xxunk that the xxmaj ramones are in the room with her sing the song &quot; i xxmaj want xxmaj you xxmaj around &quot; … very very cool stuff . \n\n'
+</code></pre>
+<p>Now once you have some pretrained weights, you can use those in the final task, which in this case is text classification (classification of IMDb reviews into positive and negative reviews). All you have to do now is change the task. Now instead of the target output being a sequence of text, it will be classes. Sounds straightforward!</p>
+<p>Let us go one step beyond.</p>
+<p>We will be discussing an interesting Language Modeling approach called <em>ULMFiT</em> (Universal Language Model Fine-tuning), which was introduced in <a href="https://arxiv.org/abs/1801.06146">this</a> paper. Let us discuss the key ideas from this paper through our example of creating an IMDb text classifier.</p>
+<p><img src="https://drive.google.com/uc?id=1itzIngHaDIyVWhyBz2oEia8tN_OsegvZ" alt="" /></p>
+<p>After creating the WikiText Language Model, that understands the English Language, our problem is this. Our model has also sort of overfitted on the Wikipedia text. So now, its style of language is more formal, and its more likely to predict text that you would see in WikiPedia, rather than movie review style text. This paper introduced a clever solution to that.</p>
+<p>As an extension to the self-supervised pretraining stage, why not <em>fine-tune</em> the language model on our specific dataset, so that the language model learns the style of text that is more common in the target dataset (IMDb, in this case), and carry on the classification text from that point onwards. Let us see how to do that!</p>
+<h3 id="finetuning-a-language-model">Finetuning a Language Model</h3>
+<p>just for the purpose of language modeling, we don&rsquo;t need any explicit labels. So we gather <em>all</em> the data that we can find, whether its is from the training set, or the validation set, or the extra unlabeled data that was present in the IMDb dataset.</p>
+<p>Now, you may be wondering, how come we&rsquo;re training the model on the validation set. That would be true if we were performing the classification task, but here, we are creating a language model ,which does not involve any specific labels. Meaning, we don&rsquo;t evaluate the performance of the model on a separate sub-dataset. In this case, it is wise to simply pool all the data you can find and build the language model on top of that.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">get_imdb<span style="color:#f92672">=</span>partial(get_text_files,folders<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;train&#39;</span>,<span style="color:#e6db74">&#39;test&#39;</span>,<span style="color:#e6db74">&#39;unsup&#39;</span>])
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">dls_lm <span style="color:#f92672">=</span> DataBlock(
+    blocks<span style="color:#f92672">=</span>TextBlock<span style="color:#f92672">.</span>from_folder(path,is_lm<span style="color:#f92672">=</span>True), <span style="color:#75715e">#is_lm tells that explicit labels are not required, and the target would simply be text offset by one token</span>
+    get_items<span style="color:#f92672">=</span>get_imdb, splitter <span style="color:#f92672">=</span> RandomSplitter(<span style="color:#ae81ff">0.1</span>)
+)<span style="color:#f92672">.</span>dataloaders(path,path<span style="color:#f92672">=</span>path,bs<span style="color:#f92672">=</span><span style="color:#ae81ff">128</span>,seq_len<span style="color:#f92672">=</span><span style="color:#ae81ff">80</span>) <span style="color:#75715e">#each batch would be of length 80 tokens, and a total of 128 batches are required</span>
+</code></pre></div><p>We can see how the data would look like, along with the target texts</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">dls_lm<span style="color:#f92672">.</span>show_batch(max_n<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</code></pre></div><!-- raw HTML omitted -->
+<p>After which we can simply train this model as before, using the Learner class. We will be using an advanced architecture called <em>AWD-LSTM</em> (which we will be implementing later on), and this dataset has already been pretrained on WIKITEXT103.</p>
+<p>We use a new metric here called Perplexity, which is often used in NLP task. It is nothing but the exponential of the cross entropy loss (<code>torch.exp(cross_entropy)</code>), and depicts how well the model has been able to predict the next sequence of tokens.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn<span style="color:#f92672">=</span>language_model_learner(
+    dls_lm,arch<span style="color:#f92672">=</span>AWD_LSTM,drop_mult<span style="color:#f92672">=</span><span style="color:#ae81ff">0.3</span>,
+    metrics<span style="color:#f92672">=</span>[accuracy,Perplexity()])<span style="color:#f92672">.</span>to_fp16()
+</code></pre></div><p>Before we begin fine tuning our model, let us see how it performs using the pretrained WIKITEXT weights. We would expect it not to be like Movie reviews, but a more formal language.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">TEXT<span style="color:#f92672">=</span><span style="color:#e6db74">&#34; I liked this movie because&#34;</span>
+N_WORDS<span style="color:#f92672">=</span><span style="color:#ae81ff">40</span>
+N_SENTENCES<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>
+preds<span style="color:#f92672">=</span>[learn<span style="color:#f92672">.</span>predict(TEXT,N_WORDS,temperature<span style="color:#f92672">=</span><span style="color:#ae81ff">0.75</span>) <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(N_SENTENCES)]
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>join(preds))
+</code></pre></div><pre><code>i liked this movie because it was about &quot; a book with a lot of horror or about it . &quot; This was in reality a psychology game with a prominent hero . These movies revolved around a gangster who falls in love
+i liked this movie because it was a &quot; true . &quot; The movie was a success and a success . It was the first of many films to be produced by Warner Brothers . The film was shot in
+</code></pre>
+<p>Now let us perform the fine tuning task. Its a slighlty lengthy process, just because of the sheer size of the data, so you can run the next few cells, and leave you PC, have lunch, or take a walk, and come back.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn<span style="color:#f92672">.</span>fit_one_cycle(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2e-2</span>) <span style="color:#75715e">#As we&#39;ve seen before, fastai trains the model in two stages. The first stage involves finetuning only the final few layers, that have beeem randomly initialized</span>
+</code></pre></div><!-- raw HTML omitted -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn<span style="color:#f92672">.</span>save(<span style="color:#e6db74">&#39;1epoch&#39;</span>) <span style="color:#75715e">#saving the model state to a file</span>
+learn<span style="color:#f92672">.</span>load(<span style="color:#e6db74">&#39;1epoch&#39;</span>)
+</code></pre></div><pre><code>&lt;fastai.text.learner.LMLearner at 0x7fa20660d250&gt;
+</code></pre>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn<span style="color:#f92672">.</span>unfreeze() <span style="color:#75715e">#making the rest of the model trainable, by setting their `requires_grad` as True (since only then can their parameters be updated)</span>
+learn<span style="color:#f92672">.</span>fit_one_cycle(<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">2e-3</span>) <span style="color:#75715e">#this is the second stage of training</span>
+</code></pre></div><pre><code>&lt;div&gt;
+    &lt;style&gt;
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    &lt;/style&gt;
+  &lt;progress value='9' class='' max='10' style='width:300px; height:20px; vertical-align: middle;'&gt;&lt;/progress&gt;
+  90.00% [9/10 3:34:45&lt;23:51]
+&lt;/div&gt;
+</code></pre>
+<!-- raw HTML omitted -->
+<pre><code>&lt;div&gt;
+    &lt;style&gt;
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    &lt;/style&gt;
+  &lt;progress value='1708' class='' max='2633' style='width:300px; height:20px; vertical-align: middle;'&gt;&lt;/progress&gt;
+  64.87% [1708/2633 14:33&lt;07:53 3.2155]
+&lt;/div&gt;
+</code></pre>
+<!-- raw HTML omitted -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">path_mdl<span style="color:#f92672">=</span>Path(<span style="color:#e6db74">&#39;.&#39;</span>)
+</code></pre></div><p>You can optionally save it to your Google Drive to access it later. If you wish to do this, simply run the following lines of code, and change the path to your desired location on your google drive.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># from google.colab import drive</span>
+<span style="color:#75715e"># drive.mount(&#39;/content/gdrive&#39;)</span>
+<span style="color:#75715e"># path_mdl=Path(&#39;/content/gdrive/My Drive/&#39;) # modify this to change the location</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn<span style="color:#f92672">.</span>save_encoder(path_mdl<span style="color:#f92672">/</span><span style="color:#e6db74">&#39;finetuned_encoder&#39;</span>)
+</code></pre></div><p>before building the <em>classifier</em>, lets see how this is performing anyways&hellip;</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">TEXT<span style="color:#f92672">=</span><span style="color:#e6db74">&#34; I liked this movie because&#34;</span>
+N_WORDS<span style="color:#f92672">=</span><span style="color:#ae81ff">40</span>
+N_SENTENCES<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>
+preds<span style="color:#f92672">=</span>[learn<span style="color:#f92672">.</span>predict(TEXT,N_WORDS,temperature<span style="color:#f92672">=</span><span style="color:#ae81ff">0.75</span>) <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(N_SENTENCES)]
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>join(preds))
+</code></pre></div><pre><code>i liked this movie because it was so interesting . i was very impressed by it , did it a lot more better . Yes , i was able to get a second chance . First , that was what i actually thought
+i liked this movie because it was true to the myths of Clive Barker and many of Clive Barker 's stories . The story was good . 
+
+ The characters are quite well developed . 
+
+ This is
+</code></pre>
+<p>You can see how well this performs in comparison to the Text generation model we created in Session 4, on Bayesian Learning. Not only is the grammar and syntax much better, but it simply makes so much more sense now, and you have thus created a state of the art text generator model with only a couple of hours of training.</p>
+<p>The next step is to build our text classifier.</p>
+<h2 id="text-classifier">Text classifier</h2>
+<p>Now, we need to reinitialize the dataloaders, because we need to tell it that now, our target is not to generate a sequence of tokens, but a category.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">dls_classification <span style="color:#f92672">=</span> DataBlock(
+    blocks<span style="color:#f92672">=</span>(TextBlock<span style="color:#f92672">.</span>from_folder(path,vocab<span style="color:#f92672">=</span>dls_lm<span style="color:#f92672">.</span>vocab),CategoryBlock), <span style="color:#75715e">#we don&#39;t pass is_lm=True to TextBlock.from_folder</span>
+    <span style="color:#75715e">#we also pass in the vocab here, because otherwise the vocab generated here may not match the vocab used in the fintuning task, which may lead to results which makes no sense</span>
+    get_y<span style="color:#f92672">=</span>parent_label,
+    get_items<span style="color:#f92672">=</span>partial(get_text_files,folders<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;train&#39;</span>,<span style="color:#e6db74">&#39;test&#39;</span>]), <span style="color:#75715e">#now we dont used the unsupervised text anymore</span>
+    splitter<span style="color:#f92672">=</span>GrandparentSplitter(valid_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;test&#39;</span>) 
+)<span style="color:#f92672">.</span>dataloaders(path,path<span style="color:#f92672">=</span>path,bs<span style="color:#f92672">=</span><span style="color:#ae81ff">128</span>,seq_len<span style="color:#f92672">=</span><span style="color:#ae81ff">72</span>)
+</code></pre></div><p>And let&rsquo;s see what our data will look like now, along with the targets.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">dls_classification<span style="color:#f92672">.</span>show_batch(max_n<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+</code></pre></div><!-- raw HTML omitted -->
+<p>Now that we&rsquo;ve changed the dataloaders, we can train the model in the same way. We do need to import the pretrained network weights, which will help us identify <em>features</em> of the language. So essentially, the pretrained model will act as the encoder. We can load the weights into a new learner using the <code>load_encoder</code> method of the learner class.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn<span style="color:#f92672">=</span>text_classifier_learner(dls_classification,AWD_LSTM,drop_mult<span style="color:#f92672">=</span><span style="color:#ae81ff">0.5</span>, metrics<span style="color:#f92672">=</span>accuracy)<span style="color:#f92672">.</span>to_fp16()
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn <span style="color:#f92672">=</span> learn<span style="color:#f92672">.</span>load_encoder(path_mdl<span style="color:#f92672">/</span><span style="color:#e6db74">&#39;finetuned_encoder&#39;</span>)
+</code></pre></div><p>And let us finally train the model.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn<span style="color:#f92672">.</span>fit_one_cycle(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2e-2</span>)
+</code></pre></div><!-- raw HTML omitted -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn<span style="color:#f92672">.</span>freeze_to(<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>)
+learn<span style="color:#f92672">.</span>fit_one_cycle(<span style="color:#ae81ff">1</span>,slice(<span style="color:#ae81ff">1e-2</span><span style="color:#f92672">/</span>(<span style="color:#ae81ff">2.6</span><span style="color:#f92672">**</span><span style="color:#ae81ff">4</span>),<span style="color:#ae81ff">1e-2</span>))
+</code></pre></div><!-- raw HTML omitted -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn<span style="color:#f92672">.</span>freeze_to(<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>)
+learn<span style="color:#f92672">.</span>fit_one_cycle(<span style="color:#ae81ff">2</span>,slice(<span style="color:#ae81ff">5e-3</span><span style="color:#f92672">/</span>(<span style="color:#ae81ff">2.6</span><span style="color:#f92672">**</span><span style="color:#ae81ff">4</span>),<span style="color:#ae81ff">5e-3</span>))
+</code></pre></div><!-- raw HTML omitted -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn<span style="color:#f92672">.</span>unfreeze()
+learn<span style="color:#f92672">.</span>fit_one_cycle(<span style="color:#ae81ff">2</span>,slice(<span style="color:#ae81ff">1e-3</span><span style="color:#f92672">/</span>(<span style="color:#ae81ff">2.6</span><span style="color:#f92672">**</span><span style="color:#ae81ff">4</span>),<span style="color:#ae81ff">1e-3</span>))
+</code></pre></div><!-- raw HTML omitted -->
+<p>That&rsquo;s a wonderful accuracy. This is almost close to the best accuracy ever achieved on this dataset. The best accuracy is about 96%, and involves some very complex data augmentation techniques, including translating the text to another language, and then translating it back to the original language. But let us not go into such complicated endeavors for now. This accuracy is wonderful in itself!</p>
+<p>Now having learnt how to build these models, let us build these models from scratch. We&rsquo;ll be starting with a simple Neural Net that can handle sequence of texts, called <em>RNNs</em>, or Recurrent Neural Networks. From there on, we will go on to build more advanced models.</p>
+<h2 id="creating-rnns-from-scratch">Creating RNNs from scratch</h2>
+<p>Before we create an RNN, let us first set up some basic type of data. The IMDb dataset is too large for experiments, and as you may have seen, even simple models take many hours to train because of the size of the dataset. So for simplicity, we choose a dataset that simply includes the first 10,000 numbers written sequentially in word form.</p>
+<h3 id="setting-up-a-very-basic-dataset">Setting up a very basic dataset</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">path<span style="color:#f92672">=</span>untar_data(URLs<span style="color:#f92672">.</span>HUMAN_NUMBERS)
+path<span style="color:#f92672">.</span>ls()
+</code></pre></div><pre><code>(#2) [Path('/root/.fastai/data/human_numbers/valid.txt'),Path('/root/.fastai/data/human_numbers/train.txt')]
+</code></pre>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#initially lets just join both the training and the validation dataset</span>
+lines<span style="color:#f92672">=</span>L() <span style="color:#75715e">#empty list</span>
+<span style="color:#66d9ef">with</span> open(path<span style="color:#f92672">/</span><span style="color:#e6db74">&#39;train.txt&#39;</span>) <span style="color:#66d9ef">as</span> f: lines<span style="color:#f92672">+=</span>L(<span style="color:#f92672">*</span>f<span style="color:#f92672">.</span>readlines())
+<span style="color:#66d9ef">with</span> open(path<span style="color:#f92672">/</span><span style="color:#e6db74">&#39;valid.txt&#39;</span>) <span style="color:#66d9ef">as</span> f: lines<span style="color:#f92672">+=</span>L(<span style="color:#f92672">*</span>f<span style="color:#f92672">.</span>readlines())
+lines
+</code></pre></div><pre><code>(#9998) ['one \n','two \n','three \n','four \n','five \n','six \n','seven \n','eight \n','nine \n','ten \n'...]
+</code></pre>
+<p>Instead of spaces and new line characters, let us just replace all separaters by one common separateor, which is a ' . &lsquo;.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39; . &#39;</span><span style="color:#f92672">.</span>join([l<span style="color:#f92672">.</span>strip() <span style="color:#66d9ef">for</span> l <span style="color:#f92672">in</span> lines]) <span style="color:#75715e">#the strip function removes all separators including spaces, newlines, tabs, etc</span>
+text[:<span style="color:#ae81ff">100</span>]
+</code></pre></div><pre><code>'one . two . three . four . five . six . seven . eight . nine . ten . eleven . twelve . thirteen . fo'
+</code></pre>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#for demonstration purpose</span>
+<span style="color:#e6db74">&#39;  asd   </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74"> </span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>strip()
+</code></pre></div><pre><code>'asd'
+</code></pre>
+<p>And let us now split this text into tokens. Note that the full stop is meant to be part of the sequence as it tells the model when one number finishes, and the next starts.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">tokens<span style="color:#f92672">=</span>text<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39; &#39;</span>)
+tokens[:<span style="color:#ae81ff">10</span>]
+</code></pre></div><pre><code>['one', '.', 'two', '.', 'three', '.', 'four', '.', 'five', '.']
+</code></pre>
+<p>And since this text contains many repetitions of words, we will first create a vocabulary of unique words.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#to numericalize, we need to create a list of all unique words (aka vocab)</span>
+vocab<span style="color:#f92672">=</span>L(<span style="color:#f92672">*</span>tokens)<span style="color:#f92672">.</span>unique()
+vocab
+</code></pre></div><pre><code>(#30) ['one','.','two','three','four','five','six','seven','eight','nine'...]
+</code></pre>
+<p>So this tells us, that in the first 10000 numbers written in words, there are only 29 unique words, plus one for the full stop.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">print</span>(vocab)
+</code></pre></div><pre><code>['one', '.', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety', 'hundred', 'thousand']
+</code></pre>
+<p>And now we need to create a mapping from words to numbers. We store these mappings in a dictionary, called <code>word2idx</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">word2idx<span style="color:#f92672">=</span>{w:i <span style="color:#66d9ef">for</span> i,w <span style="color:#f92672">in</span> enumerate(vocab)}
+nums<span style="color:#f92672">=</span>L(word2idx[i] <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> tokens)
+nums
+</code></pre></div><pre><code>(#63095) [0,1,2,1,3,1,4,1,5,1...]
+</code></pre>
+<h3 id="building-a-simple-rnn">Building a simple RNN</h3>
+<p>Just for experimental and comparison purpose, let us build a model that resembles the model we built in session 4. If you remember, the exercise involved building a model that predicted the next word given 2 previous words. In this case, we will be building a model that predicts the word given 3 previous words. For that, all we need to do is to modify the dataset in which the input x contains a tensor of 3 word indexes, and the output y contains the index for the next word.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># creating a simple Neural Net that predicts next word on the basis of the previous three words. Let us set up the dataset for that purpose</span>
+
+<span style="color:#75715e">#right now lets just test it out on tokens, to see what it will look like in the end</span>
+L((tokens[i:i<span style="color:#f92672">+</span><span style="color:#ae81ff">3</span>],tokens[i<span style="color:#f92672">+</span><span style="color:#ae81ff">3</span>]) <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>,len(tokens)<span style="color:#f92672">-</span><span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">3</span>))
+</code></pre></div><pre><code>(#21031) [(['one', '.', 'two'], '.'),(['.', 'three', '.'], 'four'),(['four', '.', 'five'], '.'),(['.', 'six', '.'], 'seven'),(['seven', '.', 'eight'], '.'),(['.', 'nine', '.'], 'ten'),(['ten', '.', 'eleven'], '.'),(['.', 'twelve', '.'], 'thirteen'),(['thirteen', '.', 'fourteen'], '.'),(['.', 'fifteen', '.'], 'sixteen')...]
+</code></pre>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#now let us do it for real. Remember we need tensors for PyTorch. Also tensors will take the numericalized tokens</span>
+seqs<span style="color:#f92672">=</span>L((tensor(nums[i:i<span style="color:#f92672">+</span><span style="color:#ae81ff">3</span>]),nums[i<span style="color:#f92672">+</span><span style="color:#ae81ff">3</span>]) <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>,len(nums)<span style="color:#f92672">-</span><span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">3</span>))
+seqs 
+<span style="color:#75715e">#its just a classification problem now, with input as tensor of shape 3,1 and output as a single number ranging from 0 to len(nums)-1</span>
+</code></pre></div><pre><code>(#21031) [(tensor([0, 1, 2]), 1),(tensor([1, 3, 1]), 4),(tensor([4, 1, 5]), 1),(tensor([1, 6, 1]), 7),(tensor([7, 1, 8]), 1),(tensor([1, 9, 1]), 10),(tensor([10,  1, 11]), 1),(tensor([ 1, 12,  1]), 13),(tensor([13,  1, 14]), 1),(tensor([ 1, 15,  1]), 16)...]
+</code></pre>
+<p>Once we set up the dataset, we need to put them in DataLoaders.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#feed these into a Dataloader.</span>
+bs<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span>
+cut<span style="color:#f92672">=</span>int(len(seqs)<span style="color:#f92672">*</span><span style="color:#ae81ff">0.8</span>)
+dls<span style="color:#f92672">=</span>DataLoaders<span style="color:#f92672">.</span>from_dsets(seqs[:cut],seqs[cut:],bs<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span>,shuffle<span style="color:#f92672">=</span>False) <span style="color:#75715e">#in language models, we shouldnt shuffle the sequence of words</span>
+</code></pre></div><p>Let us understand how an RNN is built. An RNN is essentially a looping Neural Network. It takes in one input at a time, and passes it through a Linear Layer to get activations. These activations are added to the next word in the sequence, and the result is again passed through the Linear Layer to get new activations. Here we have three words as input, so after repeating this process for a total of three times, we will get some activations from the Linear Layers, which can be passed to a final linear layer (that outputs some probability about which token is the final prediction). This is what an RNN is.</p>
+<p><img src="https://drive.google.com/uc?id=1SprFLnlXXIvTarkaR5XSGrMShrUNdCLe" alt="" /></p>
+<p>In comparison to a standard fully connected Neural Network, where we had an input layer, multiple hidden layers, and one final output layer, an RNN is simply the input layer, the output layer, and one single hidden layer, the output of which is fed into itself again and again. Hence the name <em>Recurrent</em> Neural Network.</p>
+<p>There is one small tweak in this.</p>
+<p>Instead of directly feeding the tokens as the input, what if we had the ability to represent each token as a much more sophisticated tensor of features? We call this an Embedding Matrix, which basically maps each token to a new tensor containing different features. And these features can be learned through standard optimization techniques.</p>
+<p><img src="https://drive.google.com/uc?id=1U6EXZ8uFikW-i12qet9sIi5dn37GeWS2" alt="" /></p>
+<p>This basically helps us represent more information in comparison to one single token number. So this is essentially a mapping from a token number to an entire tensor of learnable parameters.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#refactoring the first LM model</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LMModel1</span>(Module):
+    <span style="color:#66d9ef">def</span> __init__(self,vocab_sz,n_hidden):
+        self<span style="color:#f92672">.</span>i_h<span style="color:#f92672">=</span>nn<span style="color:#f92672">.</span>Embedding(vocab_sz,n_hidden) <span style="color:#75715e">#embedding layer</span>
+        self<span style="color:#f92672">.</span>h_h<span style="color:#f92672">=</span>nn<span style="color:#f92672">.</span>Linear(n_hidden,n_hidden) <span style="color:#75715e">#linear layer: to create activations for the next word</span>
+        self<span style="color:#f92672">.</span>h_o<span style="color:#f92672">=</span>nn<span style="color:#f92672">.</span>Linear(n_hidden,vocab_sz) <span style="color:#75715e">#final layer to predict the fourth word in the end</span>
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self,x):
+        h<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">3</span>):
+            h<span style="color:#f92672">=</span>h<span style="color:#f92672">+</span>self<span style="color:#f92672">.</span>i_h(x[:,i])
+            h<span style="color:#f92672">=</span>F<span style="color:#f92672">.</span>relu(self<span style="color:#f92672">.</span>h_h(h))
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>h_o(h)
+</code></pre></div><p>Let us train this model using our Learner class, and see how it performs.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn<span style="color:#f92672">=</span>Learner(dls,LMModel1(len(vocab),<span style="color:#ae81ff">64</span>),loss_func<span style="color:#f92672">=</span>F<span style="color:#f92672">.</span>cross_entropy,metrics<span style="color:#f92672">=</span>accuracy)
+learn<span style="color:#f92672">.</span>fit_one_cycle(<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">1e-3</span>)
+</code></pre></div><!-- raw HTML omitted -->
+<p>This may look like a terrible performance, but let us compare this with a model that would make completely random predictions.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ae81ff">1</span><span style="color:#f92672">/</span>len(vocab)
+</code></pre></div><pre><code>0.03333333333333333
+</code></pre>
+<p>So you will realize that the model has essentially learnt atleast something.</p>
+<p>Now let us compare this with an even more sophisticated dummy model, that only predicts THE most commonly occuring word.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#checking if this model is any good at all?</span>
+<span style="color:#75715e">#comparing with a model that would only predict the most commonly occuring word </span>
+n,counts<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>,torch<span style="color:#f92672">.</span>zeros(len(vocab))
+<span style="color:#66d9ef">for</span> x,y <span style="color:#f92672">in</span> dls<span style="color:#f92672">.</span>valid:
+    n<span style="color:#f92672">+=</span>y<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">0</span>]
+    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range_of(vocab):counts[i]<span style="color:#f92672">+=</span>(y<span style="color:#f92672">==</span>i)<span style="color:#f92672">.</span>long()<span style="color:#f92672">.</span>sum()
+idx<span style="color:#f92672">=</span>torch<span style="color:#f92672">.</span>argmax(counts)
+idx,vocab[idx<span style="color:#f92672">.</span>item()],counts[idx]<span style="color:#f92672">.</span>item()<span style="color:#f92672">/</span>n
+
+</code></pre></div><pre><code>(tensor(29), 'thousand', 0.15165200855716662)
+</code></pre>
+<p>thousand is the most common word. And if we only predicted the word thousand, we would get an accuracy of 15% only, so the RNN is actually working okayish.</p>
+<h3 id="improving-the-rnn">Improving the RNN</h3>
+<p>Let us first do a very simple tweak to this model, that will help us save a lot of GPU memory, which is based on the problem, that PyTorch keeps track of all computations since the initialization of any layer. So once you&rsquo;ve propagated through the three layers, you essentially don&rsquo;t need the computational history from previous iterations. So we can simply <em>detach</em> the tensor from the computation history, and it will no longer occupy space in the GPU.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LMModel2</span>(Module):
+    <span style="color:#66d9ef">def</span> __init__(self,vocab_sz,n_hidden):
+        self<span style="color:#f92672">.</span>i_h<span style="color:#f92672">=</span>nn<span style="color:#f92672">.</span>Embedding(vocab_sz,n_hidden) <span style="color:#75715e">#embedding layer</span>
+        self<span style="color:#f92672">.</span>h_h<span style="color:#f92672">=</span>nn<span style="color:#f92672">.</span>Linear(n_hidden,n_hidden) <span style="color:#75715e">#linear layer: to create activations for the next word</span>
+        self<span style="color:#f92672">.</span>h_o<span style="color:#f92672">=</span>nn<span style="color:#f92672">.</span>Linear(n_hidden,vocab_sz) <span style="color:#75715e">#final layer to predict the fourth word in the end</span>
+        self<span style="color:#f92672">.</span>h<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self,x):
+        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">3</span>):
+            self<span style="color:#f92672">.</span>h <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>h <span style="color:#f92672">+</span> self<span style="color:#f92672">.</span>i_h(x[:,i])
+            self<span style="color:#f92672">.</span>h<span style="color:#f92672">=</span>F<span style="color:#f92672">.</span>relu(self<span style="color:#f92672">.</span>h_h(self<span style="color:#f92672">.</span>h))
+        out <span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>h_o(self<span style="color:#f92672">.</span>h)
+        self<span style="color:#f92672">.</span>h<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>h<span style="color:#f92672">.</span>detach()
+        <span style="color:#66d9ef">return</span> out
+    
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">reset</span>(self): self<span style="color:#f92672">.</span>h <span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+</code></pre></div><p>To use this model, we need to make sure that all batches are sequentially ordered. So let us build this functionality for our purpose.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">bs<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span>
+m<span style="color:#f92672">=</span>len(seqs)<span style="color:#f92672">//</span>bs
+m,bs,len(seqs)
+</code></pre></div><pre><code>(328, 64, 21031)
+</code></pre>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">group_chunks</span>(ds,bs):
+     m<span style="color:#f92672">=</span>len(ds)<span style="color:#f92672">//</span>bs
+     new_ds<span style="color:#f92672">=</span>L()
+     <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(m): new_ds<span style="color:#f92672">+=</span>L(ds[i <span style="color:#f92672">+</span> m<span style="color:#f92672">*</span>j] <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(bs))
+     <span style="color:#66d9ef">return</span> new_ds
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">cut <span style="color:#f92672">=</span> int(len(seqs)<span style="color:#f92672">*</span><span style="color:#ae81ff">0.8</span>)
+dls<span style="color:#f92672">=</span>DataLoaders<span style="color:#f92672">.</span>from_dsets(
+    group_chunks(seqs[:cut],bs),
+    group_chunks(seqs[cut:],bs),
+    bs<span style="color:#f92672">=</span>bs,drop_last<span style="color:#f92672">=</span>True,shuffle<span style="color:#f92672">=</span>False)
+</code></pre></div><p>Let train our model using this little tweak. You will also notice a callback (<code>cbs</code>) named ModelResetter. Don&rsquo;t worry about it. A callback is essentially a function called at a certian stage of training (like after an epoch ends, or after loss is calucated, or after parameters are updated, and so on). In this case, ModelResetter calls the models <code>reset</code> method before the training/validation cycle begins, and also at the very end of training. This helps the model start afresh.  Don&rsquo;t worry about the details for now.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#960050;background-color:#1e0010">??</span>ModelResetter
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn<span style="color:#f92672">=</span>Learner(dls,LMModel2(len(vocab),<span style="color:#ae81ff">64</span>),loss_func<span style="color:#f92672">=</span>F<span style="color:#f92672">.</span>cross_entropy,metrics<span style="color:#f92672">=</span>accuracy,cbs<span style="color:#f92672">=</span>ModelResetter)
+learn<span style="color:#f92672">.</span>fit_one_cycle(<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">3e-3</span>)
+</code></pre></div><!-- raw HTML omitted -->
+<p>This is already better. This is mostly because of the increased precision that was possible because of the freed memory.</p>
+<p>Now let us do another small tweak which will help us improve our accuracy even better. But first, let us also make our task more challenging. Instead of 3 tokens, we will be using 16 tokens at once into the model, and predicting the next sequence of tokens. This is variable, so you are free to change the sequence length.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">sl<span style="color:#f92672">=</span><span style="color:#ae81ff">16</span> <span style="color:#75715e">#sequence length</span>
+seqs<span style="color:#f92672">=</span>L((tensor(nums[i:i<span style="color:#f92672">+</span>sl]),tensor(nums[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>:i<span style="color:#f92672">+</span>sl<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>])) <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>,len(nums)<span style="color:#f92672">-</span>sl<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,sl))
+
+cut<span style="color:#f92672">=</span>int(len(seqs)<span style="color:#f92672">*</span><span style="color:#ae81ff">0.8</span>)
+dls<span style="color:#f92672">=</span>DataLoaders<span style="color:#f92672">.</span>from_dsets(group_chunks(seqs[:cut],bs),
+                           group_chunks(seqs[cut:],bs),
+                           bs<span style="color:#f92672">=</span>bs,drop_last<span style="color:#f92672">=</span>True,shuffle<span style="color:#f92672">=</span>False) <span style="color:#75715e">#drop_last=True because you wont be able to ofset the target by one word in that case</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#lets see what this dataset will look like</span>
+[L(vocab[o] <span style="color:#66d9ef">for</span> o <span style="color:#f92672">in</span> s) <span style="color:#66d9ef">for</span> s <span style="color:#f92672">in</span> seqs[<span style="color:#ae81ff">0</span>]]
+</code></pre></div><pre><code>[(#16) ['one','.','two','.','three','.','four','.','five','.'...],
+ (#16) ['.','two','.','three','.','four','.','five','.','six'...]]
+</code></pre>
+<p>You can see that not only is the input sequence of length 16, but the output sequence too is of length 16, which is offset by only one token. This is already a more complicated task.</p>
+<p>For this model, we will be modifying the model so that it can process as many tokens as possible.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LMModel2</span>(Module):
+    <span style="color:#66d9ef">def</span> __init__(self,vocab_sz,n_hidden):
+        self<span style="color:#f92672">.</span>i_h<span style="color:#f92672">=</span>nn<span style="color:#f92672">.</span>Embedding(vocab_sz,n_hidden) <span style="color:#75715e">#embedding layer</span>
+        self<span style="color:#f92672">.</span>h_h<span style="color:#f92672">=</span>nn<span style="color:#f92672">.</span>Linear(n_hidden,n_hidden) <span style="color:#75715e">#linear layer: to create activations for the next word</span>
+        self<span style="color:#f92672">.</span>h_o<span style="color:#f92672">=</span>nn<span style="color:#f92672">.</span>Linear(n_hidden,vocab_sz) <span style="color:#75715e">#final layer to predict the fourth word in the end</span>
+        self<span style="color:#f92672">.</span>h<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+    
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self,x):
+        outs<span style="color:#f92672">=</span>[]
+        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(sl):
+            self<span style="color:#f92672">.</span>h <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>h <span style="color:#f92672">+</span> self<span style="color:#f92672">.</span>i_h(x[:,i])
+            self<span style="color:#f92672">.</span>h <span style="color:#f92672">=</span> F<span style="color:#f92672">.</span>relu(self<span style="color:#f92672">.</span>h_h(self<span style="color:#f92672">.</span>h))
+            outs<span style="color:#f92672">.</span>append(self<span style="color:#f92672">.</span>h_o(self<span style="color:#f92672">.</span>h))
+        self<span style="color:#f92672">.</span>h <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>h<span style="color:#f92672">.</span>detach()
+        <span style="color:#66d9ef">return</span> torch<span style="color:#f92672">.</span>stack(outs,dim<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>) <span style="color:#75715e">#shape bs,sl,vocab_sz</span>
+    
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">reset</span>(self): self<span style="color:#f92672">.</span>h <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</code></pre></div><p>The output is of shape <code>(bs,sl,vocab_sz)</code> while the target is of shape <code>(bs,sl)</code>. So we need to change the loss function definition, otherwise it will throw a compatibility issue. All we need to do is to flatten the output before feeding it to the Cross Entropy loss.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#we have to modify the loss_func because we stacked the outputs on dimension 1</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">loss_func</span>(inp,target): <span style="color:#66d9ef">return</span> F<span style="color:#f92672">.</span>cross_entropy(inp<span style="color:#f92672">.</span>view(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,len(vocab)),target<span style="color:#f92672">.</span>view(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>))
+</code></pre></div><p>And then we can follow the same procedure. Let us also try training for a bit longer and see the results.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn <span style="color:#f92672">=</span> Learner(dls,LMModel2(len(vocab),<span style="color:#ae81ff">64</span>), loss_func<span style="color:#f92672">=</span>loss_func,metrics<span style="color:#f92672">=</span>accuracy,cbs<span style="color:#f92672">=</span>ModelResetter)
+learn<span style="color:#f92672">.</span>fit_one_cycle(<span style="color:#ae81ff">15</span>,<span style="color:#ae81ff">3e-3</span>) <span style="color:#75715e">#train for longer because its a more complicated task</span>
+</code></pre></div><!-- raw HTML omitted -->
+<p>These are much better results. Now let us do another tweak to our model. What if, instead of a single hidden layer, we stacked two hidden layers, so the output of the second hidden layer is passed as the input to the first? Essentially we&rsquo;re making the model deeper, and it will only help in learning more complex features.</p>
+<h3 id="multilayer-rnns">Multilayer RNNs</h3>
+<p>Let us save ourselves the trouble of writing this from scratch, and simply use PyTorch&rsquo;s <code>nn.RNN</code> class, which can create a sequence of these hidden states. The rest will be the same.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LMModel3</span>(Module):
+    <span style="color:#66d9ef">def</span> __init__(self,vocab_sz,n_hidden,n_layers):
+        self<span style="color:#f92672">.</span>i_h <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Embedding(vocab_sz,n_hidden)
+        self<span style="color:#f92672">.</span>rnn <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>RNN(n_hidden,n_hidden,n_layers,batch_first<span style="color:#f92672">=</span>True) <span style="color:#75715e">#if we want to create 2 layers stacked together, set n_layers as 2</span>
+        self<span style="color:#f92672">.</span>h_o <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Linear(n_hidden,vocab_sz)
+        self<span style="color:#f92672">.</span>h <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>zeros(n_layers,bs,n_hidden)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self,x):
+        res,h <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>rnn(self<span style="color:#f92672">.</span>i_h(x),self<span style="color:#f92672">.</span>h)
+        self<span style="color:#f92672">.</span>h <span style="color:#f92672">=</span> h<span style="color:#f92672">.</span>detach()
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>h_o(res)
+    
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">reset</span>(self): self<span style="color:#f92672">.</span>h<span style="color:#f92672">.</span>zero_()
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn<span style="color:#f92672">=</span>Learner(dls,LMModel3(len(vocab),<span style="color:#ae81ff">64</span>,<span style="color:#ae81ff">2</span>), <span style="color:#75715e">#for now we are using only 2 layers in the RNN</span>
+              loss_func<span style="color:#f92672">=</span>CrossEntropyLossFlat(),
+              metrics<span style="color:#f92672">=</span>accuracy,cbs<span style="color:#f92672">=</span>ModelResetter)
+
+learn<span style="color:#f92672">.</span>fit_one_cycle(<span style="color:#ae81ff">15</span>,<span style="color:#ae81ff">3e-3</span>) <span style="color:#75715e">#deeper model, exploding/vanishing gradients</span>
+</code></pre></div><!-- raw HTML omitted -->
+<p>That&rsquo;s weird. Why is this model performing worse than a single layer model? That&rsquo;s because of the exploding/vanishing gradient problem, that arises in deep Neural Networks.</p>
+<p>Essentially we&rsquo;re multiplying an input by the same matrices again and again. Imagine what happens when you multiply a number again and again by a number.</p>
+<p>There can be two cases.</p>
+<ol>
+<li>
+<p>If you&rsquo;re multiplying again and again by a number greater than 1, you will reach an extremely large value soon. And this means, the gradients too will explode, or become very large, in other terms. This may make the model erratic and the performance will deteriorate.</p>
+</li>
+<li>
+<p>If you&rsquo;re multiplying again and again by a number less than 0, you will reach an extremely small value soon. This means, the gradients too will be close to zero, and essentially no learning will take place.</p>
+</li>
+</ol>
+<p>There are a few methods to prevent these. In the context of Sequence Models, one of the research developments that addressed this issue was the LSTM, or <em>Long Short Term Memory</em> Models. .</p>
+<h2 id="long-short-term-memory-lstm-models">Long Short Term Memory (LSTM) Models</h2>
+<p>LSTM is an architecture that was introduced back in 1997 by Jürgen Schmidhuber and Sepp Hochreiter. In this architecture, there are not one, but two, hidden states. In our base RNN, the hidden state is the output of the RNN at the previous time step. That hidden state is then responsible for two things:</p>
+<ul>
+<li>Having the right information for the output layer to predict the correct next
+token</li>
+<li>Retaining memory of everything that happened in the sentence
+Consider, for example, the sentences “Henry has a dog and he likes his dog very much” and “Sophie has a dog and she likes her dog very much.” It’s very clear that the RNN needs to remember the name at the beginning of the sentence to be able to pre‐ dict he/she or his/her.</li>
+</ul>
+<p>In practice, RNNs are really bad at retaining memory of what happened much earlier in the sentence, which is the motivation to have another hidden state (called cell state) in the LSTM. The cell state will be responsible for keeping long short-term memory, while the hidden state will focus on the next token to predict. Let’s take a closer look at how this is achieved and build an LSTM from scratch.</p>
+<p><img src="https://drive.google.com/uc?id=1ll89W_Fy0zJN7LNVEqcMvjk7eHmTKk4L" alt="" /></p>
+<p>In this picture, our input $x_{t}$ enters on the left with the previous hidden state ($h_{t-1}$) and cell state ($c_{t-1}$). The four orange boxes represent four layers (our neural nets) with the activation being either sigmoid ($\sigma$) or tanh. tanh is just a sigmoid function rescaled to the range -1 to 1. Its mathematical expression can be written like this:</p>
+<p>$$\tanh(x) = \frac{e^{x} - e^{-x}}{e^{x}+e^{-x}} = 2 \sigma(2x) - 1$$</p>
+<p>where $\sigma$ is the sigmoid function. The green circles are elementwise operations. What goes out on the right is the new hidden state ($h_{t}$) and new cell state ($c_{t}$), ready for our next input. The new hidden state is also used as output, which is why the arrow splits to go up.</p>
+<p>Let&rsquo;s go over the four neural nets (called <em>gates</em>) one by one and explain the diagram—but before this, notice how very little the cell state (at the top) is changed. It doesn&rsquo;t even go directly through a neural net! This is exactly why it will carry on a longer-term state.</p>
+<p>First, the arrows for input and old hidden state are joined together. In the RNN we wrote earlier in this chapter, we were adding them together. In the LSTM, we stack them in one big tensor. This means the dimension of our embeddings (which is the dimension of $x_{t}$) can be different than the dimension of our hidden state. If we call those <code>n_in</code> and <code>n_hid</code>, the arrow at the bottom is of size <code>n_in + n_hid</code>; thus all the neural nets (orange boxes) are linear layers with <code>n_in + n_hid</code> inputs and <code>n_hid</code> outputs.</p>
+<p>The first gate (looking from left to right) is called the <em>forget gate</em>. Since it’s a linear layer followed by a sigmoid, its output will consist of scalars between 0 and 1. We multiply this result by the cell state to determine which information to keep and which to throw away: values closer to 0 are discarded and values closer to 1 are kept. This gives the LSTM the ability to forget things about its long-term state. For instance, when crossing a period or an <code>xxbos</code> token, we would expect to it to (have learned to) reset its cell state.</p>
+<p>The second gate is called the <em>input gate</em>. It works with the third gate (which doesn&rsquo;t really have a name but is sometimes called the <em>cell gate</em>) to update the cell state. For instance, we may see a new gender pronoun, in which case we&rsquo;ll need to replace the information about gender that the forget gate removed. Similar to the forget gate, the input gate decides which elements of the cell state to update (values close to 1) or not (values close to 0). The third gate determines what those updated values are, in the range of –1 to 1 (thanks to the tanh function). The result is then added to the cell state.</p>
+<p>The last gate is the <em>output gate</em>. It determines which information from the cell state to use to generate the output. The cell state goes through a tanh before being combined with the sigmoid output from the output gate, and the result is the new hidden state.</p>
+<p>In terms of code, we can write the same steps like this:</p>
+<p>(Cited from Deep Learning for Coders with fastai and Pytorch).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LSTMCell</span>(Module):
+    <span style="color:#66d9ef">def</span> __init__(self,ni,nh):
+        self<span style="color:#f92672">.</span>forget_gate <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Linear(ni<span style="color:#f92672">+</span>nh,nh)
+        self<span style="color:#f92672">.</span>input_gate  <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Linear(ni<span style="color:#f92672">+</span>nh,nh)
+        self<span style="color:#f92672">.</span>cell_gate   <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Linear(ni<span style="color:#f92672">+</span>nh,nh)
+        self<span style="color:#f92672">.</span>output_gate <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Linear(ni<span style="color:#f92672">+</span>nh,nh)
+    
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self,input,state):
+        h,c <span style="color:#f92672">=</span> state
+        h<span style="color:#f92672">=</span>torch<span style="color:#f92672">.</span>stack([h,input],dim<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+        forget <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>sigmoid(self<span style="color:#f92672">.</span>input_gate(h)) <span style="color:#75715e">#value between 0 and 1</span>
+        c<span style="color:#f92672">=</span>c<span style="color:#f92672">*</span>forget
+        inp<span style="color:#f92672">=</span>torch<span style="color:#f92672">.</span>sigmoid(self<span style="color:#f92672">.</span>input_gate(h))
+        cell<span style="color:#f92672">=</span>torch<span style="color:#f92672">.</span>tanh(self<span style="color:#f92672">.</span>cell_gate(h))
+        c<span style="color:#f92672">=</span>c<span style="color:#f92672">+</span> inp<span style="color:#f92672">*</span>cell
+        out<span style="color:#f92672">=</span>torch<span style="color:#f92672">.</span>sigmoid(self<span style="color:#f92672">.</span>output_gate(h))
+        h<span style="color:#f92672">=</span>out<span style="color:#f92672">*</span>torch<span style="color:#f92672">.</span>tanh(c)
+
+        <span style="color:#66d9ef">return</span> h,(h,c)
+</code></pre></div><p>This is almost the same functionality that you will find in PyTorch&rsquo;s <code>nn.LSTM</code>. This can easily replace the <code>nn.RNN</code> layer in our model. Let&rsquo;s see if that would improve the performance</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LMModel4</span>(Module):
+    <span style="color:#66d9ef">def</span> __init__(self,vocab_sz,n_hidden,n_layers):
+        self<span style="color:#f92672">.</span>i_h <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Embedding(vocab_sz,n_hidden)
+        self<span style="color:#f92672">.</span>rnn<span style="color:#f92672">=</span>nn<span style="color:#f92672">.</span>LSTM(n_hidden,n_hidden,n_layers,batch_first<span style="color:#f92672">=</span>True)
+        self<span style="color:#f92672">.</span>h_o <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Linear(n_hidden,vocab_sz)
+        self<span style="color:#f92672">.</span>h <span style="color:#f92672">=</span> [torch<span style="color:#f92672">.</span>zeros(n_layers,bs,n_hidden) <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">2</span>)] <span style="color:#75715e">#LSTM gives 2 outputs, and we store both of them here</span>
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self,x):
+        res,h <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>rnn(self<span style="color:#f92672">.</span>i_h(x),self<span style="color:#f92672">.</span>h)
+        self<span style="color:#f92672">.</span>h<span style="color:#f92672">=</span>[h_<span style="color:#f92672">.</span>detach() <span style="color:#66d9ef">for</span> h_ <span style="color:#f92672">in</span> h]
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>h_o(res)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">reset</span>(self): 
+        <span style="color:#66d9ef">for</span> h <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>h: h<span style="color:#f92672">.</span>zero_()
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn<span style="color:#f92672">=</span>Learner(dls,LMModel4(len(vocab),<span style="color:#ae81ff">64</span>,<span style="color:#ae81ff">2</span>),
+              loss_func<span style="color:#f92672">=</span>CrossEntropyLossFlat(),
+              metrics<span style="color:#f92672">=</span>accuracy,cbs<span style="color:#f92672">=</span>ModelResetter)
+
+learn<span style="color:#f92672">.</span>fit_one_cycle(<span style="color:#ae81ff">15</span>,<span style="color:#ae81ff">1e-2</span>) <span style="color:#75715e">#we can train it at a higher learning rate, for a shorter time, and get better accuracy , since it now does not suffer from exploding/vanishing grads</span>
+</code></pre></div><!-- raw HTML omitted -->
+<p>This is much better! This is solely because LSTM was able to prevent vanishing/exploding gradients to some extent.</p>
+<p>But its not that LSTMs are completely free from VG/EG problem.
+We need to perform a few tweaks to this, as was introduced in <a href="https://arxiv.org/abs/1708.02182">this</a> paper. The resultant LSTM is called the <em>AWD-LSTM</em>, which we used to build the text classifier initially. It involves applying certain regularization techniques on the Neural Net layers inside the LSTM, as well as a weight tying method.</p>
+<h3 id="regularizing-lstms">Regularizing LSTMs</h3>
+<p>Some additional things were implemented in this paper as well. However, we will only be implementing Dropout. We will also be implementing weight tying, which is essentially assigning the same weight matrix to the input layer and the output layer.</p>
+<p>The idea is as follows. The input layers job is to do a mapping from a token to an embedding vector, and the job of the output layer is to do a mapping from an embedding layer to a token. So ideally, they both are doing the same thing, and dont&rsquo;t need two different matrices to perform this task.</p>
+<h4 id="dropout">Dropout</h4>
+<p>We have shown a simple demonstration of how to implement dropout in PyTorch, but this is essentially the same as PyTorch&rsquo;s nn.Dropout. (Through PyTorch&rsquo;s native implementation is done in C, not python)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#implementation in PyTorch is really simple. Though PyTorch&#39;s native layer is written in C, not python</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Dropout</span>(Module):
+    <span style="color:#66d9ef">def</span> __init__(self,p): self<span style="color:#f92672">.</span>p<span style="color:#f92672">=</span>p
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self,x):
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> self<span style="color:#f92672">.</span>training: <span style="color:#66d9ef">return</span> x <span style="color:#75715e">#pytorch retains the state of the optimizer (whether we are in training process, or validation process). Dropout is one of the main reasons for this</span>
+        mask<span style="color:#f92672">=</span>x<span style="color:#f92672">.</span>new(<span style="color:#f92672">*</span>x<span style="color:#f92672">.</span>shape)<span style="color:#f92672">.</span>bernoulli_(<span style="color:#ae81ff">1</span><span style="color:#f92672">-</span>p) <span style="color:#75715e">#retain 1-p neurons randomly. This random process is called the bernoulles process of selection</span>
+        <span style="color:#66d9ef">return</span> x<span style="color:#f92672">*</span>mask<span style="color:#f92672">.</span>div_(<span style="color:#ae81ff">1</span><span style="color:#f92672">-</span>p)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#960050;background-color:#1e0010">??</span>nn<span style="color:#f92672">.</span>Dropout
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#960050;background-color:#1e0010">??</span>F<span style="color:#f92672">.</span>dropout
+<span style="color:#75715e">#torch._VF or torch. variable functions module is an alias of torch._C._VariableFunctions</span>
+<span style="color:#75715e"># https://github.com/pytorch/pytorch/blob/master/torch/_VF.py</span>
+</code></pre></div><p>And integrating this into our model is as simple as follows</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LMModel5</span>(Module):
+    <span style="color:#66d9ef">def</span> __init__(self,vocab_sz,n_hidden,n_layers,p):
+        self<span style="color:#f92672">.</span>i_h <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Embedding(vocab_sz,n_hidden)
+        self<span style="color:#f92672">.</span>rnn <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>LSTM(n_hidden,n_hidden,n_layers,batch_first<span style="color:#f92672">=</span>True)
+        self<span style="color:#f92672">.</span>drop<span style="color:#f92672">=</span>nn<span style="color:#f92672">.</span>Dropout(p)
+        self<span style="color:#f92672">.</span>h_o<span style="color:#f92672">=</span>nn<span style="color:#f92672">.</span>Linear(n_hidden,vocab_sz)
+        self<span style="color:#f92672">.</span>h_o<span style="color:#f92672">.</span>weight<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>i_h<span style="color:#f92672">.</span>weight <span style="color:#75715e">#weight tying</span>
+        self<span style="color:#f92672">.</span>h<span style="color:#f92672">=</span>[torch<span style="color:#f92672">.</span>zeros(n_layers,bs,n_hidden) <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">2</span>)]
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self,x):
+        raw,h <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>rnn(self<span style="color:#f92672">.</span>i_h(x),self<span style="color:#f92672">.</span>h)
+        out<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>drop(raw)
+        self<span style="color:#f92672">.</span>h <span style="color:#f92672">=</span> [h_<span style="color:#f92672">.</span>detach() <span style="color:#66d9ef">for</span> h_ <span style="color:#f92672">in</span> h]
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>h_o(out),raw,out <span style="color:#75715e">#we&#39;ve to return 3 things</span>
+    
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">reset</span>(self):
+        <span style="color:#66d9ef">for</span> h <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>h: h<span style="color:#f92672">.</span>zero_()
+</code></pre></div><p>Let us build our model using this architecture</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn<span style="color:#f92672">=</span>TextLearner(dls,LMModel5(len(vocab),<span style="color:#ae81ff">64</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">0.5</span>), loss_func<span style="color:#f92672">=</span>CrossEntropyLossFlat(), metrics<span style="color:#f92672">=</span>accuracy)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn<span style="color:#f92672">.</span>fit_one_cycle(<span style="color:#ae81ff">15</span>,<span style="color:#ae81ff">1e-2</span>,wd<span style="color:#f92672">=</span><span style="color:#ae81ff">0.1</span>) <span style="color:#75715e">#adding some additional regularization</span>
+</code></pre></div><!-- raw HTML omitted -->
+<p>This is amazing. The performance has vastly improved. With this we finish our discussion on LSTMs. Now let us move to the present state-of-the-art architecture used in NLP. This architecture is called as <code>Transformer</code>, which originated from <a href="https://arxiv.org/abs/1706.03762">this</a> paper. We won&rsquo;t be explaining each module step by step, but if you are interested, you can find an intuitive explanation <a href="https://www.youtube.com/watch?v=4Bdc55j80l8">here</a>.</p>
+<p>You may have heard about the famous GPT models from OpenAI, which have performed some really complex tasks, like talking, writing code, building websites from mere vague ideas given as inputs, create art, and some other really amazing things. You can find a brief demo <a href="https://www.youtube.com/watch?v=PqbB07n_uQ4">here</a>, in which a person interviews an AI model, and the results are really amazing. I recommend you watch it fully.</p>
+<h2 id="transformers">Transformers</h2>
+<p>We&rsquo;ll essentially be using pretrained hodels that are provided by HuggingFace&rsquo;s transformer library. You can find the source code <a href="https://github.com/huggingface/transformers">here</a> and the documentations <a href="https://huggingface.co/transformers/pretrained_models.html">here</a>. Let us start by building our models and finetuning transformers for our specific tasks.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#960050;background-color:#1e0010">!</span>pip install <span style="color:#f92672">-</span>Uq transformers <span style="color:#f92672">&gt;./</span>temp
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> transformers <span style="color:#f92672">import</span> GPT2LMHeadModel,GPT2TokenizerFast
+</code></pre></div><p>So we&rsquo;ll be using a basic version of Transformers, called as GPT2, which itself is quite memory intensive. However, you can explore by changing the model by looking up the documentations.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">pretrained_weights<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;gpt2&#39;</span> <span style="color:#75715e">#basic version, which itself takes a lot of memory</span>
+tokenizer <span style="color:#f92672">=</span> GPT2TokenizerFast<span style="color:#f92672">.</span>from_pretrained(pretrained_weights)
+model<span style="color:#f92672">=</span>GPT2LMHeadModel<span style="color:#f92672">.</span>from_pretrained(pretrained_weights) <span style="color:#75715e">#this is a pretrained model.</span>
+</code></pre></div><pre><code>HBox(children=(FloatProgress(value=0.0, description='Downloading', max=1042301.0, style=ProgressStyle(descript…
+
+
+
+
+
+
+HBox(children=(FloatProgress(value=0.0, description='Downloading', max=456318.0, style=ProgressStyle(descripti…
+
+
+
+
+
+
+HBox(children=(FloatProgress(value=0.0, description='Downloading', max=1355256.0, style=ProgressStyle(descript…
+
+
+
+
+
+
+HBox(children=(FloatProgress(value=0.0, description='Downloading', max=665.0, style=ProgressStyle(description_…
+
+
+
+
+
+
+HBox(children=(FloatProgress(value=0.0, description='Downloading', max=548118077.0, style=ProgressStyle(descri…
+</code></pre>
+<p>Just to get a brief idea about what our model looks like, let us look into the representation of the model</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">model
+</code></pre></div><pre><code>GPT2LMHeadModel(
+  (transformer): GPT2Model(
+    (wte): Embedding(50257, 768)
+    (wpe): Embedding(1024, 768)
+    (drop): Dropout(p=0.1, inplace=False)
+    (h): ModuleList(
+      (0): Block(
+        (ln_1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (attn): Attention(
+          (c_attn): Conv1D()
+          (c_proj): Conv1D()
+          (attn_dropout): Dropout(p=0.1, inplace=False)
+          (resid_dropout): Dropout(p=0.1, inplace=False)
+        )
+        (ln_2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (mlp): MLP(
+          (c_fc): Conv1D()
+          (c_proj): Conv1D()
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+      )
+      (1): Block(
+        (ln_1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (attn): Attention(
+          (c_attn): Conv1D()
+          (c_proj): Conv1D()
+          (attn_dropout): Dropout(p=0.1, inplace=False)
+          (resid_dropout): Dropout(p=0.1, inplace=False)
+        )
+        (ln_2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (mlp): MLP(
+          (c_fc): Conv1D()
+          (c_proj): Conv1D()
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+      )
+      (2): Block(
+        (ln_1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (attn): Attention(
+          (c_attn): Conv1D()
+          (c_proj): Conv1D()
+          (attn_dropout): Dropout(p=0.1, inplace=False)
+          (resid_dropout): Dropout(p=0.1, inplace=False)
+        )
+        (ln_2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (mlp): MLP(
+          (c_fc): Conv1D()
+          (c_proj): Conv1D()
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+      )
+      (3): Block(
+        (ln_1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (attn): Attention(
+          (c_attn): Conv1D()
+          (c_proj): Conv1D()
+          (attn_dropout): Dropout(p=0.1, inplace=False)
+          (resid_dropout): Dropout(p=0.1, inplace=False)
+        )
+        (ln_2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (mlp): MLP(
+          (c_fc): Conv1D()
+          (c_proj): Conv1D()
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+      )
+      (4): Block(
+        (ln_1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (attn): Attention(
+          (c_attn): Conv1D()
+          (c_proj): Conv1D()
+          (attn_dropout): Dropout(p=0.1, inplace=False)
+          (resid_dropout): Dropout(p=0.1, inplace=False)
+        )
+        (ln_2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (mlp): MLP(
+          (c_fc): Conv1D()
+          (c_proj): Conv1D()
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+      )
+      (5): Block(
+        (ln_1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (attn): Attention(
+          (c_attn): Conv1D()
+          (c_proj): Conv1D()
+          (attn_dropout): Dropout(p=0.1, inplace=False)
+          (resid_dropout): Dropout(p=0.1, inplace=False)
+        )
+        (ln_2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (mlp): MLP(
+          (c_fc): Conv1D()
+          (c_proj): Conv1D()
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+      )
+      (6): Block(
+        (ln_1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (attn): Attention(
+          (c_attn): Conv1D()
+          (c_proj): Conv1D()
+          (attn_dropout): Dropout(p=0.1, inplace=False)
+          (resid_dropout): Dropout(p=0.1, inplace=False)
+        )
+        (ln_2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (mlp): MLP(
+          (c_fc): Conv1D()
+          (c_proj): Conv1D()
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+      )
+      (7): Block(
+        (ln_1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (attn): Attention(
+          (c_attn): Conv1D()
+          (c_proj): Conv1D()
+          (attn_dropout): Dropout(p=0.1, inplace=False)
+          (resid_dropout): Dropout(p=0.1, inplace=False)
+        )
+        (ln_2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (mlp): MLP(
+          (c_fc): Conv1D()
+          (c_proj): Conv1D()
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+      )
+      (8): Block(
+        (ln_1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (attn): Attention(
+          (c_attn): Conv1D()
+          (c_proj): Conv1D()
+          (attn_dropout): Dropout(p=0.1, inplace=False)
+          (resid_dropout): Dropout(p=0.1, inplace=False)
+        )
+        (ln_2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (mlp): MLP(
+          (c_fc): Conv1D()
+          (c_proj): Conv1D()
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+      )
+      (9): Block(
+        (ln_1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (attn): Attention(
+          (c_attn): Conv1D()
+          (c_proj): Conv1D()
+          (attn_dropout): Dropout(p=0.1, inplace=False)
+          (resid_dropout): Dropout(p=0.1, inplace=False)
+        )
+        (ln_2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (mlp): MLP(
+          (c_fc): Conv1D()
+          (c_proj): Conv1D()
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+      )
+      (10): Block(
+        (ln_1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (attn): Attention(
+          (c_attn): Conv1D()
+          (c_proj): Conv1D()
+          (attn_dropout): Dropout(p=0.1, inplace=False)
+          (resid_dropout): Dropout(p=0.1, inplace=False)
+        )
+        (ln_2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (mlp): MLP(
+          (c_fc): Conv1D()
+          (c_proj): Conv1D()
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+      )
+      (11): Block(
+        (ln_1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (attn): Attention(
+          (c_attn): Conv1D()
+          (c_proj): Conv1D()
+          (attn_dropout): Dropout(p=0.1, inplace=False)
+          (resid_dropout): Dropout(p=0.1, inplace=False)
+        )
+        (ln_2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (mlp): MLP(
+          (c_fc): Conv1D()
+          (c_proj): Conv1D()
+          (dropout): Dropout(p=0.1, inplace=False)
+        )
+      )
+    )
+    (ln_f): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+  )
+  (lm_head): Linear(in_features=768, out_features=50257, bias=False)
+)
+</code></pre>
+<p>As we saw before, we need to take a peice of text, tokenize it, and feed it to the model. the transformers library already provides us with a vicabulary that was used to train the model, so let us see what the model performs just without any finetuning.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#lets see how the tokenizer works</span>
+ids<span style="color:#f92672">=</span>tokenizer<span style="color:#f92672">.</span>encode(<span style="color:#e6db74">&#39;Welcome to the 13th session on Practical Machine Learning&#39;</span>)
+ids
+</code></pre></div><pre><code>[14618, 284, 262, 1511, 400, 6246, 319, 13672, 605, 10850, 18252]
+</code></pre>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#you can even decode the tokens back to original words</span>
+tokenizer<span style="color:#f92672">.</span>decode(ids)
+</code></pre></div><pre><code>'Welcome to the 13th session on Practical Machine Learning'
+</code></pre>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#since our model is pretrained, you can directly use it to get predictions</span>
+t<span style="color:#f92672">=</span>torch<span style="color:#f92672">.</span>LongTensor(ids)[None]
+preds<span style="color:#f92672">=</span>model<span style="color:#f92672">.</span>generate(t,max_length<span style="color:#f92672">=</span><span style="color:#ae81ff">50</span>) <span style="color:#75715e">#by default, the length of predictions is 20 (words). You can change it using the max_length parameter</span>
+</code></pre></div><pre><code>Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
+</code></pre>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">preds<span style="color:#f92672">.</span>shape,preds[<span style="color:#ae81ff">0</span>] <span style="color:#75715e">#by default, the predictions are of length 20</span>
+</code></pre></div><pre><code>(torch.Size([1, 50]),
+ tensor([14618,   284,   262,  1511,   400,  6246,   319, 13672,   605, 10850,
+         18252,    13,   198,   198,   464,  6246,   481,   307,  2714,   379,
+           262,  2059,   286,  3442,    11, 14727,    11,   319,  2693,  1367,
+            11,  2177,    13,   198,   198,   464,  6246,   481,   307,  2714,
+           379,   262,  2059,   286,  3442,    11, 14727,    11,   319,  2693]))
+</code></pre>
+<p>The output is in the form of numerical tokens. Let us decode these into words, to see what the model has predicted.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">tokenizer<span style="color:#f92672">.</span>decode(preds[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>numpy())
+</code></pre></div><pre><code>'Welcome to the 13th session on Practical Machine Learning.\n\nThe session will be held at the University of California, Berkeley, on September 11, 2017.\n\nThe session will be held at the University of California, Berkeley, on September'
+</code></pre>
+<p>This is pretty impressive on its own. But let us fine tune this model onn our own dataset. We&rsquo;ll be using a smaller version of WIKITEXT, called WIKITEXT2. (Just to speed up the training process)</p>
+<h3 id="finetuning-the-transformers-model">Finetuning the Transformers Model</h3>
+<p>Let us first download the dataset and set it up. Our task it to build  a language model that takes in a series of text, and also outputs the same series, just offset by one token.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">path <span style="color:#f92672">=</span> untar_data(URLs<span style="color:#f92672">.</span>WIKITEXT_TINY)
+path<span style="color:#f92672">.</span>ls()
+</code></pre></div><pre><code>(#2) [Path('/root/.fastai/data/wikitext-2/test.csv'),Path('/root/.fastai/data/wikitext-2/train.csv')]
+</code></pre>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df_train<span style="color:#f92672">=</span>pd<span style="color:#f92672">.</span>read_csv(path<span style="color:#f92672">/</span><span style="color:#e6db74">&#39;train.csv&#39;</span>,header<span style="color:#f92672">=</span>None)
+df_valid<span style="color:#f92672">=</span>pd<span style="color:#f92672">.</span>read_csv(path<span style="color:#f92672">/</span><span style="color:#e6db74">&#39;test.csv&#39;</span>,header<span style="color:#f92672">=</span>None)
+df_train<span style="color:#f92672">.</span>head()
+</code></pre></div><!-- raw HTML omitted -->
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<p>As we mentioned before, when building Language Models, we don&rsquo;t care what data is training set, and what is validation set. So we simply club all the data together.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#concatenating all texts in one array</span>
+all_texts <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>concatenate([df_train[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>values,df_valid[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>values])
+</code></pre></div><p>Now let us build a transformation function that takes in words, and converts them into numericalized tokens. Its just a more efficient way of doing this. Previously, we converted all text to numbers beforehand. Now we will do this while running the model.</p>
+<p>In a fastai Transform you can define:</p>
+<ul>
+<li>
+<p>an encodes method that is applied when you call the transform (a bit like the forward method in a nn.Module)</p>
+</li>
+<li>
+<p>a decodes method that is applied when you call the decode method of the transform, if you need to decode anything for showing purposes (like converting ids to a text here)</p>
+</li>
+<li>
+<p>a setups method that sets some inner state of the Transform (not needed here so we skip it)</p>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TransformersTokenizer</span>(Transform):
+    <span style="color:#66d9ef">def</span> __init__(self,tokenizer): self<span style="color:#f92672">.</span>tokenizer<span style="color:#f92672">=</span>tokenizer
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">encodes</span>(self,x):
+        toks<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>tokenizer<span style="color:#f92672">.</span>tokenize(x)
+        <span style="color:#66d9ef">return</span> tensor(self<span style="color:#f92672">.</span>tokenizer<span style="color:#f92672">.</span>convert_tokens_to_ids(toks))
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">decodes</span>(self,x): <span style="color:#66d9ef">return</span> TitledStr(self<span style="color:#f92672">.</span>tokenizer<span style="color:#f92672">.</span>decode(x<span style="color:#f92672">.</span>cpu()<span style="color:#f92672">.</span>numpy()))
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">splits<span style="color:#f92672">=</span>[range_of(df_train),list(range(len(df_train),len(all_texts)))]
+tls<span style="color:#f92672">=</span>TfmdLists(all_texts,TransformersTokenizer(tokenizer),splits<span style="color:#f92672">=</span>splits,dl_type<span style="color:#f92672">=</span>LMDataLoader) <span style="color:#75715e">#LMDataloader, because this is a LM problem, dependent var itself being a sequence</span>
+
+<span style="color:#75715e">#ignore this error</span>
+</code></pre></div><pre><code>Token indices sequence length is longer than the specified maximum sequence length for this model (4576 &gt; 1024). Running this sequence through the model will result in indexing errors
+</code></pre>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">tls<span style="color:#f92672">.</span>train[<span style="color:#ae81ff">0</span>],tls<span style="color:#f92672">.</span>valid[<span style="color:#ae81ff">0</span>] <span style="color:#75715e">#look the same, but only begin and end the same way</span>
+</code></pre></div><pre><code>(tensor([220, 198, 796,  ..., 198, 220, 198]),
+ tensor([220, 198, 796,  ..., 198, 220, 198]))
+</code></pre>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">tls<span style="color:#f92672">.</span>tfms(tls<span style="color:#f92672">.</span>train<span style="color:#f92672">.</span>items[<span style="color:#ae81ff">0</span>])<span style="color:#f92672">.</span>shape, tls<span style="color:#f92672">.</span>tfms(tls<span style="color:#f92672">.</span>valid<span style="color:#f92672">.</span>items[<span style="color:#ae81ff">0</span>])<span style="color:#f92672">.</span>shape <span style="color:#75715e">#see? they&#39;re not exaclty the same. They infact have different shapes</span>
+</code></pre></div><pre><code>(torch.Size([4576]), torch.Size([1485]))
+</code></pre>
+<p>Let us see how we can use the Transform&rsquo;s decode function to decode the numericalised tokens back to words, using the <code>show_at</code> function in the fastai library.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#we can have a look at decodes using the show_at function</span>
+show_at(tls<span style="color:#f92672">.</span>train,<span style="color:#ae81ff">0</span>)
+</code></pre></div><pre><code> = 2013 – 14 York City F.C. season = 
+ 
+ The 2013 – 14 season was the &lt;unk&gt; season of competitive association football and 77th season in the Football League played by York City Football Club, a professional football club based in York, North Yorkshire, England. Their 17th @-@ place finish in 2012 – 13 meant it was their second consecutive season in League Two. The season ran from 1 July 2013 to 30 June 2014. 
+ Nigel Worthington, starting his first full season as York manager, made eight permanent summer signings. By the turn of the year York were only above the relegation zone on goal difference, before a 17 @-@ match unbeaten run saw the team finish in seventh @-@ place in the 24 @-@ team 2013 – 14 Football League Two. This meant York qualified for the play @-@ offs, and they were eliminated in the semi @-@ final by Fleetwood Town. York were knocked out of the 2013 – 14 FA Cup, Football League Cup and Football League Trophy in their opening round matches. 
+ 35 players made at least one appearance in nationally organised first @-@ team competition, and there were 12 different &lt;unk&gt;. Defender Ben Davies missed only five of the fifty @-@ two competitive matches played over the season. Wes Fletcher finished as leading scorer with 13 goals, of which 10 came in league competition and three came in the FA Cup. The winner of the &lt;unk&gt; of the Year award, voted for by the club's supporters, was &lt;unk&gt; Oyebanjo. 
+ 
+ = = Background and pre @-@ season = = 
+ 
+ The 2012 – 13 season was York City's first season back in the Football League, having won the Conference Premier play @-@ offs in 2011 – 12 after &lt;unk&gt; years in the Football Conference. Manager Gary Mills was sacked in March 2013 following an 11 @-@ match run without a victory, and was replaced by former Northern Ireland manager Nigel Worthington. Despite being in the relegation zone with three matches remaining, Worthington led the team to safety from relegation after a 1 – 0 win away to Dagenham &amp; Redbridge on the final day of the season. York finished the season in 17th @-@ place in the 2012 – 13 League Two table. 
+ Following the previous season's conclusion Lee &lt;unk&gt;, Jon &lt;unk&gt;, Chris &lt;unk&gt;, Ben Everson, Scott Kerr, David &lt;unk&gt;, Patrick &lt;unk&gt;, Michael Potts, Jamie Reed and Jason Walker were released by York, while &lt;unk&gt; Blair departed for Fleetwood Town. David McGurk, &lt;unk&gt; Oyebanjo, Danny Parslow, Tom Platt and Chris Smith signed new contracts with the club. New players signed ahead of the start of the season were goalkeeper Chris &lt;unk&gt; on a season @-@ long loan from Blackpool, defender Ben Davies on loan from Preston North End, midfielders Craig Clay from Chesterfield and Lewis Montrose from Gillingham, winger &lt;unk&gt; Puri from St &lt;unk&gt; and strikers Ryan Bowman from Hereford United, Richard Cresswell from Sheffield United, Wes Fletcher from Burnley and Ryan Jarvis from Torquay United. Defender Mike Atkinson and striker Chris Dickinson entered the first @-@ team squad from the youth team after agreeing professional contracts. 
+ York retained the previous season's home and away kits. The home kit comprised red shirts with white sleeves, light blue shorts and white socks. The away kit included light blue shirts with white sleeves, white shorts and light blue socks. &lt;unk&gt; Health continued as shirt sponsors for the second successive season. 
+ 
+ = = Review = = 
+ 
+ 
+ = = = August = = = 
+ 
+ York began the season with a 1 – 0 home win over the previous season's play @-@ off finalists, Northampton Town, with &lt;unk&gt; Jarvis scoring the winning goal in the 90th @-@ minute. However, defeat came in York's match against Championship side Burnley in the first round of the League Cup, going down 4 – 0 at home. The team endured their first league defeat of the season in the following game after being beaten 2 – 0 away by Dagenham &amp; Redbridge, the home team scoring in each half. York then held Hartlepool United to a 0 – 0 home draw, before being beaten 3 – 2 away by Bristol Rovers, in which Jarvis scored twice before John @-@ Joe O 'Toole scored the winning goal for the home team in the 67th @-@ minute. Two signings were made shortly before the transfer deadline ; defender George Taft was signed on a one @-@ month loan from Leicester City, while Middlesbrough midfielder Ryan Brobbel joined on a one @-@ month loan. &lt;unk&gt; John &lt;unk&gt;, who had been told he had no future with the club, departed after signing for FC Halifax Town. Jarvis gave York the lead away at Exeter City before Alan &lt;unk&gt; scored in each half to see the home team win 2 – 1. 
+ 
+ = = = September = = = 
+ 
+ York suffered their first home league defeat of the season after AFC Wimbledon won 2 – 0, with Michael Smith scoring in each half. Former Ipswich Town midfielder Josh Carson, who had a spell on loan with York the previous season, signed a contract until the end of 2013 – 14 and Sheffield United midfielder Elliott &lt;unk&gt; signed on a one @-@ month loan. Brobbel opened the scoring in the second minute of his home debut against Mansfield Town, although the away team went on to score twice to win 2 – 1. York's run of four defeats ended following a 1 – 1 draw away to Wycombe Wanderers, in which McGurk gave York the lead before the home team levelled through Dean Morgan. Taft was sent back to Leicester after he fell behind McGurk, Parslow and Smith in the pecking order for a central defensive berth. York achieved their first win since the opening day of the season after beating Portsmouth 4 – 2 at home, with Fletcher ( 2 ), Montrose and Jarvis scoring. 
+ 
+ = = = October = = = 
+ 
+ Defender Luke O 'Neill was signed from Burnley on a 28 @-@ day emergency loan. He made his debut in York's 3 – 0 win away at Torquay, which was the team's first successive win of the season. York were knocked out of the Football League Trophy in the second round after being beaten 3 – 0 at home by League One team Rotherham United, before their winning streak in the league was ended with a 3 – 0 defeat away to Newport County. York drew 2 – 2 away to Chesterfield, having taken a two @-@ goal lead through O 'Neill and Jarvis, before the home team fought back through Armand &lt;unk&gt; and Jay O &lt;unk&gt;. The team then hosted Fleetwood Town, and the visitors won 2 – 0 with goals scored in each half by Gareth Evans and &lt;unk&gt; Matt. Scunthorpe United were beaten 4 – 1 at home to end York's three @-@ match run without a win, with all the team's goals coming in the first half from Carson, Fletcher and Brobbel ( 2 ). 
+ 
+ = = = November = = = 
+ 
+ Bowman scored his first goals for York away to Cheltenham Town, as York twice fought back from behind to draw 2 – 2. York drew 3 – 3 away to Bristol Rovers to earn a first round replay in the FA Cup, taking the lead through Jarvis before Eliot Richards equalised for the home team. Carson scored a 30 yard volley to put York back in the lead, and after Bristol Rovers goals from Matt &lt;unk&gt; and Chris &lt;unk&gt;, Fletcher scored an 86th @-@ minute equaliser for York. Bowman scored with a header from an O 'Neill cross to open the scoring at home to Plymouth Argyle, which was the first goal the visitors had conceded in 500 minutes of action. However, Plymouth equalised 11 minutes later through &lt;unk&gt; &lt;unk&gt; and the match finished a 1 – 1 draw. York were knocked out of the FA Cup after losing 3 – 2 at home to Bristol Rovers in a first round replay ; the visitors were 3 – 0 up by 50 @-@ minutes before Fletcher pulled two back for York with a penalty and a long @-@ range strike. 
+ Defender Keith Lowe, of Cheltenham, and goalkeeper Nick Pope, of Charlton Athletic, were signed on loan until January 2014. They both played in York's first league defeat in four weeks, 2 – 1 away, to Southend United. &lt;unk&gt; &lt;unk&gt; gave Southend the lead early into the match and Bowman equalised for York with a low strike during the second half, before Luke Prosser scored the winning goal for the home side in stoppage time. With Pope preferred in goal, &lt;unk&gt; returned to Blackpool on his own accord, although his loan agreement would stay in place until January 2014. York then drew 0 – 0 away to Morecambe. After Pope was recalled from his loan by Charlton, York signed Wolverhampton Wanderers goalkeeper Aaron McCarey on loan until January 2014. McCarey kept a clean sheet in York's 0 – 0 home draw with Rochdale. 
+ 
+ = = = December = = = 
+ 
+ Cresswell retired from playing as a result of an eye complaint and a knee injury. York drew 1 – 1 away to Burton Albion, with an own goal scored by Shane &lt;unk&gt; @-@ &lt;unk&gt; giving York the lead in the 64th @-@ minute before the home team equalised eight minutes later through Billy &lt;unk&gt;. Atkinson was released after failing to force himself into the first team and signed for Scarborough Athletic, with whom he had been on loan. York drew 0 – 0 at home with second @-@ placed Oxford United, in which Carson came closest to scoring with a volley that &lt;unk&gt; across the face of the goal. This was followed by another draw after the match away to Accrington Stanley finished 1 – 1, with the home team &lt;unk&gt; 10 minutes after a Fletcher penalty had given York the lead in the 35th @-@ minute. Striker &lt;unk&gt; McDonald, who had been released by Peterborough United, was signed on a contract until the end of the season. York's last match of 2013 was a 2 – 1 defeat away at Bury, a result that ended York's run of consecutive draws at five. The home team were 2 – 0 up by the 19th @-@ minute, before Michael Coulson scored York's goal in the 73rd @-@ minute. This result meant York would begin 2014 in 22nd @-@ position in the table, only out of the relegation zone on goal difference. 
+ 
+ = = = January = = = 
+ 
+ Jarvis scored the only goal in York's first win since October 2013, a 1 – 0 home victory over Morecambe on New Year's Day. McCarey was recalled by Wolverhampton Wanderers due to an injury to one of their &lt;unk&gt;, while O 'Neill was recalled by Burnley to take part in their FA Cup match. York achieved back @-@ to @-@ back wins for the first time since October 2013 after Dagenham &amp; Redbridge were beaten 3 – 1 at home, with Bowman opening the scoring in the second half before Fletcher scored twice. Adam Reed, who had a spell on loan with York in the previous season, was signed on a contract until the end of the season after parting company with Burton. Davies'loan was extended, while Brobbel and &lt;unk&gt; returned to their parent clubs. Cheltenham club captain Russell Penn, a midfielder, was signed on a two @-@ and @-@ a @-@ half @-@ year contract for an undisclosed fee. Lowe was subsequently signed permanently from Cheltenham on a two @-@ and @-@ a @-@ half @-@ year contract for an undisclosed fee. Having been allowed to leave the club on a free transfer, Ashley Chambers signed for Conference Premier club Cambridge United. 
+ York achieved three successive wins for the first time in 2013 – 14 after beating Northampton 2 – 0 away, with Bowman and Fletcher scoring in three @-@ second half minutes. Defender John McCombe was signed on a two @-@ and @-@ a @-@ half @-@ year contract following his release from Mansfield, before Clay and Jamal &lt;unk&gt; left York by mutual consent. Pope returned to York on loan from Charlton for the remainder of the season. York's run of wins ended with a 0 – 0 draw at home to Bristol Rovers, before their first defeat of the year came after losing 2 – 0 away to Hartlepool. Preston winger Will Hayhurst, a Republic of Ireland under @-@ 21 international, was signed on a one @-@ month loan. York fell to a successive defeat for the first time since September 2013 after being beaten 2 – 0 at home by Chesterfield. Shortly after the match, Smith left the club by mutual consent to pursue first @-@ team football. 
+ 
+ = = = February = = = 
+ 
+ Fletcher scored a 90th @-@ minute winner for York away to Fleetwood in a 2 – 1 win, a result that ended Fleetwood's five @-@ match unbeaten run. York then drew 0 – 0 at home to fellow mid @-@ table team Cheltenham, before beating Plymouth 4 – 0 away with goals from Fletcher, McCombe ( 2 ) and Carson as the team achieved successive away wins for the first time in 2013 – 14. York went without scoring for a fourth consecutive home match after drawing 0 – 0 with Southend. Having worn the &lt;unk&gt; since an injury to McGurk, Penn was appointed captain for the rest of the season, a position that had earlier been held by Smith and Parslow. 
+ 
+ = = = March = = = 
+ 
+ York achieved their first home win in five matches after beating Exeter 2 – 1, with first half goals scored by McCombe and Coulson. Hayhurst's loan was extended to the end of the season, having impressed in his six appearances for the club. Coulson scored again with the only goal, a 41st @-@ minute header, in York's 1 – 0 away win over AFC Wimbledon. Bowman scored the only goal with a 32nd @-@ minute penalty as York won 1 – 0 away against Mansfield, in which Fletcher missed the opportunity to extend the lead when his stoppage time penalty was saved by Alan Marriott. York moved one place outside the play @-@ offs with a 2 – 0 home win over Wycombe, courtesy of a second Bowman penalty in as many matches and a Carson goal from the edge of the penalty area. Coulson scored York's only goal in a 1 – 0 away win over struggling Portsmouth with a low volley in the fifth @-@ minute ; this result meant York moved into the play @-@ offs in seventh @-@ place with eight fixtures remaining. 
+ Striker Calvin Andrew, who had been released by Mansfield in January 2014, was signed on a contract for the remainder of the season. He made his debut as a substitute in York's 1 – 0 home win over bottom of the table Torquay, in which Hayhurst scored the only goal in the 11th @-@ minute with an 18 yard shot that &lt;unk&gt; off Aaron &lt;unk&gt;. Middlesbrough winger Brobbel rejoined on loan until the end of the season, following an injury to Carson. York's run of successive wins ended on six matches after a 0 – 0 home draw with Burton, and this result saw York drop out of the play @-@ offs in eighth @-@ place. With the team recording six wins and one draw in March 2014, including six clean sheets, Worthington was named League Two Manager of the Month. 
+ 
+ = = = April = = = 
+ 
+ Pope made a number of saves as York held league leaders Rochdale to a 0 – 0 away draw, with a point being enough to lift the team back into seventh @-@ place. York were prevented from equalling a club record of eight consecutive clean sheets when Accrington scored a stoppage time equaliser in a 1 – 1 home draw, in which York had taken earlier taken the lead with a Coulson penalty. A 1 – 0 win away win over Oxford, which was decided by a second half Coulson penalty, resulted in York moving one place above their opponents and back into seventh @-@ place. York consolidated their place in a play @-@ off position after beating Bury 1 – 0 at home with a fifth @-@ minute goal scored by Lowe from a Hayhurst corner. The result meant York opened up a five @-@ point lead over eighth @-@ placed Oxford with two fixtures remaining. A place in the League Two play @-@ offs was secured following a 1 – 0 win over Newport at home, in which Coulson scored the only goal in the 77th @-@ minute with a 25 yard free kick. Pope earned a nomination for League Two Player of the Month for April 2014, having conceded only one goal in five matches in that period. 
+ 
+ = = = May = = = 
+ 
+ The league season concluded with an away match against divisional runners @-@ up Scunthorpe ; having gone two goals down York fought back to draw 2 – 2 with goals scored by Brobbel and Andrew. This result meant York finished the season in seventh @-@ place in League Two, and would thus play fourth @-@ placed Fleetwood in the play @-@ off semi @-@ final on the back of a 17 @-@ match unbeaten run. York lost 1 – 0 to Fleetwood in the first leg at &lt;unk&gt; Crescent ; the goal came from former York player &lt;unk&gt; Blair in the 50th @-@ minute, who scored from close range after Antoni &lt;unk&gt;'s shot was blocked on the line. A 0 – 0 draw away to Fleetwood in the second leg meant York were eliminated 1 – 0 on aggregate, ending the prospect of a second promotion in three seasons. At an awards night held at York Racecourse, Oyebanjo was voted &lt;unk&gt; of the Year for 2013 – 14. 
+ 
+ = = Summary and aftermath = = 
+ 
+ York mostly occupied the bottom half of the table before the turn of the year, and dropped as low as 23rd in September 2013. During February 2014 the team broke into the top half of the table and with one match left were in sixth @-@ place. York's defensive record was the third best in League Two with 41 goals conceded, bettered only by Southend ( 39 ) and Chesterfield ( 40 ). Davies made the highest number of appearances over the season, appearing in 47 of York's 52 matches. Fletcher was York's top scorer in the league and in all competitions, with 10 league goals and 13 in total. He was the only player to reach double figures, and was followed by Jarvis with nine goals. 
+ After the season ended York released Tom Allan, Andrew, Dickinson, McDonald, Puri and Reed, while McGurk retired from professional football. Bowman and Oyebanjo left to sign for Torquay and Crawley Town respectively while Coulson signed a new contract with the club. York's summer signings included goalkeeper Jason &lt;unk&gt; from Tranmere Rovers, defenders &lt;unk&gt; &lt;unk&gt; from Dagenham, Marvin McCoy from Wycombe and Dave Winfield from Shrewsbury Town, midfielders &lt;unk&gt; &lt;unk&gt; from Mansfield, Anthony &lt;unk&gt; from Southend and Luke &lt;unk&gt; from Shrewsbury and striker Jake Hyde from &lt;unk&gt;. 
+ 
+ = = Match details = = 
+ 
+ League positions are sourced by &lt;unk&gt;, while the remaining information is referenced individually. 
+ 
+ = = = Football League Two = = = 
+ 
+ 
+ = = = League table ( part ) = = = 
+ 
+ 
+ = = = FA Cup = = = 
+ 
+ 
+ = = = League Cup = = = 
+ 
+ 
+ = = = Football League Trophy = = = 
+ 
+ 
+ = = = Football League Two play @-@ offs = = = 
+ 
+ 
+ = = &lt;unk&gt; = = 
+ 
+ 
+ = = = In = = = 
+ 
+ &lt;unk&gt; around club names denote the player's contract with that club had expired before he joined York. 
+ 
+ = = = Out = = = 
+ 
+ &lt;unk&gt; around club names denote the player joined that club after his York contract expired. 
+ 
+ = = = Loan in = = = 
+ 
+ 
+ = = = Loan out = = = 
+ 
+ 
+ = = Appearances and goals = = 
+ 
+ Source : 
+ Numbers in parentheses denote appearances as substitute. 
+ Players with names struck through and marked left the club during the playing season. 
+ Players with names in italics and marked * were on loan from another club for the whole of their season with York. 
+ Players listed with no appearances have been in the &lt;unk&gt; squad but only as unused &lt;unk&gt;. 
+ Key to positions : &lt;unk&gt; – &lt;unk&gt; ; &lt;unk&gt; – Defender ; &lt;unk&gt; – &lt;unk&gt; ; &lt;unk&gt; – Forward 
+</code></pre>
+<p>Now that our dataset is setup, let us put the data into dataloaders.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">bs,sl <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">256</span>
+dls <span style="color:#f92672">=</span> tls<span style="color:#f92672">.</span>dataloaders(bs<span style="color:#f92672">=</span>bs,seq_len<span style="color:#f92672">=</span>sl)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">dls<span style="color:#f92672">.</span>show_batch(max_n<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</code></pre></div><!-- raw HTML omitted -->
+<p>There is one small tweak that needs to be done.</p>
+<p>The HuggingFace model will return a tuple in outputs, with the actual predictions and some additional activations (should we want to use them in some regularization scheme). To work inside the fastai training loop, we will need to drop those using a Callback: we use those to alter the behavior of the training loop.</p>
+<p>Here we need to write the event <code>after_pred</code> and replace <code>self.learn.pred</code> (which contains the predictions that will be passed to the loss function) by just its first element. In callbacks, there is a shortcut that lets you access any of the underlying Learner attributes so we can write <code>self.pred[0]</code> instead of <code>self.learn.pred[0]</code>. That shortcut only works for read access, not write, so we have to write <code>self.learn.pred</code> on the right side (otherwise we would set a pred attribute in the Callback).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DropOutput</span>(Callback):
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">after_pred</span>(self): self<span style="color:#f92672">.</span>learn<span style="color:#f92672">.</span>pred <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>pred[<span style="color:#ae81ff">0</span>]
+</code></pre></div><p>Let us build our learner class.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn <span style="color:#f92672">=</span> Learner(dls,model,loss_func<span style="color:#f92672">=</span>CrossEntropyLossFlat(),cbs<span style="color:#f92672">=</span>[DropOutput,RNNRegularizer],metrics<span style="color:#f92672">=</span>Perplexity())<span style="color:#f92672">.</span>to_fp16() 
+<span style="color:#75715e">#not using Accuracy because its a bad metric for RNNs. Even for very good models, the acuracy will reemain only 30% or so</span>
+</code></pre></div><p>Actually, before training, let us see how the model is working as is.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn<span style="color:#f92672">.</span>validate()
+<span style="color:#75715e">#seeing model performance even without training. Its actually good. In the vanilla RNN, the perplexity was around 50</span>
+</code></pre></div><pre><code>(#2) [3.6962380409240723,40.29542922973633]
+</code></pre>
+<p>This is pretty good. The perplexity is much lower than the value we saw in LSTM models. And we havent even trained yet!</p>
+<p>Let us train our model for one epoch, and see how it performs.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn<span style="color:#f92672">.</span>fit_one_cycle(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1e-4</span>)
+</code></pre></div><!-- raw HTML omitted -->
+<p>The perplexity has improved quite a lot. Let us see how the model performs now.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">prompt <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74"> = Unicorn = </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74"> </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74"> A unicorn is a magical creature with a rainbow tail and a horn&#34;</span>
+prompt_ids <span style="color:#f92672">=</span> tokenizer<span style="color:#f92672">.</span>encode(prompt)
+inp <span style="color:#f92672">=</span> tensor(prompt_ids)[None]<span style="color:#f92672">.</span>cuda()
+inp<span style="color:#f92672">.</span>shape
+</code></pre></div><pre><code>torch.Size([1, 21])
+</code></pre>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">preds<span style="color:#f92672">=</span>learn<span style="color:#f92672">.</span>model<span style="color:#f92672">.</span>generate(inp,max_length<span style="color:#f92672">=</span><span style="color:#ae81ff">50</span>,num_beams<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>,temperature<span style="color:#f92672">=</span><span style="color:#ae81ff">1.5</span>)
+tokenizer<span style="color:#f92672">.</span>decode(preds[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>cpu()<span style="color:#f92672">.</span>numpy())
+</code></pre></div><pre><code>Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
+
+
+
+
+
+'\n = Unicorn = \n \n A unicorn is a magical creature with a rainbow tail and a horn on its head.\n\nA unicorn is a magical creature with a rainbow tail and a horn on its head.\n\nA unicorn is a'
+</code></pre>
+<h2 id="review">Review</h2>
+<p>In this session, we learnt about NLP in Deep Learning. We learnt how to train state of the art models in NLP, including Vanilla RNNs, LSTMs, and Transformers. We learnt about self-supervised learning techniques in NLP as well. Hopefully this was an informative session.</p>
+<h2 id="exercise">Exercise</h2>
+<p>Your task is to train the transformer model on the text classification task using the ULMFiT Approach. You can use the word tokenization approach. The Transformer model is not exactly trained on WIKITEXT data, but you can use model as is, as it has already been pretrained. So you need</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+</code></pre></div></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#setting-up-the-data">Setting up the Data</a>
+      <ul>
+        <li><a href="#tokenizing-our-text">Tokenizing our text</a></li>
+        <li><a href="#numericalizing-the-tokens">Numericalizing the tokens</a></li>
+      </ul>
+    </li>
+    <li><a href="#creating-our-language-model">Creating our Language Model</a>
+      <ul>
+        <li><a href="#finetuning-a-language-model">Finetuning a Language Model</a></li>
+      </ul>
+    </li>
+    <li><a href="#text-classifier">Text classifier</a></li>
+    <li><a href="#creating-rnns-from-scratch">Creating RNNs from scratch</a>
+      <ul>
+        <li><a href="#setting-up-a-very-basic-dataset">Setting up a very basic dataset</a></li>
+        <li><a href="#building-a-simple-rnn">Building a simple RNN</a></li>
+        <li><a href="#improving-the-rnn">Improving the RNN</a></li>
+        <li><a href="#multilayer-rnns">Multilayer RNNs</a></li>
+      </ul>
+    </li>
+    <li><a href="#long-short-term-memory-lstm-models">Long Short Term Memory (LSTM) Models</a>
+      <ul>
+        <li><a href="#regularizing-lstms">Regularizing LSTMs</a></li>
+      </ul>
+    </li>
+    <li><a href="#transformers">Transformers</a>
+      <ul>
+        <li><a href="#finetuning-the-transformers-model">Finetuning the Transformers Model</a></li>
+      </ul>
+    </li>
+    <li><a href="#review">Review</a></li>
+    <li><a href="#exercise">Exercise</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
