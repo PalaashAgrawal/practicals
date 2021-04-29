@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta name="generator" content="Hugo 0.68.3" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="14 Generative Adversarial Networks Welcome to the 14th (and the last) session of the series on Practical Machine Learning. Today we&rsquo;re going to learn about Generative Adversarial Networks through a Computer Vision Problem, and also going to discuss what&rsquo;s next for you after this course. We&rsquo;ll also use this opportunity to summarize what we&rsquo;ve learnt.
+So let&rsquo;s get started!
+Generative Adversarial Networks Generative Adversarial Networks were introduced in 2014 by Ian Goodfellow while he was doing his PhD.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://palaashagrawal.github.io/practicals/docs/14-generative-adversarial-networks/" />
+
+<title>14 Generative Adversarial Networks | Practical Machine Learning</title>
+<link rel="manifest" href="https://palaashagrawal.github.io/practicals/manifest.json">
+<link rel="icon" href="https://palaashagrawal.github.io/practicals/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="https://palaashagrawal.github.io/practicals/book.min.2dc4d2afa8da6ac78d76671c21e140952e7a84846fed47ed02a1a2d68166d992.css" integrity="sha256-LcTSr6jaaseNdmccIeFAlS56hIRv7UftAqGi1oFm2ZI=">
+<script defer src="https://palaashagrawal.github.io/practicals/en.search.min.83535486fac5529f7d9dd84a7bd630a0b4f3c2172362d4bfef3b158b975d9fd9.js" integrity="sha256-g1NUhvrFUp99ndhKe9YwoLTzwhcjYtS/7zsVi5ddn9k="></script>
+<link rel="alternate" type="application/rss+xml" href="https://palaashagrawal.github.io/practicals/docs/14-generative-adversarial-networks/index.xml" title="Practical Machine Learning" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="https://palaashagrawal.github.io/practicals/"><span>Practical Machine Learning</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/00-basics-of-python-and-introduction-to-machine-learning/" class="">00 Basics of Python and Introduction to Machine Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/01-linear-regression/" class="">01 Linear Regression</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/02-logistic-regression/" class="">02 Logistic Regression</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/03-singular-value-decomposition-and-principal-component-analysis/" class="">03 Singular Value Decomposition and Principal Component Analysis</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/04-bayesian-learning/" class="">04 Bayesian Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/05-clustering-algorithms-in-machine-learning/" class="">05 Clustering Algorithms in Machine Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/06-support-vector-machines/" class="">06 Support Vector Machines</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/07-decision-trees-and-random-forests/" class="">07 Decision Trees and Random Forests</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/08-neural-networks/" class="">08 Neural Networks</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/09-convolution-neural-networks/" class="">09 Convolution Neural Networks</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/10-advanced-computer-vision-applications/" class="">10 Advanced Computer Vision Applications</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/11-advanced-computer-vision-applications-continued/" class="">11 Advanced Computer Vision Applications Continued</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/12-reinforcement-learning/" class="">12 Reinforcement Learning</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/13-natural-language-processing/" class="">13 Natural Language Processing</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://palaashagrawal.github.io/practicals/docs/14-generative-adversarial-networks/" class=" active">14 Generative Adversarial Networks</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="https://palaashagrawal.github.io/practicals/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>14 Generative Adversarial Networks</strong>
+
+  <label for="toc-control">
+    
+    <img src="https://palaashagrawal.github.io/practicals/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+
+    
+  </label>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  
+    window.addEventListener('load', (event) => {
+        document.querySelectorAll("mjx-container").forEach(function(x){
+          x.parentElement.classList += 'has-jax'})
+      });
+  
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#generative-adversarial-networks">Generative Adversarial Networks</a>
+      <ul>
+        <li><a href="#what-are-generative-networks">What are Generative Networks?</a></li>
+        <li><a href="#the-story-of-gans">The story of GANs</a></li>
+        <li><a href="#gan-modeling">GAN Modeling</a></li>
+        <li><a href="#inspirations-from-reinforcement-learning">Inspirations from Reinforcement Learning</a></li>
+      </ul>
+    </li>
+    <li><a href="#implementing-gans">Implementing GANs</a>
+      <ul>
+        <li><a href="#setting-up-the-data">Setting up the data</a></li>
+        <li><a href="#implementing-the-gan-module">Implementing the GAN Module</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercise">Exercise</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="14-generative-adversarial-networks">14 Generative Adversarial Networks</h1>
+<p>Welcome to the 14th (and the last) session of the series on Practical Machine Learning. Today we&rsquo;re going to learn about Generative Adversarial Networks through a Computer Vision Problem, and also going to discuss what&rsquo;s next for you after this course. We&rsquo;ll also use this opportunity to summarize what we&rsquo;ve learnt.</p>
+<p>So let&rsquo;s get started!</p>
+<h2 id="generative-adversarial-networks">Generative Adversarial Networks</h2>
+<p>Generative Adversarial Networks were <a href="https://arxiv.org/abs/1406.2661">introduced</a> in 2014 by Ian Goodfellow while he was doing his PhD. Ian Goodfellow is now working as the Director of Machine Learning at Apple. But let&rsquo;s make sure we understand what its aim is.</p>
+<h3 id="what-are-generative-networks">What are Generative Networks?</h3>
+<p>Let us leave out the Adversarial part of the term &ldquo;Generative Adversarial Networks&rdquo;(or GANs for short). What we are essentially trying to do is create a Generative Model. We&rsquo;ve already seen what that means. Instead of classification of prediction of some regression value, we would like our Neural Networks to &ldquo;Generate&rdquo;, say, images. We&rsquo;ve seen one example of this - <em>Segmentation</em> of images, where we created a model that took an image, and also gave an output as a result. But ultimately this was a pixel wise classification problem. That&rsquo;s okay, what if we wanted to create a regression type problem? Like feed in a picture of a low quality image, and the Neural Network would give back a high quality image?</p>
+<p><img src="https://drive.google.com/uc?id=1CP5PxTtyyiYHEuL9G7wsWrJ5bpJMV3v_" alt="" /></p>
+<p>(essentially, you&rsquo;re creating a model that can output some pixel value in a certain range (between 0 and 255), across the three channels of colours (RGB).</p>
+<p><em>Or</em> a black and white image, and make the Neural Net give back coloured images?</p>
+<p><img src="https://drive.google.com/uc?id=1vFCvK2ZqrGHQbFic_qu6WmD92Eg4BY3C" alt="" /></p>
+<p><em>Or</em> make a Neural Net fill missing parts of an Image (called Image InPainting). (Or remove things from an image, like, for example, photo bombers?)</p>
+<p><img src="https://drive.google.com/uc?id=1T-sSEZGi561rN1FfoSOE6LT70FpVID9f" alt="" /></p>
+<p><img src="https://drive.google.com/uc?id=14XlOZgUAlnSXm4LvLnbx4IuaM3OqQsFM" alt="" /></p>
+<p><em>Or</em> Create Realistic Images of people that don&rsquo;t even exist!</p>
+<p><img src="https://drive.google.com/uc?id=1kn3vpoMMOY_7FBfWFsEW42vAr59QeMO9" alt="" /></p>
+<p>This person was created using GANs, with just arbitrarily engineered noise as input. Look at how well defined the output is. There is a website called <a href="https://thispersondoesnotexist.com/">This Person Does Not Exist</a>, that shows an AI generated image of people that probably don&rsquo;t even exist. Try refreshing the website page a few times. You will genuinely be impressed.</p>
+<p>Also check out <a href="https://thisartworkdoesnotexist.com/">This Art Does Not Exist</a>, <a href="https://thishorsedoesnotexist.com/">This Horse Does Not Exist</a>, <a href="https://thiscatdoesnotexist.com/">This Cat Does Not Exist</a> and <a href="https://thischemicaldoesnotexist.com/">This Chemical Does Not Exist</a>.</p>
+<p><em>Or</em> a model that creates emojis from your faces. They are quite the trend on social media nowadays.</p>
+<p><img src="https://drive.google.com/uc?id=1n2EaVtF2UdGrx6r91xliZTOux1_Bt2tf" alt="" /></p>
+<p><em>Or</em> Models that make you look old. Have you tried the FaceApp app, that makes you look older, or younger, or change your hair, your facial hair, your gender, and even add or remove scars. This all works through Generative AI Models.</p>
+<p><img src="https://drive.google.com/uc?id=1PTTLIbnF09XJrhI_KSOfvSN-xuNfXv2i" alt="" /></p>
+<p>All these require a similar type of Neural Network Modeling. Feed in some kind of input (image, in terms of pixel tensors), which depends on what task you want to do, and get an output, also in terms of pizel values, just transformed according to our needs. Seems straightforward, doesn&rsquo;t it?</p>
+<p>And how do we do it? The UNet style architecture. All that is dfiffent is that output is not a map of classes, but individual pixel values. Since, this iis a regression problem, we would use a MSE type loss to account the loss between predicted output and target pixel values of the transformed image. Actually, remember that GANs came out in 2014, and UNets were officially published in 2015, and also weren&rsquo;t recognised for a long time in the DL community. But the approach remains more or less the same.</p>
+<h3 id="the-story-of-gans">The story of GANs</h3>
+<p>One night, Ian Goodfellow was out drinking with his friends, and they were discussing methods to create Generative Models. All previous attemps somewhat worked, but were still not top notch. Here&rsquo;s why. Look at these two images.</p>
+<p><img src="https://drive.google.com/uc?id=1W9Q73eSEsRPx7VCjiJ1Z2J_OheNOLjef" alt="" /></p>
+<p>On the left is our target image, and on the right the prediction from GANs. There is not much MSE loss between the two, because the model has more or less figured out the colours in most of the picture. But the GAN still doesn&rsquo;t know that what spatial features are important. Like in this case, our model does not know that the predicted image is blurry. The problem somewhat lies in the loss function.</p>
+<p>So Goodfellow randomly came up with this idea - <em>what if we pit two Neural Nets against each other?</em>. This came to be known as Generative Adversarial Networks. (Adversarial meaning against one another!). The idea is as follows.</p>
+<p>Design a two models that try to beat one another. One of them would be the Generative Network that produces the final image we wish for. By making two models learn and try to outperform the other, both the models would push each other to be better and better in a guided fashion, and at the end, the model performance would be better than simple generative modeling.</p>
+<p>So how do we build this model?</p>
+<h3 id="gan-modeling">GAN Modeling</h3>
+<p>The idea is simple. Create a Generative Model. Its usually called the <em>Generator</em>, the job of which is to take some input, and give a target output. Now obviously, initially the model suffers from the incomprehension of feature importance problem that we described above. The other model is a simple binary Image classifier, the job of which is to predict which image is a Ground Truth Image, and which image is generated by the Generative Model. This model is also called the <em>Discriminator</em> or the <em>Critic</em> Model. Based on that we receive some loss function (standard Cross Entropy Loss). Our job is to get the maximum accuracy, meaning we would like the Critic Model to accurately identify which image is fake (Generated), and which is real. The higher the accuracy, the more difficult it gets for the Generative Model to &ldquo;fool&rdquo; the Critic Model. A perfect Critic Model would catch every image that is fake. And a perfect Generator Model would fool the Critic Model each time. When both these models become good, the generator model will be so good at predicting images that look like the Ground truth images, that our job would be done at that point! So evaluating our Critic model on some ground truth images and some predicted images will help us train the Critic Model to be slightly better at differentiating between the two.</p>
+<p>Now taking the accuracy, or loss value of the Critic Model as the loss formulation of the Generator as well, we can train the Generator to become slightly better at fooling the Critic Model, or in other words, convincing the Critic model that the predicted image is infact a ground truth image.</p>
+<p>Once you train the Generator for one epoch, get some predictions, and make the Critic Model evaluate again. Back and forth, and in the end, the Generative Model would learn how to predict really good images.</p>
+<p><img src="https://drive.google.com/uc?id=1U7vk9QV3YzLPJoGpOpG8n9vhPXpcPZAy" alt="" /></p>
+<p>Let us see how this is implemented. Let us start by importiing necessary libraries. We&rsquo;ll be using the fastai library for this.</p>
+<h3 id="inspirations-from-reinforcement-learning">Inspirations from Reinforcement Learning</h3>
+<p>There is this concept in Reinforcement Learning called the <em>Actor Critic</em> Modeling Principles, which is quite similar to the GAN modeling principle. However, the driving source is rewards and errors, rather than losses and accuracies. Also, this concept is still quite crude, and there are not much concrete examples of this concept. But it&rsquo;s been around a long time (atleast since 1980s) and is worth a read if you&rsquo;re interested!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#960050;background-color:#1e0010">!</span>pip install <span style="color:#f92672">-</span>Uqq fastai <span style="color:#f92672">&gt;./</span>tmp
+<span style="color:#f92672">from</span> fastai.basics <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+<span style="color:#f92672">from</span> fastai.vision.all <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+</code></pre></div><h2 id="implementing-gans">Implementing GANs</h2>
+<h3 id="setting-up-the-data">Setting up the data</h3>
+<p>Before we start, let us see what problem we&rsquo;ll be working on. In the initial days of GANs, researchers used to try using GANs to take some random noise as input, and output some legible result. Let us implement a model based on that. We will be trying to generate images from a dataset called the LSUN dataset, which contains lots of images of bedrooms.</p>
+<p>So in order to create this dataset, we need to create a mapping from this noisy tensor to these images.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">path <span style="color:#f92672">=</span> untar_data(URLs<span style="color:#f92672">.</span>LSUN_BEDROOMS)
+path<span style="color:#f92672">.</span>ls()
+</code></pre></div><pre><code>(#16) [Path('/root/.fastai/data/bedroom/8'),Path('/root/.fastai/data/bedroom/0'),Path('/root/.fastai/data/bedroom/1'),Path('/root/.fastai/data/bedroom/6'),Path('/root/.fastai/data/bedroom/b'),Path('/root/.fastai/data/bedroom/2'),Path('/root/.fastai/data/bedroom/e'),Path('/root/.fastai/data/bedroom/7'),Path('/root/.fastai/data/bedroom/9'),Path('/root/.fastai/data/bedroom/5')...]
+</code></pre>
+<p>Let us look how the images in the dataset look like.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">Image<span style="color:#f92672">.</span>open(get_image_files(path)[<span style="color:#ae81ff">0</span>])
+</code></pre></div><p><img src="14%20Generative%20Adversarial%20Networks_files/14%20Generative%20Adversarial%20Networks_5_0.png" alt="png" /></p>
+<p>Having downloaded the dataset, now let us create the mapping from a noisy (single channel )2D tensor to our dataset images.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">InvisibleTensor</span>(TensorBase): <span style="color:#75715e">#just a tensor representative. It has all the properties of a tensor, except it doesnt hold any values. Its like an iron cast for tensors</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">show</span>(self, ctx<span style="color:#f92672">=</span>None, <span style="color:#f92672">**</span>kwargs): <span style="color:#66d9ef">return</span> ctx
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">generate_noise</span>(fn, size<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>): <span style="color:#66d9ef">return</span> cast(torch<span style="color:#f92672">.</span>randn(size), InvisibleTensor) <span style="color:#75715e">#cast will give he properties of latter to former</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#a6e22e">@typedispatch</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">show_batch</span>(x:InvisibleTensor, y:TensorImage, samples, ctxs<span style="color:#f92672">=</span>None, max_n<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>, nrows<span style="color:#f92672">=</span>None, ncols<span style="color:#f92672">=</span>None, figsize<span style="color:#f92672">=</span>None, <span style="color:#f92672">**</span>kwargs):
+    <span style="color:#66d9ef">if</span> ctxs <span style="color:#f92672">is</span> None: ctxs <span style="color:#f92672">=</span> get_grid(min(len(samples), max_n), nrows<span style="color:#f92672">=</span>nrows, ncols<span style="color:#f92672">=</span>ncols, figsize<span style="color:#f92672">=</span>figsize)
+    ctxs <span style="color:#f92672">=</span> show_batch[object](x, y, samples, ctxs<span style="color:#f92672">=</span>ctxs, max_n<span style="color:#f92672">=</span>max_n, <span style="color:#f92672">**</span>kwargs)
+    <span style="color:#66d9ef">return</span> ctxs
+
+<span style="color:#a6e22e">@typedispatch</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">show_results</span>(x:InvisibleTensor, y:TensorImage, samples, outs, ctxs<span style="color:#f92672">=</span>None, max_n<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>, nrows<span style="color:#f92672">=</span>None, ncols<span style="color:#f92672">=</span>None, figsize<span style="color:#f92672">=</span>None, <span style="color:#f92672">**</span>kwargs):
+    <span style="color:#66d9ef">if</span> ctxs <span style="color:#f92672">is</span> None: ctxs <span style="color:#f92672">=</span> get_grid(min(len(samples), max_n), nrows<span style="color:#f92672">=</span>nrows, ncols<span style="color:#f92672">=</span>ncols, add_vert<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, figsize<span style="color:#f92672">=</span>figsize)
+    ctxs <span style="color:#f92672">=</span> [b<span style="color:#f92672">.</span>show(ctx<span style="color:#f92672">=</span>c, <span style="color:#f92672">**</span>kwargs) <span style="color:#66d9ef">for</span> b,c,_ <span style="color:#f92672">in</span> zip(outs<span style="color:#f92672">.</span>itemgot(<span style="color:#ae81ff">0</span>),ctxs,range(max_n))]
+    <span style="color:#66d9ef">return</span> ctxs
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">bs <span style="color:#f92672">=</span> <span style="color:#ae81ff">128</span>
+size <span style="color:#f92672">=</span> <span style="color:#ae81ff">64</span>
+</code></pre></div><p>Obviously we know that we need to put our data into dataloaders. Before that we define a class that will do on the preprocessing and transformations of the data for us. This class in Fastai is named as the DataBlock class, and all you have to tell it is</p>
+<ul>
+<li>Where the data is</li>
+<li>What type is your x and y</li>
+<li>How should the model retrieve files from a path destination</li>
+<li>How do you want to split your data</li>
+<li>Finally, what transformations you want to apply</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">dblock <span style="color:#f92672">=</span> DataBlock(blocks <span style="color:#f92672">=</span> (TransformBlock, ImageBlock),
+                   get_x <span style="color:#f92672">=</span> generate_noise,
+                   get_items <span style="color:#f92672">=</span> get_image_files,
+                   splitter <span style="color:#f92672">=</span> IndexSplitter([]),
+                   item_tfms<span style="color:#f92672">=</span>Resize(size, method<span style="color:#f92672">=</span>ResizeMethod<span style="color:#f92672">.</span>Crop), 
+                   batch_tfms <span style="color:#f92672">=</span> Normalize<span style="color:#f92672">.</span>from_stats(torch<span style="color:#f92672">.</span>tensor([<span style="color:#ae81ff">0.5</span>,<span style="color:#ae81ff">0.5</span>,<span style="color:#ae81ff">0.5</span>]), torch<span style="color:#f92672">.</span>tensor([<span style="color:#ae81ff">0.5</span>,<span style="color:#ae81ff">0.5</span>,<span style="color:#ae81ff">0.5</span>])))
+</code></pre></div><p>Finally once you tell fastai what to do with your data, we tell it where to get the data, that is the path where the files are stored, and return us with dataloaders, that can directly be fed into the model.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">dls <span style="color:#f92672">=</span> dblock<span style="color:#f92672">.</span>dataloaders(path, path<span style="color:#f92672">=</span>path, bs<span style="color:#f92672">=</span>bs)
+</code></pre></div><p>Let us see how this data looks like.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">dls<span style="color:#f92672">.</span>show_batch(max_n<span style="color:#f92672">=</span><span style="color:#ae81ff">16</span>)
+</code></pre></div><p><img src="14%20Generative%20Adversarial%20Networks_files/14%20Generative%20Adversarial%20Networks_15_0.png" alt="png" /></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x,y<span style="color:#f92672">=</span>dls<span style="color:#f92672">.</span>one_batch()
+x<span style="color:#f92672">.</span>shape,y<span style="color:#f92672">.</span>shape
+</code></pre></div><pre><code>(torch.Size([128, 100]), torch.Size([128, 3, 64, 64]))
+</code></pre>
+<h3 id="implementing-the-gan-module">Implementing the GAN Module</h3>
+<p>Till now we&rsquo;ve trained a single architecture at one time. This time, we have 2 architectures running parallely. So we first need a class that can wrap up these 2 architectures. Also only one of these architectures is trainable at once, and the other needs to be freezed, so we need to factor that in.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">GANModule</span>(Module):
+    <span style="color:#e6db74">&#34;Wrapper around a `generator` and a `critic` to create a GAN.&#34;</span>
+    <span style="color:#66d9ef">def</span> __init__(self, generator<span style="color:#f92672">=</span>None, critic<span style="color:#f92672">=</span>None, gen_mode<span style="color:#f92672">=</span>False):
+        <span style="color:#66d9ef">if</span> generator <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> None: self<span style="color:#f92672">.</span>generator<span style="color:#f92672">=</span>generator
+        <span style="color:#66d9ef">if</span> critic    <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> None: self<span style="color:#f92672">.</span>critic   <span style="color:#f92672">=</span>critic
+        store_attr(<span style="color:#e6db74">&#39;gen_mode&#39;</span>)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self, <span style="color:#f92672">*</span>args): <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>generator(<span style="color:#f92672">*</span>args) <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>gen_mode <span style="color:#66d9ef">else</span> self<span style="color:#f92672">.</span>critic(<span style="color:#f92672">*</span>args)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">switch</span>(self, gen_mode<span style="color:#f92672">=</span>None):
+        <span style="color:#e6db74">&#34;Put the module in generator mode if `gen_mode` = True, in critic mode otherwise.&#34;</span>
+        self<span style="color:#f92672">.</span>gen_mode <span style="color:#f92672">=</span> (<span style="color:#f92672">not</span> self<span style="color:#f92672">.</span>gen_mode) <span style="color:#66d9ef">if</span> gen_mode <span style="color:#f92672">is</span> None <span style="color:#66d9ef">else</span> gen_mode
+</code></pre></div><p>So we&rsquo;ve defined a class method called <code>switch</code> that ensures that only one architecture runs at once. And this is alternatingly changed. By default the parameter <code>gen_mode</code> is set to None, which ensures that we simply switch whatever mode we are in to its opposite. But this parameter can be used to manually set the model to one of the modes, for example during evaluation and testing of the model, or visualization of model outputs. So this gives us more control over our model.</p>
+<p>Now that we&rsquo;ve created a basic class that can handle both the critic and the generator, we need to define the architectures of the critic and the generator. For now we will implement a very basic architecture - a simple UNet based generator and a simple 2D CNN binary classifier as the critic model . It&rsquo;s as simple as that!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#a6e22e">@delegates</span>(ConvLayer<span style="color:#f92672">.</span>__init__)
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">basic_critic</span>(in_size, n_channels, n_features<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span>, n_extra_layers<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, norm_type<span style="color:#f92672">=</span>NormType<span style="color:#f92672">.</span>Batch, <span style="color:#f92672">**</span>kwargs):
+    <span style="color:#e6db74">&#34;A basic critic for images `n_channels` x `in_size` x `in_size`.&#34;</span>
+    layers <span style="color:#f92672">=</span> [ConvLayer(n_channels, n_features, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, norm_type<span style="color:#f92672">=</span>None, <span style="color:#f92672">**</span>kwargs)]
+    cur_size, cur_ftrs <span style="color:#f92672">=</span> in_size<span style="color:#f92672">//</span><span style="color:#ae81ff">2</span>, n_features
+    layers <span style="color:#f92672">+=</span> [ConvLayer(cur_ftrs, cur_ftrs, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>, norm_type<span style="color:#f92672">=</span>norm_type, <span style="color:#f92672">**</span>kwargs) <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(n_extra_layers)]
+    <span style="color:#66d9ef">while</span> cur_size <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">4</span>:
+        layers<span style="color:#f92672">.</span>append(ConvLayer(cur_ftrs, cur_ftrs<span style="color:#f92672">*</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, norm_type<span style="color:#f92672">=</span>norm_type, <span style="color:#f92672">**</span>kwargs))
+        cur_ftrs <span style="color:#f92672">*=</span> <span style="color:#ae81ff">2</span> ; cur_size <span style="color:#f92672">//=</span> <span style="color:#ae81ff">2</span>
+    init <span style="color:#f92672">=</span> kwargs<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;init&#39;</span>, nn<span style="color:#f92672">.</span>init<span style="color:#f92672">.</span>kaiming_normal_)
+    layers <span style="color:#f92672">+=</span> [init_default(nn<span style="color:#f92672">.</span>Conv2d(cur_ftrs, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">4</span>, padding<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>), init), Flatten()]
+    <span style="color:#66d9ef">return</span> nn<span style="color:#f92672">.</span>Sequential(<span style="color:#f92672">*</span>layers)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#960050;background-color:#1e0010">??</span>delegates
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">basic_critic<span style="color:#f92672">.</span>__signature__
+</code></pre></div><pre><code>&lt;Signature (in_size, n_channels, n_features=64, n_extra_layers=0, norm_type=&lt;NormType.Batch: 1&gt;, ks=3, stride=1, padding=None, bias=None, ndim=2, bn_1st=True, act_cls=&lt;class 'torch.nn.modules.activation.ReLU'&gt;, transpose=False, init='auto', xtra=None, bias_std=0.01, dilation: Union[int, Tuple[int, int]] = 1, groups: int = 1, padding_mode: str = 'zeros')&gt;
+</code></pre>
+<p>Now for the generator, a simple UNet architecture can be generated as follows.</p>
+<p><img src="https://drive.google.com/uc?id=1ZMhr6LKKcfYobi499pYdQm6XIq83W-46" alt="" /></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AddChannels</span>(Module):
+    <span style="color:#e6db74">&#34;Add `n_dim` channels at the end of the input.&#34;</span>
+    <span style="color:#66d9ef">def</span> __init__(self, n_dim): self<span style="color:#f92672">.</span>n_dim<span style="color:#f92672">=</span>n_dim
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self, x): <span style="color:#66d9ef">return</span> x<span style="color:#f92672">.</span>view(<span style="color:#f92672">*</span>(list(x<span style="color:#f92672">.</span>shape)<span style="color:#f92672">+</span>[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">*</span>self<span style="color:#f92672">.</span>n_dim))
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#a6e22e">@delegates</span>(ConvLayer<span style="color:#f92672">.</span>__init__)
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">basic_generator</span>(out_size, n_channels, in_sz<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>, n_features<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span>, n_extra_layers<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, <span style="color:#f92672">**</span>kwargs):
+    <span style="color:#e6db74">&#34;A basic generator from `in_sz` to images `n_channels` x `out_size` x `out_size`. Notice the adaptive nature. Does not depend on input size. The architecture dynamically changes with input size&#34;</span> 
+    cur_size, cur_ftrs <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>, n_features<span style="color:#f92672">//</span><span style="color:#ae81ff">2</span>
+    <span style="color:#66d9ef">while</span> cur_size <span style="color:#f92672">&lt;</span> out_size:  cur_size <span style="color:#f92672">*=</span> <span style="color:#ae81ff">2</span>; cur_ftrs <span style="color:#f92672">*=</span> <span style="color:#ae81ff">2</span> <span style="color:#75715e">#make cur_size larger than out_size</span>
+    layers <span style="color:#f92672">=</span> [AddChannels(<span style="color:#ae81ff">2</span>), ConvLayer(in_sz, cur_ftrs, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">1</span>, transpose<span style="color:#f92672">=</span>True, <span style="color:#f92672">**</span>kwargs)] <span style="color:#75715e">#we need to add channels because we will be adding a 2D shape noise tensor as input. </span>
+    cur_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>
+    <span style="color:#66d9ef">while</span> cur_size <span style="color:#f92672">&lt;</span> out_size <span style="color:#f92672">//</span> <span style="color:#ae81ff">2</span>: <span style="color:#75715e">#add layers until you can get to the output size</span>
+        layers<span style="color:#f92672">.</span>append(ConvLayer(cur_ftrs, cur_ftrs<span style="color:#f92672">//</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, transpose<span style="color:#f92672">=</span>True, <span style="color:#f92672">**</span>kwargs))
+        cur_ftrs <span style="color:#f92672">//=</span> <span style="color:#ae81ff">2</span>; cur_size <span style="color:#f92672">*=</span> <span style="color:#ae81ff">2</span>
+    layers <span style="color:#f92672">+=</span> [ConvLayer(cur_ftrs, cur_ftrs, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, transpose<span style="color:#f92672">=</span>True, <span style="color:#f92672">**</span>kwargs) <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(n_extra_layers)]
+    layers <span style="color:#f92672">+=</span> [nn<span style="color:#f92672">.</span>ConvTranspose2d(cur_ftrs, n_channels, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, bias<span style="color:#f92672">=</span>False), nn<span style="color:#f92672">.</span>Tanh()] <span style="color:#75715e">#turns out tanh works better than sigmoid in GANs  </span>
+    <span style="color:#66d9ef">return</span> nn<span style="color:#f92672">.</span>Sequential(<span style="color:#f92672">*</span>layers)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#960050;background-color:#1e0010">??</span>ConvLayer <span style="color:#75715e">#see for the transpose parameter</span>
+<span style="color:#75715e"># https://github.com/fastai/fastai/blob/ab154927696338741e59e0ffc4774777c4a9781c/fastai/layers.py#L222</span>
+</code></pre></div><p>That&rsquo;s it! We&rsquo;re done writing the architectural details of our generator and critic models. Let us see how this works!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">critic <span style="color:#f92672">=</span> basic_critic(<span style="color:#ae81ff">64</span>, <span style="color:#ae81ff">3</span>)
+generator <span style="color:#f92672">=</span> basic_generator(<span style="color:#ae81ff">64</span>, <span style="color:#ae81ff">3</span>)
+mdl <span style="color:#f92672">=</span> GANModule(critic<span style="color:#f92672">=</span>critic, generator<span style="color:#f92672">=</span>generator)
+real <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>randn(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">64</span>, <span style="color:#ae81ff">64</span>)
+real_preds<span style="color:#f92672">=</span>mdl(real) <span style="color:#75715e">#by default in critic model</span>
+real_preds<span style="color:#f92672">.</span>shape
+</code></pre></div><pre><code>torch.Size([2, 1])
+</code></pre>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">mdl<span style="color:#f92672">.</span>switch() <span style="color:#75715e">#not in gen mode</span>
+noise <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>randn(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">100</span>)
+fake <span style="color:#f92672">=</span> mdl(noise)
+fake<span style="color:#f92672">.</span>shape
+</code></pre></div><pre><code>torch.Size([2, 3, 64, 64])
+</code></pre>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">mdl<span style="color:#f92672">.</span>switch() <span style="color:#75715e">#mdl is back in critic mode</span>
+fake_pred <span style="color:#f92672">=</span> mdl(fake)
+fake_pred<span style="color:#f92672">.</span>shape
+</code></pre></div><pre><code>torch.Size([2, 1])
+</code></pre>
+<p>Alright. Looks like our model is working correctly, exactly as intended. We obviously know that the sequential model is working correctly, but what next? Next we need to define loss functions.</p>
+<p>Before that, its important to remember that we are dealing with Critic Loss as well as the Discriminator Loss. Just like <code>GANModule</code>, we will define a class that can handle both the generator and the critic loss.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">GANLoss</span>(GANModule):
+    <span style="color:#e6db74">&#34;Wrapper around `crit_loss_func` and `gen_loss_func`&#34;</span>
+    <span style="color:#66d9ef">def</span> __init__(self, gen_loss_func, crit_loss_func, gan_model):
+        super()<span style="color:#f92672">.</span>__init__()
+        store_attr(<span style="color:#e6db74">&#39;gen_loss_func,crit_loss_func,gan_model&#39;</span>)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">generator</span>(self, output, target):
+        <span style="color:#e6db74">&#34;Evaluate the `output` with the critic then uses `self.gen_loss_func`&#34;</span>
+        fake_pred <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>gan_model<span style="color:#f92672">.</span>critic(output)
+        self<span style="color:#f92672">.</span>gen_loss <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>gen_loss_func(fake_pred, output, target)
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>gen_loss
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">critic</span>(self, real_pred, input):
+        <span style="color:#e6db74">&#34;Create some `fake_pred` with the generator from `input` and compare them to `real_pred` in `self.crit_loss_func`.&#34;</span>
+        fake <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>gan_model<span style="color:#f92672">.</span>generator(input)<span style="color:#f92672">.</span>requires_grad_(False)
+        fake_pred <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>gan_model<span style="color:#f92672">.</span>critic(fake)
+        self<span style="color:#f92672">.</span>crit_loss <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>crit_loss_func(real_pred, fake_pred)
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>crit_loss
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">set_freeze_model</span>(m, rg):
+    <span style="color:#66d9ef">for</span> p <span style="color:#f92672">in</span> m<span style="color:#f92672">.</span>parameters(): p<span style="color:#f92672">.</span>requires_grad_(rg)
+</code></pre></div><p>Once we&rsquo;ve set up the loss function and some other training settings, we will define a class that can handle all of training of the model. We are defining a callback class that takes care of various methods throughout the various training stages.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">GANTrainer</span>(Callback):
+    <span style="color:#e6db74">&#34;Handles GAN Training.&#34;</span>
+    run_after <span style="color:#f92672">=</span> TrainEvalCallback
+    <span style="color:#66d9ef">def</span> __init__(self, switch_eval<span style="color:#f92672">=</span>False, clip<span style="color:#f92672">=</span>None, beta<span style="color:#f92672">=</span><span style="color:#ae81ff">0.98</span>, gen_first<span style="color:#f92672">=</span>False, show_img<span style="color:#f92672">=</span>True):
+        store_attr(<span style="color:#e6db74">&#39;switch_eval,clip,gen_first,show_img&#39;</span>)
+        self<span style="color:#f92672">.</span>gen_loss,self<span style="color:#f92672">.</span>crit_loss <span style="color:#f92672">=</span> AvgSmoothLoss(beta<span style="color:#f92672">=</span>beta),AvgSmoothLoss(beta<span style="color:#f92672">=</span>beta)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_set_trainable</span>(self):
+        train_model <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>generator <span style="color:#66d9ef">if</span>     self<span style="color:#f92672">.</span>gen_mode <span style="color:#66d9ef">else</span> self<span style="color:#f92672">.</span>critic
+        loss_model  <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>generator <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> self<span style="color:#f92672">.</span>gen_mode <span style="color:#66d9ef">else</span> self<span style="color:#f92672">.</span>critic
+        set_freeze_model(train_model, True)
+        set_freeze_model(loss_model, False)
+        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>switch_eval:
+            train_model<span style="color:#f92672">.</span>train()
+            loss_model<span style="color:#f92672">.</span>eval()
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">before_fit</span>(self):
+        <span style="color:#e6db74">&#34;Initialize smootheners.&#34;</span>
+        self<span style="color:#f92672">.</span>generator,self<span style="color:#f92672">.</span>critic <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>model<span style="color:#f92672">.</span>generator,self<span style="color:#f92672">.</span>model<span style="color:#f92672">.</span>critic
+        self<span style="color:#f92672">.</span>gen_mode <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>gen_first
+        self<span style="color:#f92672">.</span>switch(self<span style="color:#f92672">.</span>gen_mode)
+        self<span style="color:#f92672">.</span>crit_losses,self<span style="color:#f92672">.</span>gen_losses <span style="color:#f92672">=</span> [],[]
+        self<span style="color:#f92672">.</span>gen_loss<span style="color:#f92672">.</span>reset() ; self<span style="color:#f92672">.</span>crit_loss<span style="color:#f92672">.</span>reset()
+
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">before_validate</span>(self):
+        <span style="color:#e6db74">&#34;Switch in generator mode for showing results.&#34;</span>
+        self<span style="color:#f92672">.</span>switch(gen_mode<span style="color:#f92672">=</span>True)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">before_batch</span>(self):
+        <span style="color:#e6db74">&#34;Clamp the weights with `self.clip` if it&#39;s not None, set the correct input/target.&#34;</span>
+        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>training <span style="color:#f92672">and</span> self<span style="color:#f92672">.</span>clip <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> None:
+            <span style="color:#66d9ef">for</span> p <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>critic<span style="color:#f92672">.</span>parameters(): p<span style="color:#f92672">.</span>data<span style="color:#f92672">.</span>clamp_(<span style="color:#f92672">-</span>self<span style="color:#f92672">.</span>clip, self<span style="color:#f92672">.</span>clip)
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> self<span style="color:#f92672">.</span>gen_mode:
+            (self<span style="color:#f92672">.</span>learn<span style="color:#f92672">.</span>xb,self<span style="color:#f92672">.</span>learn<span style="color:#f92672">.</span>yb) <span style="color:#f92672">=</span> (self<span style="color:#f92672">.</span>yb,self<span style="color:#f92672">.</span>xb)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">after_batch</span>(self):
+        <span style="color:#e6db74">&#34;Record `last_loss` in the proper list.&#34;</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> self<span style="color:#f92672">.</span>training: <span style="color:#66d9ef">return</span>
+        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>gen_mode:
+            self<span style="color:#f92672">.</span>gen_loss<span style="color:#f92672">.</span>accumulate(self<span style="color:#f92672">.</span>learn)
+            self<span style="color:#f92672">.</span>gen_losses<span style="color:#f92672">.</span>append(self<span style="color:#f92672">.</span>gen_loss<span style="color:#f92672">.</span>value)
+            self<span style="color:#f92672">.</span>last_gen <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>learn<span style="color:#f92672">.</span>to_detach(self<span style="color:#f92672">.</span>pred)
+        <span style="color:#66d9ef">else</span>:
+            self<span style="color:#f92672">.</span>crit_loss<span style="color:#f92672">.</span>accumulate(self<span style="color:#f92672">.</span>learn)
+            self<span style="color:#f92672">.</span>crit_losses<span style="color:#f92672">.</span>append(self<span style="color:#f92672">.</span>crit_loss<span style="color:#f92672">.</span>value)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">before_epoch</span>(self):
+        <span style="color:#e6db74">&#34;Put the critic or the generator back to eval if necessary.&#34;</span>
+        self<span style="color:#f92672">.</span>switch(self<span style="color:#f92672">.</span>gen_mode)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">switch</span>(self, gen_mode<span style="color:#f92672">=</span>None):
+        <span style="color:#e6db74">&#34;Switch the model and loss function, if `gen_mode` is provided, in the desired mode.&#34;</span>
+        self<span style="color:#f92672">.</span>gen_mode <span style="color:#f92672">=</span> (<span style="color:#f92672">not</span> self<span style="color:#f92672">.</span>gen_mode) <span style="color:#66d9ef">if</span> gen_mode <span style="color:#f92672">is</span> None <span style="color:#66d9ef">else</span> gen_mode
+        self<span style="color:#f92672">.</span>_set_trainable()
+        self<span style="color:#f92672">.</span>model<span style="color:#f92672">.</span>switch(gen_mode)
+        self<span style="color:#f92672">.</span>loss_func<span style="color:#f92672">.</span>switch(gen_mode)
+</code></pre></div><p>We will also put the switcher into a class, so that it can be accessed easily by the learner class in the form of a callback. This prevents us from hardcoding everything, and providing flexibility of code.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FixedGANSwitcher</span>(Callback):
+    <span style="color:#e6db74">&#34;Switcher to do `n_crit` iterations of the critic then `n_gen` iterations of the generator.&#34;</span>
+    run_after <span style="color:#f92672">=</span> GANTrainer
+    <span style="color:#66d9ef">def</span> __init__(self, n_crit<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, n_gen<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>): store_attr(<span style="color:#e6db74">&#39;n_crit,n_gen&#39;</span>)
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">before_train</span>(self): self<span style="color:#f92672">.</span>n_c,self<span style="color:#f92672">.</span>n_g <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">after_batch</span>(self):
+        <span style="color:#e6db74">&#34;Switch the model if necessary.&#34;</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> self<span style="color:#f92672">.</span>training: <span style="color:#66d9ef">return</span>
+        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>learn<span style="color:#f92672">.</span>gan_trainer<span style="color:#f92672">.</span>gen_mode:
+            self<span style="color:#f92672">.</span>n_g <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+            n_iter,n_in,n_out <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>n_gen,self<span style="color:#f92672">.</span>n_c,self<span style="color:#f92672">.</span>n_g
+        <span style="color:#66d9ef">else</span>:
+            self<span style="color:#f92672">.</span>n_c <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+            n_iter,n_in,n_out <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>n_crit,self<span style="color:#f92672">.</span>n_g,self<span style="color:#f92672">.</span>n_c
+        target <span style="color:#f92672">=</span> n_iter <span style="color:#66d9ef">if</span> isinstance(n_iter, int) <span style="color:#66d9ef">else</span> n_iter(n_in)
+        <span style="color:#66d9ef">if</span> target <span style="color:#f92672">==</span> n_out:
+            self<span style="color:#f92672">.</span>learn<span style="color:#f92672">.</span>gan_trainer<span style="color:#f92672">.</span>switch()
+            self<span style="color:#f92672">.</span>n_c,self<span style="color:#f92672">.</span>n_g <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>
+</code></pre></div><p>The following peice of code is simply a class that can compute the critic and generator loss. Why one class? Because if you remember, the two calculations are not independent. Both models are involved in the calculation of one another./</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">gan_loss_from_func</span>(loss_gen, loss_crit, weights_gen<span style="color:#f92672">=</span>None):
+    <span style="color:#e6db74">&#34;Define loss functions for a GAN from `loss_gen` and `loss_crit`.&#34;</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_loss_G</span>(fake_pred, output, target, weights_gen<span style="color:#f92672">=</span>weights_gen):
+        ones <span style="color:#f92672">=</span> fake_pred<span style="color:#f92672">.</span>new_ones(fake_pred<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">0</span>])
+        weights_gen <span style="color:#f92672">=</span> ifnone(weights_gen, (<span style="color:#ae81ff">1.</span>,<span style="color:#ae81ff">1.</span>))
+        <span style="color:#66d9ef">return</span> weights_gen[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> loss_crit(fake_pred, ones) <span style="color:#f92672">+</span> weights_gen[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">*</span> loss_gen(output, target)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_loss_C</span>(real_pred, fake_pred):
+        ones  <span style="color:#f92672">=</span> real_pred<span style="color:#f92672">.</span>new_ones (real_pred<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">0</span>])
+        zeros <span style="color:#f92672">=</span> fake_pred<span style="color:#f92672">.</span>new_zeros(fake_pred<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">0</span>])
+        <span style="color:#66d9ef">return</span> (loss_crit(real_pred, ones) <span style="color:#f92672">+</span> loss_crit(fake_pred, zeros)) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>
+
+    <span style="color:#66d9ef">return</span> _loss_G, _loss_C
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#just functoins to take means and diifferences of predictions </span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_tk_mean</span>(fake_pred, output, target): <span style="color:#66d9ef">return</span> fake_pred<span style="color:#f92672">.</span>mean()
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_tk_diff</span>(real_pred, fake_pred): <span style="color:#66d9ef">return</span> real_pred<span style="color:#f92672">.</span>mean() <span style="color:#f92672">-</span> fake_pred<span style="color:#f92672">.</span>mean()
+</code></pre></div><p>So we&rsquo;ve finally defined everything and now simply need to create a learner class. The problem that comes over here is, how do we include two models and all the functionality we&rsquo;ve defined. To overcome that, we&rsquo;ve custom defined a wrapper on top of the fastai learner class to handle all of this.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#a6e22e">@delegates</span>()
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">GANLearner</span>(Learner):
+    <span style="color:#e6db74">&#34;A `Learner` suitable for GANs.&#34;</span>
+    <span style="color:#66d9ef">def</span> __init__(self, dls, generator, critic, gen_loss_func, crit_loss_func, switcher<span style="color:#f92672">=</span>None, gen_first<span style="color:#f92672">=</span>False,
+                 switch_eval<span style="color:#f92672">=</span>True, show_img<span style="color:#f92672">=</span>True, clip<span style="color:#f92672">=</span>None, cbs<span style="color:#f92672">=</span>None, metrics<span style="color:#f92672">=</span>None, <span style="color:#f92672">**</span>kwargs):
+        gan <span style="color:#f92672">=</span> GANModule(generator, critic)
+        loss_func <span style="color:#f92672">=</span> GANLoss(gen_loss_func, crit_loss_func, gan)
+        <span style="color:#66d9ef">if</span> switcher <span style="color:#f92672">is</span> None: switcher <span style="color:#f92672">=</span> FixedGANSwitcher(n_crit<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>, n_gen<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+        trainer <span style="color:#f92672">=</span> GANTrainer(clip<span style="color:#f92672">=</span>clip, switch_eval<span style="color:#f92672">=</span>switch_eval, gen_first<span style="color:#f92672">=</span>gen_first, show_img<span style="color:#f92672">=</span>show_img)
+        cbs <span style="color:#f92672">=</span> L(cbs) <span style="color:#f92672">+</span> L(trainer, switcher)
+        metrics <span style="color:#f92672">=</span> L(metrics) <span style="color:#f92672">+</span> L(<span style="color:#f92672">*</span>LossMetrics(<span style="color:#e6db74">&#39;gen_loss,crit_loss&#39;</span>))
+        super()<span style="color:#f92672">.</span>__init__(dls, gan, loss_func<span style="color:#f92672">=</span>loss_func, cbs<span style="color:#f92672">=</span>cbs, metrics<span style="color:#f92672">=</span>metrics, <span style="color:#f92672">**</span>kwargs)
+
+    <span style="color:#a6e22e">@classmethod</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">from_learners</span>(cls, gen_learn, crit_learn, switcher<span style="color:#f92672">=</span>None, weights_gen<span style="color:#f92672">=</span>None, <span style="color:#f92672">**</span>kwargs):
+        <span style="color:#e6db74">&#34;Create a GAN from `learn_gen` and `learn_crit`.&#34;</span>
+        losses <span style="color:#f92672">=</span> gan_loss_from_func(gen_learn<span style="color:#f92672">.</span>loss_func, crit_learn<span style="color:#f92672">.</span>loss_func, weights_gen<span style="color:#f92672">=</span>weights_gen)
+        <span style="color:#66d9ef">return</span> cls(gen_learn<span style="color:#f92672">.</span>dls, gen_learn<span style="color:#f92672">.</span>model, crit_learn<span style="color:#f92672">.</span>model, <span style="color:#f92672">*</span>losses, switcher<span style="color:#f92672">=</span>switcher, <span style="color:#f92672">**</span>kwargs)
+
+    <span style="color:#a6e22e">@classmethod</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">wgan</span>(cls, dls, generator, critic, switcher<span style="color:#f92672">=</span>None, clip<span style="color:#f92672">=</span><span style="color:#ae81ff">0.01</span>, switch_eval<span style="color:#f92672">=</span>False, <span style="color:#f92672">**</span>kwargs):
+        <span style="color:#e6db74">&#34;Create a WGAN from `data`, `generator` and `critic`.&#34;</span>
+        <span style="color:#66d9ef">return</span> cls(dls, generator, critic, _tk_mean, _tk_diff, switcher<span style="color:#f92672">=</span>switcher, clip<span style="color:#f92672">=</span>clip, switch_eval<span style="color:#f92672">=</span>switch_eval, <span style="color:#f92672">**</span>kwargs)
+
+GANLearner<span style="color:#f92672">.</span>from_learners <span style="color:#f92672">=</span> delegates(to<span style="color:#f92672">=</span>GANLearner<span style="color:#f92672">.</span>__init__)(GANLearner<span style="color:#f92672">.</span>from_learners)
+GANLearner<span style="color:#f92672">.</span>wgan <span style="color:#f92672">=</span> delegates(to<span style="color:#f92672">=</span>GANLearner<span style="color:#f92672">.</span>__init__)(GANLearner<span style="color:#f92672">.</span>wgan)
+</code></pre></div><p>Now we&rsquo;ll just reintialize everything and see if it works.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> fastai.callback.all <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+generator <span style="color:#f92672">=</span> basic_generator(<span style="color:#ae81ff">64</span>, n_channels<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, n_extra_layers<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+critic    <span style="color:#f92672">=</span> basic_critic   (<span style="color:#ae81ff">64</span>, n_channels<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, n_extra_layers<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, act_cls<span style="color:#f92672">=</span>partial(nn<span style="color:#f92672">.</span>LeakyReLU, negative_slope<span style="color:#f92672">=</span><span style="color:#ae81ff">0.2</span>))
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn <span style="color:#f92672">=</span> GANLearner<span style="color:#f92672">.</span>wgan(dls, generator, critic, opt_func <span style="color:#f92672">=</span> RMSProp,show_img<span style="color:#f92672">=</span>True)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn<span style="color:#f92672">.</span>recorder<span style="color:#f92672">.</span>train_metrics<span style="color:#f92672">=</span>True
+learn<span style="color:#f92672">.</span>recorder<span style="color:#f92672">.</span>valid_metrics<span style="color:#f92672">=</span>False
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">learn<span style="color:#f92672">.</span>fit(<span style="color:#ae81ff">40</span>, <span style="color:#ae81ff">2e-4</span>, wd<span style="color:#f92672">=</span><span style="color:#ae81ff">0.</span>)
+</code></pre></div><p>You will see that the results slowly improve over time. At first there is no sense in the predicted outputs. But slowly over the epochs you can start to make sense out of the images</p>
+<h2 id="exercise">Exercise</h2>
+<p>Your task today is to continue the training process bit by bit and see the model performance improve. You can see the result of training after each epoch by <code>learn.fit(1,***,***)</code>.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#generative-adversarial-networks">Generative Adversarial Networks</a>
+      <ul>
+        <li><a href="#what-are-generative-networks">What are Generative Networks?</a></li>
+        <li><a href="#the-story-of-gans">The story of GANs</a></li>
+        <li><a href="#gan-modeling">GAN Modeling</a></li>
+        <li><a href="#inspirations-from-reinforcement-learning">Inspirations from Reinforcement Learning</a></li>
+      </ul>
+    </li>
+    <li><a href="#implementing-gans">Implementing GANs</a>
+      <ul>
+        <li><a href="#setting-up-the-data">Setting up the data</a></li>
+        <li><a href="#implementing-the-gan-module">Implementing the GAN Module</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercise">Exercise</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
