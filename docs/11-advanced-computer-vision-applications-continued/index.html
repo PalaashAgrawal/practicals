@@ -441,7 +441,7 @@ https://github.com/alex-shpak/hugo-book
       
       
   <article class="markdown"><h1 id="11-advanced-computer-vision-applications-continued">11 Advanced Computer Vision Applications continued</h1>
-<p><img src="https://drive.google.com/uc?id=1cbE342r_rUhoqnL6fzlpGsVqI7QHhbOn" alt="" /></p>
+<p><img src="../Images/11 Style transfer 1.jpeg" alt="" /></p>
 <blockquote>
 <p>Before Starting, we will change the accelerator of this notebook from a CPU to a GPU, since we&rsquo;ll be running our Neural Networks on the GPU.</p>
 </blockquote>
@@ -470,7 +470,7 @@ https://github.com/alex-shpak/hugo-book
 <p>Let us understand the working principle of a Siamese Network.</p>
 <h3 id="how-does-a-siamese-network-work">How does a Siamese Network work?</h3>
 <p>Siamese Networks use a clever technique. Rather than trying to learn features of categories (classes), Siamese Networks try to differentiate between individual instances. So now, the model does not need to identify what a particular person looks like. All it needs to do is to compare the input with a reference image and predict whether or not the image is of the same class/object/person or not. So ultimately our problem is a binary classification problem.</p>
-<p><img src="https://drive.google.com/uc?id=1pFz7P2zc37Bw6R7t4-Vy4pWDfL-V1y_u" alt="" /></p>
+<p><img src="../Images/11 Siamese Network.jpg" alt="" /></p>
 <p>How do Neural Networks identify what an image is about? It does so using <em>features</em>. And how do models derive features, especially in Images? through convolutions! So there is a network in a Siamese Network that derives features in the form of some parameter tensors. And we also learnt that this network, the job of which is to find features, is called an <em>encoder</em>.</p>
 <p>Now this encoder would derive features from both images.</p>
 <p>(Note that for a properly trained network, the features are independent of what the image looks like, as long as the image contains the same particular object. Like for the above image, both images contain tigers, and the features of the network that any Image classifier would be related. I am stressing on this point, because you might ask, well, if you really wanted to compare whether or not two images are the same or not, why even use a Neural Network? Why cant you simply compare pixel values? But in that case, images of two persons can only &lsquo;match&rsquo; if the two images are exact copies of each other. Now if you wish to compare the photo in the database, and the photo captured by the camera for the case study that we were discussing, the two photos would most likely not match! So this is why Convolutional Neural Networks are used. Neural Networks ideally are independent of such differences. They try to incorporate the overall spatial nature of images.)</p>
@@ -582,12 +582,12 @@ learn<span style="color:#f92672">.</span>freeze()
 <p>But still Siamese remains one of the most famous few-shot learning algorithms out there. This is a testament of the fact that a sophisticated and good design need not be incredibly complex. Infact more complex algorithms are more likely to be forgotten fast!</p>
 <h2 id="neural-style-transfer">Neural Style Transfer</h2>
 <p>Style Transfer is a really niche problem of Computer Vision. The idea is to combine the <em>styles</em> of 2 different images, into one. The most famous application of this is making a photo from our everyday lives in the style of a famous artist (like Van Gogh, or Da Vinci, or Monet, or Picasso, or Michelangelo). Take a look at this.
-<img src="https://drive.google.com/uc?id=1sptBT69cDS5TwmUP7OvpfWfiqTznCpa8" alt="" /></p>
+<img src="../Images/11 Style transfer 2.jpeg.jpeg" alt="" /></p>
 <p>Its amazing to think that all this was done by AI. We ourselves don&rsquo;t know how exactly such an algorithm can be designed through a procedural workflow, so it still seems like magic, even after many years of its release in the academic world.</p>
 <p>Style Transfer has been attempted by many researchers. But we will essentially focus on the work introduced by a group of researchers from Stanford through <a href="https://arxiv.org/abs/1603.08155">this</a> paper (Try reading the paper!). The reason being that this paper is one of the most influential papers in Deep Learning. It introduced a new type of loss function known as the Perceptual Loss function, and also demonstrated its application in various Computer Vision problems apart from style transfer, like, Super Resolution, which is still a very hot topic in research, and still takes inspiration from the proposed loss function and other techniques.</p>
 <p>We&rsquo;ll basically be implementing this paper below, and training a state-of-the-art style transfer model.</p>
 <p>So let us see what we will be essentially implementing.</p>
-<p><img src="https://drive.google.com/uc?id=19ATk2L27svRaoUgRGDSQ4AJIuywfB0S8" alt="" /></p>
+<p><img src="../Images/11 Transformation Network.png" alt="" /></p>
 <p>We will be implementing an <em>Image Transform Network</em>, which takes an input image, that we provide to it, and outputs the image with the change in style. We&rsquo;ve already seen a model that does this. The UNet Model! The Transformation Network is very similar to the UNet in design.</p>
 <p>Now the task of our overall model is to bring in some elements from the &ldquo;Style Image&rdquo; (the image of the famous artist, lets say), while still retaining some elements of the &ldquo;Content Image&rdquo; (The image you want to transform to another style). One way to match the similarity of two values is to simply calculate some sort of <em>loss</em> value between the two values, that measures the dissimilarity between the two, and try to minimize this loss value. We&rsquo;ve seen loss between target and prediction of a Neural Network (we try to make predictions and targets as similar as possible)!. So here, all we need to do is to implement two types of losses - Loss between the output image and the Style Image, and the loss between the output image and Content Image. Our final job is to simply minimize both these losses. You can basically create a new loss function, which is the aggregate of these two loss values, which the authors call, in fancy terms, &ldquo;Perceptual Loss&rdquo;.</p>
 <p>The loss is not calculated for the output of a Neural Network, but for the values of the features from the various layers of another Neural Network in itself (yes, pretty confusing, but quite interesting). We will see the details of how this exactly works step by step.</p>
@@ -643,7 +643,7 @@ layers
 </code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">style_im <span style="color:#f92672">=</span> get_style_im(url)
 style_im<span style="color:#f92672">.</span>shape
 </code></pre></div><p>We could have simply used a loss function like Mean Square error or something to calcuate the difference between two tensors. But The authors define a way to calculate the loss of an activation of the prediction and actication of the style image. They call this the Gram Matrix method.</p>
-<p><img src="https://drive.google.com/uc?id=1UELPdMGhKrz3zAeLsSW9SCM8JfEcsGZU" alt="" /></p>
+<p><img src="../Images/11 Gram Matrix.png" alt="" /></p>
 <p>We simply define this in a function for convenience. Don&rsquo;t try to memorize it!</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">gram</span>(x:Tensor):
   <span style="color:#e6db74">&#34;Transpose a tensor based on c,w,h&#34;</span>
@@ -666,7 +666,7 @@ im_grams <span style="color:#f92672">=</span> [gram(f) <span style="color:#66d9e
   <span style="color:#75715e"># Multiply their sum by 30000. We notice that without this, the loss value is really neglegible</span>
   <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">3e5</span> <span style="color:#f92672">*</span> sum(loss)
 </code></pre></div><p>We&rsquo;ve finished implementing the style loss. Now we need to implement the Feature Loss, which is the loss function corresponding to the content image. We simply implement the details given in the research paper.</p>
-<p><img src="https://drive.google.com/uc?id=1eJyhtmUptXfSstaUIzDeU9-iwhKStUVI" alt="" /></p>
+<p><img src="../Images/11 feature loss.png" alt="" /></p>
 <p>For now we don&rsquo;t normalize the value by C<em>H</em>W, since we notice, the value almost becomes negligible in that case.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">feat_loss</span>(inp:Tensor, targ:Tensor):
   <span style="color:#e6db74">&#34;Calculate the MSE loss of the activation layers&#34;</span>

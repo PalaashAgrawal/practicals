@@ -450,7 +450,7 @@ https://github.com/alex-shpak/hugo-book
 <p>Go to Runtime &ndash;&gt; Change Runtime Type &ndash;&gt; GPU</p>
 </blockquote>
 <p>Welcome to the 9th session in Practical Machine Learning. In this session, we will continue our journey in Deep Learning. In this session, we will learn about one of the most interesting domains of AI - <em>Computer Vision</em>.</p>
-<p><img src="https://drive.google.com/uc?id=1wYMDn_gWGMeH7OLV3kbO9zlf42f283sF" alt="" /></p>
+<p><img src="../Images/09 Computer Vision.png" alt="" /></p>
 <p>Computer Vision is the domain that focuses on Machines&rsquo; ability to perceive the physical space around us through vision, just like we do through our eyes. Even before there were sophisticated algorithms to perform Computer Vision tasks, the idea and importance of Computer Vision has existed. Vision was one of the key components of the Turing Test.</p>
 <p>It is safe to say that among all Machine Learning tasks, Computer Vision has advanced the most. Every year, we see more and more advanced research in Computer Vision tasks. The most influential conference in AI is CVPR, which stands for <em>Computer Vision and Pattern Recognition</em>.</p>
 <p>Computer Vision finds its applications in very sophisticated systems nowadays. Self driving cars, or autonomous robots use Computer Vision. So clearly, Computer Vision cannot be neglected in AI, because we literally let it decide the fate of things as precious as human life!</p>
@@ -511,15 +511,15 @@ learn<span style="color:#f92672">.</span>fine_tune(<span style="color:#ae81ff">5
 </code></pre></div><p>Here we have a new PyTorch object, called as the <em>nn.Conv2D</em>, which stands for the 2D Convolutional Block (since Images are 2D). This is analogous to the Linear Layer we learnt about. Except that if you look at the model, there are both Conv Blocks as well as linear blocks in this ResNet model.</p>
 <h3 id="what-is-a-convolutional-block">What is a Convolutional Block?</h3>
 <p>For that let us start by understanding what a convolution is. A convolution is a feature engineering technique, by which we derive information from an image. A specific kind of convolution may be helpful in identifying the edges of an image, the other may be helpful in identifying where the color green is present, and so on. Visually, this is how convolutions are performed.</p>
-<p><img src="https://drive.google.com/uc?id=1J92FpdbRlXnd1Mr5tZSYtMrhGZSqbeA3" alt="" /></p>
-<p><img src="https://drive.google.com/uc?id=14Dbf6jLFMSVvpbjBm9KUkGNk8lEVye2f" alt="" /></p>
+<p><img src="../Images/09 Covnvolutions without numbers.gif" alt="" /></p>
+<p><img src="../Images/09 convolution with numbers.gif" alt="" /></p>
 <p>The 3x3 matrix you see, over which convolution takes place is called the <em>kernel</em>. Each kernel is responsible for deriving a feature.</p>
 <p>There may be multiple kernels working on the same image per layer. This resulting matrix (on the right) is the output of one layer, and represents some feature. This is also the input to the next layer of the convNet. The next layer will learn even more complex features, until it can reach a point, where it can learn about features that differentiate between dogs and cats, for example.</p>
 <p>There is a great <a href="https://www.cs.ryerson.ca/~aharley/vis/conv/">visualization tool</a> created by Adam Harley to visualize how CNNs process image data.</p>
 <h3 id="why-does-a-convolutional-network-work-better-than-multilayer-perceptrons">Why does a Convolutional Network work better than MultiLayer Perceptrons?</h3>
 <p>In the real world, pixels don&rsquo;t really mean much. It is a <em>group</em> of pixels that has a meaning. A group of pixels forms the eyes, the nose, the ears of a cat. And a group of these groups collectively forms the face of the cat. MLPs don&rsquo;t consider this spatial relationship between pixels. It simply breaks them apart and treats each pixel independently. Through this we lose spatial information. But CNNs retain this spatial relationship. It works on the pronciple of finding features from a group of pixels without disturbing their spatial distribution. THis is the reason CNNs work better on visual data rather than straightforward MLP Neural Networks.</p>
 <h3 id="history-of-cnns">History of CNNs</h3>
-<p><img src="https://drive.google.com/uc?id=1aliUnCaqWQURkSYN5MVsm3bUBpMFjPRU" alt="" /></p>
+<p><img src="../Images/09 Yann LeCun.jfif" alt="" /></p>
 <p>CNNs were first popularized by Yann LeCun in 1989. At that time, however, the research community did not beleive in the potential of Neural Nets. However, Yann LeCun was one of the few researchers who did, and kept working on its development. Here is a video of him demonstrating the first ConvNet for Handwritten Digit recognition while he was at Bell Labs.</p>
 <p>This model of his was used by Banks to read cheques and the Post Office to read postal codes.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">YouTubeVideo(<span style="color:#e6db74">&#39;FwFduRA_L6Q&#39;</span>,width<span style="color:#f92672">=</span><span style="color:#ae81ff">700</span>,height<span style="color:#f92672">=</span><span style="color:#ae81ff">450</span>)
@@ -527,7 +527,7 @@ learn<span style="color:#f92672">.</span>fine_tune(<span style="color:#ae81ff">5
 <h2 id="the-resnet-architecture-and-other-image-classification-models">The ResNet Architecture and other Image Classification Models</h2>
 <p>ResNets are one of the most Vanilla image classification models used for classification. They were introduced in 2015 by Kaiming He et al.
 They are particulary effective due to the skip connection feature, which looks something like this.</p>
-<p><img src="https://drive.google.com/uc?id=1TCdBQjz8qEegGfOpPi_VLQUtBACiPuYh" alt="" /></p>
+<p><img src="../Images/09 ResNet skip connection.png" alt="" /></p>
 <p>This is a great regulization feature. It serves the model in two ways.</p>
 <ul>
 <li>It prevents the model from overskipping, since the data can somewhat be directed to skip over layers.</li>
@@ -535,11 +535,11 @@ They are particulary effective due to the skip connection feature, which looks s
 </ul>
 <p>Zero Activations are a huge problem in Neural Networks. If a model is not trained carefully, the activations can collapse very fast, and at that point, there will be no learning, since the gradients will be zero too, and there will be no significant parameter update.</p>
 <p>This is what the ResNet architecture looks like in total.</p>
-<p><img src="https://drive.google.com/uc?id=1JD56yCUf_GoyQxy69l_jQ_hPImW6OCrd" alt="" /></p>
+<p><img src="../Images/09 ResNets.png" alt="" /></p>
 <p>This Skip Connection Technique became so popular, that many modern Image architectures use this. For example, here is the EfficientNet architecture.</p>
-<p><img src="https://drive.google.com/uc?id=1-mcRP0oDyyfkqBS4cPQJPBM37nL418ie" alt="" /></p>
+<p><img src="../Images/09 efficientnets.png" alt="" /></p>
 <p>And the MobileNet architecture!</p>
-<p><img src="https://drive.google.com/uc?id=1_5_HT1RXCAgkfBs_Zu5NA9p5rXZG16vi" alt="" /></p>
+<p><img src="../Images/09 MobileNet.png" alt="" /></p>
 <p>Lets actually look inside the ResNet architecture!</p>
 <p>ResNet architecture has many variants, based on the number of layers. There is ResNet18, ResNet34, ResNet50, ResNet101,and ResNet151. If you scroll up, you&rsquo;ll notice we used the ResNet34 architecture, because it falls in between the two extremes, and works satisfactorily.</p>
 <p>Torchvision provides us with the architectures of these models, along with <em>pretrained</em> weights. <a href="https://pytorch.org/vision/stable/models.html">Link</a> for all models provided by PyTorch.</p>
@@ -557,7 +557,7 @@ They are particulary effective due to the skip connection feature, which looks s
 <p>So, how did we bring down the training time from multiple days to less than 2 minutes?</p>
 <p><em>Transfer Learning</em> is the answer.</p>
 <p>The way CNNs work is, that the earlier layers of the model learn basic features, such as right edge, or the presence of a colour. As you progress deeper into the model, the model learns more complex features. Here is a great representation of this from a 2013 paper by Zeiler and Fergus.</p>
-<p><img src="https://drive.google.com/uc?id=1zvOzZbvCCP-jsZL2oj_4K30BOdBWyBEc" alt="" /></p>
+<p><img src="../Images/09 Zeiler and Fergus Feature Repr.jpg" alt="" /></p>
 <p>The basic features are more or less common for all Image recognition tasks. For example, every image recognition task involves the model needing to identify edges, colours, basic shapes such as squares, circles, etc. It is only the later layers of the model that need to be different in order for the model to adapt for the particular problem that you&rsquo;re trying to solve.</p>
 <p>So, researchers already train these architectures on standard Image datasets (such as ImageNet, a corpus of 1.4 Million Images containing 1000 categories of everyday objects, or the COCO dataset), and provide the parameters of the model publically, so that we don&rsquo;t have to train them from scratch. THis is called <em>Transfer Learning</em>, and the process is called using pretrained weights (parameters).</p>
 <p>Now, for any task, all we need to do is, to <em>fine-tune</em> the later layers of the model to adapt to our task.</p>

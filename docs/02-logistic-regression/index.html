@@ -471,7 +471,7 @@ https://github.com/alex-shpak/hugo-book
 <p>The logistic function or the sigmoid function is defined as below:</p>
 <p>$$sigmoid(x) = \frac{1}{1+e^{-x}}$$</p>
 <p>It looks something like this:
-<img src="https://drive.google.com/uc?id=1_En_37XZ1MLhYrsX0kxQhLml7kisHW1V" alt="" /></p>
+<img src="../Images/02 sigmoid_function.png" alt="" /></p>
 <p>So, if this is a Logistic function, what would logistic regression mean? Naturally it would mean modeling the data using a logistic function. Ideally it would be helpful in a case where the data is distributed more or less over a sigmoid function.</p>
 <p>But we don&rsquo;t usually see data distributed in this fashion - there are almost no practical scenarios where data is distributed in this fashion. Actually, this function is not used for prediction of a value at all. As we said, it is used for classification. But how can we use a function for classification?</p>
 <p>Before we start explaining that, let us point out a unique property of this function. Notice how the function strictly lies between 0 and 1. It approaches 1 as the input approaches $+\infty$, and 0 as the input approaches $-\infty$.</p>
@@ -515,7 +515,7 @@ https://github.com/alex-shpak/hugo-book
 <pre><code>
 </code></pre><h2 id="case-study-identifying-handwritten-digits">Case Study: Identifying Handwritten Digits</h2>
 <p>Given an image of a handwritten digit, can we build a classifier that can identify what digit it is? Digits refers to integers from 0 to 9, both inclusive.</p>
-<p><img src="https://drive.google.com/uc?id=1SLXc1HNY9uiO3jGVJ8sTYm0WE-ZpcJNc" alt="" /></p>
+<p><img src="../Images/02 MNIST.png" alt="" /></p>
 <p>In the image above, notice, all the different styles in which any digit can be written. The model needs to &ldquo;learn&rdquo; the characteristics of digits. What differentiates a 1 from a 2, or a 5 from a 9? To be fair, it is difficult for even humans to express the idea of distinction in words. But we still Can give a vague answer to this question - each number has its own way of writing - for example, a 1 is not likely to have a curved line, but a 2 is likely to have a curve. Its quite amazing that a model can learn these ideas - and remember, all this is learnt in the form of parameters, which are nothing but numbers in themselves!</p>
 <p>This dataset is called the MNIST dataset, which contains 28x28 pixel greyscale images for all digits. We however will look at only 2 digits (remember, logistic regression is meant for binary classification). (We will however, look at how to classify among multiple classes too, later on!)</p>
 <p>So let us donwload this dataset. Last time, we used the Kaggle API to download the dataset. We can use it this time too! But let us look at another alternative! Its good to know of all possible options to carry out a task - good practitioners should know of their options, because each option, more often than not, has it&rsquo;s pros and cons, and every method is not the best choice for a given task. But still, if you wish to use the Kaggle API, <a href="https://www.kaggle.com/c/digit-recognizer/data">here</a> is the link to the dataset. Follow the exact procedure as last session. Below is a commented out peice of code from last session to download the dataset. Remember, you need to upload the kaggle.json file, and then enter the Kaggle API command.</p>

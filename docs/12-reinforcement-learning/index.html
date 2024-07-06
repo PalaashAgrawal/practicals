@@ -430,7 +430,7 @@ https://github.com/alex-shpak/hugo-book
       
       
   <article class="markdown"><h1 id="12-reinforcement-learning">12 Reinforcement Learning</h1>
-<p><img src="https://drive.google.com/uc?id=1e3fTjnZLdR5skojks4zIzuc_qjsFgJZo" alt="" /></p>
+<p><img src="../Images/12 Deepminds learning how to walk.gif" alt="" /></p>
 <p>Welcome to the 12th session in the Machine Learning practical series. In this session, we&rsquo;ll be deviating a little from Deep Learning, and studying about Reinforcement Learning, a slightly different field of Machine Learning, which uses a slightly different approach towards <em>learning</em>. Its a really interesting domain, and has lots of unexplored possibilities. So let&rsquo;s dive into an overview of what Reinforcement Learning is.</p>
 <p>Imagine a real life scenario, how you learnt social behaviors. When you were really young, you did not necessarily know how to behave, and simply explored everything. In that, you did a lot of wrong things, and even some good things. Whenever you do a good thing, there was some sort of <em>reward</em> that you used to get. For example, maybe you scored good marks in your test when you were young, and your parents praised your effort, maybe even got you a gift. This reward is meant to encourage you to study more, and keep up your grades at school. On the other hand, you may have done a lot of &ldquo;bad&rdquo; things as well, and by bad, we mean, socially inacceptable actions, like, maybe, you broke something in your house, hurt your sibling, trashed the house, or picked up a curse word from somewhere. And immediately, you were <em>punished</em>, or <em>penalized</em> for it, maybe you got a scolding. So in the future, a subtle fear of this penalty would  stop you from doing it again (and if not, atleast make you think of it!). A really long history of rewards and penalties shapes us into socially acceptable humans. Now, it need not be just parents who reward/punish us, it can be other entities too - like, the society in general, including your immediate friend circle, the immediate surroundings, police and the courts, etc. This method of <em>learning</em> through rewards and penalties is called reinforced learning. An agent learns through constant reinforcement of ideas and tasks.</p>
 <p>This is completely different from traditional Supervised Learning. In Supervised Learning, the learning entity is shown multiple examples of a target, which we wish that the entitity learns to identify. That&rsquo;s not how we learn. We don&rsquo;t learn not to break things at home by watching millions of examples of other kids not doing the same. So, reinforcement learning does not entail elarning through example, but learning through trial and error, and a series of rewards and penalties. Pretty interesting, right?</p>
@@ -476,13 +476,13 @@ warnings<span style="color:#f92672">.</span>filterwarnings(<span style="color:#e
 </code></pre></div><h2 id="reinforcement-learning-with-openai-gym">Reinforcement Learning with OpenAI Gym</h2>
 <p><a href="https://gym.openai.com/">OpenAI</a> provides us with a collection of interactive environments to test reinforcement learning systems, including many video game environments, and other graphic based interfaces, some simple, and others complex!</p>
 <p>In OpenAI&rsquo;s own terms -</p>
-<p><img src="https://drive.google.com/uc?id=1PbpIEcjP0oapY8hgL--XI2DxqeVUvk0_" alt="" /></p>
+<p><img src="../Images/12 OpenAI Gym objective.png" alt="" /></p>
 <p>Since we&rsquo;re already somewhat comfortable in PyTorch, we&rsquo;ll be using that in this session.</p>
 <p>So, step number 1 is to create an environment where we&rsquo;ll be building our model. For the purpose of this session, we&rsquo;ve picked a problem called the <a href="https://gym.openai.com/envs/MountainCar-v0/">Mountain Car</a>. The problem is simple:</p>
 <blockquote>
 <p>The goal is to drive up the mountain on the right; however, the car&rsquo;s engine is not strong enough to scale the mountain in a single pass. Therefore, the only way to succeed is to drive back and forth to build up momentum.</p>
 </blockquote>
-<p><img src="https://drive.google.com/uc?id=1NvAwZp1EhEgcmZKobtgtjHRYiSrtNf2J" alt="" /></p>
+<p><img src="../Images/12 OpenAI Gym Mountain Car problem.png" alt="" /></p>
 <p>All we need to do to initialize this environment is one simple line of code as follows.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">env <span style="color:#f92672">=</span> gym<span style="color:#f92672">.</span>make(<span style="color:#e6db74">&#39;MountainCar-v0&#39;</span>)
 state <span style="color:#f92672">=</span> env<span style="color:#f92672">.</span>reset()

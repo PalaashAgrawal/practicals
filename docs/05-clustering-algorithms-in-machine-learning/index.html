@@ -456,7 +456,7 @@ All of the supervised training algorithms we saw till now had a very common them
 <p>Now, coming to our topic today - <em>Clustering Algorithms!</em> We&rsquo;ll be looking at two algorithms -  <strong>K Means</strong> and <strong>K Nearest Neighbors</strong> Algorithms, and we&rsquo;ll explore both separately! So let&rsquo;s get started&hellip;</p>
 <h2 id="k-means-algorithm">K Means Algorithm</h2>
 <p>Take a look at this data below.</p>
-<p><img src="https://drive.google.com/uc?id=1gFNxPtQhVb8ekxZN4XV6NWZhGHgSwpFy" alt="" /></p>
+<p><img src="../Images/05 facebook network.png" alt="" /></p>
 <!-- raw HTML omitted -->
 <p>This is a social network graph. It is basically a visualization of who is a connection of whom. For example, if this network belonged to Facebook, the image would depict which people are friends on facebook, and who aren&rsquo;t. People who are friends on facebook have a faint grey line joining their profile images. You might notice that there are some distinct groups in this photo, which appear as blobs. You can see two major such blobs, one on the left and one on the right. These are called <em>clusters</em> of data.</p>
 <p>Lets say that people in the left blob are college going kids, and on the right are business professionals. Obviously, college going kids are more likely to know each other than they would know business professionals, and similarly business professionals are more likely to know each other, rather than college going kids, only because of the shared experiences and backgrounds. Hence, you would expect college kids to be friends with each other, far more than you would expect college kids being Facebook friends with business professionals. Hence these two clusters.</p>
@@ -473,7 +473,7 @@ All of the supervised training algorithms we saw till now had a very common them
 <li>Repeat Steps 2 and 3 until you get desired results. During step 2, the group assigned to a datapoint may change, depending on which centroid it is closest too at this point (after updating the position of centroids).</li>
 </ol>
 <p>Imagine what happens during step3. By updating the value of the centroid as the mean of all the datapoints, we are essentially <em>pulling</em> the centroid to where there is more density of data. If this process is repeated multiple times, we will eventually pull the centroid to a position where this high density of data, or in other words, a blob/cluster exists. Here is a quick visualization of the K Means algorithm.</p>
-<p><img src="https://drive.google.com/uc?id=15T7mCRh1AsTwFgFRxvrdXDkHRPcqiREZ" alt="" /></p>
+<p><img src="../Images/05 K Means algorithm.gif" alt="" /></p>
 <p>In today&rsquo;s session we&rsquo;ll be looking at a very interesting problem - We will be identifying the crime hotspots of a city - meaning, identifying which areas are more prone to crimes and which are safer.</p>
 <h3 id="case-study-crime-hotpots-in-vancouver">Case Study: Crime Hotpots in Vancouver</h3>
 <p>We have some data about crimes in the city of Vancouver, Canada. The data includes their nature, the time of occurence, the location, etc. Our job is to identify the areas of the city where the crime is more likely to occur. This can help the local Police Department deploy enough personnel, so that they are ready, equipped, and well numbered to tackle crimes.</p>
@@ -499,7 +499,7 @@ df.head()
 </code></pre><p>Before we start working with this data, let us remove any empty records (for example, a policeman, while recording the crime, might not have filled the coordinates, or might not have thought of it as relevant to the crime).</p>
 <pre><code>df.dropna(inplace=True)
 </code></pre><p>So let us now visualize this dataset. Let us plot on a graph, all the X cordinates and the Y cordinates of the crimes, so we get an idea of where do crimes take place, and how many crimes take place in any locality (a rough idea!). But before that, lets see the actual map of Vancouver!</p>
-<p><img src="https://drive.google.com/uc?id=1lEOKrWqTal2n9ZGSll1g8A7K4n6gICpI" alt="" /></p>
+<p><img src="../Images/05 Vancouver.png" alt="" /></p>
 <p>This map also shows the Neighborhoods in Vancouver, which is provided to us in the dataset as well.</p>
 <p>Let us now plot all crimes on a graph, and see where in Vancouver are crimes found!</p>
 <pre><code>plt.scatter(df.X,df.Y,s=0.001) #s is used to control the size of datapoints on the graphs. There are so many datapoints, that if you use the normal size, all the datapoints will get merged. Hence, use a small 's'

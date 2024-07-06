@@ -435,15 +435,15 @@ https://github.com/alex-shpak/hugo-book
 <p><strong>So what are SVMs in the first place?</strong></p>
 <h2 id="what-are-support-vector-machines">What are Support Vector Machines</h2>
 <p>Lets start with a simple binary classification example. Our job is to create a model that separates the two. In Logistic regression, we modelled a line, that gave a value either greater than 0 or less than 0 (and hence an output of less than 0.5 or more than 0.5 when passed through a sigmoid function), based on which category the datapoint lies in. Something like the figure below:</p>
-<p><img src="https://drive.google.com/uc?id=1QIdMc91Vj9aBRiDqqxv595bD296c0WBT" alt="" /></p>
+<p><img src="../Images/06 linear separation.png" alt="" /></p>
 <p>This is all that we did in Logistic Regression - model a line</p>
 <p>(<em>or a plane to be more precise - A line is basically a 1-dimensional version of a 2D plane, and separates 2-D data. A 2D plane separates 3-D data, and similarly there can be N-dimensional planes as well, to separate N+1 dimensional data</em>)</p>
 <p>that best separates the two categories of data. Basic Geometry tells us that if you model a line(or plane) $f(x) = 0$, and then give it an input x that does <em>not</em> lie on the line, you will get a non-zero value ($f(x) \neq 0$). If you input a value that lies on one side of the line, you will get a positive value, and if you input a value that is on the other side, you will get a negative value. So it makes sense to build a line that lies in the middle of the two clusters of data. Ofcourse its not always possible to always get 100% accuracy, because of the distribution of data. But our focus is to get the best possible results.</p>
 <p>SVMs simply do the same, except that SVMs take it to the next level. SVMs not only try to get the best results, but also the best fitting line, even if the accuracy might not increase per se. What do we mean by the <em>best fitting line</em>?</p>
-<p><img src="https://drive.google.com/uc?id=1_oi7kIlVu25f9UNf5RWYNxEC_XwtvNyj" alt="" /></p>
+<p><img src="../Images/06 best separating line.png" alt="" /></p>
 <p>In the figure given above, all the three lines ($L1$,$L2$ and $L3$) would ideally give 100% accuracy in this binary classification problem, since they clearly separate the two classes. But Imagine what would happen if you get new datapoints around the existing clusters. Lines $L1$ and $L3$ are so closely cutting one of the categories, that there&rsquo;s a much higher chance of misclassification when new data would be introduced. Line $L2$ seems much more robust in that view.</p>
 <p>Mathematically, whats going on, is that Line $L2$ has the best <em>Margin of Separation</em>. Meaning, its the most far away from any datapoint . This creates room for variance in data. Even if you introduce new data that is slightly out of the already-existing clusters, the line with the most margin (Line L2) is still more likely to correctly separate the categories. This is what the <em>Margin of Separation</em> looks like:</p>
-<p><img src="https://drive.google.com/uc?id=1FssE45toMSUcZPgMXGIhK7xUmhrhyZeR" alt="" /></p>
+<p><img src="../Images/06 Margin of separation.png" alt="" /></p>
 <p>The space in between the two dotted lines is the margin of separation. There <em>ideally</em> should be no data in between these two lines. The actual separating (classifying) line is in the between the two dotted lines.</p>
 <p>A logistic regression model would not know the difference between the lines $L1$,$L2$ and $L3$. SVM does! SVM not only tries to minimize the error in prediction, but also tries to <em>maximize the margin between the two categories</em>.</p>
 <p>So our data in N Dimensional, there is <em>SOME</em> N-dimensional plane that <em>Best</em> separates the data, with the widest margin of separation. The remaining idea is the same - build a model, build a cost function that you wish to minimize in order to get the best results, and build an optimization method that changes the position of the line/plane such that the cost function is minimized.</p>
@@ -531,7 +531,7 @@ classifier_linear = svm.SVC(kernel='linear') # a python class that optimizes the
 <p>Poly - fits a polynomial function instead of a linear function to the data. (Like we did in the Linear Regression Lab - We tried to fit a cubic function to the data)</p>
 <p>Sigmoid tries to fit a sigmoid function to the data.</p>
 <p>Radial Basis function fits circles rather than straight lines. Basically, find some n-dimensional radius, which creates an n-dimensional sphere, which separates the two classes.</p>
-<p><img src="https://drive.google.com/uc?id=1ocGq80WdPRQ-oaG4f1F5e-2bpqdHbonK" alt="" /></p>
+<p><img src="../Images/06 radial classification.png" alt="" /></p>
 <p>However, the circle/sphere is N-Dimensional and not 2/3 dimensional.</p>
 <p>The last one is Precomputed, meaning, we use a custom function, and give it precomputed outputs, so it doesnt have to do manual computing. We don&rsquo;t use this in our lab!</p>
 <p>Apparantly, research shows that this radial function outperforms all types of kernels.</p>

@@ -619,7 +619,7 @@ x<span style="color:#f92672">.</span>shape,y<span style="color:#f92672">.</span>
 <p>Now once you have some pretrained weights, you can use those in the final task, which in this case is text classification (classification of IMDb reviews into positive and negative reviews). All you have to do now is change the task. Now instead of the target output being a sequence of text, it will be classes. Sounds straightforward!</p>
 <p>Let us go one step beyond.</p>
 <p>We will be discussing an interesting Language Modeling approach called <em>ULMFiT</em> (Universal Language Model Fine-tuning), which was introduced in <a href="https://arxiv.org/abs/1801.06146">this</a> paper. Let us discuss the key ideas from this paper through our example of creating an IMDb text classifier.</p>
-<p><img src="https://drive.google.com/uc?id=1itzIngHaDIyVWhyBz2oEia8tN_OsegvZ" alt="" /></p>
+<p><img src="../Images/13 ULMFiT approach.png" alt="" /></p>
 <p>After creating the WikiText Language Model, that understands the English Language, our problem is this. Our model has also sort of overfitted on the Wikipedia text. So now, its style of language is more formal, and its more likely to predict text that you would see in WikiPedia, rather than movie review style text. This paper introduced a clever solution to that.</p>
 <p>As an extension to the self-supervised pretraining stage, why not <em>fine-tune</em> the language model on our specific dataset, so that the language model learns the style of text that is more common in the target dataset (IMDb, in this case), and carry on the classification text from that point onwards. Let us see how to do that!</p>
 <h3 id="finetuning-a-language-model">Finetuning a Language Model</h3>
@@ -806,11 +806,11 @@ bs<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span>
 cut<span style="color:#f92672">=</span>int(len(seqs)<span style="color:#f92672">*</span><span style="color:#ae81ff">0.8</span>)
 dls<span style="color:#f92672">=</span>DataLoaders<span style="color:#f92672">.</span>from_dsets(seqs[:cut],seqs[cut:],bs<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span>,shuffle<span style="color:#f92672">=</span>False) <span style="color:#75715e">#in language models, we shouldnt shuffle the sequence of words</span>
 </code></pre></div><p>Let us understand how an RNN is built. An RNN is essentially a looping Neural Network. It takes in one input at a time, and passes it through a Linear Layer to get activations. These activations are added to the next word in the sequence, and the result is again passed through the Linear Layer to get new activations. Here we have three words as input, so after repeating this process for a total of three times, we will get some activations from the Linear Layers, which can be passed to a final linear layer (that outputs some probability about which token is the final prediction). This is what an RNN is.</p>
-<p><img src="https://drive.google.com/uc?id=1SprFLnlXXIvTarkaR5XSGrMShrUNdCLe" alt="" /></p>
+<p><img src="../Images/13 recurrent model.gif" alt="" /></p>
 <p>In comparison to a standard fully connected Neural Network, where we had an input layer, multiple hidden layers, and one final output layer, an RNN is simply the input layer, the output layer, and one single hidden layer, the output of which is fed into itself again and again. Hence the name <em>Recurrent</em> Neural Network.</p>
 <p>There is one small tweak in this.</p>
 <p>Instead of directly feeding the tokens as the input, what if we had the ability to represent each token as a much more sophisticated tensor of features? We call this an Embedding Matrix, which basically maps each token to a new tensor containing different features. And these features can be learned through standard optimization techniques.</p>
-<p><img src="https://drive.google.com/uc?id=1U6EXZ8uFikW-i12qet9sIi5dn37GeWS2" alt="" /></p>
+<p><img src="../Images/13 Embedding Matrix.png" alt="" /></p>
 <p>This basically helps us represent more information in comparison to one single token number. So this is essentially a mapping from a token number to an entire tensor of learnable parameters.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#refactoring the first LM model</span>
 <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LMModel1</span>(Module):
@@ -969,7 +969,7 @@ token</li>
 Consider, for example, the sentences “Henry has a dog and he likes his dog very much” and “Sophie has a dog and she likes her dog very much.” It’s very clear that the RNN needs to remember the name at the beginning of the sentence to be able to pre‐ dict he/she or his/her.</li>
 </ul>
 <p>In practice, RNNs are really bad at retaining memory of what happened much earlier in the sentence, which is the motivation to have another hidden state (called cell state) in the LSTM. The cell state will be responsible for keeping long short-term memory, while the hidden state will focus on the next token to predict. Let’s take a closer look at how this is achieved and build an LSTM from scratch.</p>
-<p><img src="https://drive.google.com/uc?id=1ll89W_Fy0zJN7LNVEqcMvjk7eHmTKk4L" alt="" /></p>
+<p><img src="../Images/13 LSTM.png" alt="" /></p>
 <p>In this picture, our input $x_{t}$ enters on the left with the previous hidden state ($h_{t-1}$) and cell state ($c_{t-1}$). The four orange boxes represent four layers (our neural nets) with the activation being either sigmoid ($\sigma$) or tanh. tanh is just a sigmoid function rescaled to the range -1 to 1. Its mathematical expression can be written like this:</p>
 <p>$$\tanh(x) = \frac{e^{x} - e^{-x}}{e^{x}+e^{-x}} = 2 \sigma(2x) - 1$$</p>
 <p>where $\sigma$ is the sigmoid function. The green circles are elementwise operations. What goes out on the right is the new hidden state ($h_{t}$) and new cell state ($c_{t}$), ready for our next input. The new hidden state is also used as output, which is why the arrow splits to go up.</p>

@@ -444,26 +444,26 @@ https://github.com/alex-shpak/hugo-book
 <p>Generative Adversarial Networks were <a href="https://arxiv.org/abs/1406.2661">introduced</a> in 2014 by Ian Goodfellow while he was doing his PhD. Ian Goodfellow is now working as the Director of Machine Learning at Apple. But let&rsquo;s make sure we understand what its aim is.</p>
 <h3 id="what-are-generative-networks">What are Generative Networks?</h3>
 <p>Let us leave out the Adversarial part of the term &ldquo;Generative Adversarial Networks&rdquo;(or GANs for short). What we are essentially trying to do is create a Generative Model. We&rsquo;ve already seen what that means. Instead of classification of prediction of some regression value, we would like our Neural Networks to &ldquo;Generate&rdquo;, say, images. We&rsquo;ve seen one example of this - <em>Segmentation</em> of images, where we created a model that took an image, and also gave an output as a result. But ultimately this was a pixel wise classification problem. That&rsquo;s okay, what if we wanted to create a regression type problem? Like feed in a picture of a low quality image, and the Neural Network would give back a high quality image?</p>
-<p><img src="https://drive.google.com/uc?id=1CP5PxTtyyiYHEuL9G7wsWrJ5bpJMV3v_" alt="" /></p>
+<p><img src="../Images/14 Image superresolution.png" alt="" /></p>
 <p>(essentially, you&rsquo;re creating a model that can output some pixel value in a certain range (between 0 and 255), across the three channels of colours (RGB).</p>
 <p><em>Or</em> a black and white image, and make the Neural Net give back coloured images?</p>
-<p><img src="https://drive.google.com/uc?id=1vFCvK2ZqrGHQbFic_qu6WmD92Eg4BY3C" alt="" /></p>
+<p><img src="../Images/14 Deoldify.jpg" alt="" /></p>
 <p><em>Or</em> make a Neural Net fill missing parts of an Image (called Image InPainting). (Or remove things from an image, like, for example, photo bombers?)</p>
-<p><img src="https://drive.google.com/uc?id=1T-sSEZGi561rN1FfoSOE6LT70FpVID9f" alt="" /></p>
-<p><img src="https://drive.google.com/uc?id=14XlOZgUAlnSXm4LvLnbx4IuaM3OqQsFM" alt="" /></p>
+<p><img src="../Images/14 image inpainting 1.gif" alt="" /></p>
+<p><img src="../Images/14 image inpainting 2.gif" alt="" /></p>
 <p><em>Or</em> Create Realistic Images of people that don&rsquo;t even exist!</p>
-<p><img src="https://drive.google.com/uc?id=1kn3vpoMMOY_7FBfWFsEW42vAr59QeMO9" alt="" /></p>
+<p><img src="../Images/14 This person does not exist.png" alt="" /></p>
 <p>This person was created using GANs, with just arbitrarily engineered noise as input. Look at how well defined the output is. There is a website called <a href="https://thispersondoesnotexist.com/">This Person Does Not Exist</a>, that shows an AI generated image of people that probably don&rsquo;t even exist. Try refreshing the website page a few times. You will genuinely be impressed.</p>
 <p>Also check out <a href="https://thisartworkdoesnotexist.com/">This Art Does Not Exist</a>, <a href="https://thishorsedoesnotexist.com/">This Horse Does Not Exist</a>, <a href="https://thiscatdoesnotexist.com/">This Cat Does Not Exist</a> and <a href="https://thischemicaldoesnotexist.com/">This Chemical Does Not Exist</a>.</p>
 <p><em>Or</em> a model that creates emojis from your faces. They are quite the trend on social media nowadays.</p>
-<p><img src="https://drive.google.com/uc?id=1n2EaVtF2UdGrx6r91xliZTOux1_Bt2tf" alt="" /></p>
+<p><img src="../Images/14 emoji creation.jpeg" alt="" /></p>
 <p><em>Or</em> Models that make you look old. Have you tried the FaceApp app, that makes you look older, or younger, or change your hair, your facial hair, your gender, and even add or remove scars. This all works through Generative AI Models.</p>
-<p><img src="https://drive.google.com/uc?id=1PTTLIbnF09XJrhI_KSOfvSN-xuNfXv2i" alt="" /></p>
+<p><img src="../Images/14 faceapp.jpg" alt="" /></p>
 <p>All these require a similar type of Neural Network Modeling. Feed in some kind of input (image, in terms of pixel tensors), which depends on what task you want to do, and get an output, also in terms of pizel values, just transformed according to our needs. Seems straightforward, doesn&rsquo;t it?</p>
 <p>And how do we do it? The UNet style architecture. All that is dfiffent is that output is not a map of classes, but individual pixel values. Since, this iis a regression problem, we would use a MSE type loss to account the loss between predicted output and target pixel values of the transformed image. Actually, remember that GANs came out in 2014, and UNets were officially published in 2015, and also weren&rsquo;t recognised for a long time in the DL community. But the approach remains more or less the same.</p>
 <h3 id="the-story-of-gans">The story of GANs</h3>
 <p>One night, Ian Goodfellow was out drinking with his friends, and they were discussing methods to create Generative Models. All previous attemps somewhat worked, but were still not top notch. Here&rsquo;s why. Look at these two images.</p>
-<p><img src="https://drive.google.com/uc?id=1W9Q73eSEsRPx7VCjiJ1Z2J_OheNOLjef" alt="" /></p>
+<p><img src="../Images/14 noisy Generative model output.png" alt="" /></p>
 <p>On the left is our target image, and on the right the prediction from GANs. There is not much MSE loss between the two, because the model has more or less figured out the colours in most of the picture. But the GAN still doesn&rsquo;t know that what spatial features are important. Like in this case, our model does not know that the predicted image is blurry. The problem somewhat lies in the loss function.</p>
 <p>So Goodfellow randomly came up with this idea - <em>what if we pit two Neural Nets against each other?</em>. This came to be known as Generative Adversarial Networks. (Adversarial meaning against one another!). The idea is as follows.</p>
 <p>Design a two models that try to beat one another. One of them would be the Generative Network that produces the final image we wish for. By making two models learn and try to outperform the other, both the models would push each other to be better and better in a guided fashion, and at the end, the model performance would be better than simple generative modeling.</p>
@@ -472,7 +472,7 @@ https://github.com/alex-shpak/hugo-book
 <p>The idea is simple. Create a Generative Model. Its usually called the <em>Generator</em>, the job of which is to take some input, and give a target output. Now obviously, initially the model suffers from the incomprehension of feature importance problem that we described above. The other model is a simple binary Image classifier, the job of which is to predict which image is a Ground Truth Image, and which image is generated by the Generative Model. This model is also called the <em>Discriminator</em> or the <em>Critic</em> Model. Based on that we receive some loss function (standard Cross Entropy Loss). Our job is to get the maximum accuracy, meaning we would like the Critic Model to accurately identify which image is fake (Generated), and which is real. The higher the accuracy, the more difficult it gets for the Generative Model to &ldquo;fool&rdquo; the Critic Model. A perfect Critic Model would catch every image that is fake. And a perfect Generator Model would fool the Critic Model each time. When both these models become good, the generator model will be so good at predicting images that look like the Ground truth images, that our job would be done at that point! So evaluating our Critic model on some ground truth images and some predicted images will help us train the Critic Model to be slightly better at differentiating between the two.</p>
 <p>Now taking the accuracy, or loss value of the Critic Model as the loss formulation of the Generator as well, we can train the Generator to become slightly better at fooling the Critic Model, or in other words, convincing the Critic model that the predicted image is infact a ground truth image.</p>
 <p>Once you train the Generator for one epoch, get some predictions, and make the Critic Model evaluate again. Back and forth, and in the end, the Generative Model would learn how to predict really good images.</p>
-<p><img src="https://drive.google.com/uc?id=1U7vk9QV3YzLPJoGpOpG8n9vhPXpcPZAy" alt="" /></p>
+<p><img src="../Images/14" alt="" /></p>
 <p>Let us see how this is implemented. Let us start by importiing necessary libraries. We&rsquo;ll be using the fastai library for this.</p>
 <h3 id="inspirations-from-reinforcement-learning">Inspirations from Reinforcement Learning</h3>
 <p>There is this concept in Reinforcement Learning called the <em>Actor Critic</em> Modeling Principles, which is quite similar to the GAN modeling principle. However, the driving source is rewards and errors, rather than losses and accuracies. Also, this concept is still quite crude, and there are not much concrete examples of this concept. But it&rsquo;s been around a long time (atleast since 1980s) and is worth a read if you&rsquo;re interested!</p>
@@ -564,7 +564,7 @@ x<span style="color:#f92672">.</span>shape,y<span style="color:#f92672">.</span>
 </code></pre></div><pre><code>&lt;Signature (in_size, n_channels, n_features=64, n_extra_layers=0, norm_type=&lt;NormType.Batch: 1&gt;, ks=3, stride=1, padding=None, bias=None, ndim=2, bn_1st=True, act_cls=&lt;class 'torch.nn.modules.activation.ReLU'&gt;, transpose=False, init='auto', xtra=None, bias_std=0.01, dilation: Union[int, Tuple[int, int]] = 1, groups: int = 1, padding_mode: str = 'zeros')&gt;
 </code></pre>
 <p>Now for the generator, a simple UNet architecture can be generated as follows.</p>
-<p><img src="https://drive.google.com/uc?id=1ZMhr6LKKcfYobi499pYdQm6XIq83W-46" alt="" /></p>
+<p><img src="../Images/14 GAN architecture.png" alt="" /></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AddChannels</span>(Module):
     <span style="color:#e6db74">&#34;Add `n_dim` channels at the end of the input.&#34;</span>
     <span style="color:#66d9ef">def</span> __init__(self, n_dim): self<span style="color:#f92672">.</span>n_dim<span style="color:#f92672">=</span>n_dim

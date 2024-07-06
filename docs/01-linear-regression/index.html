@@ -452,7 +452,7 @@ https://github.com/alex-shpak/hugo-book
 <p>Regression is a statistical concept, which refers to finding relationships between different quantities. This lies at the core of Data Sciences. Finding how different types of data are related are used to find meaningful conclusions and decisions.</p>
 <p>In the context of Machine Learning, Regression refers to the prediction of a <em>continuous</em> mathematical real-numbered variable as the output, when the model is given some inputs, in the form of variables. This output value is predicted by observing patterns in the data you provide to it.</p>
 <p>For example: look at this image below and observe any pattern that you can interpret visually.</p>
-<p><img src="https://drive.google.com/uc?id=1v3vc-cqwrMekvjtT4XLY2XSNzbH51Rwf" alt="image" /></p>
+<p><img src="../Images/01 Daily Covid Cases US.png" alt="image" /></p>
 <p>This <a href="https://www.worldometers.info/coronavirus/country/us/">chart</a> shows the daily Covid-19 Cases in the United States. Do you see some trends? You would observe that the number of daily cases rise and fall and rise again, almost like a wave.</p>
 <p>Hospitals need to prepare resources, such as hospital beds, ventilators, oxygen supply, and even testing kits well in advance. Thus, an estimate of the expected number is surely helpful.</p>
 <p>Observe the part towards the end of the curve on the right. The chart tells us, that everyday since 29 December 2019, the number of cases have crossed 200,000. Moreover, since December 1, till Jan 15, the number of cases have crossed 200,000 on all days except some 7 odd days. But to compensate this, the number of new cases cases have even risen beyond 300,000 on one day, and more than 250,000 on many days.</p>
@@ -469,7 +469,7 @@ https://github.com/alex-shpak/hugo-book
 <p>Above is shown the linear regression technique for ONE independent variable (x) which is to be mapped to ONE dependent variable (y). You may have multiple dependent variables (x1, x2, x3 and so on), which is to be mapped to the dependent variable (y) , and in that case, the model looks like:</p>
 <pre><code>f(x1,x2,x3 ...) = w1.x1 + w2.x2 + w3.x3 + .... + b
 pred = f(x1,x2,x3 ...)
-</code></pre><p><img src="https://drive.google.com/uc?id=10-K2YfkYT8O24I5eS9xWIHL6H6Xf3pbj" alt="image" /></p>
+</code></pre><p><img src="../Images/01 linreg example.png" alt="image" /></p>
 <p>In this picture, we fit a linear regression model to the data. Now for an unseen data, the model would predict a value that lies on this line. This is a fairly accurate representation of the data, since we observe that all the data more or less lies alone a straight line.</p>
 <p>As an example, let us take a look at the price of the Google stock in the New York Stock Exchange, over the course of many years.</p>
 <h3 id="case-study-the-new-york-stock-exchange">Case Study: The New York Stock Exchange</h3>
@@ -647,9 +647,9 @@ days_elapsed
 <p>Gradient Descent is an algorithm which iteratively updates the values of the parameters until a goal is met, using derivatives. In our case, the goal is to minimize the loss function as we mentioned above.</p>
 <p>The way Gradient Descent works is by minimization of the loss function through the concept of gradients. Below is a dummy example:</p>
 <p>Consider a function that needs to be reduced. Let this be a quadratic function for the sake of simplicity. Our job is to find the value of x (on the x axis), that makes y (the independent variable), minimum!</p>
-<p><img src="https://drive.google.com/uc?id=1aT-hkr91lj6Gj8exxIzOZ0X7_QHOyhVP" alt="image" /></p>
+<p><img src="../Images/01 quadratic function.png" alt="image" /></p>
 <p>Suppose you start from a random point on this graph, say (x,y) = (4,16). How do we, from here, proceed towards the <em>minima</em> of this graph?</p>
-<p><img src="https://drive.google.com/uc?id=1Rd3i0k69mG8x4ChHIyX0Qi5_9KwZBF6T" alt="image" /></p>
+<p><img src="../Images/01 quadfn 1.png" alt="image" /></p>
 <p>Gradients provide the answer! Gradients, if you don&rsquo;t know, is the slope of the curve. You must have studied about the method to calculate the gradient - <em>rise over run</em>. If you do not know what gradients are, head over to Khan Academy. <a href="https://www.youtube.com/watch?v=tIpKfDc295M">Here</a> and <a href="https://www.youtube.com/watch?v=_-02ze7tf08">here</a> are some videos to get you started!</p>
 <p>If you now have some idea about gradients, let us proceed with our discussion on gradients. Gradients are real valued numbers, which represent how the values of the graph are changing.</p>
 <p>Let us start by assigning a totally random value to our parameter x. Now, at the point (4,16) (the red point), can you guess whether the gradient of y with respect to x, is positive or negative?</p>
@@ -657,7 +657,7 @@ days_elapsed
 <p><strong>Gradient Descent continuously updates the parameter (x) by a value opposite to the sign of the gradient of the dependent variable(y) with respect to the parameter(x).</strong></p>
 <p>If the gradient of y with respect to x is positive, update x with a negative number. (Meaning, <strong>Reduce</strong> the value of x by a certain number.)</p>
 <p>If the gradient with respect to the parameter(x) is negative, increase the parameter(x). If you continuously update the parameters using this method, you will reach to the minima of the function.</p>
-<p><img src="https://drive.google.com/uc?id=1LjqBwdupEE7RoT1ogvYKVvoaVT6FVKzr" alt="image" /></p>
+<p><img src="../Images/01 quaddraticfn weight update.png" alt="image" /></p>
 <p><em>Our parameter is continuously updated in steps that move towards the mimima. x goes from 4 to 3 to 2.2 to 1.5 and so on, until it reaches 0</em></p>
 <p>How do we represent this practically?</p>
 <pre><code>#Step 1: calculate gradients
@@ -748,7 +748,7 @@ days_elapsed= calculate_days_since(day)
 days_elapsed
 </code></pre><pre><code>model(days_elapsed,params).item()
 </code></pre><p>Let us look at the actual price at the end of 2018.</p>
-<p><img src="https://drive.google.com/uc?id=1Kkbbqvk33TeqYHxmXoeWJW1mh5rgnFAM" alt="image" /></p>
+<p><img src="../Images/01 GOOG stock price.png" alt="image" /></p>
 <p>You can see, that at the end of 2018, the stock price was about USD 1037. This is not very far from the prediction our own model!</p>
 <p>Congratulations, you have successfully built your Linear Regression Model!</p>
 <h2 id="review">Review</h2>
