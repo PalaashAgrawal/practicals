@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="en" dir="ltr">
 
 <head>
@@ -674,11 +674,11 @@ And don&rsquo;t be afraid to make mistakes. There&rsquo;s no mistake that cannot
 <p>With the third Industrial Revolution, We discovered how to make computers do the tasks that we did everyday. Computers could now handle Computation, Information Processing, and information storage. Communication Systems also improved. And the Internet emerged too! Just 20 years ago, there were no cell phones widely available. Today, we have highly evolved platforms to communicate - over Calls, Social Media, the &ldquo;traditional&rdquo; media, like theTelevision, etc. 
 This has not only helped us connect better, but allowed us to work on even more intellectual tasks, such as Research, both Scientific and Social, Large Scale Global Trade, Space Exploration, Global Economy, etc.</p>
 <p>What AI and autonomity will allow us to do, is to focus on even more intellectual tasks, by doing the everyday cognitive tasks for us. If we can save the time and energy to do these everyday tasks, we can, as a collective human race, focus on more important tasks.</p>
-<p><img src="https://drive.google.com/uc?id=1HHCdmcjLghh-hiOmTRu6uC8nOFAEH1v1" alt="image" /></p>
+<p><img src="../Images/00 The 4 industrial revolutions.jpg" alt="image" /></p>
 <h3 id="but-how-do-you-make-machines-learn">But How do you make Machines Learn?</h3>
 <p>Machines are not hard-coded to gather knowledge. Infact, that is simply not possible. No human can write a computer program that can differentiate between two different faces. We ourselves do not know how to represent such a task using an algorithm. Its just something we &lsquo;know&rsquo; how to do.</p>
 <p>The way machines learn to do such tasks is through identifying patterns in the <strong>Data</strong> we provide to it. That is the gist of all of Machine Learning. And all of the theory of Machine Learning is to simply develop algorithms that can learn information about the data. In the image below, you can see, how we feed data into the system. The system combines all this information to get meaningful results.</p>
-<p><img src="https://drive.google.com/uc?id=1FHIxW9Sn3CHt-cKhUgsXgYjYjBSqwgEg" alt="picture" /></p>
+<p><img src="../Images/00 machine learning representation.jpg" alt="picture" /></p>
 <p>For example, if our model was to differentiate between two different people, we would &ldquo;train&rdquo; our Machine Learning <em>model</em> over a collection of pictures of these two people (the data), to learn features that diffentiate the two people. For example, the model may learn that one person is of different skin tone than the other, or one has a particular hairstyle, which is different from the other person&rsquo;s hairstyle.</p>
 <h3 id="what-is-a-machine-learning-model">What is a Machine Learning Model?</h3>
 <p>A Machine Learning Model is the entity which gives us meaningful results. It is, at core, a mathematical function, which takes in data as the input and gives us results as the ouput. 
@@ -691,7 +691,7 @@ For example, the images of two people are the inputs, and the classification of 
 <p>Let us begin by creating a model that will tell you which breed a cat or a dog belongs to, just by looking at an image of a cat or a dog. Before that, let us install the necessary library. For this particular problem, we&rsquo;ll be using a library called fastai, which is a widely used library for <em>deep learning</em>, and makes it possible to train models efficiently without having to go in a lot of details of the code.</p>
 <p>What is Deep Learning? Deep Learning is a subset of Machine Learning, and is probably the most famous type of Machine Learning. If you decide to pursue Machine Learning in greater depth outside this course, you will find yourself almost predominantly exploring <em>Deep Learning</em>. It uses something known as <em>Neural Networks</em> as models (remember, a model is nothing but a mathematical function which maps the input to the output). The reason it is so famous, is because of the great flexibility that Neural Networks provide. They can solve any complexity of problems easily. We&rsquo;ll learn more about Deep Learning as the course proceeds. The idea, at this point, is to simply let you know about what Machine Learning is about in the practical world.</p>
 <p>By the way, this is what a Neural Network looks like. You may or may not have seen this image before.</p>
-<p><img src="https://drive.google.com/uc?id=1zU_Ub-oiq9ErU0aa2GrOtIRK6-lfX0VC" alt="image" /></p>
+<p><img src="../Images/00 Neuralnet.png" alt="image" /></p>
 <p>Let us begin by installing the <em>fastai</em> library. Before that, you need to enable your GPU. If you&rsquo;re using Colab, all you need to do is click on <em>Runtime</em> on the top, then <em>Change Runtime Type</em>, and change the Hardware Accelerator from <em>None</em> to <em>GPU</em>.</p>
 <p>If you&rsquo;re using a PC instead of Colab, check if your PC has a GPU, that is CUDA enabled.</p>
 <p>If it seems a little intimidating at first, don&rsquo;t worry. Remember, you don&rsquo;t need to learn all these technicalities at this stage. We will learn of all these technicalities as we proceed in the course. Right now, we are only introducing you to what Machine Learning looks like.</p>
@@ -729,7 +729,7 @@ pred + is_cat
 </code></pre><p>A lot of you must have uploaded a picture of something which is neither a cat nor a dog. And found out, that the model still predicts it to be one of the breeds of a cat or dog. Turns out the model is not as smart as our human brain! But we&rsquo;ll discuss the reason in depth when we cover Neural Networks.</p>
 <p>Having said that, if you haven&rsquo;t tried uploading a picture of something which is neither a cat or dog, do so! Why not?</p>
 <p>Infact, here&rsquo;s a fun experiment. You must know that not every dog or cat is suitable for everyone. A person fits best with a pet that has the same traits as the person, and same &lsquo;spirit&rsquo; as the person. And a lot of times, the owners and pets even LOOK alike.</p>
-<p><img src="https://drive.google.com/uc?id=17-1dFG3aDz3QEp1nedc1lq77ghJSAs42" alt="picture" /></p>
+<p><img src="../Images/00 animalsandowners.png" alt="picture" /></p>
 <p>So let&rsquo;s find yours! Go back to the upload button above, click a selfie and upload your photo. And run the code below it. You will get a prediction of a cat or a dog breed! That&rsquo;s your spirit animal.</p>
 <p>Ofcourse, it may not be true. But its worth looking into. Who knows you start liking that breed more now!</p>
 <h2 id="summary">Summary</h2>
